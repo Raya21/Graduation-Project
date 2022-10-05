@@ -47,10 +47,10 @@ class _ForgetPassState extends State<ForgetPass> {
                   TextFormField(
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email, color: Colors.pink),
                       hintText: "E-mail",
                       hintStyle: TextStyle(color: Colors.white),
-                      border: UnderlineInputBorder(
+                      enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),
                       focusedBorder: UnderlineInputBorder(
@@ -63,10 +63,10 @@ class _ForgetPassState extends State<ForgetPass> {
                     obscureText: true,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password),
+                      prefixIcon: Icon(Icons.password, color: Colors.pink),
                       hintText: "Old password",
                       hintStyle: TextStyle(color: Colors.white),
-                      border: UnderlineInputBorder(
+                      enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),
                       focusedBorder: UnderlineInputBorder(
@@ -79,10 +79,10 @@ class _ForgetPassState extends State<ForgetPass> {
                     obscureText: true,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password),
+                      prefixIcon: Icon(Icons.password, color: Colors.pink),
                       hintText: "New password",
                       hintStyle: TextStyle(color: Colors.white),
-                      border: UnderlineInputBorder(
+                      enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),
                       focusedBorder: UnderlineInputBorder(

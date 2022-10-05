@@ -53,8 +53,7 @@ class _LoginState extends State<Login> {
                     controller: _emailcontroller,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      prefixIconColor: Colors.white,
+                      prefixIcon: Icon(Icons.email, color: Colors.pink),
                       hintText: "E-mail",
                       hintStyle: TextStyle(color: Colors.white),
                       enabledBorder: UnderlineInputBorder(
@@ -71,12 +70,7 @@ class _LoginState extends State<Login> {
                     controller: _passwordcontroller,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password),
-                      /*suffixIcon: GestureDetector(onTap: () {
-                        _obscureText=!_obscureText;
-                      },
-                      child: Icon(_obscureText? Icons.visibility : Icons.visibility_off),
-                      ),*/
+                      prefixIcon: Icon(Icons.password, color: Colors.pink),
                       hintText: "Password",
                       hintStyle: TextStyle(color: Colors.white),
                       enabledBorder: UnderlineInputBorder(
