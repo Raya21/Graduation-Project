@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_1/family_data.dart';
+import 'package:graduation_project_1/home.dart';
 import 'package:graduation_project_1/sign_up.dart';
 
 void main() {
@@ -16,12 +18,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.purple,
       ),
-      home: SignUp(),
-      /*routes: {
-      "Home":(context) => Home(),
+      home: FamilyData(),
+      routes: {
+        "SignUp": (context) => SignUp(),
+        "FamilyData": (context) => FamilyData(),
+        /*  "Home":(context) => Home(),
       "ForgetPass":(context) => ForgetPass(),
-      "Login":(context) => Login()
-      },*/
+      "Login":(context) => Login()*/
+      },
     );
   }
 }
