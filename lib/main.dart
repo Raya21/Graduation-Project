@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
       primaryColor: Colors.purple,
      ),
      home: Home(),
-     routes: {
+     /*routes: {
       "Home":(context) => Home(),
       "ForgetPass":(context) => ForgetPass(),
       "Login":(context) => Login()
-      },
+      },*/
     );
   }
 }
