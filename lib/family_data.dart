@@ -8,6 +8,7 @@ class FamilyData extends StatefulWidget {
 }
 
 class _FamilyDataState extends State<FamilyData> {
+  var x = Colors.red;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +72,10 @@ class _FamilyDataState extends State<FamilyData> {
                     ListTile(
                       title: Text(
                         " Please be careful in entering the data, especially the ID number",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       leading: Icon(
                         Icons.label_important,
@@ -81,7 +85,10 @@ class _FamilyDataState extends State<FamilyData> {
                     ListTile(
                       title: Text(
                         " If you are not married, do not enter the data of the husband/wife",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       leading: Icon(
                         Icons.label_important,
@@ -91,7 +98,10 @@ class _FamilyDataState extends State<FamilyData> {
                     ListTile(
                       title: Text(
                         " If you do not have an ID card, please enter the passport number instead of the ID",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       leading: Icon(
                         Icons.label_important,
@@ -101,7 +111,137 @@ class _FamilyDataState extends State<FamilyData> {
                   ],
                 ),
               ),
-              /******************************************************************************** End of Notes Sections *******************************************************************/
+              /********************************************************************************  End of Notes Section  *******************************************************************/
+
+              /************************************************************************************  Sections Bar *************************************************************************/
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      child: Text(
+                        "Section 1",
+                        style: TextStyle(
+                          color: x,
+                        ),
+                      ),
+                      onHover: (value) {
+                        if (value) {
+                          setState(() {
+                            x = Colors.yellow;
+                            print("$x");
+                          });
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      child: Text("Section 2"),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      child: Text("Section 3"),
+                    ),
+                  ],
+                ),
+              ),
+              /********************************************************************************  End of Sections Bar *******************************************************************/
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "Student Name",
+                            labelStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 300,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "Student Number",
+                            labelStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 300,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "ID Number",
+                            labelStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Divider(
+                        color: Colors.red,
+                        thickness: 1,
+                      )
+                    ]),
+              ),
+              /*Container(
+                margin: EdgeInsets.all(20),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Student Number :"),
+                    Expanded(
+                      //width: 80,
+                      child: TextFormField(),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Student Number :"),
+                    Expanded(
+                      //width: 80,
+                      child: TextFormField(),
+                    )
+                  ],
+                ),
+              )*/
             ],
           ),
         ),
