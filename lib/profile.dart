@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class profile extends StatefulWidget {
   const profile({super.key});
 
@@ -249,7 +250,19 @@ class _personInfoState extends State<personInfo> {
               },
               value: selectedSS,
             ),
-          ),),
+          ),
+          ),
+          SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.topRight,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+              onPressed: (() {}), 
+              child: Text("Save")
+              ),
+          )
         ],
       ),
       ), 
@@ -303,6 +316,17 @@ class _contactInfoState extends State<contactInfo> {
               )
             ),
           ),
+          SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.topRight,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+              onPressed: (() {}), 
+              child: Text("Save")
+              ),
+          )
           ],
       )),
     );
@@ -555,6 +579,17 @@ class _eduInfoState extends State<eduInfo> {
             )
             ),
           ),
+          SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.topRight,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+              onPressed: (() {}), 
+              child: Text("Save")
+              ),
+          )
         ],)
         )
     );
@@ -591,7 +626,17 @@ class _attachmentsState extends State<attachments> {
             alignment: Alignment.topLeft,
           child:Text("Transcript for the last semester:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
             SizedBox(height: 15,),
-            
+            SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.topRight,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+              onPressed: (() {}), 
+              child: Text("Save")
+              ),
+          )
           ],
         )
       ),
