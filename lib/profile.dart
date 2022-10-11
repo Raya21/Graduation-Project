@@ -258,9 +258,13 @@ class _personInfoState extends State<personInfo> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
               primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+              shape: RoundedRectangleBorder( 
+                borderRadius: BorderRadius.circular(30)
+            ),
             ),
               onPressed: (() {}), 
-              child: Text("Save")
+              child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
         ],
@@ -322,9 +326,13 @@ class _contactInfoState extends State<contactInfo> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
               primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+              shape: RoundedRectangleBorder( 
+                borderRadius: BorderRadius.circular(30)
+            ),
             ),
               onPressed: (() {}), 
-              child: Text("Save")
+              child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
           ],
@@ -351,8 +359,9 @@ class _eduInfoState extends State<eduInfo> {
         child: Column(children: [
           Align(
             alignment: Alignment.topLeft,
-          child:Text("High Scool Information:",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w900),),),
-          SizedBox(height: 15,),
+          child:Text("High Scool Information:",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
+          Divider(height: 20, thickness: 2,),
+            SizedBox(height: 10,),
           Align(
             alignment: Alignment.topLeft,
           child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
@@ -427,11 +436,12 @@ class _eduInfoState extends State<eduInfo> {
             ),
           ),
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 50,),
           Align(
             alignment: Alignment.topLeft,
-          child:Text("University Information:", style: TextStyle(fontSize: 30,fontWeight: FontWeight.w900),),),
-          SizedBox(height: 15,),
+          child:Text("University Information:", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
+          Divider(height: 20, thickness: 2,),
+            SizedBox(height: 10,),
           Align(
             alignment: Alignment.topLeft,
           child:Text("Undergraduate degree:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
@@ -585,9 +595,13 @@ class _eduInfoState extends State<eduInfo> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
               primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+              shape: RoundedRectangleBorder( 
+                borderRadius: BorderRadius.circular(30)
+            ),
             ),
               onPressed: (() {}), 
-              child: Text("Save")
+              child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
         ],)
@@ -632,9 +646,13 @@ class _attachmentsState extends State<attachments> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
               primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+              shape: RoundedRectangleBorder( 
+                borderRadius: BorderRadius.circular(30)
+            ),
             ),
               onPressed: (() {}), 
-              child: Text("Save")
+              child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
           ],
