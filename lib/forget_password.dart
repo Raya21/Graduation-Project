@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class ForgetPass extends StatefulWidget {
   const ForgetPass({super.key});
@@ -8,6 +9,7 @@ class ForgetPass extends StatefulWidget {
 }
 
 class _ForgetPassState extends State<ForgetPass> {
+  String _errorMessage = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +59,13 @@ class _ForgetPassState extends State<ForgetPass> {
                         borderSide: BorderSide(color: Colors.white)
                       )
                     ),
+                    onChanged: (val){
+                      validateEmail(val);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(_errorMessage, style: TextStyle(color: Colors.red),),
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
@@ -116,5 +125,21 @@ class _ForgetPassState extends State<ForgetPass> {
         ),
         ),
     );
+  }
+  void validateEmail(String val){
+    if(val.isEmpty){
+  setState(() {
+    _errorMessage = "Email can not be empty";
+  });
+    }else if(!EmailValidator.validate(val, true)){
+      setState(() {
+        _errorMessage = "Invalid Email Address";
+      });
+    }else{
+      setState(() {
+
+        _errorMessage = "";
+      });
+    }
   }
 }

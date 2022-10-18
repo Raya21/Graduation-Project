@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:index/language.dart';
 import 'package:index/forget_password.dart';
 import 'package:index/home.dart';
 import 'package:index/login.dart';
+import 'package:index/profile.dart';
+import 'package:index/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,12 +21,15 @@ class MyApp extends StatelessWidget {
      theme: ThemeData(
       primaryColor: Colors.purple,
      ),
-     home: Home(),
-     /*routes: {
-      "Home":(context) => Home(),
-      "ForgetPass":(context) => ForgetPass(),
-      "Login":(context) => Login()
-      },*/
+     initialRoute: "home",
+     routes: {
+      "home":(context) => Home(),
+      "forget_password":(context) => ForgetPass(),
+      "login":(context) => Login(),
+      "language":(context) => Language(),
+      "profile":(context) => profile(),
+      "settings":(context) => settings()
+      },
     );
   }
 }

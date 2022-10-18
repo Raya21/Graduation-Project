@@ -1,4 +1,9 @@
+import 'dart:convert';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:index/forget_password.dart';
+import 'package:http/http.dart' as http;
+import 'package:index/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,8 +14,22 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _obscureText=true;
-  final _emailcontroller=TextEditingController();
-  final _passwordcontroller=TextEditingController();
+  final emailcontroller=TextEditingController();
+  final passwordcontroller=TextEditingController();
+  String _errorMessage = '';
+  
+
+  Future login() async{
+    var url = "http://192.168.0.1/htdocs/swproject/login.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "email": emailcontroller.text,
+      "password":passwordcontroller.text,
+    });
+    var data=jsonDecode(response.body);
+    if(data == "Success"){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()))
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +69,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: _emailcontroller,
+                    controller: emailcontroller,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email, color: Colors.pink),
@@ -62,12 +81,18 @@ class _LoginState extends State<Login> {
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       )
-                      
                     ),
+                    onChanged: (val){
+                      validateEmail(val);
+                    },
                   ),
-                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(_errorMessage, style: TextStyle(color: Colors.red),),
+                  ),
+                  SizedBox(height: 10,),
                   TextFormField(
-                    controller: _passwordcontroller,
+                    controller: passwordcontroller,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password, color: Colors.pink),
@@ -86,7 +111,7 @@ class _LoginState extends State<Login> {
                   Container(
                     child: ElevatedButton(
                       onPressed: (){
-                        print("login");
+                        login();
                       },
                       child: Text("Login"),
                       style: ElevatedButton.styleFrom(
@@ -99,7 +124,6 @@ class _LoginState extends State<Login> {
                           fontSize: 25,
                           fontWeight: FontWeight.w400
                         )
-                        
                       )
                       ),
                   ),
@@ -107,7 +131,7 @@ class _LoginState extends State<Login> {
                     margin: EdgeInsets.only(top: 15),
                     child: InkWell(
                         onTap: () {
-                          
+                          Navigator.of(context).pushReplacementNamed("forget_password");
                         },
                         child: Text("Forget Password?",style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),),
                       ),
@@ -142,5 +166,21 @@ class _LoginState extends State<Login> {
         ),
        ),
     );
+  }
+  void validateEmail(String val){
+    if(val.isEmpty){
+  setState(() {
+    _errorMessage = "Email can not be empty";
+  });
+    }else if(!EmailValidator.validate(val, true)){
+      setState(() {
+        _errorMessage = "Invalid Email Address";
+      });
+    }else{
+      setState(() {
+
+        _errorMessage = "";
+      });
+    }
   }
 }

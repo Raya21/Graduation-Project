@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
                       children: [
                         ListTile(
                           onTap: () {
-                            print("profile");
+                            Navigator.of(context).pushNamed("profile");
                           },
                           leading: Icon(Icons.person, color: Colors.white,),
                           title: Text("Profile", style: TextStyle(color: Colors.white),),
@@ -67,6 +67,13 @@ class _HomeState extends State<Home> {
                           },
                           leading: Icon(Icons.contacts, color: Colors.white,),
                           title: Text("Contact us", style: TextStyle(color: Colors.white),),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).pushNamed("settings");
+                          },
+                          leading: Icon(Icons.settings, color: Colors.white,),
+                          title: Text("Settings", style: TextStyle(color: Colors.white),),
                         ),
                         ListTile(
                           onTap: () {
