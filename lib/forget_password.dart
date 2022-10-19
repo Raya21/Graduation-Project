@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:convert';
+
+import 'package:index/login.dart';
 
 class ForgetPass extends StatefulWidget {
   const ForgetPass({super.key});
@@ -10,6 +15,41 @@ class ForgetPass extends StatefulWidget {
 
 class _ForgetPassState extends State<ForgetPass> {
   String _errorMessage = '';
+  final emailcontroller=TextEditingController();
+  final newpasswordcontroller=TextEditingController();
+  final oldpasswordcontroller=TextEditingController();
+
+  Future forgetpass() async {
+    var url = "http://192.168.0.112/handinhand/forget_password.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "email": emailcontroller.text,
+      "oldpassword":oldpasswordcontroller.text,
+      "newpassword":newpasswordcontroller.text,
+    });
+    var data= await json.decode(json.encode(response.body));
+    if(data == "Success"){
+      Fluttertoast.showToast(msg: "Password Updated Successfuly",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Color.fromARGB(255, 203, 158, 211),
+      textColor: Colors.purple,
+      fontSize: 16
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));
+    }
+    else{
+      Fluttertoast.showToast(msg: "Email or Password Incorrect!",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +87,7 @@ class _ForgetPassState extends State<ForgetPass> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: emailcontroller,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email, color: Colors.pink),
@@ -69,6 +110,7 @@ class _ForgetPassState extends State<ForgetPass> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
+                    controller: oldpasswordcontroller,
                     obscureText: true,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
@@ -85,6 +127,7 @@ class _ForgetPassState extends State<ForgetPass> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
+                    controller: newpasswordcontroller,
                     obscureText: true,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
@@ -102,7 +145,9 @@ class _ForgetPassState extends State<ForgetPass> {
                   SizedBox(height: 50,),
                   Container(
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        forgetpass();
+                      },
                       child: Text("Confirm"),
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(200, 50),
