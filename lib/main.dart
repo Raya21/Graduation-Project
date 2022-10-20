@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
      theme: ThemeData(
       primaryColor: Colors.purple,
      ),
-     initialRoute: "profile",
+     initialRoute: "home",
      routes: {
       "home":(context) => Home(),
       "forget_password":(context) => ForgetPass(),

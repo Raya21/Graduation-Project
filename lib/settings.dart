@@ -34,7 +34,10 @@ class _settingsState extends State<settings> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text("Settings"),
-        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), onPressed: () {  },),
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
+        onPressed: () {  
+          Navigator.pop(context);
+        },),
         ),
        body: Container(
         padding: EdgeInsets.all(10),

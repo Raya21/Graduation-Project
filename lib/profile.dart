@@ -42,14 +42,17 @@ class _profileState extends State<profile> {
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_phone),
             label: "Contact Info",
+            backgroundColor: Colors.purple
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cast_for_education),
             label: "Educational Info",
+            backgroundColor: Colors.purple
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attachment),
             label: "Attachments",
+            backgroundColor: Colors.purple
           ),
         ],
         
@@ -89,6 +92,11 @@ class _personInfoState extends State<personInfo> {
       child:SingleChildScrollView(
         child: Column(
         children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text("Person Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          ),
+          Divider(height: 20, thickness: 2,),
           Align(
             alignment: Alignment.topLeft,
             child: Text("Full Name:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
@@ -134,6 +142,7 @@ class _personInfoState extends State<personInfo> {
           child: TextFormField(
             controller: bdate,
             decoration: const InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               icon: Icon(Icons.calendar_today,color: Colors.purple,),
               iconColor: Color.fromARGB(255, 184, 136, 192),
               /*labelText: "Enter your birth date",
@@ -319,6 +328,11 @@ class _contactInfoState extends State<contactInfo> {
         child: Column(
           children: [
             Align(
+            alignment: Alignment.center,
+            child: Text("Contact Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          ),
+          Divider(height: 20, thickness: 2,),
+            Align(
             alignment: Alignment.topLeft,
           child:Text("Telephone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
@@ -398,6 +412,10 @@ class _eduInfoState extends State<eduInfo> {
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
         child: Column(children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text("Education Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          ),
           Align(
             alignment: Alignment.topLeft,
           child:Text("High Scool Information:",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
@@ -791,6 +809,11 @@ class _attachmentsState extends State<attachments> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            Align(
+            alignment: Alignment.center,
+            child: Text("Attachments", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          ),
+          Divider(height: 20, thickness: 2,),
             Align(
             alignment: Alignment.topLeft,
           child:Text("ID:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
