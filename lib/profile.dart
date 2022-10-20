@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
+
 
 
 class profile extends StatefulWidget {
@@ -664,6 +667,123 @@ class attachments extends StatefulWidget {
 }
 
 class _attachmentsState extends State<attachments> {
+  FilePickerResult? result1;
+  String? _fileName1;
+  PlatformFile? pickedfile1;
+  bool isLoading1 = false;
+  File? fileToDisplay1;
+  FilePickerResult? result2;
+  String? _fileName2;
+  PlatformFile? pickedfile2;
+  bool isLoading2 = false;
+  File? fileToDisplay2;
+  FilePickerResult? result3;
+  String? _fileName3;
+  PlatformFile? pickedfile3;
+  bool isLoading3 = false;
+  File? fileToDisplay3;
+  FilePickerResult? result4;
+  String? _fileName4;
+  PlatformFile? pickedfile4;
+  bool isLoading4 = false;
+  File? fileToDisplay4;
+
+
+
+
+  void pickFile1() async{
+    try{
+      setState(() {
+        isLoading1=true;
+      });
+      result1 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if(result1!=null){
+        _fileName1 = result1!.files.first.name;
+        pickedfile1 = result1!.files.first;
+        fileToDisplay1 = File(pickedfile1!.path.toString());
+
+        print("File name $_fileName1");
+      }
+      setState(() {
+        isLoading1=false;
+      });
+    }catch(e){
+      print(e);
+    }
+  }
+  void pickFile2() async{
+    try{
+      setState(() {
+        isLoading2=true;
+      });
+      result2 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if(result2!=null){
+        _fileName2 = result2!.files.first.name;
+        pickedfile2 = result2!.files.first;
+        fileToDisplay2 = File(pickedfile2!.path.toString());
+
+        print("File name $_fileName2");
+      }
+      setState(() {
+        isLoading2=false;
+      });
+    }catch(e){
+      print(e);
+    }
+  }
+  void pickFile3() async{
+    try{
+      setState(() {
+        isLoading3=true;
+      });
+      result3 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if(result3!=null){
+        _fileName3 = result3!.files.first.name;
+        pickedfile3 = result3!.files.first;
+        fileToDisplay3 = File(pickedfile3!.path.toString());
+
+        print("File name $_fileName3");
+      }
+      setState(() {
+        isLoading3=false;
+      });
+    }catch(e){
+      print(e);
+    }
+  }
+  void pickFile4() async{
+    try{
+      setState(() {
+        isLoading4=true;
+      });
+      result4 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if(result4!=null){
+        _fileName4 = result4!.files.first.name;
+        pickedfile4 = result4!.files.first;
+        fileToDisplay4 = File(pickedfile4!.path.toString());
+
+        print("File name $_fileName4");
+      }
+      setState(() {
+        isLoading4=false;
+      });
+    }catch(e){
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -676,25 +796,84 @@ class _attachmentsState extends State<attachments> {
           child:Text("ID:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           Align(
             alignment: Alignment.topLeft,
-            child: ElevatedButton(
-              child: Text("Pick File"),
-              onPressed: () async{
-                
-              },
-              ),
+            child: isLoading1
+                ? CircularProgressIndicator()
+                : TextButton(
+                  onPressed: (){
+                    pickFile1();
+                  }, 
+                  child: Row(
+                    children: [
+                      Icon(Icons.attach_file, color: Colors.purple,),
+                      Text("Pick File", style: TextStyle(color: Colors.purple, fontSize: 20),),
+                    ],
+                  )
+                  ),
           ),
+          if(pickedfile1!=null) SizedBox(height: 300, width: 400, child: Image.file(fileToDisplay1!),),
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
           child:Text("High school transcripts:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+            alignment: Alignment.topLeft,
+            child: isLoading2
+                ? CircularProgressIndicator()
+                : TextButton(
+                  onPressed: (){
+                    pickFile2();
+                  }, 
+                  child: Row(
+                    children: [
+                      Icon(Icons.attach_file, color: Colors.purple,),
+                      Text("Pick File", style: TextStyle(color: Colors.purple, fontSize: 20),),
+                    ],
+                  )
+                  ),
+          ),
+          if(pickedfile2!=null) SizedBox(height: 300, width: 400, child: Image.file(fileToDisplay2!),),
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
           child:Text("Student Card:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+            alignment: Alignment.topLeft,
+            child: isLoading3
+                ? CircularProgressIndicator()
+                : TextButton(
+                  onPressed: (){
+                    pickFile3();
+                  }, 
+                  child: Row(
+                    children: [
+                      Icon(Icons.attach_file, color: Colors.purple,),
+                      Text("Pick File", style: TextStyle(color: Colors.purple, fontSize: 20),),
+                    ],
+                  )
+                  ),
+          ),
+          if(pickedfile3!=null) SizedBox(height: 300, width: 400, child: Image.file(fileToDisplay3!),),
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
           child:Text("Transcript for the last semester:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+            alignment: Alignment.topLeft,
+            child: isLoading4
+                ? CircularProgressIndicator()
+                : TextButton(
+                  onPressed: (){
+                    pickFile4();
+                  }, 
+                  child: Row(
+                    children: [
+                      Icon(Icons.attach_file, color: Colors.purple,),
+                      Text("Pick File", style: TextStyle(color: Colors.purple, fontSize: 20),),
+                    ],
+                  )
+                  ),
+          ),
+          if(pickedfile4!=null) SizedBox(height: 300, width: 400, child: Image.file(fileToDisplay4!),),
             SizedBox(height: 15,),
             SizedBox(height: 20,),
           Align(
@@ -707,7 +886,9 @@ class _attachmentsState extends State<attachments> {
                 borderRadius: BorderRadius.circular(30)
             ),
             ),
-              onPressed: (() {}), 
+              onPressed: (() {
+                
+              }), 
               child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
