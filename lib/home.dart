@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                           onTap: () {
                             
                           },
-                          leading: Icon(Icons.contacts, color: Colors.white,),
+                          leading: Icon(Icons.contact_mail_sharp, color: Colors.white,),
                           title: Text("Contact us", style: TextStyle(color: Colors.white),),
                         ),
                         ListTile(
@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
                         ),
                         ListTile(
                           onTap: () {
-                            
+                            Navigator.of(context).pushNamed("login");
                           },
                           leading: Icon(Icons.logout, color: Colors.white,),
                           title: Text("Log out", style: TextStyle(color: Colors.white),),

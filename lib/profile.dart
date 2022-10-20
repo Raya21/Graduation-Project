@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:file_picker/file_picker.dart';
 
 
 class profile extends StatefulWidget {
@@ -64,7 +66,18 @@ class _personInfoState extends State<personInfo> {
    String selectedIncome = "-";
    String selectedGender = "Male";
    String selectedSS = "Single";
-   DateTime dateTime = DateTime.now();
+   TextEditingController fname = TextEditingController();
+   TextEditingController id = TextEditingController();
+   TextEditingController birthofdate = TextEditingController();
+   TextEditingController birthplace = TextEditingController();
+   TextEditingController city = TextEditingController();
+   TextEditingController bdate = TextEditingController();
+
+   @override
+   void initState(){
+    super.initState();
+    bdate.text = "";
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +91,7 @@ class _personInfoState extends State<personInfo> {
             child: Text("Full Name:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           ),
           TextFormField(
+            controller: fname,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -95,6 +109,7 @@ class _personInfoState extends State<personInfo> {
           child: Text("ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           ),
           TextFormField(
+            controller: id,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -107,43 +122,51 @@ class _personInfoState extends State<personInfo> {
             ),
           ),
           SizedBox(height: 15,),
-          Row(
-            children: [
               Align(
             alignment: Alignment.topLeft,
-          child: Text("Date Of Birth:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          child: Text("Birth Date:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text("${dateTime.day}/${dateTime.month}/${dateTime.year}",  style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),)
-            ],
-          ),
           Align(
             alignment: Alignment.topLeft,
-          child:
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
+          child: TextFormField(
+            controller: bdate,
+            decoration: const InputDecoration(
+              icon: Icon(Icons.calendar_today,color: Colors.purple,),
+              iconColor: Color.fromARGB(255, 184, 136, 192),
+              /*labelText: "Enter your birth date",
+              labelStyle: TextStyle(color:  Colors.black,fontSize: 20),*/
+              enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.purple)
             ),
-            child: Text("Choose Date", style: TextStyle(color: Colors.white),),
-            onPressed: () async{
-              DateTime? birthDate = await showDatePicker(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.purple)
+            )
+            ),
+            readOnly: true,
+            onTap: () async{
+              DateTime? pickedDate = await showDatePicker(
                 context: context, 
-                initialDate: dateTime, 
-                firstDate: DateTime(1950), 
-                lastDate: DateTime(2010)
+                initialDate: DateTime.now(), 
+                firstDate: DateTime(1960), 
+                lastDate: DateTime(2023),
                 );
-                if(birthDate == null) return;
+              if(pickedDate!=null){
                 setState(() {
-                  dateTime = birthDate;
+                  String formattedDate=DateFormat("yyyy-MM-dd").format(pickedDate);
+                  bdate.text=formattedDate.toString();
                 });
-            }, 
-            ),),
+              }else{
+                print("Not selected Birth date");
+              }
+            },
+          ),
+            ),
           SizedBox(height: 15,),
           Align(
             alignment: Alignment.topLeft,
-          child: Text("Birth Palce:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child: Text("Birth Place:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: birthplace,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -160,6 +183,7 @@ class _personInfoState extends State<personInfo> {
             alignment: Alignment.topLeft,
           child: Text("City:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: city,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -282,6 +306,8 @@ class contactInfo extends StatefulWidget {
 }
 
 class _contactInfoState extends State<contactInfo> {
+  TextEditingController Tphone = TextEditingController();
+  TextEditingController Mphone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -293,6 +319,7 @@ class _contactInfoState extends State<contactInfo> {
             alignment: Alignment.topLeft,
           child:Text("Telephone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: Tphone,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -309,6 +336,7 @@ class _contactInfoState extends State<contactInfo> {
             alignment: Alignment.topLeft,
           child:Text("Mobile Phone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: Mphone,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -351,6 +379,16 @@ class _eduInfoState extends State<eduInfo> {
   String selectedBranch = "Study branch";
   String selectedDegree = "Undergraduate degree";
   String selectedYear = "Academic year";
+  TextEditingController yearofEn = TextEditingController();
+  TextEditingController schoolcon = TextEditingController();
+  TextEditingController gradecon = TextEditingController();
+  TextEditingController uni = TextEditingController();
+  TextEditingController collegecon = TextEditingController();
+  TextEditingController dep = TextEditingController();
+  TextEditingController gpacon = TextEditingController();
+  TextEditingController uniid = TextEditingController();
+  TextEditingController yearofEnUni = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -366,6 +404,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: yearofEn,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -382,6 +421,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("School:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: schoolcon,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -398,6 +438,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("Grade:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: gradecon,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -472,6 +513,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("University:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: uni,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -488,6 +530,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("College:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: collegecon,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -504,6 +547,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("Department:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: dep,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -546,6 +590,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("GPA:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: gpacon,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -562,6 +607,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("University ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: uniid,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -578,6 +624,7 @@ class _eduInfoState extends State<eduInfo> {
             alignment: Alignment.topLeft,
           child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           TextFormField(
+            controller: yearofEnUni,
             cursorColor: Colors.purple,
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -627,6 +674,15 @@ class _attachmentsState extends State<attachments> {
             Align(
             alignment: Alignment.topLeft,
           child:Text("ID:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          Align(
+            alignment: Alignment.topLeft,
+            child: ElevatedButton(
+              child: Text("Pick File"),
+              onPressed: () async{
+                
+              },
+              ),
+          ),
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
@@ -660,4 +716,5 @@ class _attachmentsState extends State<attachments> {
       ),
     );
   }
+  
 }

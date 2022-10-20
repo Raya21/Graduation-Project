@@ -15,9 +15,9 @@ class ForgetPass extends StatefulWidget {
 
 class _ForgetPassState extends State<ForgetPass> {
   String _errorMessage = '';
-  final emailcontroller=TextEditingController();
-  final newpasswordcontroller=TextEditingController();
-  final oldpasswordcontroller=TextEditingController();
+  TextEditingController emailcontroller=TextEditingController();
+  TextEditingController newpasswordcontroller=TextEditingController();
+  TextEditingController oldpasswordcontroller=TextEditingController();
 
   Future forgetpass() async {
     var url = "http://192.168.0.112/handinhand/forget_password.php";

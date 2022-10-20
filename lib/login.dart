@@ -15,8 +15,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _obscureText=true;
-  final emailcontroller=TextEditingController();
-  final passwordcontroller=TextEditingController();
+  TextEditingController emailcontroller=TextEditingController();
+  TextEditingController passwordcontroller=TextEditingController();
   String _errorMessage = '';
   
 
