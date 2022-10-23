@@ -53,7 +53,28 @@ class _settingsState extends State<settings> {
             ),
             Divider(height: 20, thickness: 1,),
             SizedBox(height: 10,),
-            buildAccountOption(context, "Change Password"),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 20),
+              child: InkWell(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Change Password", style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,color: Colors.grey
+                ),),
+                    Icon(
+                      Icons.arrow_forward_ios, 
+                      color: Colors.grey,
+                      ),
+                  ],
+                  ),
+                  onTap: (){
+                    Navigator.of(context).pushNamed("forget_password");
+                  },
+              ),
+              ),
+            
             buildAccountOption(context, "Content Settings"),
             buildAccountOption(context, "Social"),
             buildAccountOption(context, "Language"),
@@ -111,12 +132,22 @@ class _settingsState extends State<settings> {
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Option 1"),
-                Text("Option 2"),
+                InkWell(
+                  child: Text("Arabic",style: TextStyle(fontSize: 20),),
+                  onTap: () {
+                    print("عربي");
+                  },
+                ),               
+                InkWell(
+                  child: Text("English",style: TextStyle(fontSize: 20),),
+                  onTap: () {
+                    print("eglish");
+                  },
+                  )
               ],
             ),
             actions: [
-              TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Colse"))
+              TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Colse", style: TextStyle(color: Colors.purple),))
             ],
             );
         });

@@ -1,9 +1,10 @@
 import 'dart:io';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class profile extends StatefulWidget {
@@ -74,11 +75,47 @@ class _personInfoState extends State<personInfo> {
    String selectedSS = "Single";
    TextEditingController fname = TextEditingController();
    TextEditingController id = TextEditingController();
-   TextEditingController birthofdate = TextEditingController();
    TextEditingController birthplace = TextEditingController();
    TextEditingController city = TextEditingController();
    TextEditingController bdate = TextEditingController();
+   String _errorMessage = '';
+  
 
+  Future person() async{
+    var url = "http://192.168.0.112/handinhand/person.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "fname": fname.text,
+      "id":id.text,
+      "birthdate":bdate.text,
+      "birthplace": birthplace.text,
+      "city": city.text,
+      "income":selectedIncome,
+      "Gender":selectedGender,
+      "socialstatus":selectedSS
+    });
+    var data= await json.decode(json.encode(response.body));
+    if(data == "Success"){
+      Fluttertoast.showToast(msg: "Saved",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Color.fromARGB(255, 203, 158, 211),
+      textColor: Colors.purple,
+      fontSize: 16
+      );
+      
+    }
+    else{
+      Fluttertoast.showToast(msg: "Not Saved!",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16
+      );
+    }
+  }
    @override
    void initState(){
     super.initState();
@@ -299,7 +336,9 @@ class _personInfoState extends State<personInfo> {
                 borderRadius: BorderRadius.circular(30)
             ),
             ),
-              onPressed: (() {}), 
+              onPressed: () {
+                person();
+              }, 
               child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
@@ -320,6 +359,37 @@ class contactInfo extends StatefulWidget {
 class _contactInfoState extends State<contactInfo> {
   TextEditingController Tphone = TextEditingController();
   TextEditingController Mphone = TextEditingController();
+  String _errorMessage = '';
+  
+
+  Future contact() async{
+    var url = "http://192.168.0.112/handinhand/contactInfo.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "TPhone": Tphone.text,
+      "MPhone":Mphone.text,
+    });
+    var data= await json.decode(json.encode(response.body));
+    if(data == "Success"){
+      Fluttertoast.showToast(msg: "Saved",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Color.fromARGB(255, 203, 158, 211),
+      textColor: Colors.purple,
+      fontSize: 16
+      );
+    }
+    else{
+      Fluttertoast.showToast(msg: "Not Saved",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -376,7 +446,9 @@ class _contactInfoState extends State<contactInfo> {
                 borderRadius: BorderRadius.circular(30)
             ),
             ),
-              onPressed: (() {}), 
+              onPressed: () {
+                contact();
+              }, 
               child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
@@ -405,6 +477,48 @@ class _eduInfoState extends State<eduInfo> {
   TextEditingController gpacon = TextEditingController();
   TextEditingController uniid = TextEditingController();
   TextEditingController yearofEnUni = TextEditingController();
+  String _errorMessage = '';
+  
+
+  Future education() async{
+    var url = "http://192.168.0.112/handinhand/education.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "yearofEn": yearofEn.text,
+      "school":schoolcon.text,
+      "grade":gradecon.text,
+      "university": uni.text,
+      "college": collegecon.text,
+      "department":dep.text,
+      "gpa": gpacon.text,
+      "yearofEnUni": yearofEnUni.text,
+      "uniid":uniid.text,
+      "branch":selectedBranch,
+      "degree":selectedDegree,
+      "acadmicyear":selectedYear
+    });
+    var data= await json.decode(json.encode(response.body));
+    if(data == "Success"){
+      Fluttertoast.showToast(msg: "Saved",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Color.fromARGB(255, 203, 158, 211),
+      textColor: Colors.purple,
+      fontSize: 16
+      );
+      
+    }
+    else{
+      Fluttertoast.showToast(msg: "Not Saved!",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -668,7 +782,9 @@ class _eduInfoState extends State<eduInfo> {
                 borderRadius: BorderRadius.circular(30)
             ),
             ),
-              onPressed: (() {}), 
+              onPressed: () {
+                education();
+              }, 
               child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
           )
@@ -706,7 +822,40 @@ class _attachmentsState extends State<attachments> {
   bool isLoading4 = false;
   File? fileToDisplay4;
 
+String _errorMessage = '';
+  
 
+  Future education() async{
+    var url = "http://192.168.0.112/handinhand/attachments.php";
+    var response=await http.post(Uri.parse(url),body:{
+      "idcard": _fileName1,
+      "hightranscript": _fileName2,
+      "studentcard":_fileName3,
+      "lastsemtranscript":_fileName4,
+    });
+    var data= await json.decode(json.encode(response.body));
+    if(data == "Success"){
+      Fluttertoast.showToast(msg: "Saved",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Color.fromARGB(255, 203, 158, 211),
+      textColor: Colors.purple,
+      fontSize: 16
+      );
+      
+    }
+    else{
+      Fluttertoast.showToast(msg: "Not Saved!",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16
+      );
+    }
+  }
 
 
   void pickFile1() async{
@@ -816,7 +965,7 @@ class _attachmentsState extends State<attachments> {
           Divider(height: 20, thickness: 2,),
             Align(
             alignment: Alignment.topLeft,
-          child:Text("ID:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child:Text("ID Card:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
           Align(
             alignment: Alignment.topLeft,
             child: isLoading1
@@ -910,7 +1059,7 @@ class _attachmentsState extends State<attachments> {
             ),
             ),
               onPressed: (() {
-                
+                education();
               }), 
               child: Text("Save", style: TextStyle(fontSize: 20),)
               ),

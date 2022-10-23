@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:index/language.dart';
+//import 'package:index/language.dart';
 import 'package:index/forget_password.dart';
 import 'package:index/home.dart';
+import 'package:index/loans_request.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
 import 'package:index/settings.dart';
@@ -26,9 +27,10 @@ class MyApp extends StatelessWidget {
       "home":(context) => Home(),
       "forget_password":(context) => ForgetPass(),
       "login":(context) => Login(),
-      "language":(context) => Language(),
+      //"language":(context) => Language(),
       "profile":(context) => profile(),
-      "settings":(context) => settings()
+      "settings":(context) => settings(),
+      "loans_request":(context) => Loans(),
       },
     );
   }

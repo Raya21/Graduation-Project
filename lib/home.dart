@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
@@ -11,6 +12,52 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   double value=0;
+  PickedFile? _imagefile;
+  final ImagePicker _picker = ImagePicker();
+  Widget bottomSheet(){
+    return Container(
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+      child: Column(
+        children: [
+          Text("Choose Profile photo", style: TextStyle(
+            fontSize: 20
+          ),),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                child: Row(children: [
+                  Icon(Icons.camera),
+                  Text("Camera"),
+                ],),
+                onTap: () {
+                  takePhoto(ImageSource.camera);
+                },
+                ),
+                SizedBox(width: 50,),
+                InkWell(
+                child: Row(children: [
+                  Icon(Icons.image),
+                  Text("Gallery"),
+                ],),
+                onTap: () {
+                  takePhoto(ImageSource.gallery);
+                },
+                )
+            ],
+          )
+      ]),
+    );
+  }
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(source: source);
+    setState(() {
+      _imagefile = pickedFile!;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +82,31 @@ class _HomeState extends State<Home> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: AssetImage("lib/imgs/nopic.png"),
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: _imagefile == null
+                        ? null
+                        : FileImage(File(_imagefile!.path))
+                        /*backgroundImage: _imageFile == null 
+                        ? AssetImage("lib/imgs/nopic.png") 
+                        : FileImage(File(_imageFile.path)),*/
+                      ),
+                      Positioned(bottom: 4,
+                      right: 4,
+                      child: InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context, 
+                          builder: ((builder)=>bottomSheet()));
+                        },
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Color.fromARGB(255, 219, 203, 203),
+                          size: 28,))
+                      ),
+                    ],
                   ),
                   SizedBox(height: 10,),
                   Text("user@gmail.com",
@@ -56,7 +125,7 @@ class _HomeState extends State<Home> {
                         ),
                         ListTile(
                           onTap: () {
-                            
+                            Navigator.of(context).pushNamed("loans_request");
                           },
                           leading: Icon(Icons.money, color: Colors.white,),
                           title: Text("Loan Request", style: TextStyle(color: Colors.white),),
