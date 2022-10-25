@@ -30,7 +30,7 @@ class _FamilyDataState extends State<FamilyData> {
             Navigator.pop(context);
           },
         ),
-        title: Text("Family Data"),
+        title: Text("Family Data",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Container(

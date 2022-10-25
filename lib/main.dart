@@ -27,10 +27,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
+     themeMode: ThemeMode.system,
      theme: ThemeData(
       primaryColor: Colors.purple,
-      fontFamily: 'Average_Sans'
+      fontFamily: 'Average_Sans',
      ),
+     darkTheme: ThemeData.dark(),
      initialRoute: "home",
      routes: {
       "home":(context) => Home(),

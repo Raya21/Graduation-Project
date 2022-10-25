@@ -43,7 +43,7 @@ class _ContactUsState extends State<ContactUs> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text("Contact Us"),
+        title: Text("Contact Us",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
           Navigator.pop(context);

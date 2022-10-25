@@ -40,6 +40,8 @@ dependencies:
   file_picker: ^5.2.1
   google_fonts: ^3.0.1
   url_launcher: ^6.1.6
+  shared_preferences: ^2.0.15
+  provider: ^6.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -102,6 +104,9 @@ flutter:
      - family: Average_Sans
        fonts:
          - asset: lib/fonts/Average_Sans/AverageSans-Regular.ttf
+     - family: Maven_Pro
+       fonts:
+         - asset: lib/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
