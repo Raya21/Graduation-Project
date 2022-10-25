@@ -95,7 +95,13 @@ flutter:
   fonts:
      - family: Roboto
        fonts:
-         - asset: lib/fonts/Roboto-Regular.ttf
+         - asset: lib/fonts/Roboto/Roboto-Regular.ttf
+     - family: Ruluko
+       fonts:
+         - asset: lib/fonts/Ruluko/Ruluko-Regular.ttf
+     - family: Average_Sans
+       fonts:
+         - asset: lib/fonts/Average_Sans/AverageSans-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

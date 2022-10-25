@@ -494,7 +494,22 @@ class _Section3State extends State<Section3> {
               buildRow([' ', ' ', ' ', ' ']),
             ],
           ),
-        )
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+            onPressed: (() {}),
+            child: Text(
+              "Save data",
+              style: TextStyle(fontSize: 20),
+            )),
       ],
     );
   }

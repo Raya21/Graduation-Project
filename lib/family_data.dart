@@ -20,10 +20,19 @@ class _FamilyDataState extends State<FamilyData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text("Family Data"),
         backgroundColor: Theme.of(context).primaryColor,
-      ),*/
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -33,41 +42,13 @@ class _FamilyDataState extends State<FamilyData> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            /******************************************************************************************* here *********************************************************************/
+            /******************************************************************************************* *** *********************************************************************/
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                  width: double.infinity,
-                  height: 200,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.purple[400]!,
-                      Colors.purple[800]!,
-                    ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-                  ),
-                  //  color: Colors.purple,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "lib/imgs/family1.png",
-                        width: 100,
-                        height: 100,
-                      ),
-                      Text("Family Data",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  )),
               /************************************************************************************ Notes Section *************************************************************************/
               Card(
-                color: Color.fromARGB(255, 208, 94, 228),
+                color: Color.fromARGB(255, 215, 143, 228),
                 margin: EdgeInsets.all(20),
                 child: Column(
                   children: [
@@ -81,7 +62,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                     ListTile(
@@ -94,7 +75,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                     ListTile(
@@ -107,7 +88,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                   ],

@@ -121,42 +121,42 @@ class _HomeState extends State<Home> {
                             Navigator.of(context).pushNamed("profile");
                           },
                           leading: Icon(Icons.person, color: Colors.white,),
-                          title: Text("Profile", style: TextStyle(color: Colors.white),),
+                          title: Text("Profile", style: TextStyle(color: Colors.white, fontSize: 20),),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.of(context).pushNamed("family_data");
                           },
                           leading: Icon(Icons.family_restroom, color: Colors.white,),
-                          title: Text("Family Data", style: TextStyle(color: Colors.white),),
+                          title: Text("Family Data", style: TextStyle(color: Colors.white, fontSize: 20),),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.of(context).pushNamed("qualifications");
                           },
                           leading: Icon(Icons.money, color: Colors.white,),
-                          title: Text("Loan Request", style: TextStyle(color: Colors.white),),
+                          title: Text("Loan Request", style: TextStyle(color: Colors.white, fontSize: 20),),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.of(context).pushNamed("contactus");
                           },
                           leading: Icon(Icons.contact_mail_sharp, color: Colors.white,),
-                          title: Text("Contact us", style: TextStyle(color: Colors.white),),
+                          title: Text("Contact us", style: TextStyle(color: Colors.white, fontSize: 20),),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.of(context).pushNamed("settings");
                           },
                           leading: Icon(Icons.settings, color: Colors.white,),
-                          title: Text("Settings", style: TextStyle(color: Colors.white),),
+                          title: Text("Settings", style: TextStyle(color: Colors.white, fontSize: 20),),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.of(context).pushNamed("login");
                           },
                           leading: Icon(Icons.logout, color: Colors.white,),
-                          title: Text("Log out", style: TextStyle(color: Colors.white),),
+                          title: Text("Log out", style: TextStyle(color: Colors.white, fontSize: 20),),
                         )
                       ],
                     ),
@@ -176,7 +176,7 @@ class _HomeState extends State<Home> {
             ..rotateY((pi/6)*val),
             child: Scaffold(
               appBar: AppBar(
-                title: Text("Home"),
+                title: Text("Home",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
                 backgroundColor: Theme.of(context).primaryColor,
                 actions: [IconButton(
                   icon: Icon(Icons.notifications),

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
      debugShowCheckedModeBanner: false,
      theme: ThemeData(
       primaryColor: Colors.purple,
-      fontFamily: 'Roboto'
+      fontFamily: 'Average_Sans'
      ),
      initialRoute: "home",
      routes: {

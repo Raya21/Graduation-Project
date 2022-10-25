@@ -293,7 +293,7 @@ class _personInfoState extends State<personInfo> {
                 borderRadius: BorderRadius.circular(5)
             ),
             child: DropdownButton(
-              items: ["Male","Female"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+              items: ["Male","Female"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
               onChanged: (val) {
                 setState(() {
                   selectedGender=val!;
@@ -309,7 +309,7 @@ class _personInfoState extends State<personInfo> {
           Align(
             alignment: Alignment.topLeft,
           child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 7.0),
             decoration: BoxDecoration(
                 border: Border.all(
                     color: Colors.purple,
@@ -319,7 +319,7 @@ class _personInfoState extends State<personInfo> {
                 borderRadius: BorderRadius.circular(5)
             ),
             child: DropdownButton(
-              items: ["Single","Married"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+              items: ["Single","Married"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20),),value: e,)).toList(), 
               onChanged: (val) {
                 setState(() {
                   selectedSS=val!;
@@ -606,7 +606,7 @@ class _eduInfoState extends State<eduInfo> {
                 borderRadius: BorderRadius.circular(5)
             ),
             child: DropdownButton(
-              items: ["Study branch","scientific","literary","commercial","Industrial"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+              items: ["Study branch","scientific","literary","commercial","Industrial"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
               onChanged: (val) {
                 setState(() {
                   selectedBranch=val!;
@@ -638,7 +638,7 @@ class _eduInfoState extends State<eduInfo> {
                 borderRadius: BorderRadius.circular(5)
             ),
             child: DropdownButton(
-              items: ["Undergraduate degree","Diploma","BA","Master's","PhD"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+              items: ["Undergraduate degree","Diploma","BA","Master's","PhD"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
               onChanged: (val) {
                 setState(() {
                   selectedDegree=val!;
@@ -715,7 +715,7 @@ class _eduInfoState extends State<eduInfo> {
                 borderRadius: BorderRadius.circular(5)
             ),
             child: DropdownButton(
-              items: ["Academic year","First","Second","Third","Fourth","Fifth","Sixth","Seventh"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+              items: ["Academic year","First","Second","Third","Fourth","Fifth","Sixth","Seventh"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
               onChanged: (val) {
                 setState(() {
                   selectedYear=val!;
