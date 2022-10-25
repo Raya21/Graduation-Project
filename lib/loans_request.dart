@@ -1,143 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class Loans extends StatefulWidget {
-  const Loans({super.key});
+class ApplyLoans extends StatefulWidget {
+  const ApplyLoans({super.key});
 
   @override
-  State<Loans> createState() => _LoansState();
+  State<ApplyLoans> createState() => _ApplyLoansState();
 }
 
-class _LoansState extends State<Loans> {
-  TextEditingController fname = TextEditingController();
-  TextEditingController Mphone = TextEditingController();
-  TextEditingController city = TextEditingController();
+class _ApplyLoansState extends State<ApplyLoans> {
+  late Future<void> _launched;
+  String _launchUrl = 'https://eservices.iqrad.edu.ps/';
+  Future<void> _launchInBroswer(String url)async{
+    if(await canLaunch(url)){
+      await launch(url,forceSafariVC: false,forceWebView: false,headers: <String,String>{'header_key':'header_value'},);
+
+    }else{
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: Text("Loans Requests"),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text("Apply for a loan"),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
           Navigator.pop(context);
         },),
       ),
       body: Container(
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text("Advantages", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-              Row(
-                children: [
-                  SizedBox(width: 25,),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text("Easy and convenient procedures", style: TextStyle(color: Colors.white, fontSize: 20, ),), 
-                  color: Color.fromARGB(255, 212, 132, 226),
-                  width: 150,
-                  height: 100,
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    padding: EdgeInsets.all(10),
-                    child: Text("Declining interest rate", style: TextStyle(color: Colors.white, fontSize: 20, ),), 
-                  color: Color.fromARGB(255, 212, 132, 226),
-                  width: 150,
-                  height: 100,
-                  ),
-                ],
-              ),
-              SizedBox(height: 30,),
-              Text("Warranties",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-              SizedBox(height: 10,),
-              Row(
-                children: [
-                  Icon(Icons.circle, color: Colors.black,size: 10,),
-                  SizedBox(width: 10,),
-                  Expanded(
-                    child: Text("Sponsorship of the student’s guardian + a salary sponsor.",style: TextStyle(fontSize: 20),)
-                  )
-                ],
-              ),
-              SizedBox(height: 10,),
-              Row(
-                children: [
-                  Icon(Icons.circle, color: Colors.black,size: 10,),
-                  SizedBox(width: 10,),
-                  Expanded(
-                    child: Text("Two sponsors with regular salaries have been added on our side in the event that the student’s guardian does not have a salary, with the addition of his moral sponsorship.",style: TextStyle(fontSize: 20),)
-                  )
-                ],
-              ),
-              SizedBox(height: 40,),
-              Text("Apply",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-              SizedBox(height: 10,),
-              TextFormField(
-            controller: fname,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              labelText: "Full Name",
-              labelStyle: TextStyle(color: Colors.black),
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          TextFormField(
-            controller: Mphone,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              labelText: "Mobile Phone Number",
-              labelStyle: TextStyle(color: Colors.black),
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          TextFormField(
-            controller: city,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              labelText: "City",
-              labelStyle: TextStyle(color: Colors.black),
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.center,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
-              shape: RoundedRectangleBorder( 
-                borderRadius: BorderRadius.circular(30)
-            ),
-            ),
-              onPressed: (() {}), 
-              child: Text("Send", style: TextStyle(fontSize: 20),)
-              ),
-          )
+              Text("At the beginning of each semester, the Lending Fund announces the start of receiving loan applications for needy students in Palestinian higher education institutions for a specified period of time. The student wishing to submit a request must do the following:",style: TextStyle(fontSize: 20),),
+              SizedBox(height: 15,),
+
+                Align(child: Text("1.Fill out the application through",style: TextStyle(fontSize: 20),), alignment: Alignment.topLeft,),
+              Align(child: InkWell(onTap: (){
+                  _launchInBroswer(_launchUrl);
+              },child: Text("the electronic services link",style: TextStyle(fontSize: 20, color: Colors.purple),),),alignment: Alignment.topLeft,),
+              Align(child: Text("through the student's account.",style: TextStyle(fontSize: 20),),alignment: Alignment.topLeft),
+              SizedBox(height: 15,),
+              Text("2. The student submits all the documents and supporting documents required of him to the Deanship of Student Affairs and his request is checked directly and he receives a proof of submission and verification form. In the event that the student does not complete this step, his request is considered incomplete and is not considered.",style: TextStyle(fontSize: 20),),
+              SizedBox(height: 15,),
+              Text("3. In the event the student loses his user name and/or password, he must refer to the Student Affairs Department at his educational institution to be provided with a new password.",style: TextStyle(fontSize: 20),),
             ],
-            )
-          ),
+        )),
       ),
     );
   }

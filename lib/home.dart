@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
       child: Column(
         children: [
           Text("Choose Profile photo", style: TextStyle(
-            fontSize: 20
+            fontSize: 20,
           ),),
           SizedBox(height: 20,),
           Row(
@@ -125,14 +125,21 @@ class _HomeState extends State<Home> {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).pushNamed("loans_request");
+                            Navigator.of(context).pushNamed("family_data");
+                          },
+                          leading: Icon(Icons.family_restroom, color: Colors.white,),
+                          title: Text("Family Data", style: TextStyle(color: Colors.white),),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).pushNamed("qualifications");
                           },
                           leading: Icon(Icons.money, color: Colors.white,),
                           title: Text("Loan Request", style: TextStyle(color: Colors.white),),
                         ),
                         ListTile(
                           onTap: () {
-                            
+                            Navigator.of(context).pushNamed("contactus");
                           },
                           leading: Icon(Icons.contact_mail_sharp, color: Colors.white,),
                           title: Text("Contact us", style: TextStyle(color: Colors.white),),
@@ -170,12 +177,18 @@ class _HomeState extends State<Home> {
             child: Scaffold(
               appBar: AppBar(
                 title: Text("Home"),
-                backgroundColor: Colors.purple,
+                backgroundColor: Theme.of(context).primaryColor,
                 actions: [IconButton(
                   icon: Icon(Icons.notifications),
                   onPressed: () {
                   
-                },),],
+                },),
+                IconButton(
+                  icon: Icon(Icons.chat),
+                  onPressed: () {
+                  
+                },),
+                ],
               ),
              // body: ,
             ),

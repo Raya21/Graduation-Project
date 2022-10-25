@@ -22,11 +22,15 @@ class _profileState extends State<profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
-        backgroundColor: Colors.purple,
+        backgroundColor: Theme.of(context).primaryColor,
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
+        onPressed: () {  
+          Navigator.pop(context);
+        },),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        backgroundColor: Colors.purple,
+        backgroundColor: Theme.of(context).primaryColor,
         selectedItemColor: Color.fromARGB(255, 218, 136, 233),
         unselectedItemColor: Colors.white,
         onTap: (value) {
@@ -38,22 +42,22 @@ class _profileState extends State<profile> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Personal Info",
-            backgroundColor: Colors.purple
+            backgroundColor: Theme.of(context).primaryColor
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_phone),
             label: "Contact Info",
-            backgroundColor: Colors.purple
+            backgroundColor: Theme.of(context).primaryColor
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cast_for_education),
             label: "Educational Info",
-            backgroundColor: Colors.purple
+            backgroundColor: Theme.of(context).primaryColor
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attachment),
             label: "Attachments",
-            backgroundColor: Colors.purple
+            backgroundColor: Theme.of(context).primaryColor
           ),
         ],
         
