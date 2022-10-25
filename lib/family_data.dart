@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'section1_familyData_page.dart';
+import 'section2_familyData_page.dart';
+import 'section3_familyData_page.dart';
 
 class FamilyData extends StatefulWidget {
   const FamilyData({super.key});
@@ -8,64 +12,43 @@ class FamilyData extends StatefulWidget {
 }
 
 class _FamilyDataState extends State<FamilyData> {
-  var x = Colors.red;
+  var section = Section1();
+  var sectionNumber = 0;
+  List sections = [Section1(), Section2(), Section3()];
+  var selectedItem = null;
+  var x = Colors.black;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text("Family Data"),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          /*  gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            // Color.fromARGB(255, 221, 102, 241),
-            Color.fromARGB(255, 134, 163, 241),
-            // Color.fromARGB(255, 224, 193, 193),
-            Color.fromARGB(255, 245, 120, 161),
-          ],
-        )*/
           color: Color.fromARGB(255, 252, 250, 250),
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            /******************************************************************************************* here *********************************************************************/
+            /******************************************************************************************* *** *********************************************************************/
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                  width: double.infinity,
-                  height: 200,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.purple[400]!,
-                      Colors.purple[800]!,
-                    ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-                  ),
-                  //  color: Colors.purple,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "lib/imgs/family1.png",
-                        width: 100,
-                        height: 100,
-                      ),
-                      Text("Family Data",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  )),
               /************************************************************************************ Notes Section *************************************************************************/
               Card(
-                color: Color.fromARGB(255, 208, 94, 228),
+                color: Color.fromARGB(255, 215, 143, 228),
                 margin: EdgeInsets.all(20),
                 child: Column(
                   children: [
@@ -79,7 +62,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                     ListTile(
@@ -92,7 +75,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                     ListTile(
@@ -105,7 +88,7 @@ class _FamilyDataState extends State<FamilyData> {
                       ),
                       leading: Icon(
                         Icons.label_important,
-                        color: Colors.red,
+                        color: Colors.pink,
                       ),
                     ),
                   ],
@@ -123,125 +106,58 @@ class _FamilyDataState extends State<FamilyData> {
                         "Section 1",
                         style: TextStyle(
                           color: x,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onHover: (value) {
-                        if (value) {
-                          setState(() {
-                            x = Colors.yellow;
-                            print("$x");
-                          });
-                        }
+                      onTap: () {
+                        setState(() {
+                          sectionNumber = 0;
+                          //x = Colors.yellow;
+                        });
                       },
                     ),
                     SizedBox(
                       width: 20,
                     ),
                     InkWell(
-                      child: Text("Section 2"),
+                      child: Text(
+                        "Section 2",
+                        style: TextStyle(
+                          color: x,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          sectionNumber = 1;
+                          //  x = Colors.yellow;
+                        });
+                      },
                     ),
                     SizedBox(
                       width: 20,
                     ),
                     InkWell(
-                      child: Text("Section 3"),
+                      child: Text(
+                        "Section 3",
+                        style: TextStyle(
+                          color: x,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          sectionNumber = 2;
+                          // x = Colors.yellow;
+                        });
+                      },
                     ),
                   ],
                 ),
               ),
               /********************************************************************************  End of Sections Bar *******************************************************************/
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.all(20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 300,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "Student Name",
-                            labelStyle: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    BorderSide(color: Colors.purple, width: 2)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 300,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "Student Number",
-                            labelStyle: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    BorderSide(color: Colors.purple, width: 2)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 300,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "ID Number",
-                            labelStyle: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    BorderSide(color: Colors.purple, width: 2)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Divider(
-                        color: Colors.red,
-                        thickness: 1,
-                      )
-                    ]),
-              ),
-              /*Container(
-                margin: EdgeInsets.all(20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Student Number :"),
-                    Expanded(
-                      //width: 80,
-                      child: TextFormField(),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Student Number :"),
-                    Expanded(
-                      //width: 80,
-                      child: TextFormField(),
-                    )
-                  ],
-                ),
-              )*/
+
+              sections[sectionNumber],
             ],
           ),
         ),

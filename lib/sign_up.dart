@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -58,7 +59,7 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person, color: Colors.pink),
-                            hintText: "User Name",
+                            hintText: "1".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -72,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email, color: Colors.pink),
-                            hintText: "E-mail",
+                            hintText: "2".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -88,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                         decoration: InputDecoration(
                             prefixIcon:
                                 Icon(Icons.password, color: Colors.pink),
-                            hintText: "Password",
+                            hintText: "3".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
