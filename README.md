@@ -1,6 +1,6 @@
-# graduation_project_1
+# index
 
-A new Flutter project.
+A new Flutter application.
 
 ## Getting Started
 

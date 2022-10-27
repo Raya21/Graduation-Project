@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'dart:math';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,8 +13,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   double value = 0;
-//  PickedFile? _imagefile;
-//  final ImagePicker _picker = ImagePicker();
+  PickedFile? _imagefile;
+  final ImagePicker _picker = ImagePicker();
   Widget bottomSheet() {
     return Container(
       height: 100,
@@ -21,8 +22,10 @@ class _HomeState extends State<Home> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(children: [
         Text(
-          "Choose Profile photo",
-          style: TextStyle(fontSize: 20),
+          "Profile photo".tr,
+          style: TextStyle(
+            fontSize: 20,
+          ),
         ),
         SizedBox(
           height: 20,
@@ -34,11 +37,11 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   Icon(Icons.camera),
-                  Text("Camera"),
+                  Text("Camera".tr),
                 ],
               ),
               onTap: () {
-                //takePhoto(ImageSource.camera);
+                takePhoto(ImageSource.camera);
               },
             ),
             SizedBox(
@@ -48,11 +51,11 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   Icon(Icons.image),
-                  Text("Gallery"),
+                  Text("Gallery".tr),
                 ],
               ),
               onTap: () {
-                // takePhoto(ImageSource.gallery);
+                takePhoto(ImageSource.gallery);
               },
             )
           ],
@@ -61,12 +64,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  /*void takePhoto(ImageSource source) async {
+  void takePhoto(ImageSource source) async {
     final pickedFile = await _picker.getImage(source: source);
     setState(() {
       _imagefile = pickedFile!;
     });
-  }*/
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,14 +94,14 @@ class _HomeState extends State<Home> {
               Stack(
                 children: [
                   CircleAvatar(
-                    radius: 50.0,
-                    // backgroundImage: _imagefile == null
-                    // ? null
-                    //: FileImage(File(_imagefile!.path))
-                    /*backgroundImage: _imageFile == null 
+                      radius: 50.0,
+                      backgroundImage: _imagefile == null
+                          ? null
+                          : FileImage(File(_imagefile!.path))
+                      /*backgroundImage: _imageFile == null 
                         ? AssetImage("lib/imgs/nopic.png") 
                         : FileImage(File(_imageFile.path)),*/
-                  ),
+                      ),
                   Positioned(
                       bottom: 4,
                       right: 4,
@@ -136,32 +140,47 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Profile",
-                        style: TextStyle(color: Colors.white),
+                        "Profile".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("loans_request");
+                        Navigator.of(context).pushNamed("family_data");
+                      },
+                      leading: Icon(
+                        Icons.family_restroom,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Family Data".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.of(context).pushNamed("qualifications");
                       },
                       leading: Icon(
                         Icons.money,
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Loan Request",
-                        style: TextStyle(color: Colors.white),
+                        "Loan Request".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed("contactus");
+                      },
                       leading: Icon(
                         Icons.contact_mail_sharp,
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Contact us",
-                        style: TextStyle(color: Colors.white),
+                        "Contact us".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
                     ListTile(
@@ -173,8 +192,8 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Settings",
-                        style: TextStyle(color: Colors.white),
+                        "Settings".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
                     ListTile(
@@ -186,8 +205,8 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Log out",
-                        style: TextStyle(color: Colors.white),
+                        "Log out".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     )
                   ],
@@ -203,16 +222,26 @@ class _HomeState extends State<Home> {
               return (Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..setEntry(0, 3, 200 * val)
+                  ..setEntry(3, 2, int.parse("x".tr) * 0.001)
+                  ..setEntry(0, 3, int.parse("x".tr) * 200 * val)
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text("Home"),
-                    backgroundColor: Colors.purple,
+                    title: Text(
+                      "Home".tr,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    backgroundColor: Theme.of(context).primaryColor,
                     actions: [
                       IconButton(
                         icon: Icon(Icons.notifications),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.chat),
                         onPressed: () {},
                       ),
                     ],
@@ -222,7 +251,7 @@ class _HomeState extends State<Home> {
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {
-          if (details.delta.dx > 0) {
+          if (int.parse("x".tr) * details.delta.dx > 0) {
             setState(() {
               value = 1;
             });

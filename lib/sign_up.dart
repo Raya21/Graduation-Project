@@ -40,7 +40,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 margin: EdgeInsets.only(top: 10),
                 child: Text(
-                  "Sign Up",
+                  "Sign Up".tr,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 35,
@@ -59,7 +59,7 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person, color: Colors.pink),
-                            hintText: "1".tr,
+                            hintText: "User Name".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -73,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email, color: Colors.pink),
-                            hintText: "2".tr,
+                            hintText: "E-mail".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -89,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                         decoration: InputDecoration(
                             prefixIcon:
                                 Icon(Icons.password, color: Colors.pink),
-                            hintText: "3".tr,
+                            hintText: "Password".tr,
                             hintStyle: TextStyle(color: Colors.white),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -100,7 +100,7 @@ class _SignUpState extends State<SignUp> {
                         height: 30,
                       ),
                       Text(
-                        "Creating an account means you're okay with our Terms of Service and our Privacy Policy",
+                        "Sign up text".tr,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -114,7 +114,7 @@ class _SignUpState extends State<SignUp> {
                         child: ElevatedButton(
                             onPressed: () {},
                             child: Text(
-                              "Create Account",
+                              "Create Account".tr,
                             ),
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(300, 50),
@@ -137,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Already have an account?",
+                            "have an account".tr,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -146,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           InkWell(
                             child: Text(
-                              " Sign In",
+                              "Sign In".tr,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 216, 51, 122),
                                 fontWeight: FontWeight.bold,

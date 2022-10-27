@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduation_project_1/locale/locale_controller.dart';
+
+import 'locale/locale_controller.dart';
 
 class settings extends StatefulWidget {
   const settings({super.key});
@@ -37,8 +38,12 @@ class _settingsState extends State<settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: Text("Settings".tr),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          "Settings".tr,
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -102,10 +107,10 @@ class _settingsState extends State<settings> {
                 },
               ),
             ),
-            buildAccountOption(context, "Content Settings"),
-            buildAccountOption(context, "Social"),
-            buildAccountOption(context, "Language"),
-            buildAccountOption(context, "Privacy and Security"),
+            buildAccountOption(context, "Content Settings".tr),
+            buildAccountOption(context, "Social".tr),
+            buildAccountOption(context, "Language".tr),
+            buildAccountOption(context, "Privacy and Security".tr),
             SizedBox(
               height: 40,
             ),
@@ -119,7 +124,7 @@ class _settingsState extends State<settings> {
                   height: 10,
                 ),
                 Text(
-                  "Notifications",
+                  "Notifications".tr,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )
               ],
@@ -132,11 +137,11 @@ class _settingsState extends State<settings> {
               height: 10,
             ),
             buildNotificationOption(
-                "Theme Dark", valNotify1, onChangeFunction1),
+                "Theme Dark".tr, valNotify1, onChangeFunction1),
             buildNotificationOption(
-                "Account Active", valNotify2, onChangeFunction2),
+                "Account Active".tr, valNotify2, onChangeFunction2),
             buildNotificationOption(
-                "Opportunity", valNotify3, onChangeFunction3),
+                "Opportunity".tr, valNotify3, onChangeFunction3),
           ],
         ),
       ),
@@ -194,7 +199,7 @@ class _settingsState extends State<settings> {
                     ),
                     InkWell(
                       child: Text(
-                        "English".tr,
+                        "English",
                         style: TextStyle(fontSize: 20),
                       ),
                       onTap: () {

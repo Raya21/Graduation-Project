@@ -73,7 +73,7 @@ class _Section1State extends State<Section1> {
                 height: 20,
               ),
               Divider(
-                color: Colors.pink,
+                color: Colors.red,
                 thickness: 1,
               )
             ]),
@@ -338,7 +338,7 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of father information ****************************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
 
@@ -584,7 +584,7 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of mother information ***************************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
       /********************************************************************************  Husband/Wife information *************************************************************/
@@ -829,7 +829,7 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of husband/wife information *********************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
       Container(
@@ -860,7 +860,7 @@ class _Section1State extends State<Section1> {
         height: 20,
       ),
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
     ]); //Column
