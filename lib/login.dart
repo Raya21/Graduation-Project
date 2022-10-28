@@ -6,14 +6,16 @@ import 'package:http/http.dart' as http;
 import 'package:index/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+final _formKey = GlobalKey<FormState>();
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}):super(key:key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  
   bool _obscureText=true;
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController passwordcontroller=TextEditingController();
@@ -21,7 +23,7 @@ class _LoginState extends State<Login> {
   
 
   Future login() async{
-    var url = "http://192.168.0.112/handinhand/login.php";
+    var url = "http://192.168.1.15/handinhand/login.php";
     var response=await http.post(Uri.parse(url),body:{
       "email": emailcontroller.text,
       "password":passwordcontroller.text,
@@ -64,6 +66,7 @@ class _LoginState extends State<Login> {
         ),
         child: SingleChildScrollView(
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:[
@@ -94,7 +97,7 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email, color: Colors.pink),
                         hintText: "E-mail",
-                        hintStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)
                         ),
@@ -117,7 +120,7 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.password, color: Colors.pink),
                         hintText: "Password",
-                        hintStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)
                         ),

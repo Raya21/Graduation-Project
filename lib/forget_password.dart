@@ -7,13 +7,14 @@ import 'dart:convert';
 import 'package:index/login.dart';
 
 class ForgetPass extends StatefulWidget {
-  const ForgetPass({super.key});
+  const ForgetPass({Key? key}):super(key:key);
 
   @override
   State<ForgetPass> createState() => _ForgetPassState();
 }
 
 class _ForgetPassState extends State<ForgetPass> {
+  final _formKey = GlobalKey<FormState>();
   String _errorMessage = '';
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController newpasswordcontroller=TextEditingController();
@@ -84,6 +85,7 @@ class _ForgetPassState extends State<ForgetPass> {
             Container(
               padding: EdgeInsets.all(20),
             child: Form(
+              key: _formKey,
               child: Column(
                 children: [
                   TextFormField(
@@ -92,7 +94,7 @@ class _ForgetPassState extends State<ForgetPass> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email, color: Colors.pink),
                       hintText: "E-mail",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),
@@ -116,7 +118,7 @@ class _ForgetPassState extends State<ForgetPass> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password, color: Colors.pink),
                       hintText: "Old password",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),
@@ -133,7 +135,7 @@ class _ForgetPassState extends State<ForgetPass> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password, color: Colors.pink),
                       hintText: "New password",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)
                       ),

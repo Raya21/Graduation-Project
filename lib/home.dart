@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
             )
           
           ),
-          TweenAnimationBuilder(tween: Tween<double>(begin: 0,end:value), duration: Duration(milliseconds: 500), builder: (_, double val ,__){
+          TweenAnimationBuilder(tween: Tween<double>(begin: 0,end: value), duration: Duration(milliseconds: 500), builder: (_, double val ,__){
             return(
               Transform(
                 alignment: Alignment.center,

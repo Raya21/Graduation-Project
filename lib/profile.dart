@@ -67,13 +67,14 @@ class _profileState extends State<profile> {
   }
 }
 class personInfo extends StatefulWidget {
-  const personInfo({super.key});
+  const personInfo({Key? key}):super(key:key);
 
   @override
   State<personInfo> createState() => _personInfoState();
 }
 
 class _personInfoState extends State<personInfo> {
+  final _formKey1 = GlobalKey<FormState>();
    String selectedIncome = "-";
    String selectedGender = "Male";
    String selectedSS = "Single";
@@ -131,236 +132,240 @@ class _personInfoState extends State<personInfo> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child:SingleChildScrollView(
-        child: Column(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Text("Person Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          ),
-          Divider(height: 20, thickness: 2,),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text("Full Name:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          ),
-          TextFormField(
-            controller: fname,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
+        child: Form(
+          key: _formKey1,
+          child: Column(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Text("Person Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
+            Divider(height: 20, thickness: 2,),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text("Full Name:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            ),
+            TextFormField(
+              controller: fname,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child: Text("ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            ),
+            TextFormField(
+              controller: id,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple)
+                )
+              ),
+            ),
+            SizedBox(height: 15,),
+                Align(
+              alignment: Alignment.topLeft,
+            child: Text("Birth Date:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                ),
+            Align(
+              alignment: Alignment.topLeft,
+            child: TextFormField(
+              controller: bdate,
+              decoration: const InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                icon: Icon(Icons.calendar_today,color: Colors.purple,),
+                iconColor: Color.fromARGB(255, 184, 136, 192),
+                /*labelText: "Enter your birth date",
+                labelStyle: TextStyle(color:  Colors.black,fontSize: 20),*/
+                enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+              readOnly: true,
+              onTap: () async{
+                DateTime? pickedDate = await showDatePicker(
+                  context: context, 
+                  initialDate: DateTime.now(), 
+                  firstDate: DateTime(1960), 
+                  lastDate: DateTime(2023),
+                  );
+                if(pickedDate!=null){
+                  setState(() {
+                    String formattedDate=DateFormat("yyyy-MM-dd").format(pickedDate);
+                    bdate.text=formattedDate.toString();
+                  });
+                }else{
+                  print("Not selected Birth date");
+                }
+              },
+            ),
+              ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child: Text("Birth Place:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: birthplace,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple)
+                )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child: Text("City:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: city,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple)
+                )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+              child:Text("Average Income:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+            child:
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["-","0-500 NIS","500-1000 NIS","1000-1500 NIS","1500-2000 NIS","2000-3000 NIS","More than 3000 NIS"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedIncome=val!;
+                  });
+                },
+                value: selectedIncome,
+              ),
+            ),),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Gender:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["Male","Female"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedGender=val!;
+                  });
+                },
+                value: selectedGender,
+              ),
+            ),),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Social Status:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["Single","Married"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20),),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedSS=val!;
+                  });
+                },
+                value: selectedSS,
+              ),
+            ),
+            ),
+            SizedBox(height: 20,),
+            Align(
+              alignment: Alignment.topRight,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+                shape: RoundedRectangleBorder( 
+                  borderRadius: BorderRadius.circular(30)
+              ),
+              ),
+                onPressed: () {
+                  person();
+                }, 
+                child: Text("Save", style: TextStyle(fontSize: 20),)
+                ),
             )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child: Text("ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          ),
-          TextFormField(
-            controller: id,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple),
+          ],
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
-              )
-            ),
-          ),
-          SizedBox(height: 15,),
-              Align(
-            alignment: Alignment.topLeft,
-          child: Text("Birth Date:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              ),
-          Align(
-            alignment: Alignment.topLeft,
-          child: TextFormField(
-            controller: bdate,
-            decoration: const InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-              icon: Icon(Icons.calendar_today,color: Colors.purple,),
-              iconColor: Color.fromARGB(255, 184, 136, 192),
-              /*labelText: "Enter your birth date",
-              labelStyle: TextStyle(color:  Colors.black,fontSize: 20),*/
-              enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-            readOnly: true,
-            onTap: () async{
-              DateTime? pickedDate = await showDatePicker(
-                context: context, 
-                initialDate: DateTime.now(), 
-                firstDate: DateTime(1960), 
-                lastDate: DateTime(2023),
-                );
-              if(pickedDate!=null){
-                setState(() {
-                  String formattedDate=DateFormat("yyyy-MM-dd").format(pickedDate);
-                  bdate.text=formattedDate.toString();
-                });
-              }else{
-                print("Not selected Birth date");
-              }
-            },
-          ),
-            ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child: Text("Birth Place:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: birthplace,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
-              )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child: Text("City:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: city,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
-              )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-            child:Text("Average Income:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-          child:
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["-","0-500 NIS","500-1000 NIS","1000-1500 NIS","1500-2000 NIS","2000-3000 NIS","More than 3000 NIS"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedIncome=val!;
-                });
-              },
-              value: selectedIncome,
-            ),
-          ),),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Gender:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["Male","Female"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedGender=val!;
-                });
-              },
-              value: selectedGender,
-            ),
-          ),),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Social Status:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["Single","Married"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20),),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedSS=val!;
-                });
-              },
-              value: selectedSS,
-            ),
-          ),
-          ),
-          SizedBox(height: 20,),
-          Align(
-            alignment: Alignment.topRight,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
-              shape: RoundedRectangleBorder( 
-                borderRadius: BorderRadius.circular(30)
-            ),
-            ),
-              onPressed: () {
-                person();
-              }, 
-              child: Text("Save", style: TextStyle(fontSize: 20),)
-              ),
-          )
-        ],
-      ),
+        ),
       ), 
       
     );
   }
 }
 class contactInfo extends StatefulWidget {
-  const contactInfo({super.key});
+  const contactInfo({Key? key}):super(key:key);
 
   @override
   State<contactInfo> createState() => _contactInfoState();
 }
 
 class _contactInfoState extends State<contactInfo> {
+    final _formKey2 = GlobalKey<FormState>();
   TextEditingController Tphone = TextEditingController();
   TextEditingController Mphone = TextEditingController();
   String _errorMessage = '';
@@ -399,76 +404,80 @@ class _contactInfoState extends State<contactInfo> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Align(
-            alignment: Alignment.center,
-            child: Text("Contact Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          ),
-          Divider(height: 20, thickness: 2,),
-            Align(
-            alignment: Alignment.topLeft,
-          child:Text("Telephone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: Tphone,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
+        child: Form(
+          key: _formKey2,
+          child: Column(
+            children: [
+              Align(
+              alignment: Alignment.center,
+              child: Text("Contact Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Mobile Phone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: Mphone,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
+            Divider(height: 20, thickness: 2,),
+              Align(
+              alignment: Alignment.topLeft,
+            child:Text("Telephone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: Tphone,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple),
+                borderSide: BorderSide(color: Colors.purple)
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.purple)
               )
-            ),
-          ),
-          SizedBox(height: 20,),
-          Align(
-            alignment: Alignment.topRight,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
-              shape: RoundedRectangleBorder( 
-                borderRadius: BorderRadius.circular(30)
-            ),
-            ),
-              onPressed: () {
-                contact();
-              }, 
-              child: Text("Save", style: TextStyle(fontSize: 20),)
               ),
-          )
-          ],
-      )),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Mobile Phone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: Mphone,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple)
+                )
+              ),
+            ),
+            SizedBox(height: 20,),
+            Align(
+              alignment: Alignment.topRight,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+                shape: RoundedRectangleBorder( 
+                  borderRadius: BorderRadius.circular(30)
+              ),
+              ),
+                onPressed: () {
+                  contact();
+                }, 
+                child: Text("Save", style: TextStyle(fontSize: 20),)
+                ),
+            )
+            ],
+              ),
+        )),
     );
   }
 }
 class eduInfo extends StatefulWidget {
-  const eduInfo({super.key});
+  const eduInfo({Key? key}):super(key:key);
 
   @override
   State<eduInfo> createState() => _eduInfoState();
 }
 
 class _eduInfoState extends State<eduInfo> {
+  final _formKey3 = GlobalKey<FormState>();
   String selectedBranch = "Study branch";
   String selectedDegree = "Undergraduate degree";
   String selectedYear = "Academic year";
@@ -529,270 +538,273 @@ class _eduInfoState extends State<eduInfo> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
-        child: Column(children: [
-          Align(
-            alignment: Alignment.center,
-            child: Text("Education Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("High Scool Information:",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
-          Divider(height: 20, thickness: 2,),
-            SizedBox(height: 10,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: yearofEn,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
+        child: Form(
+          key: _formKey3,
+          child: Column(children: [
+            Align(
+              alignment: Alignment.center,
+              child: Text("Education Information", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("School:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: schoolcon,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Grade:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: gradecon,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Study Branch:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["Study branch","scientific","literary","commercial","Industrial"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedBranch=val!;
-                });
-              },
-              value: selectedBranch,
-            ),
-          ),
-          ),
-          SizedBox(height: 50,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("University Information:", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
-          Divider(height: 20, thickness: 2,),
-            SizedBox(height: 10,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Undergraduate degree:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["Undergraduate degree","Diploma","BA","Master's","PhD"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedDegree=val!;
-                });
-              },
-              value: selectedDegree,
-            ),
-          ),),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("University:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: uni,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("College:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: collegecon,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Department:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: dep,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Academic Year:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.purple,
-                    width: 1,
-                    style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: DropdownButton(
-              items: ["Academic year","First","Second","Third","Fourth","Fifth","Sixth","Seventh"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
-              onChanged: (val) {
-                setState(() {
-                  selectedYear=val!;
-                });
-              },
-              value: selectedYear,
-            ),
-          ),),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("GPA:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: gpacon,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("University ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: uniid,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 15,),
-          Align(
-            alignment: Alignment.topLeft,
-          child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-          TextFormField(
-            controller: yearofEnUni,
-            cursorColor: Colors.purple,
-            decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.purple)
-            )
-            ),
-          ),
-          SizedBox(height: 20,),
-          Align(
-            alignment: Alignment.topRight,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-              padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
-              shape: RoundedRectangleBorder( 
-                borderRadius: BorderRadius.circular(30)
-            ),
-            ),
-              onPressed: () {
-                education();
-              }, 
-              child: Text("Save", style: TextStyle(fontSize: 20),)
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("High Scool Information:",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
+            Divider(height: 20, thickness: 2,),
+              SizedBox(height: 10,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: yearofEn,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
               ),
-          )
-        ],)
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("School:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: schoolcon,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Grade:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: gradecon,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Study Branch:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["Study branch","scientific","literary","commercial","Industrial"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedBranch=val!;
+                  });
+                },
+                value: selectedBranch,
+              ),
+            ),
+            ),
+            SizedBox(height: 50,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("University Information:", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),),
+            Divider(height: 20, thickness: 2,),
+              SizedBox(height: 10,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Undergraduate degree:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["Undergraduate degree","Diploma","BA","Master's","PhD"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedDegree=val!;
+                  });
+                },
+                value: selectedDegree,
+              ),
+            ),),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("University:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: uni,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("College:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: collegecon,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Department:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: dep,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Academic Year:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.purple,
+                      width: 1,
+                      style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+              ),
+              child: DropdownButton(
+                items: ["Academic year","First","Second","Third","Fourth","Fifth","Sixth","Seventh"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
+                onChanged: (val) {
+                  setState(() {
+                    selectedYear=val!;
+                  });
+                },
+                value: selectedYear,
+              ),
+            ),),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("GPA:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: gpacon,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("University ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: uniid,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.topLeft,
+            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            TextFormField(
+              controller: yearofEnUni,
+              cursorColor: Colors.purple,
+              decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple)
+              )
+              ),
+            ),
+            SizedBox(height: 20,),
+            Align(
+              alignment: Alignment.topRight,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
+                shape: RoundedRectangleBorder( 
+                  borderRadius: BorderRadius.circular(30)
+              ),
+              ),
+                onPressed: () {
+                  education();
+                }, 
+                child: Text("Save", style: TextStyle(fontSize: 20),)
+                ),
+            )
+          ],),
+        )
         )
     );
   }
