@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:get/get.dart';
 
 class Section3 extends StatefulWidget {
   const Section3({super.key});
@@ -24,7 +25,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Number of family members including parents :",
+                "family members".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -53,7 +54,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Number of university students in the family :    ",
+                "university students".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -82,7 +83,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Number of family members with chronic diseases :",
+                "chronic diseases".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -111,7 +112,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Family income in shekels per month :",
+                "Family income".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -128,7 +129,7 @@ class _Section3State extends State<Section3> {
                     "3001 - 4000",
                     "4001 - 5000",
                     "5001 - 10000",
-                    "Above 10000"
+                    "Above 10000".tr
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
@@ -153,7 +154,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Does the family have assistance such as a business card or zakat?",
+                "assistance".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -164,8 +165,8 @@ class _Section3State extends State<Section3> {
                     disabledItemFn: (String s) => s.startsWith('I'),
                   ),
                   items: [
-                    "Yes",
-                    "No",
+                    "Yes".tr,
+                    "No".tr,
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
@@ -175,7 +176,7 @@ class _Section3State extends State<Section3> {
                         ),
                   ),
                   //onChanged: print,
-                  selectedItem: "No",
+                  selectedItem: "No".tr,
                 ),
               )
             ],
@@ -190,7 +191,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "If the family has an affairs card, please enter the card number :",
+                "affairs card".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -219,7 +220,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Student family housing",
+                "family housing".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -230,9 +231,9 @@ class _Section3State extends State<Section3> {
                     disabledItemFn: (String s) => s.startsWith('I'),
                   ),
                   items: [
-                    "Property",
-                    "Rent",
-                    "Live with another family without paying rent"
+                    "Property".tr,
+                    "Rent".tr,
+                    "Live with another family without paying rent".tr
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
@@ -242,7 +243,7 @@ class _Section3State extends State<Section3> {
                         ),
                   ),
                   //onChanged: print,
-                  selectedItem: "Property",
+                  selectedItem: "Property".tr,
                 ),
               )
             ],
@@ -257,7 +258,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "The monthly rent for the family housing in shekels, if any",
+                "monthly rent".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -272,7 +273,7 @@ class _Section3State extends State<Section3> {
                     "0 _ 1000",
                     "1000 _ 2000",
                     "2001 _ 3000",
-                    "Above 3000"
+                    "Above 3000".tr
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
@@ -297,7 +298,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Family residence",
+                "Family residence".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -307,7 +308,7 @@ class _Section3State extends State<Section3> {
                       showSelectedItems: true,
                       disabledItemFn: (String s) => s.startsWith('I'),
                     ),
-                    items: ["City", "Village", "Camp", "Abroad"],
+                    items: ["City".tr, "Village".tr, "Camp".tr, "Abroad".tr],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
                           //labelText:
@@ -316,7 +317,7 @@ class _Section3State extends State<Section3> {
                           ),
                     ),
                     //onChanged: print,
-                    selectedItem: "City"),
+                    selectedItem: "City".tr),
               )
             ],
           ),
@@ -328,7 +329,7 @@ class _Section3State extends State<Section3> {
           width: double.infinity,
           margin: EdgeInsets.only(top: 20, left: 20),
           child: Text(
-            "The number of vehicles the family owns :",
+            "vehicles".tr,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
@@ -340,7 +341,7 @@ class _Section3State extends State<Section3> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Private         ",
+                "Private         ".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -365,7 +366,7 @@ class _Section3State extends State<Section3> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Public           ",
+                "Public           ".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -390,7 +391,7 @@ class _Section3State extends State<Section3> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Commercial ",
+                "Commercial ".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -416,7 +417,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "The monthly student housing fee in shekels, if any :",
+                "student housing".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -445,7 +446,7 @@ class _Section3State extends State<Section3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Do you smoke ?",
+                "Do you smoke ?".tr,
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -455,7 +456,7 @@ class _Section3State extends State<Section3> {
                       showSelectedItems: true,
                       disabledItemFn: (String s) => s.startsWith('I'),
                     ),
-                    items: ["Yes", "No"],
+                    items: ["Yes".tr, "No".tr],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
                           //labelText:
@@ -464,7 +465,7 @@ class _Section3State extends State<Section3> {
                           ),
                     ),
                     //onChanged: print,
-                    selectedItem: "No"),
+                    selectedItem: "No".tr),
               )
             ],
           ),
@@ -473,7 +474,7 @@ class _Section3State extends State<Section3> {
           width: double.infinity,
           margin: EdgeInsets.all(20),
           child: Text(
-            "Undergraduate fraternity data :",
+            "Undergraduate fraternity data :".tr,
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
         ),

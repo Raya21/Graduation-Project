@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:get/get.dart';
 import 'section1_familyData_page.dart';
 import 'section2_familyData_page.dart';
 import 'section3_familyData_page.dart';
@@ -30,7 +31,11 @@ class _FamilyDataState extends State<FamilyData> {
             Navigator.pop(context);
           },
         ),
-        title: Text("Family Data",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+        title: Text(
+          "Family Data".tr,
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Container(
@@ -42,7 +47,6 @@ class _FamilyDataState extends State<FamilyData> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            /******************************************************************************************* *** *********************************************************************/
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -54,7 +58,7 @@ class _FamilyDataState extends State<FamilyData> {
                   children: [
                     ListTile(
                       title: Text(
-                        " Please be careful in entering the data, especially the ID number",
+                        "t1_f".tr,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -67,7 +71,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     ListTile(
                       title: Text(
-                        " If you are not married, do not enter the data of the husband/wife",
+                        "t2_f".tr,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -80,7 +84,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     ListTile(
                       title: Text(
-                        " If you do not have an ID card, please enter the passport number instead of the ID",
+                        "t3_f".tr,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -103,7 +107,7 @@ class _FamilyDataState extends State<FamilyData> {
                   children: [
                     InkWell(
                       child: Text(
-                        "Section 1",
+                        "Section 1".tr,
                         style: TextStyle(
                           color: x,
                           fontWeight: FontWeight.bold,
@@ -121,7 +125,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     InkWell(
                       child: Text(
-                        "Section 2",
+                        "Section 2".tr,
                         style: TextStyle(
                           color: x,
                           fontWeight: FontWeight.bold,
@@ -139,7 +143,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     InkWell(
                       child: Text(
-                        "Section 3",
+                        "Section 3".tr,
                         style: TextStyle(
                           color: x,
                           fontWeight: FontWeight.bold,

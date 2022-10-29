@@ -199,7 +199,7 @@ class _settingsState extends State<settings> {
                     ),
                     InkWell(
                       child: Text(
-                        "English",
+                        "English".tr,
                         style: TextStyle(fontSize: 20),
                       ),
                       onTap: () {
