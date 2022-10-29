@@ -18,7 +18,7 @@ class _Section3State extends State<Section3> {
       children: [
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -47,7 +47,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -105,7 +105,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -147,7 +147,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -184,7 +184,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -213,7 +213,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -251,7 +251,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -291,7 +291,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -327,7 +327,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Text(
             "vehicles".tr,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -335,7 +335,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -360,7 +360,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -385,7 +385,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -410,7 +410,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -439,7 +439,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -483,10 +483,10 @@ class _Section3State extends State<Section3> {
             border: TableBorder.all(),
             children: [
               buildRow([
-                'Student Name',
-                'Registration number',
-                'College Name',
-                'University Name',
+                'Student Name'.tr,
+                'Registration number'.tr,
+                'College Name'.tr,
+                'University Name'.tr,
               ]),
               buildRow([' ', ' ', ' ', ' '], isHeader: true),
               buildRow([' ', ' ', ' ', ' ']),
@@ -508,7 +508,7 @@ class _Section3State extends State<Section3> {
             ),
             onPressed: (() {}),
             child: Text(
-              "Save data",
+              "Save data".tr,
               style: TextStyle(fontSize: 20),
             )),
       ],

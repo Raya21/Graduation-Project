@@ -115,7 +115,7 @@ class _Section2State extends State<Section2> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 20, right: 20),
           child: DropdownSearch<String>(
             popupProps: PopupProps.menu(
               showSelectedItems: true,
@@ -141,7 +141,7 @@ class _Section2State extends State<Section2> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20, top: 20),
+          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
           child: DropdownSearch<String>(
             popupProps: PopupProps.menu(
               showSelectedItems: true,

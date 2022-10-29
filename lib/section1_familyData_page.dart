@@ -80,7 +80,7 @@ class _Section1State extends State<Section1> {
             ]),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(left: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -162,7 +162,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(left: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -187,7 +187,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -213,7 +213,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -286,7 +286,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -408,7 +408,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(left: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -433,7 +433,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -459,7 +459,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -532,7 +532,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -653,7 +653,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(left: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -678,7 +678,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -704,7 +704,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -777,7 +777,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -835,7 +835,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20),
+        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,

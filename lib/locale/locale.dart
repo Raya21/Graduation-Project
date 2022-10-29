@@ -265,9 +265,13 @@ class MyLocale implements Translations {
           "Private         ": "خصوصي      ",
           "Public           ": "عمومي         ",
           "Commercial ": "تجاري          ",
-          "student housing": "اجرة سكن الطالب الشهري بالشيكل، إن وجد :",
+          "student housing": "أجرة سكن الطالب الشهري بالشيكل، إن وجد :",
           "Do you smoke ?": "هل أنت مدخن ؟",
           "Undergraduate fraternity data :": "بيانات الأخوة الجامعيين :",
+          "Save data": "حفظ البيانات",
+          "Registration number": "رقم التسجيل",
+          "College Name": "اسم الكلية",
+          "University Name": "اسم الجامعة",
           "x": "-1"
         },
         "en": {
@@ -543,6 +547,10 @@ class MyLocale implements Translations {
               "The monthly student housing fee in shekels, if any :",
           "Do you smoke ?": "Do you smoke ?",
           "Undergraduate fraternity data :": "Undergraduate fraternity data :",
+          "Save data": "Save data",
+          "Registration number": "Registration number",
+          "College Name": "College Name",
+          "University Name": "University Name",
           "x": "1"
         }
       };
