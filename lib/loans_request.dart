@@ -49,6 +49,8 @@ class _ApplyLoansState extends State<ApplyLoans> {
         margin: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "t1_loan".tr,
@@ -57,31 +59,38 @@ class _ApplyLoansState extends State<ApplyLoans> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              child: Text(
-                "t2_loan".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              alignment: Alignment.topLeft,
-            ),
-            Align(
-              child: InkWell(
-                onTap: () {
-                  _launchInBroswer(_launchUrl);
-                },
-                child: Text(
-                  "t6_loan".tr,
-                  style: TextStyle(fontSize: 20, color: Colors.purple),
+            Wrap(
+              direction: Axis.horizontal,
+              children: [
+                Container(
+                  child: Text(
+                    "t2_loan".tr,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  //alignment: Alignment.topLeft,
                 ),
-              ),
-              alignment: Alignment.topLeft,
-            ),
-            Align(
-                child: Text(
-                  "t3_loan".tr,
-                  style: TextStyle(fontSize: 20),
+                Container(
+                  child: InkWell(
+                    onTap: () {
+                      _launchInBroswer(_launchUrl);
+                    },
+                    child: Text(
+                      "t6_loan".tr,
+                      style: TextStyle(fontSize: 20, color: Colors.purple),
+                    ),
+                  ),
+                  //alignment: Alignment.topLeft,
                 ),
-                alignment: Alignment.topLeft),
+                Container(
+                  child: Text(
+                    "t3_loan".tr,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
+
+            //alignment: Alignment.topLeft),
             SizedBox(
               height: 15,
             ),
