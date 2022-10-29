@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Center(
                   child: Image.asset(
@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
                               },
                               child: Text("Login".tr),
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(300, 50),
+                                  fixedSize: Size(300, 60),
                                   backgroundColor: Colors.white,
                                   foregroundColor:
                                       Color.fromARGB(255, 216, 51, 122),

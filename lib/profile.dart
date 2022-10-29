@@ -136,6 +136,8 @@ class _personInfoState extends State<personInfo> {
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.center,
@@ -148,8 +150,8 @@ class _personInfoState extends State<personInfo> {
               height: 20,
               thickness: 2,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Full Name:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -169,8 +171,8 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "ID:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -191,15 +193,15 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Birth Date:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: TextFormField(
                 controller: bdate,
                 decoration: const InputDecoration(
@@ -239,8 +241,8 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Birth Place:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -261,8 +263,8 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "City:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -283,15 +285,15 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Average Income:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
@@ -327,15 +329,15 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Gender:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
@@ -363,15 +365,15 @@ class _personInfoState extends State<personInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Social Status:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7.0),
                 decoration: BoxDecoration(
@@ -403,7 +405,7 @@ class _personInfoState extends State<personInfo> {
               height: 20,
             ),
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
@@ -472,6 +474,8 @@ class _contactInfoState extends State<contactInfo> {
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
             alignment: Alignment.center,
@@ -484,8 +488,8 @@ class _contactInfoState extends State<contactInfo> {
             height: 20,
             thickness: 2,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "Telephone Number:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -505,8 +509,8 @@ class _contactInfoState extends State<contactInfo> {
           SizedBox(
             height: 15,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "Mobile Phone Number:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -528,7 +532,7 @@ class _contactInfoState extends State<contactInfo> {
             height: 20,
           ),
           Align(
-            alignment: Alignment.topRight,
+            alignment: Alignment.center,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
@@ -616,6 +620,8 @@ class _eduInfoState extends State<eduInfo> {
         margin: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.center,
@@ -624,8 +630,8 @@ class _eduInfoState extends State<eduInfo> {
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "High Scool Information:".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -638,8 +644,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 10,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Year of enrollment:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -659,8 +665,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "School:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -680,8 +686,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Grade:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -701,15 +707,15 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Study Branch:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
@@ -743,8 +749,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 50,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "University Information:".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -757,15 +763,15 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 10,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Undergraduate degree:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
@@ -799,8 +805,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "University:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -820,8 +826,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "College:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -841,8 +847,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Department:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -862,15 +868,15 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              // alignment: Alignment.topLeft,
               child: Text(
                 "Academic Year:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
@@ -907,8 +913,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "GPA:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -928,8 +934,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "University ID:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -949,8 +955,8 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(
               height: 15,
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Container(
+              //alignment: Alignment.topLeft,
               child: Text(
                 "Year of enrollment:".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -971,7 +977,7 @@ class _eduInfoState extends State<eduInfo> {
               height: 20,
             ),
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
@@ -1155,6 +1161,8 @@ class _attachmentsState extends State<attachments> {
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
             alignment: Alignment.center,
@@ -1167,15 +1175,15 @@ class _attachmentsState extends State<attachments> {
             height: 20,
             thickness: 2,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "ID Card:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: isLoading1
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1204,15 +1212,15 @@ class _attachmentsState extends State<attachments> {
           SizedBox(
             height: 15,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "High school transcripts:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: isLoading2
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1241,15 +1249,15 @@ class _attachmentsState extends State<attachments> {
           SizedBox(
             height: 15,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "Student Card:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: isLoading3
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1278,15 +1286,15 @@ class _attachmentsState extends State<attachments> {
           SizedBox(
             height: 15,
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: Text(
               "Transcript for the last semester:".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            //alignment: Alignment.topLeft,
             child: isLoading4
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1319,7 +1327,7 @@ class _attachmentsState extends State<attachments> {
             height: 20,
           ),
           Align(
-            alignment: Alignment.topRight,
+            alignment: Alignment.center,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
