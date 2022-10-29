@@ -6,22 +6,22 @@ if(!$mydb){
 }
 
 $email = $_POST['email'];
-$oldpassword = $_POST['oldpassword'];
-$newpassword = $_POST['newpassword'];
+$oldpassword = $_POST['password'];
+$newpassword = $_POST['npassword'];
 
-$sql = "SELECT * FROM users WHERE email='".$email."' AND password='".$oldpassword."'";
+$sql = "SELECT * FROM admins WHERE email='".$email."' AND password='".$oldpassword."'";
 
 $result = mysqli_query($mydb,$sql);
 $count  = mysqli_num_rows($result);
 
-if(count==1){
-    $update = "UPDATE users SET password='".$newpassword."' WHERE email='".$email."'";
+if($count==1){
+    $update = "UPDATE admins SET password='".$newpassword."' WHERE email='".$email."'";
     $query = mysqli_query($mydb,$update);
     if($query) {
-        echo json_encode("Success");
+        echo '<script>alert("Password changed")</script>';
     }
 }else{
-    echo json_encode("Error");
+    echo '<script>alert("Error")</script>';
 }
 
 ?>

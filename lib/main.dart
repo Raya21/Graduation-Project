@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       fontFamily: 'Average_Sans',
      ),
      darkTheme: ThemeData.dark(),
-     initialRoute: "login",
+     initialRoute: "home",
      routes: {
       "home":(context) => Home(),
       "forget_password":(context) => ForgetPass(),
