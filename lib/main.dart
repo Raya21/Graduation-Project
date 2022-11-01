@@ -13,26 +13,30 @@ import 'package:index/section2_familyData_page.dart';
 import 'package:index/section3_familyData_page.dart';
 import 'package:index/settings.dart';
 import 'package:index/sign_up.dart';
+import 'package:index/themenotifier.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  bool themebool = pref.getBool("isdark")?? false;
+  runApp(ChangeNotifierProvider(create: (context)=>ThemeProvider(isdark: themebool), child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key?key}):super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-     themeMode: ThemeMode.system,
-     theme: ThemeData(
+    return Consumer<ThemeProvider>(builder: ((context, value, child) {
+      return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: value.getTheme,
+     /*ThemeData(
       primaryColor: Colors.purple,
       fontFamily: 'Average_Sans',
-     ),
-     darkTheme: ThemeData.dark(),
+     ),*/
      initialRoute: "home",
      routes: {
       "home":(context) => Home(),
@@ -51,6 +55,6 @@ class MyApp extends StatelessWidget {
       "family_data":(context) => FamilyData()
       },
     );
+    }));
   }
 }
-

@@ -25,7 +25,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Number of family members including parents :",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 19),
               ),
               SizedBox(
                 height: 15,
@@ -54,7 +54,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Number of university students in the family :    ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -83,7 +83,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Number of family members with chronic diseases :",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -112,7 +112,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Family income in shekels per month :",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -154,7 +154,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Does the family have assistance such as a business card or zakat?",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -191,7 +191,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "If the family has an affairs card, please enter the card number :",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -220,7 +220,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Student family housing",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 400,
@@ -258,7 +258,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "The monthly rent for the family housing in shekels, if any",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -298,7 +298,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Family residence",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -329,7 +329,7 @@ class _Section3State extends State<Section3> {
           margin: EdgeInsets.only(top: 20, left: 20),
           child: Text(
             "The number of vehicles the family owns :",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Container(
@@ -341,7 +341,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Private         ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -366,7 +366,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Public           ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -391,7 +391,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Commercial ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -417,7 +417,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "The monthly student housing fee in shekels, if any :",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -446,7 +446,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Do you smoke ?",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -474,7 +474,7 @@ class _Section3State extends State<Section3> {
           margin: EdgeInsets.all(20),
           child: Text(
             "Undergraduate fraternity data :",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Center(

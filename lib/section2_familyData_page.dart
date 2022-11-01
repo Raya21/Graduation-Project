@@ -23,7 +23,7 @@ class _Section2State extends State<Section2> {
             children: [
               Text(
                 "The funder of university costs",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle( fontSize: 20),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -42,6 +42,7 @@ class _Section2State extends State<Section2> {
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
                       labelText: "Relative Relation",
+                      labelStyle: TextStyle(fontSize: 20)
                       //hintText: "country in menu mode",
                     ),
                   ),
@@ -54,7 +55,7 @@ class _Section2State extends State<Section2> {
               ),
               Text(
                 "If the relationship is other, please fill in the following data:",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(fontSize: 20),
               ),
               Container(
                 width: double.infinity,
@@ -66,10 +67,10 @@ class _Section2State extends State<Section2> {
                     Text(
                       "Quatrain Name ",
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20),
                     ),
                     SizedBox(
-                      width: 230,
+                      width: 210,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -93,10 +94,10 @@ class _Section2State extends State<Section2> {
                     Text(
                       "ID Number         ",
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20),
                     ),
                     SizedBox(
-                      width: 230,
+                      width: 210,
                       child: TextFormField(
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -132,6 +133,7 @@ class _Section2State extends State<Section2> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Place",
+                labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
               ),
             ),
@@ -204,6 +206,7 @@ class _Section2State extends State<Section2> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Job",
+                labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
               ),
             ),
@@ -220,10 +223,10 @@ class _Section2State extends State<Section2> {
             children: [
               Text(
                 "Note                  ",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
-                width: 230,
+                width: 210,
                 child: TextFormField(
                   maxLines: 6,
                   keyboardType: TextInputType.text,

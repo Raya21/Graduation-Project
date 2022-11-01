@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:index/themenotifier.dart';
+import 'package:index/themes.dart';
+import 'package:provider/provider.dart';
 
 class settings extends StatefulWidget {
   const settings({super.key});
@@ -30,9 +33,10 @@ class _settingsState extends State<settings> {
   }
   @override
   Widget build(BuildContext context) {
+    ThemeProvider _themeProvider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text("Settings",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
@@ -89,9 +93,27 @@ class _settingsState extends State<settings> {
             ),
             Divider(height: 20, thickness: 1,),
             SizedBox(height: 10,),
-            buildNotificationOption("Theme Dark", valNotify1,onChangeFunction1),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8,horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Dark Theme",style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,color: Colors.grey
+              )),
+                  Switch(
+                value: _themeProvider.getTheme == darkTheme, 
+              activeColor: _themeProvider.getTheme == darkTheme ? Colors.white : Colors.black,
+              onChanged: (d){
+                _themeProvider.ChangeTheme();
+              })
+                ],
+              ),
+            )
+            /*buildNotificationOption("Theme Dark", valNotify1,onChangeFunction1),
             buildNotificationOption("Account Active", valNotify2,onChangeFunction2),
-            buildNotificationOption("Opportunity", valNotify3,onChangeFunction3),
+            buildNotificationOption("Opportunity", valNotify3,onChangeFunction3),*/
             
           ],
         ),

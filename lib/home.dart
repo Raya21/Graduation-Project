@@ -30,8 +30,8 @@ class _HomeState extends State<Home> {
             children: [
               InkWell(
                 child: Row(children: [
-                  Icon(Icons.camera),
-                  Text("Camera"),
+                  Icon(Icons.camera, color: Colors.purple,),
+                  Text("Camera", style: TextStyle(fontSize: 20),),
                 ],),
                 onTap: () {
                   takePhoto(ImageSource.camera);
@@ -40,8 +40,8 @@ class _HomeState extends State<Home> {
                 SizedBox(width: 50,),
                 InkWell(
                 child: Row(children: [
-                  Icon(Icons.image),
-                  Text("Gallery"),
+                  Icon(Icons.image, color: Colors.purple,),
+                  Text("Gallery", style: TextStyle(fontSize: 20),),
                 ],),
                 onTap: () {
                   takePhoto(ImageSource.gallery);
@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
             child: Scaffold(
               appBar: AppBar(
                 title: Text("Home",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Colors.purple,
                 actions: [IconButton(
                   icon: Icon(Icons.notifications),
                   onPressed: () {

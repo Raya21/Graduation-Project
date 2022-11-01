@@ -53,7 +53,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text("Contact Us",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
@@ -76,7 +76,7 @@ class _ContactUsState extends State<ContactUs> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person, color: Colors.purple),
                         hintText: "Name",
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 20),
+                        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.purple)
                         ),
@@ -100,7 +100,7 @@ class _ContactUsState extends State<ContactUs> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.subject, color: Colors.purple),
                         hintText: "Subject",
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 20),
+                        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.purple)
                         ),
@@ -124,7 +124,7 @@ class _ContactUsState extends State<ContactUs> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email, color: Colors.purple),
                         hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 20),
+                        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.purple)
                         ),
@@ -150,7 +150,7 @@ class _ContactUsState extends State<ContactUs> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.message, color: Colors.purple),
                         hintText: "Message",
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 20),
+                        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 20),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.purple)
                         ),

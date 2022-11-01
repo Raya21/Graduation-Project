@@ -15,6 +15,9 @@ class _Section1State extends State<Section1> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
+        color: Theme.of(context).brightness == Brightness.light
+      ? Colors.white
+      : Colors.grey.shade900,
         width: double.infinity,
         margin: EdgeInsets.all(20),
         child: Column(
@@ -28,7 +31,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "Student Name",
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -45,7 +48,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "Student Number",
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -62,7 +65,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "ID Number",
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -89,6 +92,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Social Situation",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -118,11 +122,11 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Quatrain Name ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              "Quatrain Name  ",
+              style: TextStyle(fontSize: 20,),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -144,10 +148,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -178,6 +182,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Career Status",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -204,6 +209,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Place",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -276,6 +282,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Job",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -300,6 +307,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Nature",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -316,10 +324,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, ),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -365,10 +373,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -390,10 +398,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -424,6 +432,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Career Status",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -450,6 +459,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Place",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -522,6 +532,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Job",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -546,6 +557,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Nature",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -562,10 +574,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -610,10 +622,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -635,10 +647,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -669,6 +681,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Career Status",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -695,6 +708,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Place",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -767,6 +781,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Job",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -791,6 +806,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Work Nature",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),
@@ -807,10 +823,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -849,6 +865,7 @@ class _Section1State extends State<Section1> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               labelText: "Parents' social status",
+              labelStyle: TextStyle(fontSize: 20)
               //hintText: "country in menu mode",
             ),
           ),

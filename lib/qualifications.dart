@@ -12,7 +12,7 @@ class _QualificationsState extends State<Qualifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text("Conditions for applying for a loan",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
@@ -33,7 +33,8 @@ class _QualificationsState extends State<Qualifications> {
               Text("4. That the student is not a beneficiary or holder of a university scholarship or a scholarship or financial aid from any other source that exceeds his needs.",style: TextStyle(fontSize: 20),),
               SizedBox(height: 15,),
               Text("5. The candidate must have registered at least 12 credit hours in the semester in which he applied for the loan or grant.",style: TextStyle(fontSize: 20),),
-              Divider(height: 20,thickness: 1,),
+              Divider(height: 20,thickness: 1, color: Colors.purple,),
+              SizedBox(height: 15,),
               Text("Notes:",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
               Text("1. The percentage of opportunities that the student obtains is calculated based on the criteria of need, and the highest percentage that the student may obtain is 75% of the tuition fees only (without registration fees, internet...etc.)",style: TextStyle(fontSize: 20),),
               SizedBox(height: 15,),

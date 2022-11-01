@@ -107,6 +107,9 @@ flutter:
      - family: Maven_Pro
        fonts:
          - asset: lib/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf
+     - family: Poor_Story
+       fonts:
+         - asset: lib/fonts/Poor_Story/PoorStory-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

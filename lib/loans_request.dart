@@ -23,7 +23,7 @@ class _ApplyLoansState extends State<ApplyLoans> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text("Apply for a loan",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  

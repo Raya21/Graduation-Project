@@ -22,7 +22,7 @@ class _profileState extends State<profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), 
         onPressed: () {  
           Navigator.pop(context);
@@ -30,7 +30,7 @@ class _profileState extends State<profile> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         selectedItemColor: Color.fromARGB(255, 218, 136, 233),
         unselectedItemColor: Colors.white,
         onTap: (value) {
@@ -42,22 +42,22 @@ class _profileState extends State<profile> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Personal Info",
-            backgroundColor: Theme.of(context).primaryColor
+            backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_phone),
             label: "Contact Info",
-            backgroundColor: Theme.of(context).primaryColor
+            backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cast_for_education),
             label: "Educational Info",
-            backgroundColor: Theme.of(context).primaryColor
+            backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attachment),
             label: "Attachments",
-            backgroundColor: Theme.of(context).primaryColor
+            backgroundColor: Colors.purple,
           ),
         ],
         
@@ -143,48 +143,55 @@ class _personInfoState extends State<personInfo> {
             Divider(height: 20, thickness: 2,),
             Align(
               alignment: Alignment.topLeft,
-              child: Text("Full Name:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              child: Text("Full Name:", style: TextStyle(fontSize: 20),),
             ),
             TextFormField(
               controller: fname,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple, width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple, width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child: Text("ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            child: Text("ID:", style: TextStyle(fontSize: 20),),
             ),
             TextFormField(
               controller: id,
               cursorColor: Colors.purple,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple),
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple)
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2)
                 )
               ),
             ),
             SizedBox(height: 15,),
                 Align(
               alignment: Alignment.topLeft,
-            child: Text("Birth Date:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            child: Text("Birth Date:", style: TextStyle(fontSize: 20),),
                 ),
             Align(
               alignment: Alignment.topLeft,
             child: TextFormField(
               controller: bdate,
+              keyboardType: TextInputType.datetime,
               decoration: const InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                 icon: Icon(Icons.calendar_today,color: Colors.purple,),
@@ -192,10 +199,10 @@ class _personInfoState extends State<personInfo> {
                 /*labelText: "Enter your birth date",
                 labelStyle: TextStyle(color:  Colors.black,fontSize: 20),*/
                 enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderSide: BorderSide(color: Colors.purple, width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderSide: BorderSide(color: Colors.purple, width: 2)
               )
               ),
               readOnly: true,
@@ -220,41 +227,47 @@ class _personInfoState extends State<personInfo> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child: Text("Birth Place:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child: Text("Birth Place:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: birthplace,
               cursorColor: Colors.purple,
+              keyboardType: TextInputType.name,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple),
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple, width: 2),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple)
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple, width: 2)
                 )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child: Text("City:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child: Text("City:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: city,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple),
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple)
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2)
                 )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-              child:Text("Average Income:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              child:Text("Average Income:", style: TextStyle(fontSize: 20),),
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -267,7 +280,7 @@ class _personInfoState extends State<personInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["-","0-500 NIS","500-1000 NIS","1000-1500 NIS","1500-2000 NIS","2000-3000 NIS","More than 3000 NIS"].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(), 
@@ -282,7 +295,7 @@ class _personInfoState extends State<personInfo> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Gender:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Gender:", style: TextStyle(fontSize: 20),),),
             Align(
               alignment: Alignment.topLeft,
             child:Container(
@@ -293,7 +306,7 @@ class _personInfoState extends State<personInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["Male","Female"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
@@ -308,7 +321,7 @@ class _personInfoState extends State<personInfo> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Social Status:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Social Status:", style: TextStyle(fontSize: 20),),),
             Align(
               alignment: Alignment.topLeft,
             child:Container(
@@ -319,7 +332,7 @@ class _personInfoState extends State<personInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["Single","Married"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20),),value: e,)).toList(), 
@@ -340,13 +353,13 @@ class _personInfoState extends State<personInfo> {
                 primary: Colors.purple,
                 padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
                 shape: RoundedRectangleBorder( 
-                  borderRadius: BorderRadius.circular(30)
+                  borderRadius: BorderRadius.circular(20)
               ),
               ),
                 onPressed: () {
                   person();
                 }, 
-                child: Text("Save", style: TextStyle(fontSize: 20),)
+                child: Text("Save", style: TextStyle(fontSize: 20, color: Colors.white),)
                 ),
             )
           ],
@@ -415,34 +428,40 @@ class _contactInfoState extends State<contactInfo> {
             Divider(height: 20, thickness: 2,),
               Align(
               alignment: Alignment.topLeft,
-            child:Text("Telephone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Telephone Number:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: Tphone,
+              keyboardType: TextInputType.phone,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderSide: BorderSide(color: Colors.purple,width: 2),
+                borderRadius: BorderRadius.circular(20),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderSide: BorderSide(color: Colors.purple,width: 2),
+                borderRadius: BorderRadius.circular(20),
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Mobile Phone Number:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Mobile Phone Number:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: Mphone,
+              keyboardType: TextInputType.phone,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple),
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple)
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple,width: 2)
                 )
               ),
             ),
@@ -454,13 +473,13 @@ class _contactInfoState extends State<contactInfo> {
                 primary: Colors.purple,
                 padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
                 shape: RoundedRectangleBorder( 
-                  borderRadius: BorderRadius.circular(30)
+                  borderRadius: BorderRadius.circular(20)
               ),
               ),
                 onPressed: () {
                   contact();
                 }, 
-                child: Text("Save", style: TextStyle(fontSize: 20),)
+                child: Text("Save", style: TextStyle(fontSize: 20,color: Colors.white),)
                 ),
             )
             ],
@@ -552,58 +571,67 @@ class _eduInfoState extends State<eduInfo> {
               SizedBox(height: 10,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: yearofEn,
+              keyboardType: TextInputType.number,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("School:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("School:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: schoolcon,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Grade:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Grade:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: gradecon,
+              keyboardType: TextInputType.number,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Study Branch:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Study Branch:", style: TextStyle(fontSize: 20),),),
             Align(
               alignment: Alignment.topLeft,
             child:Container(
@@ -614,7 +642,7 @@ class _eduInfoState extends State<eduInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["Study branch","scientific","literary","commercial","Industrial"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
@@ -635,7 +663,7 @@ class _eduInfoState extends State<eduInfo> {
               SizedBox(height: 10,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Undergraduate degree:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Undergraduate degree:", style: TextStyle(fontSize: 20),),),
             Align(
               alignment: Alignment.topLeft,
             child:Container(
@@ -646,7 +674,7 @@ class _eduInfoState extends State<eduInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["Undergraduate degree","Diploma","BA","Master's","PhD"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
@@ -661,58 +689,67 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("University:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("University:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: uni,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("College:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("College:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: collegecon,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Department:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Department:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: dep,
+              keyboardType: TextInputType.name,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Academic Year:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Academic Year:", style: TextStyle(fontSize: 20),),),
             Align(
               alignment: Alignment.topLeft,
             child:Container(
@@ -723,7 +760,7 @@ class _eduInfoState extends State<eduInfo> {
                       width: 1,
                       style: BorderStyle.solid
                   ),
-                  borderRadius: BorderRadius.circular(5)
+                  borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
                 items: ["Academic year","First","Second","Third","Fourth","Fifth","Sixth","Seventh"].map((e) => DropdownMenuItem(child: Text("$e",style: TextStyle(fontSize: 20)),value: e,)).toList(), 
@@ -738,51 +775,60 @@ class _eduInfoState extends State<eduInfo> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("GPA:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("GPA:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: gpacon,
+              keyboardType: TextInputType.number,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("University ID:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("University ID:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: uniid,
+              keyboardType: TextInputType.number,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+            child:Text("Year of enrollment:", style: TextStyle(fontSize: 20),),),
             TextFormField(
               controller: yearofEnUni,
+              keyboardType: TextInputType.datetime,
               cursorColor: Colors.purple,
               decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple)
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.purple,width: 2)
               )
               ),
             ),
@@ -794,13 +840,13 @@ class _eduInfoState extends State<eduInfo> {
                 primary: Colors.purple,
                 padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
                 shape: RoundedRectangleBorder( 
-                  borderRadius: BorderRadius.circular(30)
+                  borderRadius: BorderRadius.circular(20)
               ),
               ),
                 onPressed: () {
                   education();
                 }, 
-                child: Text("Save", style: TextStyle(fontSize: 20),)
+                child: Text("Save", style: TextStyle(fontSize: 20,color: Colors.white),)
                 ),
             )
           ],),
@@ -981,7 +1027,7 @@ String _errorMessage = '';
           Divider(height: 20, thickness: 2,),
             Align(
             alignment: Alignment.topLeft,
-          child:Text("ID Card:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child:Text("ID Card:",style: TextStyle(fontSize: 20),),),
           Align(
             alignment: Alignment.topLeft,
             child: isLoading1
@@ -1002,7 +1048,7 @@ String _errorMessage = '';
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
-          child:Text("High school transcripts:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child:Text("High school transcripts:",style: TextStyle(fontSize: 20),),),
             Align(
             alignment: Alignment.topLeft,
             child: isLoading2
@@ -1023,7 +1069,7 @@ String _errorMessage = '';
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
-          child:Text("Student Card:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child:Text("Student Card:",style: TextStyle(fontSize: 20),),),
             Align(
             alignment: Alignment.topLeft,
             child: isLoading3
@@ -1044,7 +1090,7 @@ String _errorMessage = '';
             SizedBox(height: 15,),
             Align(
             alignment: Alignment.topLeft,
-          child:Text("Transcript for the last semester:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+          child:Text("Transcript for the last semester:",style: TextStyle(fontSize: 20),),),
             Align(
             alignment: Alignment.topLeft,
             child: isLoading4
@@ -1071,13 +1117,13 @@ String _errorMessage = '';
               primary: Colors.purple,
               padding: EdgeInsets.symmetric(vertical: 13,horizontal: 22),
               shape: RoundedRectangleBorder( 
-                borderRadius: BorderRadius.circular(30)
+                borderRadius: BorderRadius.circular(20)
             ),
             ),
               onPressed: (() {
                 education();
               }), 
-              child: Text("Save", style: TextStyle(fontSize: 20),)
+              child: Text("Save", style: TextStyle(fontSize: 20,color: Colors.white),)
               ),
           )
           ],
