@@ -30,16 +30,19 @@ class _FamilyDataState extends State<FamilyData> {
             Navigator.pop(context);
           },
         ),
-        title: Text("Family Data",style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+        title: Text(
+          "Family Data",
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.purple,
       ),
       body: Container(
-
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         color: Theme.of(context).brightness == Brightness.light
-      ? Colors.white
-      : Colors.grey.shade900,
+            ? Colors.white
+            : Colors.grey.shade900,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -103,8 +106,8 @@ class _FamilyDataState extends State<FamilyData> {
               /************************************************************************************  Sections Bar *************************************************************************/
               Container(
                 color: Theme.of(context).brightness == Brightness.light
-      ? Colors.white
-      : Colors.grey.shade900,
+                    ? Colors.white
+                    : Colors.grey.shade900,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -1,192 +1,187 @@
-import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 
-import 'package:index/login.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'package:index/creditional.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class ForgetPass extends StatefulWidget {
-  const ForgetPass({Key? key}):super(key:key);
+  const ForgetPass({super.key});
 
   @override
   State<ForgetPass> createState() => _ForgetPassState();
 }
 
 class _ForgetPassState extends State<ForgetPass> {
-  final _formKey = GlobalKey<FormState>();
-  String _errorMessage = '';
-  TextEditingController emailcontroller=TextEditingController();
-  TextEditingController newpasswordcontroller=TextEditingController();
-  TextEditingController oldpasswordcontroller=TextEditingController();
+  TextEditingController email = TextEditingController();
 
-  Future forgetpass() async {
-    var url = "http://192.168.0.112/handinhand/forget_password.php";
-    var response=await http.post(Uri.parse(url),body:{
-      "email": emailcontroller.text,
-      "oldpassword":oldpasswordcontroller.text,
-      "newpassword":newpasswordcontroller.text,
-    });
-    var data= await json.decode(json.encode(response.body));
-    if(data == "Success"){
-      Fluttertoast.showToast(msg: "Password Updated Successfuly",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Color.fromARGB(255, 203, 158, 211),
-      textColor: Colors.purple,
-      fontSize: 16
+  bool verifyButton = false;
+  late String verifyLink;
+  Future checkUser() async {
+    var response = await http.post(Uri.parse('http://192.168.1.101/handinhand/check.php'),
+        body: {"username": email.text});
+    var link = json.decode(response.body);
+    if (link == "INVALIDUSER") {
+      Fluttertoast.showToast(
+        msg: "This user not in our database",
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 6,
       );
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));
+    } else {
+      sendMAil();
+      setState(() {
+        verifyLink = link;
+        verifyButton = true;
+      });
+      Fluttertoast.showToast(
+        msg: "Click Verify Button To Reset Password",
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 4,
+      );
     }
-    else{
-      Fluttertoast.showToast(msg: "Email or Password Incorrect!",
-      toastLength: Toast.LENGTH_SHORT,
+    print(link);
+  }
+
+  int newPass = 0;
+  Future resetPassword(String verifyLink) async {
+    var response = await http.post(Uri.parse(verifyLink));//in video he put verifyLink without Uri.parse but without it i got an error
+    var link = json.decode(response.body);
+    setState(() {
+      newPass = link;
+      verifyButton = false;
+    });
+    print(link);
+    Fluttertoast.showToast(
+      msg: "Your Password has been reset: $newPass",
       gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16
-      );
+      timeInSecForIosWeb: 4,
+    );
+  }
+
+  sendMAil() async {
+    String username = EMAIL;
+    String password = PASS;
+
+    final SmtpServer = gmail(username, password);
+    final message = Message()
+      ..from = Address(username)
+      ..recipients.add("signaturesoftit@gmail.com")
+      ..subject = "Password recover link: ${DateTime.now()}"
+      ..html =
+          "<h3>Thanks for with localhost. Please click this link to reset your password</h3>\n<p><a href='$verifyLink'>Click me to reset</a></p>";
+
+    try {
+      final SendReport = await send(message, SmtpServer);
+      print("Message sent: " + SendReport.toString());
+    } on MailerException catch (e) {
+      print("Message not sent. \n" + e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("lib/imgs/background.jpg"),
-            fit: BoxFit.cover,
-            )
-        ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("lib/imgs/background.jpg"),
+          fit: BoxFit.cover,
+        )),
         child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-            SizedBox(height: 30,),
-            Center(
-              child: Image.asset("lib/imgs/logo.png",width: 150,height: 150,),
+          child: Form(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Center(
+                  child: Image.asset(
+                    "lib/imgs/logo.png",
+                    width: 150,
+                    height: 150,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Text(
+                    "Recover Your Password",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    padding: EdgeInsets.all(20),
+                    child: Form(
+                        child: Column(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: email,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.email, color: Colors.pink),
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                  color: Colors.grey.shade600, fontSize: 20),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.pink, width: 2)),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.pink, width: 2))),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MaterialButton(
+                            color: Colors.pink,
+                            onPressed: () {
+                              checkUser();
+                            },
+                            child: Text(
+                              "Recover Password",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        verifyButton
+                            ? MaterialButton(
+                                color: Colors.black,
+                                onPressed: () {
+                                  resetPassword(verifyLink);
+                                },
+                                child: Text(
+                                  "Verify",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              )
+                            : Container(),
+                        newPass == 0
+                            ? Container()
+                            : Text("New Password is $newPass")
+                      ],
+                    )))
+              ],
             ),
-            SizedBox(height: 20,),
-            Container(
-              margin: EdgeInsets.only(top:10),
-              child: Text("Reset Password", 
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 35,
-                fontWeight: FontWeight.bold
-              ),),
-            ),
-            SizedBox(height: 20,),
-            Container(
-              padding: EdgeInsets.all(20),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: emailcontroller,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email, color: Colors.pink),
-                      hintText: "E-mail",
-                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      )
-                    ),
-                    onChanged: (val){
-                      validateEmail(val);
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(_errorMessage, style: TextStyle(color: Colors.red),),
-                  ),
-                  SizedBox(height: 20,),
-                  TextFormField(
-                    controller: oldpasswordcontroller,
-                    obscureText: true,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password, color: Colors.pink),
-                      hintText: "Old password",
-                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      )
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  TextFormField(
-                    controller: newpasswordcontroller,
-                    obscureText: true,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.password, color: Colors.pink),
-                      hintText: "New password",
-                      hintStyle: TextStyle(color: Colors.white, fontSize: 20),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)
-                      )
-                    ),
-                  ),
-                  SizedBox(height: 50,),
-                  Container(
-                    child: ElevatedButton(
-                      onPressed: (){
-                        forgetpass();
-                      },
-                      child: Text("Confirm"),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(200, 50),
-                        backgroundColor: Colors.white,
-                        foregroundColor: Color.fromARGB(255, 216, 51, 122),
-                        padding: EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50),),
-                        textStyle: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.w400
-                        )
-                        
-                      )
-                      ),
-                  ),
-                  
-            ],)))
-          ],
+          ),
         ),
-        ),
-        ),
+      ),
     );
-  }
-  void validateEmail(String val){
-    if(val.isEmpty){
-  setState(() {
-    _errorMessage = "Email can not be empty";
-  });
-    }else if(!EmailValidator.validate(val, true)){
-      setState(() {
-        _errorMessage = "Invalid Email Address";
-      });
-    }else{
-      setState(() {
-
-        _errorMessage = "";
-      });
-    }
   }
 }

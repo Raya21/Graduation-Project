@@ -16,8 +16,8 @@ class _Section1State extends State<Section1> {
     return Column(children: [
       Container(
         color: Theme.of(context).brightness == Brightness.light
-      ? Colors.white
-      : Colors.grey.shade900,
+            ? Colors.white
+            : Colors.grey.shade900,
         width: double.infinity,
         margin: EdgeInsets.all(20),
         child: Column(
@@ -91,10 +91,10 @@ class _Section1State extends State<Section1> {
           items: ["Single", "Married"],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Social Situation",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Social Situation",
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -123,7 +123,9 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name  ",
-              style: TextStyle(fontSize: 20,),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
               width: 210,
@@ -148,7 +150,9 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ",
-              style: TextStyle(fontSize: 20,),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
               width: 210,
@@ -181,10 +185,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -208,10 +211,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -281,10 +283,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -306,10 +307,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -324,7 +324,9 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ",
-              style: TextStyle(fontSize: 20, ),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
               width: 210,
@@ -373,7 +375,9 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name ",
-              style: TextStyle(fontSize: 20,),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
               width: 210,
@@ -431,10 +435,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -458,10 +461,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -531,10 +533,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -556,10 +557,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -680,10 +680,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -707,10 +706,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -780,10 +778,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -805,10 +802,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -864,10 +860,10 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Parents' social status",
-              labelStyle: TextStyle(fontSize: 20)
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Parents' social status",
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
