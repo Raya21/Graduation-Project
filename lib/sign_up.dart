@@ -1,5 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
+import 'home.dart';
+import 'login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -9,6 +15,40 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController usernamecontroller = TextEditingController();
+
+  Future register() async {
+    var url = "http://192.168.1.10/handinhand/register.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "email": emailcontroller.text,
+      "password": passwordcontroller.text,
+      'username': usernamecontroller.text,
+    });
+    var data = await json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Registration Successful",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+    } else if (data == "Error") {
+      Fluttertoast.showToast(
+          msg: "This User Already Exist!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +96,7 @@ class _SignUpState extends State<SignUp> {
                       child: Column(
                     children: [
                       TextFormField(
+                        controller: usernamecontroller,
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person, color: Colors.pink),
@@ -70,6 +111,7 @@ class _SignUpState extends State<SignUp> {
                         height: 20,
                       ),
                       TextFormField(
+                        controller: emailcontroller,
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email, color: Colors.pink),
@@ -84,6 +126,7 @@ class _SignUpState extends State<SignUp> {
                         height: 20,
                       ),
                       TextFormField(
+                        controller: passwordcontroller,
                         obscureText: true,
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
@@ -112,7 +155,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Container(
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              register();
+                            },
                             child: Text(
                               "Create Account".tr,
                             ),

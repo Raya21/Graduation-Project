@@ -21,12 +21,12 @@ class _LoginState extends State<Login> {
   String _errorMessage = '';
 
   Future login() async {
-    var url = "http://192.168.0.112/handinhand/login.php";
+    var url = "http://192.168.1.10/handinhand/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "password": passwordcontroller.text,
     });
-    var data = await json.decode(json.encode(response.body));
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Login Successful",
