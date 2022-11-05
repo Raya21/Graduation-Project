@@ -279,6 +279,7 @@ class MyLocale implements Translations {
           "This User Already Exist!": "هذا المستخدم موجود بالفعل!",
           "Invalid Email Address": "عنوان البريد الإلكتروني غير صالح",
           "Email can not be empty": "لا يمكن أن يكون البريد الإلكتروني فارغًا",
+          "Password Updated Successfully": "تم تحديث كلمة السر بنجاح",
           "x": "-1"
         },
         "en": {
@@ -564,6 +565,7 @@ class MyLocale implements Translations {
           "This User Already Exist!": "This User Already Exist!",
           "Invalid Email Address": "Invalid Email Address",
           "Email can not be empty": "Email can not be empty",
+          "Password Updated Successfully": "Password Updated Successfully",
           "x": "1"
         }
       };

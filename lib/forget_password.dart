@@ -21,16 +21,17 @@ class _ForgetPassState extends State<ForgetPass> {
   TextEditingController oldpasswordcontroller = TextEditingController();
 
   Future forgetpass() async {
-    var url = "http://192.168.0.112/handinhand/forget_password.php";
+    var url = "http://192.168.1.10/handinhand/forget_password.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "oldpassword": oldpasswordcontroller.text,
       "newpassword": newpasswordcontroller.text,
     });
-    var data = await json.decode(json.encode(response.body));
+
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Password Updated Successfuly",
+          msg: "Password Updated Successfully".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -40,7 +41,7 @@ class _ForgetPassState extends State<ForgetPass> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
     } else {
       Fluttertoast.showToast(
-          msg: "Email or Password Incorrect!",
+          msg: "Email or Password Incorrect!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -187,11 +188,11 @@ class _ForgetPassState extends State<ForgetPass> {
   void validateEmail(String val) {
     if (val.isEmpty) {
       setState(() {
-        _errorMessage = "Email can not be empty";
+        _errorMessage = "Email can not be empty".tr;
       });
     } else if (!EmailValidator.validate(val, true)) {
       setState(() {
-        _errorMessage = "Invalid Email Address";
+        _errorMessage = "Invalid Email Address".tr;
       });
     } else {
       setState(() {

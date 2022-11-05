@@ -14,7 +14,7 @@ $sql = "SELECT * FROM users WHERE email='".$email."' AND password='".$oldpasswor
 $result = mysqli_query($mydb,$sql);
 $count  = mysqli_num_rows($result);
 
-if(count==1){
+if($count==1){
     $update = "UPDATE users SET password='".$newpassword."' WHERE email='".$email."'";
     $query = mysqli_query($mydb,$update);
     if($query) {
