@@ -272,6 +272,13 @@ class MyLocale implements Translations {
           "Registration number": "رقم التسجيل",
           "College Name": "اسم الكلية",
           "University Name": "اسم الجامعة",
+          "Login Successful": "تم تسجيل الدخول بنجاح",
+          "Email or Password Incorrect!":
+              "البريد الإلكتروني أو كلمة المرور غير صحيحة!",
+          "Registration Successful": "تم التسجيل بنجاح",
+          "This User Already Exist!": "هذا المستخدم موجود بالفعل!",
+          "Invalid Email Address": "عنوان البريد الإلكتروني غير صالح",
+          "Email can not be empty": "لا يمكن أن يكون البريد الإلكتروني فارغًا",
           "x": "-1"
         },
         "en": {
@@ -551,6 +558,12 @@ class MyLocale implements Translations {
           "Registration number": "Registration number",
           "College Name": "College Name",
           "University Name": "University Name",
+          "Login Successful": "Login Successful",
+          "Email or Password Incorrect!": "Email or Password Incorrect!",
+          "Registration Successful": "Registration Successful",
+          "This User Already Exist!": "This User Already Exist!",
+          "Invalid Email Address": "Invalid Email Address",
+          "Email can not be empty": "Email can not be empty",
           "x": "1"
         }
       };

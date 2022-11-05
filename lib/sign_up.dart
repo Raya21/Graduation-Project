@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
     var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Registration Successful",
+          msg: "Registration Successful".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -39,7 +39,7 @@ class _SignUpState extends State<SignUp> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
     } else if (data == "Error") {
       Fluttertoast.showToast(
-          msg: "This User Already Exist!",
+          msg: "This User Already Exist!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -190,6 +190,10 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           InkWell(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed("login");
+                            },
                             child: Text(
                               "Sign In".tr,
                               style: TextStyle(

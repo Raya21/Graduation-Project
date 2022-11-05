@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
     var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Login Successful",
+          msg: "Login Successful".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -39,7 +39,7 @@ class _LoginState extends State<Login> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     } else {
       Fluttertoast.showToast(
-          msg: "Email or Password Incorrect!",
+          msg: "Email or Password Incorrect!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -224,11 +224,11 @@ class _LoginState extends State<Login> {
   void validateEmail(String val) {
     if (val.isEmpty) {
       setState(() {
-        _errorMessage = "Email can not be empty";
+        _errorMessage = "Email can not be empty".tr;
       });
     } else if (!EmailValidator.validate(val, true)) {
       setState(() {
-        _errorMessage = "Invalid Email Address";
+        _errorMessage = "Invalid Email Address".tr;
       });
     } else {
       setState(() {
