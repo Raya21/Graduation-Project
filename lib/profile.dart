@@ -5,6 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+
+late String idglo;
 
 class profile extends StatefulWidget {
   const profile({super.key});
@@ -14,6 +17,7 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  var x = "alignment".tr;
   int _currentIndex = 0;
   List<Widget> pages = [personInfo(), contactInfo(), eduInfo(), attachments()];
   @override
@@ -21,7 +25,7 @@ class _profileState extends State<profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile",
+          "Profile".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -49,22 +53,22 @@ class _profileState extends State<profile> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Personal Info",
+            label: "Personal Info".tr,
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_phone),
-            label: "Contact Info",
+            label: "Contact Info".tr,
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.cast_for_education),
-            label: "Educational Info",
+            label: "Educational Info".tr,
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attachment),
-            label: "Attachments",
+            label: "Attachments".tr,
             backgroundColor: Colors.purple,
           ),
         ],
@@ -84,8 +88,8 @@ class personInfo extends StatefulWidget {
 class _personInfoState extends State<personInfo> {
   final _formKey1 = GlobalKey<FormState>();
   String selectedIncome = "-";
-  String selectedGender = "Male";
-  String selectedSS = "Single";
+  String selectedGender = "Male".tr;
+  String selectedSS = "Single".tr;
   TextEditingController fname = TextEditingController();
   TextEditingController id = TextEditingController();
   TextEditingController birthplace = TextEditingController();
@@ -94,7 +98,8 @@ class _personInfoState extends State<personInfo> {
   String _errorMessage = '';
 
   Future person() async {
-    var url = "http://192.168.0.112/handinhand/person.php";
+    idglo = id.text;
+    var url = "http://192.168.1.107/handinhand/personInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "fname": fname.text,
       "id": id.text,
@@ -102,10 +107,10 @@ class _personInfoState extends State<personInfo> {
       "birthplace": birthplace.text,
       "city": city.text,
       "income": selectedIncome,
-      "Gender": selectedGender,
+      "gender": selectedGender,
       "socialstatus": selectedSS
     });
-    var data = await json.decode(json.encode(response.body));
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Saved",
@@ -117,7 +122,7 @@ class _personInfoState extends State<personInfo> {
           fontSize: 16);
     } else {
       Fluttertoast.showToast(
-          msg: "Not Saved!",
+          msg: "Updated!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -145,7 +150,7 @@ class _personInfoState extends State<personInfo> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Person Information",
+                  "Person Information".tr,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -154,9 +159,9 @@ class _personInfoState extends State<personInfo> {
                 thickness: 2,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Full Name:",
+                  "Full Name:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -179,9 +184,9 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "ID:",
+                  "ID:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -205,14 +210,14 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Birth Date:",
+                  "Birth Date:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: TextFormField(
                   controller: bdate,
                   keyboardType: TextInputType.datetime,
@@ -256,9 +261,9 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Birth Place:",
+                  "Birth Place:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -282,9 +287,9 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "City:",
+                  "City:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -308,14 +313,14 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Average Income:",
+                  "Average Income:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
@@ -327,12 +332,12 @@ class _personInfoState extends State<personInfo> {
                   child: DropdownButton(
                     items: [
                       "-",
-                      "0-500 NIS",
-                      "500-1000 NIS",
-                      "1000-1500 NIS",
-                      "1500-2000 NIS",
-                      "2000-3000 NIS",
-                      "More than 3000 NIS"
+                      "0-500 NIS".tr,
+                      "500-1000 NIS".tr,
+                      "1000-1500 NIS".tr,
+                      "1500-2000 NIS".tr,
+                      "2000-3000 NIS".tr,
+                      "More than 3000 NIS".tr
                     ]
                         .map((e) => DropdownMenuItem(
                               child: Text("$e"),
@@ -352,14 +357,14 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Gender:",
+                  "Gender:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
@@ -369,7 +374,7 @@ class _personInfoState extends State<personInfo> {
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
-                    items: ["Male", "Female"]
+                    items: ["Male".tr, "Female".tr]
                         .map((e) => DropdownMenuItem(
                               child: Text("$e", style: TextStyle(fontSize: 20)),
                               value: e,
@@ -388,14 +393,14 @@ class _personInfoState extends State<personInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Social Status:",
+                  "Social Status:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 7.0),
                   decoration: BoxDecoration(
@@ -405,7 +410,7 @@ class _personInfoState extends State<personInfo> {
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
-                    items: ["Single", "Married"]
+                    items: ["Single".tr, "Married".tr]
                         .map((e) => DropdownMenuItem(
                               child: Text(
                                 "$e",
@@ -427,7 +432,7 @@ class _personInfoState extends State<personInfo> {
                 height: 20,
               ),
               Align(
-                alignment: Alignment.topRight,
+                alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.purple,
@@ -440,7 +445,7 @@ class _personInfoState extends State<personInfo> {
                       person();
                     },
                     child: Text(
-                      "Save",
+                      "Save".tr,
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -471,10 +476,11 @@ class _contactInfoState extends State<contactInfo> {
   Future contact() async {
     var url = "http://192.168.0.112/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
+      "id" : idglo,
       "TPhone": Tphone.text,
       "MPhone": Mphone.text,
     });
-    var data = await json.decode(json.encode(response.body));
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Saved",
@@ -486,7 +492,7 @@ class _contactInfoState extends State<contactInfo> {
           fontSize: 16);
     } else {
       Fluttertoast.showToast(
-          msg: "Not Saved",
+          msg: "Updated",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -508,7 +514,7 @@ class _contactInfoState extends State<contactInfo> {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "Contact Information",
+                "Contact Information".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
@@ -517,9 +523,9 @@ class _contactInfoState extends State<contactInfo> {
               thickness: 2,
             ),
             Align(
-              alignment: Alignment.topLeft,
+              //alignment: Alignment.topLeft,
               child: Text(
-                "Telephone Number:",
+                "Telephone Number:".tr,
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -543,9 +549,9 @@ class _contactInfoState extends State<contactInfo> {
               height: 15,
             ),
             Align(
-              alignment: Alignment.topLeft,
+              //alignment: Alignment.topLeft,
               child: Text(
-                "Mobile Phone Number:",
+                "Mobile Phone Number:".tr,
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -568,7 +574,7 @@ class _contactInfoState extends State<contactInfo> {
               height: 20,
             ),
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
@@ -580,7 +586,7 @@ class _contactInfoState extends State<contactInfo> {
                     contact();
                   },
                   child: Text(
-                    "Save",
+                    "Save".tr,
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -603,9 +609,9 @@ class eduInfo extends StatefulWidget {
 
 class _eduInfoState extends State<eduInfo> {
   final _formKey3 = GlobalKey<FormState>();
-  String selectedBranch = "Study branch";
-  String selectedDegree = "Undergraduate degree";
-  String selectedYear = "Academic year";
+  String selectedBranch = "Study branch".tr;
+  String selectedDegree = "Undergraduate degree".tr;
+  String selectedYear = "Academic year".tr;
   TextEditingController yearofEn = TextEditingController();
   TextEditingController schoolcon = TextEditingController();
   TextEditingController gradecon = TextEditingController();
@@ -618,8 +624,9 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.0.112/handinhand/education.php";
+    var url = "http://192.168.1.107/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
+      "id":idglo,
       "yearofEn": yearofEn.text,
       "school": schoolcon.text,
       "grade": gradecon.text,
@@ -633,7 +640,7 @@ class _eduInfoState extends State<eduInfo> {
       "degree": selectedDegree,
       "acadmicyear": selectedYear
     });
-    var data = await json.decode(json.encode(response.body));
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Saved",
@@ -645,7 +652,7 @@ class _eduInfoState extends State<eduInfo> {
           fontSize: 16);
     } else {
       Fluttertoast.showToast(
-          msg: "Not Saved!",
+          msg: "Updated!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -667,14 +674,14 @@ class _eduInfoState extends State<eduInfo> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Education Information",
+                  "Education Information".tr,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "High Scool Information:",
+                  "High Scool Information:".tr,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -686,9 +693,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 10,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Year of enrollment:",
+                  "Year of enrollment:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -711,9 +718,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "School:",
+                  "School:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -736,9 +743,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Grade:",
+                  "Grade:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -761,14 +768,14 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Study Branch:",
+                  "Study Branch:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
@@ -779,11 +786,11 @@ class _eduInfoState extends State<eduInfo> {
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
                     items: [
-                      "Study branch",
-                      "scientific",
-                      "literary",
-                      "commercial",
-                      "Industrial"
+                      "Study branch".tr,
+                      "Scientific".tr,
+                      "Literary".tr,
+                      "Commercial".tr,
+                      "Industrial".tr
                     ]
                         .map((e) => DropdownMenuItem(
                               child: Text("$e", style: TextStyle(fontSize: 20)),
@@ -803,9 +810,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 50,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "University Information:",
+                  "University Information:".tr,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -817,14 +824,14 @@ class _eduInfoState extends State<eduInfo> {
                 height: 10,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Undergraduate degree:",
+                  "Undergraduate degree:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
@@ -835,11 +842,11 @@ class _eduInfoState extends State<eduInfo> {
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
                     items: [
-                      "Undergraduate degree",
-                      "Diploma",
-                      "BA",
-                      "Master's",
-                      "PhD"
+                      "Undergraduate degree".tr,
+                      "Diploma".tr,
+                      "BA".tr,
+                      "Master's".tr,
+                      "PhD".tr
                     ]
                         .map((e) => DropdownMenuItem(
                               child: Text("$e", style: TextStyle(fontSize: 20)),
@@ -859,9 +866,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "University:",
+                  "University:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -884,9 +891,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "College:",
+                  "College:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -909,9 +916,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Department:",
+                  "Department:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -934,14 +941,14 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Academic Year:",
+                  "Academic Year:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
@@ -952,14 +959,14 @@ class _eduInfoState extends State<eduInfo> {
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
                     items: [
-                      "Academic year",
-                      "First",
-                      "Second",
-                      "Third",
-                      "Fourth",
-                      "Fifth",
-                      "Sixth",
-                      "Seventh"
+                      "Academic year".tr,
+                      "First".tr,
+                      "Second".tr,
+                      "Third".tr,
+                      "Fourth".tr,
+                      "Fifth".tr,
+                      "Sixth".tr,
+                      "Seventh".tr
                     ]
                         .map((e) => DropdownMenuItem(
                               child: Text("$e", style: TextStyle(fontSize: 20)),
@@ -979,9 +986,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "GPA:",
+                  "GPA:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -1004,9 +1011,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "University ID:",
+                  "University ID:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -1029,9 +1036,9 @@ class _eduInfoState extends State<eduInfo> {
                 height: 15,
               ),
               Align(
-                alignment: Alignment.topLeft,
+                //alignment: Alignment.topLeft,
                 child: Text(
-                  "Year of enrollment:",
+                  "Year of enrollment:".tr,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -1054,7 +1061,7 @@ class _eduInfoState extends State<eduInfo> {
                 height: 20,
               ),
               Align(
-                alignment: Alignment.topRight,
+                alignment: Alignment.center,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.purple,
@@ -1067,7 +1074,7 @@ class _eduInfoState extends State<eduInfo> {
                       education();
                     },
                     child: Text(
-                      "Save",
+                      "Save".tr,
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -1112,14 +1119,15 @@ class _attachmentsState extends State<attachments> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.0.112/handinhand/attachments.php";
+    var url = "http://192.168.1.107/handinhand/attachments.php";
     var response = await http.post(Uri.parse(url), body: {
+      "id":idglo,
       "idcard": _fileName1,
       "hightranscript": _fileName2,
       "studentcard": _fileName3,
       "lastsemtranscript": _fileName4,
     });
-    var data = await json.decode(json.encode(response.body));
+    var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Saved",
@@ -1247,7 +1255,7 @@ class _attachmentsState extends State<attachments> {
           Align(
             alignment: Alignment.center,
             child: Text(
-              "Attachments",
+              "Attachments".tr,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
@@ -1256,14 +1264,14 @@ class _attachmentsState extends State<attachments> {
             thickness: 2,
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: Text(
-              "ID Card:",
+              "ID Card:".tr,
               style: TextStyle(fontSize: 20),
             ),
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: isLoading1
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1277,7 +1285,7 @@ class _attachmentsState extends State<attachments> {
                           color: Colors.purple,
                         ),
                         Text(
-                          "Pick File",
+                          "Pick File".tr,
                           style: TextStyle(color: Colors.purple, fontSize: 20),
                         ),
                       ],
@@ -1293,14 +1301,14 @@ class _attachmentsState extends State<attachments> {
             height: 15,
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: Text(
-              "High school transcripts:",
+              "High school transcripts:".tr,
               style: TextStyle(fontSize: 20),
             ),
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: isLoading2
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1314,7 +1322,7 @@ class _attachmentsState extends State<attachments> {
                           color: Colors.purple,
                         ),
                         Text(
-                          "Pick File",
+                          "Pick File".tr,
                           style: TextStyle(color: Colors.purple, fontSize: 20),
                         ),
                       ],
@@ -1330,14 +1338,14 @@ class _attachmentsState extends State<attachments> {
             height: 15,
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: Text(
-              "Student Card:",
+              "Student Card:".tr,
               style: TextStyle(fontSize: 20),
             ),
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: isLoading3
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1351,7 +1359,7 @@ class _attachmentsState extends State<attachments> {
                           color: Colors.purple,
                         ),
                         Text(
-                          "Pick File",
+                          "Pick File".tr,
                           style: TextStyle(color: Colors.purple, fontSize: 20),
                         ),
                       ],
@@ -1367,14 +1375,14 @@ class _attachmentsState extends State<attachments> {
             height: 15,
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: Text(
-              "Transcript for the last semester:",
+              "Transcript for the last semester:".tr,
               style: TextStyle(fontSize: 20),
             ),
           ),
           Align(
-            alignment: Alignment.topLeft,
+            //alignment: Alignment.topLeft,
             child: isLoading4
                 ? CircularProgressIndicator()
                 : TextButton(
@@ -1388,7 +1396,7 @@ class _attachmentsState extends State<attachments> {
                           color: Colors.purple,
                         ),
                         Text(
-                          "Pick File",
+                          "Pick File".tr,
                           style: TextStyle(color: Colors.purple, fontSize: 20),
                         ),
                       ],
@@ -1407,7 +1415,7 @@ class _attachmentsState extends State<attachments> {
             height: 20,
           ),
           Align(
-            alignment: Alignment.topRight,
+            alignment: Alignment.center,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
@@ -1419,7 +1427,7 @@ class _attachmentsState extends State<attachments> {
                   education();
                 }),
                 child: Text(
-                  "Save",
+                  "Save".tr,
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,

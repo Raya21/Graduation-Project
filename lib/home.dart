@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(children: [
         Text(
-          "Choose Profile photo",
+          "Profile photo".tr,
           style: TextStyle(
             fontSize: 20,
           ),
@@ -40,7 +41,7 @@ class _HomeState extends State<Home> {
                     color: Colors.purple,
                   ),
                   Text(
-                    "Camera",
+                    "Camera".tr,
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
@@ -60,7 +61,7 @@ class _HomeState extends State<Home> {
                     color: Colors.purple,
                   ),
                   Text(
-                    "Gallery",
+                    "Gallery".tr,
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
@@ -151,7 +152,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Profile",
+                        "Profile".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -164,7 +165,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Family Data",
+                        "Family Data".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -177,7 +178,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Loan Request",
+                        "Loan Request".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -190,7 +191,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Contact us",
+                        "Contact us".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -203,7 +204,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Settings",
+                        "Settings".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -216,7 +217,7 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Log out",
+                        "Log out".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     )
@@ -233,13 +234,13 @@ class _HomeState extends State<Home> {
               return (Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..setEntry(0, 3, 200 * val)
+                  ..setEntry(3, 2, int.parse("x".tr) *0.001)
+                  ..setEntry(0, 3, int.parse("x".tr) * 200 * val)
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text(
-                      "Home",
+                      "Home".tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -262,7 +263,7 @@ class _HomeState extends State<Home> {
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {
-          if (details.delta.dx > 0) {
+          if (int.parse("x".tr) * details.delta.dx > 0) {
             setState(() {
               value = 1;
             });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:get/get.dart';
 
 class Section2 extends StatefulWidget {
   const Section2({super.key});
@@ -22,7 +23,7 @@ class _Section2State extends State<Section2> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "The funder of university costs",
+                "The funder of university costs".tr,
                 style: TextStyle(fontSize: 20),
               ),
               Container(
@@ -33,15 +34,15 @@ class _Section2State extends State<Section2> {
                     disabledItemFn: (String s) => s.startsWith('I'),
                   ),
                   items: [
-                    "Father",
-                    "Mother",
-                    "Husband/Wife",
-                    "Other",
-                    "Me personally",
+                    "Father".tr,
+                    "Mother".tr,
+                    "Husband/Wife".tr,
+                    "Other".tr,
+                    "Me personally".tr,
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        labelText: "Relative Relation",
+                        labelText: "Relative Relation".tr,
                         labelStyle: TextStyle(fontSize: 20)
                         //hintText: "country in menu mode",
                         ),
@@ -54,7 +55,7 @@ class _Section2State extends State<Section2> {
                 height: 20,
               ),
               Text(
-                "If the relationship is other, please fill in the following data:",
+                "relationship".tr,
                 style: TextStyle(fontSize: 20),
               ),
               Container(
@@ -65,7 +66,7 @@ class _Section2State extends State<Section2> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Quatrain Name ",
+                      "Quatrain Name ".tr,
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(
@@ -91,7 +92,7 @@ class _Section2State extends State<Section2> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "ID Number         ",
+                      "ID Number         ".tr,
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(
@@ -121,16 +122,16 @@ class _Section2State extends State<Section2> {
             ),
             items: [
               "----",
-              "The Ministry of Education and Higher Education",
-              "Ministry of Health",
-              "The rest of the ministries",
-              "Security Services",
-              "Not a government job",
-              "Abroad"
+              "The Ministry of Education and Higher Education".tr,
+              "Ministry of Health".tr,
+              "The rest of the ministries".tr,
+              "Security Services".tr,
+              "Not a government job".tr,
+              "Abroad".tr
             ],
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
-                  labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                  labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
                   //hintText: "country in menu mode",
                   ),
             ),
@@ -146,63 +147,63 @@ class _Section2State extends State<Section2> {
             ),
             items: [
               "----",
-              "General Manager and above",
-              "Administrator",
-              "Head of the Department",
-              "Employee",
-              "Teacher",
-              "Soldier",
-              "Retired employee",
-              "Merchant",
-              "Contractor",
-              "shopkeeper",
-              "Salesman in a shop",
-              "Peddler",
-              "Free business",
-              "Poultry and livestock farming",
-              "Hairdressing",
-              "Guard",
-              "Handicraft(marble, glass, crafting ..etc)",
-              "Maintenance (cars, electrical ..etc)",
-              "Driver",
-              "Plumber",
-              "Carpenter",
-              "Blacksmith",
-              "upholstery",
-              "Worker (construction, restaurants, factories, etc.)",
-              "Ironing clothes",
-              "Sewing",
-              "Farmer",
-              "Photographer",
-              "Graphic designer",
-              "Observer",
-              "Technical",
-              "Land survey",
-              "Tour guide",
-              "Sales Representative",
-              "Sales Supervisor",
-              "Nursery or Kindergarten",
-              "Athlete",
-              "Librarian",
-              "Secretary",
-              "Writer",
-              "Translator",
-              "Tax collection",
-              "Accountant",
-              "Journalist",
-              "Computer programmer",
-              "Lawyer",
-              "Legal advisor",
-              "Engineer",
-              "Pharmacist",
-              "Nurse",
-              "Optics",
-              "Physical therapy",
-              "Doctor"
+              "General Manager and above".tr,
+              "Administrator".tr,
+              "Head of the Department".tr,
+              "Employee".tr,
+              "Teacher".tr,
+              "Soldier".tr,
+              "Retired employee".tr,
+              "Merchant".tr,
+              "Contractor".tr,
+              "shopkeeper".tr,
+              "Salesman in a shop".tr,
+              "Peddler".tr,
+              "Free business".tr,
+              "Poultry and livestock farming".tr,
+              "Hairdressing".tr,
+              "Guard".tr,
+              "Handicraft(marble, glass, crafting ..etc)".tr,
+              "Maintenance (cars, electrical ..etc)".tr,
+              "Driver".tr,
+              "Plumber".tr,
+              "Carpenter".tr,
+              "Blacksmith".tr,
+              "upholstery".tr,
+              "Worker (construction, restaurants, factories, etc.)".tr,
+              "Ironing clothes".tr,
+              "Sewing".tr,
+              "Farmer".tr,
+              "Photographer".tr,
+              "Graphic designer".tr,
+              "Observer".tr,
+              "Technical".tr,
+              "Land survey".tr,
+              "Tour guide".tr,
+              "Sales Representative".tr,
+              "Sales Supervisor".tr,
+              "Nursery or Kindergarten".tr,
+              "Athlete".tr,
+              "Librarian".tr,
+              "Secretary".tr,
+              "Writer".tr,
+              "Translator".tr,
+              "Tax collection".tr,
+              "Accountant".tr,
+              "Journalist".tr,
+              "Computer programmer".tr,
+              "Lawyer".tr,
+              "Legal advisor".tr,
+              "Engineer".tr,
+              "Pharmacist".tr,
+              "Nurse".tr,
+              "Optics".tr,
+              "Physical therapy".tr,
+              "Doctor".tr
             ],
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
-                  labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                  labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
                   //hintText: "country in menu mode",
                   ),
             ),
@@ -218,7 +219,7 @@ class _Section2State extends State<Section2> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Note                  ",
+                "Note                  ".tr,
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(

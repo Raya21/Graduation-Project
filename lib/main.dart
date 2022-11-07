@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
@@ -18,7 +20,12 @@ import 'package:index/themenotifier.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'locale/locale.dart';
+import 'locale/locale_controller.dart';
+
+
 Future<void> main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences pref = await SharedPreferences.getInstance();
   bool themebool = pref.getBool("isdark") ?? false;
@@ -33,15 +40,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     MyLocaleController controller = Get.put(MyLocaleController());
     return Consumer<ThemeProvider>(builder: ((context, value, child) {
-      return MaterialApp(
+      return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: value.getTheme,
         /*ThemeData(
       primaryColor: Colors.purple,
       fontFamily: 'Average_Sans',
      ),*/
-        initialRoute: "forget_password",
+     locale: controller.initialLang,
+      translations: MyLocale(),
+        initialRoute: "home",
         routes: {
           "home": (context) => Home(),
           "reset_password": (context) => ResetPass(),

@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:index/locale/locale_controller.dart';
 import 'package:index/themenotifier.dart';
 import 'package:index/themes.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+
 
 class settings extends StatefulWidget {
   const settings({super.key});
@@ -42,7 +45,7 @@ class _settingsState extends State<settings> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(
-          "Settings",
+          "Settings".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -73,7 +76,7 @@ class _settingsState extends State<settings> {
                   height: 10,
                 ),
                 Text(
-                  "Account",
+                  "Account".tr,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )
               ],
@@ -92,7 +95,7 @@ class _settingsState extends State<settings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Change Password",
+                      "Change Password".tr,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -105,14 +108,14 @@ class _settingsState extends State<settings> {
                   ],
                 ),
                 onTap: () {
-                  Navigator.of(context).pushNamed("forget_password");
+                  Navigator.of(context).pushNamed("reset_password");
                 },
               ),
             ),
-            buildAccountOption(context, "Content Settings"),
-            buildAccountOption(context, "Social"),
-            buildAccountOption(context, "Language"),
-            buildAccountOption(context, "Privacy and Security"),
+            buildAccountOption(context, "Content Settings".tr),
+            buildAccountOption(context, "Social".tr),
+            buildAccountOption(context, "Language".tr),
+            buildAccountOption(context, "Privacy and Security".tr),
             SizedBox(
               height: 40,
             ),
@@ -126,7 +129,7 @@ class _settingsState extends State<settings> {
                   height: 10,
                 ),
                 Text(
-                  "Notifications",
+                  "Notifications".tr,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )
               ],
@@ -143,7 +146,7 @@ class _settingsState extends State<settings> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Dark Theme",
+                  Text("Theme Dark".tr,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -197,6 +200,7 @@ class _settingsState extends State<settings> {
   }
 
   GestureDetector buildAccountOption(BuildContext context, String title) {
+    MyLocaleController controllerLang = Get.find();
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -209,20 +213,20 @@ class _settingsState extends State<settings> {
                   children: [
                     InkWell(
                       child: Text(
-                        "Arabic",
+                        "Arabic".tr,
                         style: TextStyle(fontSize: 20),
                       ),
                       onTap: () {
-                        print("عربي");
+                        controllerLang.changeLang("ar");
                       },
                     ),
                     InkWell(
                       child: Text(
-                        "English",
+                        "English".tr,
                         style: TextStyle(fontSize: 20),
                       ),
                       onTap: () {
-                        print("eglish");
+                        controllerLang.changeLang("en");
                       },
                     )
                   ],
@@ -233,7 +237,7 @@ class _settingsState extends State<settings> {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        "Colse",
+                        "Colse".tr,
                         style: TextStyle(color: Colors.purple),
                       ))
                 ],

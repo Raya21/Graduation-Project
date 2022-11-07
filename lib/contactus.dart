@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class _ContactUsState extends State<ContactUs> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(
-          "Contact Us",
+          "Contact Us".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -83,7 +84,7 @@ class _ContactUsState extends State<ContactUs> {
                 focusNode: myFocusNode,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person, color: Colors.purple),
-                    hintText: "Name",
+                    hintText: "Name".tr,
                     hintStyle:
                         TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
@@ -107,7 +108,7 @@ class _ContactUsState extends State<ContactUs> {
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.subject, color: Colors.purple),
-                    hintText: "Subject",
+                    hintText: "Subject".tr,
                     hintStyle:
                         TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
@@ -131,7 +132,7 @@ class _ContactUsState extends State<ContactUs> {
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email, color: Colors.purple),
-                    hintText: "Email",
+                    hintText: "Email".tr,
                     hintStyle:
                         TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
@@ -157,7 +158,7 @@ class _ContactUsState extends State<ContactUs> {
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.message, color: Colors.purple),
-                    hintText: "Message",
+                    hintText: "Message".tr,
                     hintStyle:
                         TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
@@ -208,7 +209,7 @@ class _ContactUsState extends State<ContactUs> {
                         borderRadius: BorderRadius.circular(30)),
                   ),
                   child: Text(
-                    "Send",
+                    "Send".tr,
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,

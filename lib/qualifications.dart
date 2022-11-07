@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Qualifications extends StatefulWidget {
   const Qualifications({super.key});
@@ -14,7 +15,7 @@ class _QualificationsState extends State<Qualifications> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(
-          "Conditions for applying for a loan",
+          "Conditions for applying for a loan".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -34,35 +35,35 @@ class _QualificationsState extends State<Qualifications> {
             child: Column(
           children: [
             Text(
-              "1. The applicant must be a regular student in one of the higher education institutions in Palestine and financially needy (in the undergraduate or intermediate diploma program only).",
+              "t1_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "2. He must have successfully passed at least one semester.",
+              "t2_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "3. The student's cumulative academic average should not be less than 65% for undergraduate students and 60% for diploma students or its equivalent.",
+              "t3_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "4. That the student is not a beneficiary or holder of a university scholarship or a scholarship or financial aid from any other source that exceeds his needs.",
+              "t4_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "5. The candidate must have registered at least 12 credit hours in the semester in which he applied for the loan or grant.",
+              "t5_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             Divider(
@@ -74,25 +75,25 @@ class _QualificationsState extends State<Qualifications> {
               height: 15,
             ),
             Text(
-              "Notes:",
+              "Notes:".tr,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             Text(
-              "1. The percentage of opportunities that the student obtains is calculated based on the criteria of need, and the highest percentage that the student may obtain is 75% of the tuition fees only (without registration fees, internet...etc.)",
+              "t6_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "2. In addition to Note No. 1, the loan amount provided by the Fund does not exceed 1,000 Jordanian dinars in any case for one student in one semester.",
+              "t7_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              "3. Parallel education students: their tuition fees are calculated according to the regular approved fees (not according to the prices of parallel studies).",
+              "t8_q".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -111,7 +112,7 @@ class _QualificationsState extends State<Qualifications> {
                     Navigator.of(context).pushNamed("loans_request");
                   },
                   child: Text(
-                    "Apply for a loan",
+                    "Apply for a loan".tr,
                     style: TextStyle(fontSize: 20),
                   )),
             )

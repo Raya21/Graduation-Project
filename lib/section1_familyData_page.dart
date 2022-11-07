@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:get/get.dart';
 
 class Section1 extends StatefulWidget {
   const Section1({super.key});
@@ -29,7 +30,7 @@ class _Section1State extends State<Section1> {
                 child: TextFormField(
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
-                    labelText: "Student Name",
+                    labelText: "Student Name".tr,
                     labelStyle:
                         TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
@@ -46,7 +47,7 @@ class _Section1State extends State<Section1> {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: "Student Number",
+                    labelText: "Student Number".tr,
                     labelStyle:
                         TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
@@ -63,7 +64,7 @@ class _Section1State extends State<Section1> {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: "ID Number",
+                    labelText: "ID Number".tr,
                     labelStyle:
                         TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
@@ -88,10 +89,10 @@ class _Section1State extends State<Section1> {
             showSelectedItems: true,
             disabledItemFn: (String s) => s.startsWith('I'),
           ),
-          items: ["Single", "Married"],
+          items: ["Single".tr, "Married".tr],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Social Situation",
+                labelText: "Social Situation".tr,
                 labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
@@ -108,7 +109,7 @@ class _Section1State extends State<Section1> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Father",
+              "Father".tr,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ],
@@ -122,7 +123,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Quatrain Name  ",
+              "Quatrain Name  ".tr,
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -149,7 +150,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "ID Number         ",
+              "ID Number         ".tr,
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -176,16 +177,16 @@ class _Section1State extends State<Section1> {
             disabledItemFn: (String s) => s.startsWith('I'),
           ),
           items: [
-            "Works",
-            "Does not work",
-            "Prisoner",
-            "Retired",
-            "Aged/Sickly",
-            "Deceased"
+            "Works".tr,
+            "Does not work".tr,
+            "Prisoner".tr,
+            "Retired".tr,
+            "Aged/Sickly".tr,
+            "Deceased".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Career Status".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -202,16 +203,16 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "The Ministry of Education and Higher Education",
-            "Ministry of Health",
-            "The rest of the ministries",
-            "Security Services",
-            "Not a government job",
-            "Abroad"
+            "The Ministry of Education and Higher Education".tr,
+            "Ministry of Health".tr,
+            "The rest of the ministries".tr,
+            "Security Services".tr,
+            "Not a government job".tr,
+            "Abroad".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -227,63 +228,63 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "General Manager and above",
-            "Administrator",
-            "Head of the Department",
-            "Employee",
-            "Teacher",
-            "Soldier",
-            "Retired employee",
-            "Merchant",
-            "Contractor",
-            "shopkeeper",
-            "Salesman in a shop",
-            "Peddler",
-            "Free business",
-            "Poultry and livestock farming",
-            "Hairdressing",
-            "Guard",
-            "Handicraft(marble, glass, crafting ..etc)",
-            "Maintenance (cars, electrical ..etc)",
-            "Driver",
-            "Plumber",
-            "Carpenter",
-            "Blacksmith",
-            "upholstery",
-            "Worker (construction, restaurants, factories, etc.)",
-            "Ironing clothes",
-            "Sewing",
-            "Farmer",
-            "Photographer",
-            "Graphic designer",
-            "Observer",
-            "Technical",
-            "Land survey",
-            "Tour guide",
-            "Sales Representative",
-            "Sales Supervisor",
-            "Nursery or Kindergarten",
-            "Athlete",
-            "Librarian",
-            "Secretary",
-            "Writer",
-            "Translator",
-            "Tax collection",
-            "Accountant",
-            "Journalist",
-            "Computer programmer",
-            "Lawyer",
-            "Legal advisor",
-            "Engineer",
-            "Pharmacist",
-            "Nurse",
-            "Optics",
-            "Physical therapy",
-            "Doctor"
+            "General Manager and above".tr,
+            "Administrator".tr,
+            "Head of the Department".tr,
+            "Employee".tr,
+            "Teacher".tr,
+            "Soldier".tr,
+            "Retired employee".tr,
+            "Merchant".tr,
+            "Contractor".tr,
+            "shopkeeper".tr,
+            "Salesman in a shop".tr,
+            "Peddler".tr,
+            "Free business".tr,
+            "Poultry and livestock farming".tr,
+            "Hairdressing".tr,
+            "Guard".tr,
+            "Handicraft(marble, glass, crafting ..etc)".tr,
+            "Maintenance (cars, electrical ..etc)".tr,
+            "Driver".tr,
+            "Plumber".tr,
+            "Carpenter".tr,
+            "Blacksmith".tr,
+            "upholstery".tr,
+            "Worker (construction, restaurants, factories, etc.)".tr,
+            "Ironing clothes".tr,
+            "Sewing".tr,
+            "Farmer".tr,
+            "Photographer".tr,
+            "Graphic designer".tr,
+            "Observer".tr,
+            "Technical".tr,
+            "Land survey".tr,
+            "Tour guide".tr,
+            "Sales Representative".tr,
+            "Sales Supervisor".tr,
+            "Nursery or Kindergarten".tr,
+            "Athlete".tr,
+            "Librarian".tr,
+            "Secretary".tr,
+            "Writer".tr,
+            "Translator".tr,
+            "Tax collection".tr,
+            "Accountant".tr,
+            "Journalist".tr,
+            "Computer programmer".tr,
+            "Lawyer".tr,
+            "Legal advisor".tr,
+            "Engineer".tr,
+            "Pharmacist".tr,
+            "Nurse".tr,
+            "Optics".tr,
+            "Physical therapy".tr,
+            "Doctor".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -301,13 +302,13 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "Owns a place/work tools",
-            "Tenant of place/tools for work",
-            "Employee",
+            "Owns a place/work tools".tr,
+            "Tenant of place/tools for work".tr,
+            "Employee".tr,
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -323,7 +324,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Job description  ",
+              "Job description  ".tr,
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -360,7 +361,7 @@ class _Section1State extends State<Section1> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Mother",
+              "Mother".tr,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ],
@@ -374,7 +375,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Quatrain Name ",
+              "Quatrain Name ".tr,
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -401,7 +402,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "ID Number         ",
+              "ID Number         ".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -426,16 +427,16 @@ class _Section1State extends State<Section1> {
             disabledItemFn: (String s) => s.startsWith('I'),
           ),
           items: [
-            "Works",
-            "Does not work",
-            "Prisoner",
-            "Retired",
-            "Aged/Sickly",
-            "Deceased"
+            "Works".tr,
+            "Does not work".tr,
+            "Prisoner".tr,
+            "Retired".tr,
+            "Aged/Sickly".tr,
+            "Deceased".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Career Status".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -452,16 +453,16 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "The Ministry of Education and Higher Education",
-            "Ministry of Health",
-            "The rest of the ministries",
-            "Security Services",
-            "Not a government job",
+            "The Ministry of Education and Higher Education".tr,
+            "Ministry of Health".tr,
+            "The rest of the ministries".tr,
+            "Security Services".tr,
+            "Not a government job".tr,
             "Abroad"
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -477,63 +478,63 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "General Manager and above",
-            "Administrator",
-            "Head of the Department",
-            "Employee",
-            "Teacher",
-            "Soldier",
-            "Retired employee",
-            "Merchant",
-            "Contractor",
-            "shopkeeper",
-            "Salesman in a shop",
-            "Peddler",
-            "Free business",
-            "Poultry and livestock farming",
-            "Hairdressing",
-            "Guard",
-            "Handicraft(marble, glass, crafting ..etc)",
-            "Maintenance (cars, electrical ..etc)",
-            "Driver",
-            "Plumber",
-            "Carpenter",
-            "Blacksmith",
-            "upholstery",
-            "Worker (construction, restaurants, factories, etc.)",
-            "Ironing clothes",
-            "Sewing",
-            "Farmer",
-            "Photographer",
-            "Graphic designer",
-            "Observer",
-            "Technical",
-            "Land survey",
-            "Tour guide",
-            "Sales Representative",
-            "Sales Supervisor",
-            "Nursery or Kindergarten",
-            "Athlete",
-            "Librarian",
-            "Secretary",
-            "Writer",
-            "Translator",
-            "Tax collection",
-            "Accountant",
-            "Journalist",
-            "Computer programmer",
-            "Lawyer",
-            "Legal advisor",
-            "Engineer",
-            "Pharmacist",
-            "Nurse",
-            "Optics",
-            "Physical therapy",
-            "Doctor"
+            "General Manager and above".tr,
+            "Administrator".tr,
+            "Head of the Department".tr,
+            "Employee".tr,
+            "Teacher".tr,
+            "Soldier".tr,
+            "Retired employee".tr,
+            "Merchant".tr,
+            "Contractor".tr,
+            "shopkeeper".tr,
+            "Salesman in a shop".tr,
+            "Peddler".tr,
+            "Free business".tr,
+            "Poultry and livestock farming".tr,
+            "Hairdressing".tr,
+            "Guard".tr,
+            "Handicraft(marble, glass, crafting ..etc)".tr,
+            "Maintenance (cars, electrical ..etc)".tr,
+            "Driver".tr,
+            "Plumber".tr,
+            "Carpenter".tr,
+            "Blacksmith".tr,
+            "upholstery".tr,
+            "Worker (construction, restaurants, factories, etc.)".tr,
+            "Ironing clothes".tr,
+            "Sewing".tr,
+            "Farmer".tr,
+            "Photographer".tr,
+            "Graphic designer".tr,
+            "Observer".tr,
+            "Technical".tr,
+            "Land survey".tr,
+            "Tour guide".tr,
+            "Sales Representative".tr,
+            "Sales Supervisor".tr,
+            "Nursery or Kindergarten".tr,
+            "Athlete".tr,
+            "Librarian".tr,
+            "Secretary".tr,
+            "Writer".tr,
+            "Translator".tr,
+            "Tax collection".tr,
+            "Accountant".tr,
+            "Journalist".tr,
+            "Computer programmer".tr,
+            "Lawyer".tr,
+            "Legal advisor".tr,
+            "Engineer".tr,
+            "Pharmacist".tr,
+            "Nurse".tr,
+            "Optics".tr,
+            "Physical therapy".tr,
+            "Doctor".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -551,13 +552,13 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "Owns a place/work tools",
-            "Tenant of place/tools for work",
-            "Employee",
+            "Owns a place/work tools".tr,
+            "Tenant of place/tools for work".tr,
+            "Employee".tr,
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -573,7 +574,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Job description  ",
+              "Job description  ".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -607,7 +608,7 @@ class _Section1State extends State<Section1> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Husband/Wife",
+              "Husband/Wife".tr,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ],
@@ -621,7 +622,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Quatrain Name ",
+              "Quatrain Name ".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -646,7 +647,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "ID Number         ",
+              "ID Number         ".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -671,16 +672,16 @@ class _Section1State extends State<Section1> {
             disabledItemFn: (String s) => s.startsWith('I'),
           ),
           items: [
-            "Works",
-            "Does not work",
-            "Prisoner",
-            "Retired",
-            "Aged/Sickly",
-            "Deceased"
+            "Works".tr,
+            "Does not work".tr,
+            "Prisoner".tr,
+            "Retired".tr,
+            "Aged/Sickly".tr,
+            "Deceased".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Career Status", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Career Status".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -697,16 +698,16 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "The Ministry of Education and Higher Education",
-            "Ministry of Health",
-            "The rest of the ministries",
-            "Security Services",
-            "Not a government job",
-            "Abroad"
+            "The Ministry of Education and Higher Education".tr,
+            "Ministry of Health".tr,
+            "The rest of the ministries".tr,
+            "Security Services".tr,
+            "Not a government job".tr,
+            "Abroad".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Place", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -722,63 +723,63 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "General Manager and above",
-            "Administrator",
-            "Head of the Department",
-            "Employee",
-            "Teacher",
-            "Soldier",
-            "Retired employee",
-            "Merchant",
-            "Contractor",
-            "shopkeeper",
-            "Salesman in a shop",
-            "Peddler",
-            "Free business",
-            "Poultry and livestock farming",
-            "Hairdressing",
-            "Guard",
-            "Handicraft(marble, glass, crafting ..etc)",
-            "Maintenance (cars, electrical ..etc)",
-            "Driver",
-            "Plumber",
-            "Carpenter",
-            "Blacksmith",
-            "upholstery",
-            "Worker (construction, restaurants, factories, etc.)",
-            "Ironing clothes",
-            "Sewing",
-            "Farmer",
-            "Photographer",
-            "Graphic designer",
-            "Observer",
-            "Technical",
-            "Land survey",
-            "Tour guide",
-            "Sales Representative",
-            "Sales Supervisor",
-            "Nursery or Kindergarten",
-            "Athlete",
-            "Librarian",
-            "Secretary",
-            "Writer",
-            "Translator",
-            "Tax collection",
-            "Accountant",
-            "Journalist",
-            "Computer programmer",
-            "Lawyer",
-            "Legal advisor",
-            "Engineer",
-            "Pharmacist",
-            "Nurse",
-            "Optics",
-            "Physical therapy",
-            "Doctor"
+            "General Manager and above".tr,
+            "Administrator".tr,
+            "Head of the Department".tr,
+            "Employee".tr,
+            "Teacher".tr,
+            "Soldier".tr,
+            "Retired employee".tr,
+            "Merchant".tr,
+            "Contractor".tr,
+            "shopkeeper".tr,
+            "Salesman in a shop".tr,
+            "Peddler".tr,
+            "Free business".tr,
+            "Poultry and livestock farming".tr,
+            "Hairdressing".tr,
+            "Guard".tr,
+            "Handicraft(marble, glass, crafting ..etc)".tr,
+            "Maintenance (cars, electrical ..etc)".tr,
+            "Driver".tr,
+            "Plumber".tr,
+            "Carpenter".tr,
+            "Blacksmith".tr,
+            "upholstery".tr,
+            "Worker (construction, restaurants, factories, etc.)".tr,
+            "Ironing clothes".tr,
+            "Sewing".tr,
+            "Farmer".tr,
+            "Photographer".tr,
+            "Graphic designer".tr,
+            "Observer".tr,
+            "Technical".tr,
+            "Land survey".tr,
+            "Tour guide".tr,
+            "Sales Representative".tr,
+            "Sales Supervisor".tr,
+            "Nursery or Kindergarten".tr,
+            "Athlete".tr,
+            "Librarian".tr,
+            "Secretary".tr,
+            "Writer".tr,
+            "Translator".tr,
+            "Tax collection".tr,
+            "Accountant".tr,
+            "Journalist".tr,
+            "Computer programmer".tr,
+            "Lawyer".tr,
+            "Legal advisor".tr,
+            "Engineer".tr,
+            "Pharmacist".tr,
+            "Nurse".tr,
+            "Optics".tr,
+            "Physical therapy".tr,
+            "Doctor".tr
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Job", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -796,13 +797,13 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "Owns a place/work tools",
-            "Tenant of place/tools for work",
-            "Employee",
+            "Owns a place/work tools".tr,
+            "Tenant of place/tools for work".tr,
+            "Employee".tr,
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Work Nature", labelStyle: TextStyle(fontSize: 20)
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),
           ),
@@ -818,7 +819,7 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Job description  ",
+              "Job description  ".tr,
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -854,13 +855,13 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "Married",
-            "One of them is dead",
-            "Employee",
+            "Married".tr,
+            "One of them is dead".tr,
+            "Employee".tr,
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelText: "Parents' social status",
+                labelText: "Parents' social status".tr,
                 labelStyle: TextStyle(fontSize: 20)
                 //hintText: "country in menu mode",
                 ),

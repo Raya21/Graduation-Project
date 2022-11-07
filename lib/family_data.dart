@@ -3,6 +3,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'section1_familyData_page.dart';
 import 'section2_familyData_page.dart';
 import 'section3_familyData_page.dart';
+import 'package:get/get.dart';
 
 class FamilyData extends StatefulWidget {
   const FamilyData({super.key});
@@ -31,7 +32,7 @@ class _FamilyDataState extends State<FamilyData> {
           },
         ),
         title: Text(
-          "Family Data",
+          "Family Data".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -58,7 +59,7 @@ class _FamilyDataState extends State<FamilyData> {
                   children: [
                     ListTile(
                       title: Text(
-                        " Please be careful in entering the data, especially the ID number",
+                        "t1_f".tr,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -72,7 +73,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     ListTile(
                       title: Text(
-                        " If you are not married, do not enter the data of the husband/wife",
+                        "t2_f".tr,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -86,7 +87,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     ListTile(
                       title: Text(
-                        " If you do not have an ID card, please enter the passport number instead of the ID",
+                        "t3_f".tr,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -113,7 +114,7 @@ class _FamilyDataState extends State<FamilyData> {
                   children: [
                     InkWell(
                       child: Text(
-                        "Section 1",
+                        "Section 1".tr,
                         style: TextStyle(
                           fontSize: 20,
                           //color: x,
@@ -132,7 +133,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     InkWell(
                       child: Text(
-                        "Section 2",
+                        "Section 2".tr,
                         style: TextStyle(
                           fontSize: 20,
                           //color: x,
@@ -151,7 +152,7 @@ class _FamilyDataState extends State<FamilyData> {
                     ),
                     InkWell(
                       child: Text(
-                        "Section 3",
+                        "Section 3".tr,
                         style: TextStyle(
                           fontSize: 20,
                           //color: x,

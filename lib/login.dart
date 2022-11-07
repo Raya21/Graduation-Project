@@ -5,6 +5,7 @@ import 'package:index/reset_password.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -30,7 +31,7 @@ class _LoginState extends State<Login> {
     var data = await json.decode(json.encode(response.body));
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Login Successful",
+          msg: "Login Successful".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -40,7 +41,7 @@ class _LoginState extends State<Login> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     } else {
       Fluttertoast.showToast(
-          msg: "Email or Password Incorrect!",
+          msg: "Email or Password Incorrect!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -83,7 +84,7 @@ class _LoginState extends State<Login> {
                 Container(
                   margin: EdgeInsets.only(top: 10),
                   child: Text(
-                    "Welcome!",
+                    "Welcome!".tr,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 35,
@@ -104,7 +105,7 @@ class _LoginState extends State<Login> {
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
-                              hintText: "E-mail",
+                              hintText: "E-mail".tr,
                               hintStyle:
                                   TextStyle(color: Colors.white, fontSize: 20),
                               enabledBorder: UnderlineInputBorder(
@@ -131,7 +132,7 @@ class _LoginState extends State<Login> {
                           decoration: InputDecoration(
                               prefixIcon:
                                   Icon(Icons.password, color: Colors.pink),
-                              hintText: "Password",
+                              hintText: "Password".tr,
                               hintStyle:
                                   TextStyle(color: Colors.white, fontSize: 20),
                               enabledBorder: UnderlineInputBorder(
@@ -148,7 +149,7 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 login();
                               },
-                              child: Text("Login"),
+                              child: Text("Login".tr),
                               style: ElevatedButton.styleFrom(
                                   fixedSize: Size(300, 50),
                                   backgroundColor: Colors.white,
@@ -168,10 +169,10 @@ class _LoginState extends State<Login> {
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context)
-                                  .pushReplacementNamed("reset_password");
+                                  .pushReplacementNamed("forget_password");
                             },
                             child: Text(
-                              "Forget Password?",
+                              "Forget Password?".tr,
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
@@ -182,7 +183,7 @@ class _LoginState extends State<Login> {
                         Container(
                           margin: EdgeInsets.only(top: 75),
                           child: Text(
-                            "Don't have an account?",
+                            "Don't have an account?".tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -199,7 +200,7 @@ class _LoginState extends State<Login> {
                                     .pushReplacementNamed("sign_up");
                               },
                               child: Text(
-                                "Create",
+                                "Create".tr,
                                 style: TextStyle(fontSize: 20),
                               ),
                               style: ElevatedButton.styleFrom(
@@ -228,11 +229,11 @@ class _LoginState extends State<Login> {
   void validateEmail(String val) {
     if (val.isEmpty) {
       setState(() {
-        _errorMessage = "Email can not be empty";
+        _errorMessage = "Email can not be empty".tr;
       });
     } else if (!EmailValidator.validate(val, true)) {
       setState(() {
-        _errorMessage = "Invalid Email Address";
+        _errorMessage = "Invalid Email Address".tr;
       });
     } else {
       setState(() {
