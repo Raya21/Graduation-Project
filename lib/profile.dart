@@ -476,7 +476,7 @@ class _contactInfoState extends State<contactInfo> {
   Future contact() async {
     var url = "http://192.168.0.112/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
-      "id" : idglo,
+      "id": idglo,
       "TPhone": Tphone.text,
       "MPhone": Mphone.text,
     });
@@ -626,7 +626,7 @@ class _eduInfoState extends State<eduInfo> {
   Future education() async {
     var url = "http://192.168.1.107/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
-      "id":idglo,
+      "id": idglo,
       "yearofEn": yearofEn.text,
       "school": schoolcon.text,
       "grade": gradecon.text,
@@ -1115,13 +1115,53 @@ class _attachmentsState extends State<attachments> {
   PlatformFile? pickedfile4;
   bool isLoading4 = false;
   File? fileToDisplay4;
+  FilePickerResult? result5;
+  String? _fileName5;
+  PlatformFile? pickedfile5;
+  bool isLoading5 = false;
+  File? fileToDisplay5;
+  FilePickerResult? result6;
+  String? _fileName6;
+  PlatformFile? pickedfile6;
+  bool isLoading6 = false;
+  File? fileToDisplay6;
+  FilePickerResult? result7;
+  String? _fileName7;
+  PlatformFile? pickedfile7;
+  bool isLoading7 = false;
+  File? fileToDisplay7;
+  FilePickerResult? result8;
+  String? _fileName8;
+  PlatformFile? pickedfile8;
+  bool isLoading8 = false;
+  File? fileToDisplay8;
+  FilePickerResult? result9;
+  String? _fileName9;
+  PlatformFile? pickedfile9;
+  bool isLoading9 = false;
+  File? fileToDisplay9;
+  FilePickerResult? result10;
+  String? _fileName10;
+  PlatformFile? pickedfile10;
+  bool isLoading10 = false;
+  File? fileToDisplay10;
+  FilePickerResult? result11;
+  String? _fileName11;
+  PlatformFile? pickedfile11;
+  bool isLoading11 = false;
+  File? fileToDisplay11;
+  FilePickerResult? result12;
+  String? _fileName12;
+  PlatformFile? pickedfile12;
+  bool isLoading12 = false;
+  File? fileToDisplay12;
 
   String _errorMessage = '';
 
   Future education() async {
     var url = "http://192.168.1.107/handinhand/attachments.php";
     var response = await http.post(Uri.parse(url), body: {
-      "id":idglo,
+      "id": idglo,
       "idcard": _fileName1,
       "hightranscript": _fileName2,
       "studentcard": _fileName3,
@@ -1239,6 +1279,198 @@ class _attachmentsState extends State<attachments> {
       }
       setState(() {
         isLoading4 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile5() async {
+    try {
+      setState(() {
+        isLoading5 = true;
+      });
+      result5 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result5 != null) {
+        _fileName5 = result5!.files.first.name;
+        pickedfile5 = result5!.files.first;
+        fileToDisplay5 = File(pickedfile5!.path.toString());
+
+        print("File name $_fileName5");
+      }
+      setState(() {
+        isLoading5 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile6() async {
+    try {
+      setState(() {
+        isLoading6 = true;
+      });
+      result6 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result6 != null) {
+        _fileName6 = result6!.files.first.name;
+        pickedfile6 = result6!.files.first;
+        fileToDisplay6 = File(pickedfile6!.path.toString());
+
+        print("File name $_fileName6");
+      }
+      setState(() {
+        isLoading6 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile7() async {
+    try {
+      setState(() {
+        isLoading7 = true;
+      });
+      result7 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result7 != null) {
+        _fileName7 = result7!.files.first.name;
+        pickedfile7 = result7!.files.first;
+        fileToDisplay7 = File(pickedfile7!.path.toString());
+
+        print("File name $_fileName7");
+      }
+      setState(() {
+        isLoading7 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile8() async {
+    try {
+      setState(() {
+        isLoading8 = true;
+      });
+      result8 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result8 != null) {
+        _fileName8 = result8!.files.first.name;
+        pickedfile8 = result8!.files.first;
+        fileToDisplay8 = File(pickedfile8!.path.toString());
+
+        print("File name $_fileName8");
+      }
+      setState(() {
+        isLoading8 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile9() async {
+    try {
+      setState(() {
+        isLoading9 = true;
+      });
+      result9 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result9 != null) {
+        _fileName9 = result9!.files.first.name;
+        pickedfile9 = result9!.files.first;
+        fileToDisplay9 = File(pickedfile9!.path.toString());
+
+        print("File name $_fileName9");
+      }
+      setState(() {
+        isLoading9 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile10() async {
+    try {
+      setState(() {
+        isLoading10 = true;
+      });
+      result10 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result10 != null) {
+        _fileName10 = result10!.files.first.name;
+        pickedfile10 = result10!.files.first;
+        fileToDisplay10 = File(pickedfile10!.path.toString());
+
+        print("File name $_fileName10");
+      }
+      setState(() {
+        isLoading10 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile11() async {
+    try {
+      setState(() {
+        isLoading11 = true;
+      });
+      result11 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result11 != null) {
+        _fileName11 = result11!.files.first.name;
+        pickedfile11 = result11!.files.first;
+        fileToDisplay11 = File(pickedfile11!.path.toString());
+
+        print("File name $_fileName11");
+      }
+      setState(() {
+        isLoading11 = false;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickFile12() async {
+    try {
+      setState(() {
+        isLoading12 = true;
+      });
+      result12 = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+      );
+      if (result12 != null) {
+        _fileName12 = result12!.files.first.name;
+        pickedfile12 = result12!.files.first;
+        fileToDisplay12 = File(pickedfile12!.path.toString());
+
+        print("File name $_fileName12");
+      }
+      setState(() {
+        isLoading12 = false;
       });
     } catch (e) {
       print(e);
@@ -1407,6 +1639,303 @@ class _attachmentsState extends State<attachments> {
               height: 300,
               width: 400,
               child: Image.file(fileToDisplay4!),
+            ),
+            SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t7_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading12
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile5();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile12 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay12!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "ID card of the head of the family, showing the family members:"
+                  .tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading5
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile5();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile5 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay5!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t1_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading6
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile6();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile6 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay6!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t2_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading7
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile7();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile7 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay7!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t3_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading8
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile8();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile8 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay8!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t4_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading9
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile9();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile9 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay9!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t5_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading10
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile10();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile10 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay10!),
+            ),
+          SizedBox(
+            height: 15,
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: Text(
+              "t6_a".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Align(
+            //alignment: Alignment.topLeft,
+            child: isLoading11
+                ? CircularProgressIndicator()
+                : TextButton(
+                    onPressed: () {
+                      pickFile11();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.attach_file,
+                          color: Colors.purple,
+                        ),
+                        Text(
+                          "Pick File".tr,
+                          style: TextStyle(color: Colors.purple, fontSize: 20),
+                        ),
+                      ],
+                    )),
+          ),
+          if (pickedfile11 != null)
+            SizedBox(
+              height: 300,
+              width: 400,
+              child: Image.file(fileToDisplay11!),
             ),
           SizedBox(
             height: 15,
