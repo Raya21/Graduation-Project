@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:index/login.dart';
+import 'package:index/settings.dart';
 
 class ResetPass extends StatefulWidget {
   const ResetPass({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _ResetPassState extends State<ResetPass> {
   TextEditingController oldpasswordcontroller = TextEditingController();
 
   Future resetpassword() async {
-    var url = "http://192.168.1.10/handinhand/forget_password.php";
+    var url = "http://192.168.1.10/handinhand/reset_password.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "oldpassword": oldpasswordcontroller.text,
@@ -38,7 +39,8 @@ class _ResetPassState extends State<ResetPass> {
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => settings()));
     } else {
       Fluttertoast.showToast(
           msg: "Email or Password Incorrect!".tr,

@@ -14,12 +14,13 @@ if (!$conn) {
 }
 
 $sname = $_POST["s_name"];
+$slink = $_POST["linkk"];
 $desc = $_POST["desc"];
 
-$sql = "INSERT INTO scholarships (sname, description) VALUES ('$sname', '$desc')";
+$sql = "INSERT INTO scholarships (sname, slink, description) VALUES ('$sname', '$slink','$desc')";
 
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    echo '<script>alert("New record created successfully")</script>';
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

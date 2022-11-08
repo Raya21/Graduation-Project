@@ -99,7 +99,7 @@ class _personInfoState extends State<personInfo> {
 
   Future person() async {
     idglo = id.text;
-    var url = "http://192.168.1.107/handinhand/personInfo.php";
+    var url = "http://192.168.1.106/handinhand/personInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "fname": fname.text,
       "id": id.text,
@@ -474,7 +474,7 @@ class _contactInfoState extends State<contactInfo> {
   String _errorMessage = '';
 
   Future contact() async {
-    var url = "http://192.168.0.112/handinhand/contactInfo.php";
+    var url = "http://192.168.1.106/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "TPhone": Tphone.text,
@@ -624,7 +624,7 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.1.107/handinhand/eduInfo.php";
+    var url = "http://192.168.1.106/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "yearofEn": yearofEn.text,
@@ -1096,62 +1096,62 @@ class attachments extends StatefulWidget {
 
 class _attachmentsState extends State<attachments> {
   FilePickerResult? result1;
-  String? _fileName1;
+  String _fileName1="";
   PlatformFile? pickedfile1;
   bool isLoading1 = false;
   File? fileToDisplay1;
   FilePickerResult? result2;
-  String? _fileName2;
+  String _fileName2="";
   PlatformFile? pickedfile2;
   bool isLoading2 = false;
   File? fileToDisplay2;
   FilePickerResult? result3;
-  String? _fileName3;
+  String _fileName3="";
   PlatformFile? pickedfile3;
   bool isLoading3 = false;
   File? fileToDisplay3;
   FilePickerResult? result4;
-  String? _fileName4;
+  String _fileName4="";
   PlatformFile? pickedfile4;
   bool isLoading4 = false;
   File? fileToDisplay4;
   FilePickerResult? result5;
-  String? _fileName5;
+  String _fileName5="";
   PlatformFile? pickedfile5;
   bool isLoading5 = false;
   File? fileToDisplay5;
   FilePickerResult? result6;
-  String? _fileName6;
+  String _fileName6="";
   PlatformFile? pickedfile6;
   bool isLoading6 = false;
   File? fileToDisplay6;
   FilePickerResult? result7;
-  String? _fileName7;
+  String _fileName7="";
   PlatformFile? pickedfile7;
   bool isLoading7 = false;
   File? fileToDisplay7;
   FilePickerResult? result8;
-  String? _fileName8;
+  String _fileName8="";
   PlatformFile? pickedfile8;
   bool isLoading8 = false;
   File? fileToDisplay8;
   FilePickerResult? result9;
-  String? _fileName9;
+  String _fileName9="";
   PlatformFile? pickedfile9;
   bool isLoading9 = false;
   File? fileToDisplay9;
   FilePickerResult? result10;
-  String? _fileName10;
+  String _fileName10="";
   PlatformFile? pickedfile10;
   bool isLoading10 = false;
   File? fileToDisplay10;
   FilePickerResult? result11;
-  String? _fileName11;
+  String _fileName11="";
   PlatformFile? pickedfile11;
   bool isLoading11 = false;
   File? fileToDisplay11;
   FilePickerResult? result12;
-  String? _fileName12;
+  String _fileName12="";
   PlatformFile? pickedfile12;
   bool isLoading12 = false;
   File? fileToDisplay12;
@@ -1159,15 +1159,26 @@ class _attachmentsState extends State<attachments> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.1.107/handinhand/attachments.php";
+    var url = "http://192.168.1.106/handinhand/attachments.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "idcard": _fileName1,
       "hightranscript": _fileName2,
       "studentcard": _fileName3,
       "lastsemtranscript": _fileName4,
+      "stucertificate": _fileName5,
+      "fatheridandfammem": _fileName12,
+      "medicalreport": _fileName6,
+      "socialafairs": _fileName7,
+      "legalforhouserented": _fileName8,
+      "salaryslip": _fileName9,
+      "deathcertificate": _fileName10,
+      "stufamuni": _fileName11
     });
-    var data = await json.decode(response.body);
+    var data;
+    if(response.body.isNotEmpty) {
+      data = await json.decode(response.body);
+    }
     if (data == "Success") {
       Fluttertoast.showToast(
           msg: "Saved",
@@ -1656,7 +1667,7 @@ class _attachmentsState extends State<attachments> {
                 ? CircularProgressIndicator()
                 : TextButton(
                     onPressed: () {
-                      pickFile5();
+                      pickFile12();
                     },
                     child: Row(
                       children: [
