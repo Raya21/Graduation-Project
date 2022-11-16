@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
+import 'package:index/apply_loans.dart';
+import 'package:index/login.dart';
+import 'package:index/profile.dart';
+
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final String value;
+  //const Home({super.key});
+  const Home({Key? key, required this.value}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  late String emailvalue=widget.value;
   double value = 0;
   PickedFile? _imagefile;
   final ImagePicker _picker = ImagePicker();
@@ -134,7 +141,8 @@ class _HomeState extends State<Home> {
                 height: 10,
               ),
               Text(
-                "user@gmail.com",
+                //"user@gmail.com",
+                widget.value,
                 style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
               SizedBox(
@@ -145,7 +153,8 @@ class _HomeState extends State<Home> {
                   children: [
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("profile");
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => profile(value:emailvalue)));
+                        //Navigator.of(context).pushNamed("profile");
                       },
                       leading: Icon(
                         Icons.person,
@@ -171,7 +180,8 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("qualifications");
+                        //Navigator.of(context).pushNamed("qualifications");
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => applyLoans(value:emailvalue)));
                       },
                       leading: Icon(
                         Icons.money,

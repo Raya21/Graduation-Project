@@ -21,15 +21,18 @@ class _LoginState extends State<Login> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   String _errorMessage = '';
+  late String emailvalue;
 
   Future login() async {
-    var url = "http://192.168.1.10/handinhand/login.php";
+    var url = "http://192.168.1.105/handinhand/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "password": passwordcontroller.text,
     });
     var data = await json.decode(response.body);
     if (data == "Success") {
+      emailvalue=emailcontroller.text;
+      print(emailvalue);
       Fluttertoast.showToast(
           msg: "Login Successful".tr,
           toastLength: Toast.LENGTH_SHORT,
@@ -38,7 +41,7 @@ class _LoginState extends State<Login> {
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home(value:emailvalue)));
     } else {
       Fluttertoast.showToast(
           msg: "Email or Password Incorrect!".tr,

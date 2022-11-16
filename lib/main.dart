@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:index/apply_loans.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
 //import 'package:index/language.dart';
 import 'package:index/reset_password.dart';
 import 'package:index/home.dart';
-import 'package:index/loans_request.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
-import 'package:index/qualifications.dart';
 import 'package:index/section1_familyData_page.dart';
 import 'package:index/section2_familyData_page.dart';
 import 'package:index/section3_familyData_page.dart';
@@ -45,22 +44,16 @@ class MyApp extends StatelessWidget {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: value.getTheme,
-        /*ThemeData(
-      primaryColor: Colors.purple,
-      fontFamily: 'Average_Sans',
-     ),*/
      locale: controller.initialLang,
       translations: MyLocale(),
-        initialRoute: "home",
+        initialRoute: "login",
         routes: {
-          "home": (context) => Home(),
+          "home": (context) => Home(value: '',),
           "reset_password": (context) => ResetPass(),
           "login": (context) => Login(),
-          //"language":(context) => Language(),
-          "profile": (context) => profile(),
+          "profile": (context) => profile(value: '',),
           "settings": (context) => settings(),
-          "loans_request": (context) => ApplyLoans(),
-          "qualifications": (context) => Qualifications(),
+          "apply_loans": (context) => applyLoans(value: '',),
           "contactus": (context) => ContactUs(),
           "sign_up": (context) => SignUp(),
           "section1_familyData_page": (context) => Section1(),
