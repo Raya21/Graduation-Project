@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,6 +16,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  String _errorMessage = '';
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController usernamecontroller = TextEditingController();
@@ -121,6 +123,16 @@ class _SignUpState extends State<SignUp> {
                                 borderSide: BorderSide(color: Colors.white)),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white))),
+                        onChanged: (val) {
+                          validateEmail(val);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          _errorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                       SizedBox(
                         height: 20,
@@ -212,5 +224,21 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  void validateEmail(String val) {
+    if (val.isEmpty) {
+      setState(() {
+        _errorMessage = "Email can not be empty".tr;
+      });
+    } else if (!EmailValidator.validate(val, true)) {
+      setState(() {
+        _errorMessage = "Invalid Email Address".tr;
+      });
+    } else {
+      setState(() {
+        _errorMessage = "";
+      });
+    }
   }
 }

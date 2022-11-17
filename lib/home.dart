@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
+
+import 'contactus.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
-
+  final int id;
+  const Home({super.key, required this.id});
+  //print(text);
   @override
   State<Home> createState() => _HomeState();
 }
@@ -36,8 +39,14 @@ class _HomeState extends State<Home> {
             InkWell(
               child: Row(
                 children: [
-                  Icon(Icons.camera),
-                  Text("Camera".tr),
+                  Icon(
+                    Icons.camera,
+                    color: Colors.purple,
+                  ),
+                  Text(
+                    "Camera".tr,
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ],
               ),
               onTap: () {
@@ -50,8 +59,14 @@ class _HomeState extends State<Home> {
             InkWell(
               child: Row(
                 children: [
-                  Icon(Icons.image),
-                  Text("Gallery".tr),
+                  Icon(
+                    Icons.image,
+                    color: Colors.purple,
+                  ),
+                  Text(
+                    "Gallery".tr,
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ],
               ),
               onTap: () {
@@ -172,7 +187,13 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("contactus");
+                        print(widget.id);
+                        //Navigator.of(context).pushNamed("contactus");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ContactUs(id: widget.id)));
                       },
                       leading: Icon(
                         Icons.contact_mail_sharp,
@@ -198,7 +219,8 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("login");
+                        //Navigator.of(context).pushNamed("login");
+                        Navigator.pop(context);
                       },
                       leading: Icon(
                         Icons.logout,
@@ -234,7 +256,7 @@ class _HomeState extends State<Home> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.purple,
                     actions: [
                       IconButton(
                         icon: Icon(Icons.notifications),

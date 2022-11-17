@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:get/get.dart';
 import 'section1_familyData_page.dart';
 import 'section2_familyData_page.dart';
 import 'section3_familyData_page.dart';
+import 'package:get/get.dart';
 
 class FamilyData extends StatefulWidget {
   const FamilyData({super.key});
@@ -36,17 +36,18 @@ class _FamilyDataState extends State<FamilyData> {
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 252, 250, 250),
-        ),
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : Colors.grey.shade900,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
+            /******************************************************************************************* *** *********************************************************************/
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -60,6 +61,7 @@ class _FamilyDataState extends State<FamilyData> {
                       title: Text(
                         "t1_f".tr,
                         style: TextStyle(
+                          fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -73,6 +75,7 @@ class _FamilyDataState extends State<FamilyData> {
                       title: Text(
                         "t2_f".tr,
                         style: TextStyle(
+                          fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -86,6 +89,7 @@ class _FamilyDataState extends State<FamilyData> {
                       title: Text(
                         "t3_f".tr,
                         style: TextStyle(
+                          fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -102,6 +106,9 @@ class _FamilyDataState extends State<FamilyData> {
 
               /************************************************************************************  Sections Bar *************************************************************************/
               Container(
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.grey.shade900,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -109,7 +116,8 @@ class _FamilyDataState extends State<FamilyData> {
                       child: Text(
                         "Section 1".tr,
                         style: TextStyle(
-                          color: x,
+                          fontSize: 20,
+                          //color: x,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -127,7 +135,8 @@ class _FamilyDataState extends State<FamilyData> {
                       child: Text(
                         "Section 2".tr,
                         style: TextStyle(
-                          color: x,
+                          fontSize: 20,
+                          //color: x,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -145,7 +154,8 @@ class _FamilyDataState extends State<FamilyData> {
                       child: Text(
                         "Section 3".tr,
                         style: TextStyle(
-                          color: x,
+                          fontSize: 20,
+                          //color: x,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

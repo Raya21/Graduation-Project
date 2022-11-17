@@ -16,6 +16,9 @@ class _Section1State extends State<Section1> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : Colors.grey.shade900,
         width: double.infinity,
         margin: EdgeInsets.all(20),
         child: Column(
@@ -29,7 +32,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "Student Name".tr,
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -46,7 +49,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "Student Number".tr,
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -63,7 +66,7 @@ class _Section1State extends State<Section1> {
                   decoration: InputDecoration(
                     labelText: "ID Number".tr,
                     labelStyle:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -74,13 +77,13 @@ class _Section1State extends State<Section1> {
                 height: 20,
               ),
               Divider(
-                color: Colors.pink,
+                color: Colors.red,
                 thickness: 1,
-              ),
+              )
             ]),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -89,9 +92,10 @@ class _Section1State extends State<Section1> {
           items: ["Single".tr, "Married".tr],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Social Situation".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Social Situation".tr,
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -119,11 +123,13 @@ class _Section1State extends State<Section1> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Quatrain Name ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              "Quatrain Name  ".tr,
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -145,10 +151,12 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -162,7 +170,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -178,16 +186,17 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status".tr,
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -204,16 +213,16 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -276,9 +285,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -286,7 +295,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -300,9 +309,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -317,10 +326,12 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -339,7 +350,7 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of father information ****************************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
 
@@ -366,10 +377,12 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -391,10 +404,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -408,7 +421,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -424,16 +437,17 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status".tr,
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -446,20 +460,20 @@ class _Section1State extends State<Section1> {
             "The rest of the ministries".tr,
             "Security Services".tr,
             "Not a government job".tr,
-            "Abroad".tr
+            "Abroad"
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -522,9 +536,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -532,7 +546,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -546,9 +560,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -563,10 +577,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -585,7 +599,7 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of mother information ***************************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
       /********************************************************************************  Husband/Wife information *************************************************************/
@@ -611,10 +625,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Quatrain Name ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -636,10 +650,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "ID Number         ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -653,7 +667,7 @@ class _Section1State extends State<Section1> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -669,16 +683,17 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Career Status".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Career Status".tr,
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -695,16 +710,16 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Place".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -767,9 +782,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Job".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,Teacher
           selectedItem: selectedItem,
@@ -777,7 +792,7 @@ class _Section1State extends State<Section1> {
       ),
       Container(
         //   color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -791,9 +806,9 @@ class _Section1State extends State<Section1> {
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Work Nature".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Work Nature".tr, labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -808,10 +823,10 @@ class _Section1State extends State<Section1> {
           children: [
             Text(
               "Job description  ".tr,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              width: 230,
+              width: 210,
               child: TextFormField(
                 maxLines: 6,
                 keyboardType: TextInputType.text,
@@ -830,12 +845,12 @@ class _Section1State extends State<Section1> {
       ),
       /******************************************************************************** End of husband/wife information *********************************************************/
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
       Container(
         //color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, top: 20),
         child: DropdownSearch<String>(
           popupProps: PopupProps.menu(
             showSelectedItems: true,
@@ -843,16 +858,16 @@ class _Section1State extends State<Section1> {
           ),
           items: [
             "----",
-            "Married1".tr,
+            "Married".tr,
             "One of them is dead".tr,
-            "Separated".tr,
-            "Other".tr
+            "Employee".tr,
           ],
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-              labelText: "Parents' social status".tr,
-              //hintText: "country in menu mode",
-            ),
+                labelText: "Parents' social status".tr,
+                labelStyle: TextStyle(fontSize: 20)
+                //hintText: "country in menu mode",
+                ),
           ),
           //onChanged: print,
           selectedItem: selectedItem,
@@ -862,7 +877,7 @@ class _Section1State extends State<Section1> {
         height: 20,
       ),
       Divider(
-        color: Colors.pink,
+        color: Colors.red,
         thickness: 1,
       ),
     ]); //Column

@@ -13,7 +13,7 @@ class _QualificationsState extends State<Qualifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text(
           "Conditions for applying for a loan".tr,
           style: TextStyle(
@@ -69,6 +69,10 @@ class _QualificationsState extends State<Qualifications> {
             Divider(
               height: 20,
               thickness: 1,
+              color: Colors.purple,
+            ),
+            SizedBox(
+              height: 15,
             ),
             Text(
               "Notes:".tr,

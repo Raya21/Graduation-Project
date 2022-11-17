@@ -1,48 +1,59 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ContactUs extends StatefulWidget {
-  const ContactUs({super.key});
+  final int id;
+  const ContactUs({super.key, required this.id});
 
   @override
   State<ContactUs> createState() => _ContactUsState();
 }
 
 class _ContactUsState extends State<ContactUs> {
-  final nameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   final subjectController = TextEditingController();
-  final emailController = TextEditingController();
-  final messageController = TextEditingController();
+  late final messageController = TextEditingController();
 
-  Future sendEmail() async {
-    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-    const serviceId = "service_6qgggu4";
-    const templateId = "template_e9d230o";
-    const userId = "user_yZApJfr0tKNHzsarg";
-    final response = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({
-          'service_id': serviceId,
-          'template_id': templateId,
-          'user_id': userId,
-          'template_params': {
-            'user_name': nameController.text,
-            'user_subject': subjectController.text,
-            'user_message': messageController.text,
-            'user_email': emailController.text
-          }
-        }));
-    return response.statusCode;
+  late FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myFocusNode = FocusNode();
+  }
+
+  Future send() async {
+    var url = "http://192.168.1.10/handinhand/contactus.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "id": widget.id.toString(),
+      "topic": subjectController.text,
+      "message": messageController.text,
+    });
+    var data = await json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Sent Successfully".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
+      _formKey.currentState!.reset();
+      myFocusNode.requestFocus();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.purple,
         title: Text(
           "Contact Us".tr,
           style: TextStyle(
@@ -62,71 +73,71 @@ class _ContactUsState extends State<ContactUs> {
         margin: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
             child: Form(
+          key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                controller: nameController,
-                cursorColor: Colors.purple,
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person, color: Colors.purple),
-                    hintText: "Name".tr,
-                    hintStyle: TextStyle(color: Colors.black),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple)),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple))),
-              ),
-              SizedBox(
-                height: 10,
-              ),
               TextFormField(
                 controller: subjectController,
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.subject, color: Colors.purple),
                     hintText: "Subject".tr,
-                    hintStyle: TextStyle(color: Colors.black),
+                    hintStyle:
+                        TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.purple)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.purple))),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: emailController,
-                cursorColor: Colors.purple,
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email, color: Colors.purple),
-                    hintText: "Email".tr,
-                    hintStyle: TextStyle(color: Colors.black),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple)),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple))),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '*Required'.tr;
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 height: 10,
               ),
               TextFormField(
                 controller: messageController,
+                keyboardType: TextInputType.multiline,
+                style: TextStyle(fontSize: 20),
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.message, color: Colors.purple),
                     hintText: "Message".tr,
-                    hintStyle: TextStyle(color: Colors.black),
+                    hintStyle:
+                        TextStyle(color: Colors.grey.shade500, fontSize: 20),
                     enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.purple)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.purple))),
+                maxLines: 5,
+                minLines: 1,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '*Required'.tr;
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 height: 30,
               ),
               ElevatedButton(
                   onPressed: () {
-                    sendEmail();
+                    if (_formKey.currentState!.validate()) {
+                      send();
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: "One of the text fields is empty!".tr,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
@@ -136,6 +147,27 @@ class _ContactUsState extends State<ContactUs> {
                   ),
                   child: Text(
                     "Send".tr,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    _formKey.currentState!.reset();
+                    myFocusNode.requestFocus();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.purple,
+                    padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                  ),
+                  child: Text(
+                    "Reset".tr,
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ))
             ],

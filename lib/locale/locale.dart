@@ -83,6 +83,7 @@ class MyLocale implements Translations {
           "Contact Info": "معلومات الإتصال",
           "Educational Info": "معلومات الدراسة",
           "Attachments": "المرفقات",
+          "Person Information": "المعلومات الشخصية",
           "Full Name:": "الإسم رباعي:",
           "ID:": "رقم الهوية:",
           "Birth Date:": "تاريخ الميلاد:",
@@ -113,8 +114,13 @@ class MyLocale implements Translations {
           "Grade:": "المعدل:",
           "Study Branch:": "فرع الدراسة:",
           "Study branch": "فرع الدراسة",
+          "Scientific": "علمي",
+          "Literary": "أدبي",
+          "Commercial": "تجاري",
+          "Industrial": "صناعي",
           "University Information:": "بيانات الجامعة:",
           "Undergraduate degree:": "الدرجة العلمية:",
+          "Undergraduate degree": "الدرجة العلمية",
           "Diploma": "دبلوم",
           "BA": "بكالوريوس",
           "Master's": "ماجستير",
@@ -123,6 +129,7 @@ class MyLocale implements Translations {
           "College:": "الكلية:",
           "Department:": "التخصص:",
           "Academic Year:": "السنة الدراسية:",
+          "Academic year": "السنة الدراسية",
           "First": "الأولى",
           "Second": "الثانية",
           "Third": "الثالتة",
@@ -134,9 +141,22 @@ class MyLocale implements Translations {
           "University ID:": "الرقم الجامعي:",
           "ID Card:": "الهوية الشخصية:",
           "Pick File": "اختر ملف",
+          "ID card of the head of the family, showing the family members:":
+              "بطاقة هوية رب الأسرة ، ظاهراً فيها أفراد الأسرة:",
           "High school transcripts:": "كشف علامات الثانوية العامة:",
           "Student Card:": " بطاقة الطالب:",
           "Transcript for the last semester:": "كشف العلامات لآخر فصل دراسي :",
+          "t1_a":
+              "تقرير طبي مختوم من وزارة الصحة مبين فيه وصف الحالة الخاصة لكل حالة في حال وجود حالات خاصة",
+          "t2_a":
+              "شهادة من الشؤون الاجتماعية (حكومة، وكالة) في حال كنت حالة اجتماعية",
+          "t3_a": "عقد ايجار قانوني لسكن العائلة اذا كان السكن ايجارا",
+          "t4_a": "قسيمة راتب للاب/الزوج او الام/الزوجة في حال كانوا موظفين",
+          "t5_a": "عقد ايجار قانوني لسكن الطالب اذا كان السكن ايجاراً",
+          "t6_a":
+              "شهادة وفاة لكل من (الاب/الزوج) و/او (الام/الزوجة) في حالة الوفاة",
+          "t7_a":
+              "شهادة اثبات طالب حديثة لكل طالب جامعي في اسرتك وبالنسبة للاخوة في النجاح صورة الهوية الجامعية فقط",
           "t1_f": " الرجاء تحري الدقة في إدخال البيانات خاصة رقم الهوية",
           "t2_f": " إذا لم تكن متزوجا/متزوجة لا تدخل بيانات الزوج/الزوجة",
           "t3_f":
@@ -280,6 +300,11 @@ class MyLocale implements Translations {
           "Invalid Email Address": "عنوان البريد الإلكتروني غير صالح",
           "Email can not be empty": "لا يمكن أن يكون البريد الإلكتروني فارغًا",
           "Password Updated Successfully": "تم تحديث كلمة السر بنجاح",
+          "Sent Successfully": "تم الإرسال بنجاح",
+          "Failed to send!": "فشل في الإرسال!",
+          "One of the text fields is empty!": "أحد الحقول النصية فارغ!",
+          "*Required": "*مطلوب",
+          "Reset": "إعادة تعيين",
           "x": "-1"
         },
         "en": {
@@ -362,6 +387,7 @@ class MyLocale implements Translations {
           "Contact Info": "Contact Info",
           "Educational Info": "Educational Info",
           "Attachments": "Attachments",
+          "Person Information": "Person Information",
           "Full Name:": "Full Name:",
           "ID:": "ID:",
           "Birth Date:": "Birth Date:",
@@ -392,8 +418,13 @@ class MyLocale implements Translations {
           "Grade:": "Grade:",
           "Study Branch:": "Study Branch:",
           "Study branch": "Study branch",
+          "Scientific": "Scientific",
+          "Literary": "Literary",
+          "Commercial": "Commercial",
+          "Industrial": "Industrial",
           "University Information:": "University Information:",
           "Undergraduate degree:": "Undergraduate degree:",
+          "Undergraduate degree": "Undergraduate degree",
           "Diploma": "Diploma",
           "BA": "BA",
           "Master's": "Master's",
@@ -402,6 +433,7 @@ class MyLocale implements Translations {
           "College:": "College:",
           "Department:": "Department:",
           "Academic Year:": "Academic Year:",
+          "Academic year": "Academic year",
           "First": "First",
           "Second": "Second",
           "Third": "Third",
@@ -413,10 +445,26 @@ class MyLocale implements Translations {
           "University ID:": "University ID:",
           "ID Card:": "ID Card:",
           "Pick File": "Pick File",
+          "ID card of the head of the family, showing the family members:":
+              "ID card of the head of the family, showing the family members:",
           "High school transcripts:": "High school transcripts:",
           "Student Card:": "Student Card:",
           "Transcript for the last semester:":
               "Transcript for the last semester:",
+          "t1_a":
+              "A medical report sealed by the Ministry of Health, showing the description of the special case for each case, if there are any special cases:",
+          "t2_a":
+              "Certificate from Social Affairs (government, agency) in case you are a social status:",
+          "t3_a":
+              "A legal lease contract for the family residence, if the housing is rented:",
+          "t4_a":
+              "Salary slip for father/husband or mother/wife if they are employed:",
+          "t5_a":
+              "A legal lease contract for the student housing if the housing is for rent:",
+          "t6_a":
+              "Death certificate for (father/husband) and/or (mother/wife) in case of death:",
+          "t7_a":
+              "A recent student proof certificate for each university student in your family, and for the brothers in success, a copy of the university ID only:",
           "t1_f":
               " Please be careful in entering the data, especially the ID number",
           "t2_f":
@@ -566,6 +614,12 @@ class MyLocale implements Translations {
           "Invalid Email Address": "Invalid Email Address",
           "Email can not be empty": "Email can not be empty",
           "Password Updated Successfully": "Password Updated Successfully",
+          "Sent Successfully": "Sent Successfully",
+          "Failed to send!": "Failed to send!",
+          "One of the text fields is empty!":
+              "One of the text fields is empty!",
+          "*Required": "*Required",
+          "Reset": "Reset",
           "x": "1"
         }
       };

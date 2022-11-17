@@ -18,7 +18,7 @@ class _Section3State extends State<Section3> {
       children: [
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +26,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "family members".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 19),
               ),
               SizedBox(
                 height: 15,
@@ -47,7 +47,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +55,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "university students".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -76,7 +76,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +84,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "chronic diseases".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -105,7 +105,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -113,7 +113,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Family income".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -147,7 +147,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -155,7 +155,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "assistance".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -184,7 +184,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -192,7 +192,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "affairs card".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -213,7 +213,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -221,7 +221,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "family housing".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 400,
@@ -251,7 +251,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -259,7 +259,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "monthly rent".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -291,7 +291,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -299,7 +299,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Family residence".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 200,
@@ -327,22 +327,22 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Text(
             "vehicles".tr,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 "Private         ".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -360,14 +360,14 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 "Public           ".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -385,14 +385,14 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 "Commercial ".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -410,7 +410,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -418,7 +418,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "student housing".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 15,
@@ -439,7 +439,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+          margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -447,7 +447,7 @@ class _Section3State extends State<Section3> {
             children: [
               Text(
                 "Do you smoke ?".tr,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 width: 100,
@@ -475,7 +475,7 @@ class _Section3State extends State<Section3> {
           margin: EdgeInsets.all(20),
           child: Text(
             "Undergraduate fraternity data :".tr,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Center(

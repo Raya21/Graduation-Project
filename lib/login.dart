@@ -1,20 +1,23 @@
 import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:index/forget_password.dart';
+import 'package:index/reset_password.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+
+final _formKey = GlobalKey<FormState>();
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  var ID;
   bool _obscureText = true;
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
@@ -27,7 +30,8 @@ class _LoginState extends State<Login> {
       "password": passwordcontroller.text,
     });
     var data = await json.decode(response.body);
-    if (data == "Success") {
+    print(data['message']);
+    if (data['message'] == "Success") {
       Fluttertoast.showToast(
           msg: "Login Successful".tr,
           toastLength: Toast.LENGTH_SHORT,
@@ -36,7 +40,12 @@ class _LoginState extends State<Login> {
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      print(data['id']);
+      ID = data['id'];
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Home(id: int.parse(data['id']))));
     } else {
       Fluttertoast.showToast(
           msg: "Email or Password Incorrect!".tr,
@@ -62,11 +71,12 @@ class _LoginState extends State<Login> {
         )),
         child: SingleChildScrollView(
           child: Form(
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 Center(
                   child: Image.asset(
@@ -103,7 +113,8 @@ class _LoginState extends State<Login> {
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "E-mail".tr,
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: UnderlineInputBorder(
@@ -129,7 +140,8 @@ class _LoginState extends State<Login> {
                               prefixIcon:
                                   Icon(Icons.password, color: Colors.pink),
                               hintText: "Password".tr,
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: UnderlineInputBorder(
@@ -146,7 +158,7 @@ class _LoginState extends State<Login> {
                               },
                               child: Text("Login".tr),
                               style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(300, 60),
+                                  fixedSize: Size(300, 50),
                                   backgroundColor: Colors.white,
                                   foregroundColor:
                                       Color.fromARGB(255, 216, 51, 122),
