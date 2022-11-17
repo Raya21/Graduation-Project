@@ -22,13 +22,14 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $insert = "INSERT INTO loan_request(id,fname,email,city,uniid,gpa)VALUES('".$row['id']."','".$row['fname']."','".$email."','".$row['city']."','".$row['uniid']."','".$row['gpa']."')";
         $query = $conn->query($insert);
-        if ($query) {
-            echo json_encode("Success");
-        }
-        else {
-            echo json_encode("Failed");
-        }
+
     }
+}
+if ($query) {
+    echo json_encode("Success");
+}
+else {
+    echo json_encode("Failed");
 }
 /*
 if ($count == 1) {
