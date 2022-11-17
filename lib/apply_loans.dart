@@ -14,7 +14,7 @@ late String emailglo;
 class applyLoans extends StatefulWidget {
   //const applyLoans({super.key});
   final String value;
-   const applyLoans({Key? key, required this.value}) : super(key: key);
+  const applyLoans({Key? key, required this.value}) : super(key: key);
 
   @override
   State<applyLoans> createState() => _applyLoansState();
@@ -27,8 +27,9 @@ class _applyLoansState extends State<applyLoans> {
   @override
   void initState() {
     super.initState();
-    emailglo=widget.value;
+    emailglo = widget.value;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -370,6 +371,25 @@ class _attachmentsState extends State<attachments> {
     var pic10 = await http.MultipartFile.fromPath("image", _image10.path);
     request10.files.add(pic10);
     var response10 = await request10.send();
+    // if (pic1 == Null &&
+    //     pic2 == Null &&
+    //     pic3 == Null &&
+    //     pic4 == Null &&
+    //     pic5 == Null &&
+    //     pic6 == Null &&
+    //     pic7 == Null &&
+    //     pic8 == Null &&
+    //     pic9 == Null &&
+    //     pic10 == Null) {
+    //   Fluttertoast.showToast(
+    //       msg: "You must pick all files".tr,
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Color.fromARGB(255, 203, 158, 211),
+    //       textColor: Colors.purple,
+    //       fontSize: 16);
+    // }
     if (response1.statusCode == 200 &&
         response2.statusCode == 200 &&
         response3.statusCode == 200 &&
@@ -380,13 +400,29 @@ class _attachmentsState extends State<attachments> {
         response8.statusCode == 200 &&
         response9.statusCode == 200 &&
         response10.statusCode == 200) {
+          Fluttertoast.showToast(
+          msg: "Files Uploaded".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
       print("Images Uploaded");
     } else {
+      Fluttertoast.showToast(
+          msg: "Files Not Uploaded".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
       print("Images Not Uploaded");
     }
   }
 
-  Future requestLoan()async{
+  Future requestLoan() async {
     var url = "http://192.168.1.105/handinhand/request.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
@@ -412,6 +448,7 @@ class _attachmentsState extends State<attachments> {
           fontSize: 16);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(

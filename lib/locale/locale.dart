@@ -57,6 +57,8 @@ class MyLocale implements Translations {
           "Apply for a loan": "التقدم بطلب للحصول على قرض",
           "Submission successful":"تم تقديم الطلب",
           "Submission failed":"فشل تقديم الطلب",
+          "Files Uploaded": "تم تحميل المرفقات",
+          "Files Not Uploaded":"لم يتم تحميل المرفقات",
           "t0_a": "لتقديم طلب قرض يرجى تحميل المرفقات التالية:",
           "t1_loan":
               "في بداية كل فصل دراسي يعلن صندوق الإقراض عن بدء استقبال طلبات القروض للطلبة المحتاجين في مؤسسات التعليم العالي الفلسطينية لفترة زمنية محددة ، وعلى الطالب الراغب في تقديم الطلب القيام بما يلي:",
@@ -357,6 +359,8 @@ class MyLocale implements Translations {
           "Apply for a loan": "Apply for a loan",
           "Submission successful":"Submission successful",
           "Submission failed":"Submission failed",
+          "Files Not Uploaded":"Files Not Uploaded",
+          "Files Uploaded":"Files Uploaded",
           "t0_a": "To submit a loan request, please upload the following attachments:",
           "t1_loan":
               "At the beginning of each semester, the Lending Fund announces the start of receiving loan applications for needy students in Palestinian higher education institutions for a specified period of time. The student wishing to submit a request must do the following:",

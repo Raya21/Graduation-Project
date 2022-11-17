@@ -10,6 +10,7 @@ import 'package:index/reset_password.dart';
 import 'package:index/home.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
+import 'package:index/scholarship.dart';
 import 'package:index/section1_familyData_page.dart';
 import 'package:index/section2_familyData_page.dart';
 import 'package:index/section3_familyData_page.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         theme: value.getTheme,
      locale: controller.initialLang,
       translations: MyLocale(),
-        initialRoute: "login",
+        initialRoute: "home",
         routes: {
           "home": (context) => Home(value: '',),
           "reset_password": (context) => ResetPass(),
@@ -60,7 +61,8 @@ class MyApp extends StatelessWidget {
           "section2_familyData_page": (context) => Section2(),
           "section3_familyData_page": (context) => Section3(),
           "family_data": (context) => FamilyData(),
-          "forget_password": (context) => ForgetPass()
+          "forget_password": (context) => ForgetPass(),
+          "scholarship": (context) => Scholarship(value: '',)
         },
       );
     }));

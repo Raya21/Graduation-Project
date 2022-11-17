@@ -1,12 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
-
 
 class Home extends StatefulWidget {
   final String value;
@@ -18,10 +19,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late String emailvalue=widget.value;
+  late String emailvalue = widget.value;
   double value = 0;
   PickedFile? _imagefile;
   final ImagePicker _picker = ImagePicker();
+  List list = [];
   Widget bottomSheet() {
     return Container(
       height: 100,
@@ -90,6 +92,24 @@ class _HomeState extends State<Home> {
     });
   }
 
+  Future GetData() async {
+    var url = "http://192.168.1.104/handinhand/home.php";
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var red = json.decode(res.body);
+      setState(() {
+        list.addAll(red);
+      });
+      print(list);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    GetData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,7 +173,11 @@ class _HomeState extends State<Home> {
                   children: [
                     ListTile(
                       onTap: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => profile(value:emailvalue)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    profile(value: emailvalue)));
                         //Navigator.of(context).pushNamed("profile");
                       },
                       leading: Icon(
@@ -181,7 +205,9 @@ class _HomeState extends State<Home> {
                     ListTile(
                       onTap: () {
                         //Navigator.of(context).pushNamed("qualifications");
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => applyLoans(value:emailvalue)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                applyLoans(value: emailvalue)));
                       },
                       leading: Icon(
                         Icons.money,
@@ -244,32 +270,63 @@ class _HomeState extends State<Home> {
               return (Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
-                  ..setEntry(3, 2, int.parse("x".tr) *0.001)
+                  ..setEntry(3, 2, int.parse("x".tr) * 0.001)
                   ..setEntry(0, 3, int.parse("x".tr) * 200 * val)
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
-                  appBar: AppBar(
-                    title: Text(
-                      "Home".tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                    appBar: AppBar(
+                      title: Text(
+                        "Home".tr,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      backgroundColor: Colors.purple,
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.notifications),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chat),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                    backgroundColor: Colors.purple,
-                    actions: [
-                      IconButton(
-                        icon: Icon(Icons.notifications),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.chat),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  // body: ,
-                ),
+                    body: ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (cts, i) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 198, 126, 211),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: ListTile(
+                                title: Text(
+                                  "${list[i]["sname"]}",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(
+                                  "${list[i]["description"]}",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                leading: Container(
+                                  child: Image.asset(
+                                    "lib/imgs/scholarship.png",
+                                    width: 50,
+                                    height: 100,
+                                  ),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios, color: Colors.white,),
+                                onTap: () {},
+                              ),
+                            ),
+                          );
+                        })),
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {
