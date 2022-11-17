@@ -25,6 +25,11 @@ class _applyLoansState extends State<applyLoans> {
   int _currentIndex = 0;
   List<Widget> pages = [Qualifications(), LoanPercent(), attachments()];
   @override
+  void initState() {
+    super.initState();
+    emailglo=widget.value;
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

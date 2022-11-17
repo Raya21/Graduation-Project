@@ -24,6 +24,11 @@ class _profileState extends State<profile> {
   int _currentIndex = 0;
   List<Widget> pages = [personInfo(), contactInfo(), eduInfo()];
   @override
+  void initState() {
+    super.initState();
+    emailglo=widget.value;
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -475,7 +480,7 @@ class _contactInfoState extends State<contactInfo> {
   String _errorMessage = '';
 
   Future contact() async {
-    var url = "http://192.168.1.109/handinhand/contactInfo.php";
+    var url = "http://192.168.1.105/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "TPhone": Tphone.text,
@@ -625,7 +630,7 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.1.109/handinhand/eduInfo.php";
+    var url = "http://192.168.1.105/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "email": emailglo,

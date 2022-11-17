@@ -25,9 +25,10 @@ if ($result->num_rows > 0) {
         if ($query) {
             echo json_encode("Success");
         }
+        else {
+            echo json_encode("Failed");
+        }
     }
-} else {
-    echo json_encode("Failed");
 }
 /*
 if ($count == 1) {

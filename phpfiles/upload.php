@@ -12,6 +12,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 //image 1
+echo $_POST['email'];
 $email1 = $_POST['email'];
 $image1 = $_FILES['image']['name'];
 $imagePath1 = 'uploads/'.$image1;
