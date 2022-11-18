@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
+import 'package:index/scholarship.dart';
 
 class Home extends StatefulWidget {
   final String value;
@@ -93,7 +94,7 @@ class _HomeState extends State<Home> {
   }
 
   Future GetData() async {
-    var url = "http://192.168.1.104/handinhand/home.php";
+    var url = "http://192.168.1.106/handinhand/home.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
@@ -321,8 +322,15 @@ class _HomeState extends State<Home> {
                                     height: 100,
                                   ),
                                 ),
-                                trailing: Icon(Icons.arrow_forward_ios, color: Colors.white,),
-                                onTap: () {},
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          Scholarship(value: "${list[i]["sname"]}", value1: "${list[i]["qualifications"]}", value2: "${list[i]["percentage"]}", value3: "${list[i]["attachments"]}", emailv:emailvalue,)));
+                                },
                               ),
                             ),
                           );

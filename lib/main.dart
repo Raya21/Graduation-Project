@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         theme: value.getTheme,
      locale: controller.initialLang,
       translations: MyLocale(),
-        initialRoute: "home",
+        initialRoute: "login",
         routes: {
           "home": (context) => Home(value: '',),
           "reset_password": (context) => ResetPass(),
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           "section3_familyData_page": (context) => Section3(),
           "family_data": (context) => FamilyData(),
           "forget_password": (context) => ForgetPass(),
-          "scholarship": (context) => Scholarship(value: '',)
+          "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',)
         },
       );
     }));
