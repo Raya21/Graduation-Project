@@ -11,7 +11,7 @@ class Section2 extends StatefulWidget {
 
 class _Section2State extends State<Section2> {
   var selectedItem = null;
-  var x = Colors.red;
+  var x = Colors.pink;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +27,9 @@ class _Section2State extends State<Section2> {
                 style: TextStyle(fontSize: 20),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(
+                  top: 20,
+                ),
                 child: DropdownSearch<String>(
                   popupProps: PopupProps.menu(
                     showSelectedItems: true,
@@ -42,10 +44,17 @@ class _Section2State extends State<Section2> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        labelText: "Relative Relation".tr,
-                        labelStyle: TextStyle(fontSize: 20)
-                        //hintText: "country in menu mode",
-                        ),
+                      labelText: "Relative Relation".tr,
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
                   ),
                   //onChanged: print,
                   selectedItem: selectedItem,
@@ -66,15 +75,20 @@ class _Section2State extends State<Section2> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Quatrain Name ".tr,
+                      "Quatrain Name  ".tr,
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(
                       width: 210,
                       child: TextFormField(
-                        keyboardType: TextInputType.text,
+                        cursorColor: Colors.purple,
+                        keyboardType: TextInputType.name,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide:
                                   BorderSide(color: Colors.purple, width: 2)),
@@ -98,9 +112,14 @@ class _Section2State extends State<Section2> {
                     SizedBox(
                       width: 210,
                       child: TextFormField(
+                        cursorColor: Colors.purple,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide:
                                   BorderSide(color: Colors.purple, width: 2)),
@@ -114,7 +133,7 @@ class _Section2State extends State<Section2> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 20, right: 20),
           child: DropdownSearch<String>(
             popupProps: PopupProps.menu(
               showSelectedItems: true,
@@ -131,16 +150,22 @@ class _Section2State extends State<Section2> {
             ],
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
-                  labelText: "Work Place".tr, labelStyle: TextStyle(fontSize: 20)
-                  //hintText: "country in menu mode",
-                  ),
+                labelText: "Work Place".tr,
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Colors.purple, width: 2)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Colors.purple, width: 2)),
+              ),
             ),
             //onChanged: print,
             selectedItem: selectedItem,
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20, top: 20),
+          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
           child: DropdownSearch<String>(
             popupProps: PopupProps.menu(
               showSelectedItems: true,
@@ -203,9 +228,15 @@ class _Section2State extends State<Section2> {
             ],
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
-                  labelText: "Job".tr, labelStyle: TextStyle(fontSize: 20)
-                  //hintText: "country in menu mode",
-                  ),
+                labelText: "Job".tr,
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Colors.purple, width: 2)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Colors.purple, width: 2)),
+              ),
             ),
             //onChanged: print,Teacher
             selectedItem: selectedItem,
@@ -226,9 +257,13 @@ class _Section2State extends State<Section2> {
                 width: 210,
                 child: TextFormField(
                   maxLines: 6,
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),

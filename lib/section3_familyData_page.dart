@@ -11,14 +11,14 @@ class Section3 extends StatefulWidget {
 
 class _Section3State extends State<Section3> {
   var selectedItem = null;
-  var x = Colors.red;
+  var x = Colors.pink;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -34,9 +34,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -47,7 +51,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -63,9 +67,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -76,7 +84,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -92,9 +100,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -105,7 +117,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -133,10 +145,16 @@ class _Section3State extends State<Section3> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        //labelText:
-                        //"Does the family have assistance such as a business card or zakat",
-                        // hintText: "Yes or No",
-                        ),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
                   ),
                   //onChanged: print,
                   selectedItem: "------------",
@@ -147,7 +165,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -170,10 +188,16 @@ class _Section3State extends State<Section3> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        //labelText:
-                        //"Does the family have assistance such as a business card or zakat",
-                        // hintText: "Yes or No",
-                        ),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
                   ),
                   //onChanged: print,
                   selectedItem: "No".tr,
@@ -184,7 +208,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -200,9 +224,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 250,
                 child: TextFormField(
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -213,7 +241,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -237,10 +265,16 @@ class _Section3State extends State<Section3> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        //labelText:
-                        //"Student family housing",
-                        //hintText: "Yes or No",
-                        ),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
                   ),
                   //onChanged: print,
                   selectedItem: "Property".tr,
@@ -251,7 +285,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -277,10 +311,16 @@ class _Section3State extends State<Section3> {
                   ],
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
-                        //labelText:
-                        //"Student family housing",
-                        //hintText: "Yes or No",
-                        ),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
                   ),
                   //onChanged: print,
                   selectedItem: "-------------------",
@@ -291,7 +331,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -311,10 +351,17 @@ class _Section3State extends State<Section3> {
                     items: ["City".tr, "Village".tr, "Camp".tr, "Abroad".tr],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
-                          //labelText:
-                          //"Student family housing",
-                          //hintText: "Yes or No",
-                          ),
+                        labelStyle:
+                            TextStyle(fontSize: 20, color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                      ),
                     ),
                     //onChanged: print,
                     selectedItem: "City".tr),
@@ -327,7 +374,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Text(
             "vehicles".tr,
             style: TextStyle(fontSize: 20),
@@ -335,7 +382,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -347,9 +394,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
-                  keyboardType: TextInputType.text,
+                  cursorColor: Colors.purple,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -360,7 +411,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -372,9 +423,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
-                  keyboardType: TextInputType.text,
+                  cursorColor: Colors.purple,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -385,7 +440,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -397,9 +452,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
-                  keyboardType: TextInputType.text,
+                  cursorColor: Colors.purple,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -410,7 +469,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -426,9 +485,13 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
@@ -439,7 +502,7 @@ class _Section3State extends State<Section3> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20),
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -459,10 +522,17 @@ class _Section3State extends State<Section3> {
                     items: ["Yes".tr, "No".tr],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
-                          //labelText:
-                          //"Student family housing",
-                          //hintText: "Yes or No",
-                          ),
+                        labelStyle:
+                            TextStyle(fontSize: 20, color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                      ),
                     ),
                     //onChanged: print,
                     selectedItem: "No".tr),

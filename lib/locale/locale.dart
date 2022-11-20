@@ -161,9 +161,9 @@ class MyLocale implements Translations {
           "t2_f": " إذا لم تكن متزوجا/متزوجة لا تدخل بيانات الزوج/الزوجة",
           "t3_f":
               " في حال عدم إمتلاك بطاقة هوية، الرجاء إدخال رقم جواز السفر عوضا عن الهوية",
-          "Section 1": "قسم 1",
-          "Section 2": "قسم 2",
-          "Section 3": "قسم 3",
+          "Section 1": "القسم الأول",
+          "Section 2": "القسم الثاني",
+          "Section 3": "القسم الثالث",
           "Student Name": "اسم الطالب",
           "Student Number": "رقم الطالب",
           "ID Number": "رقم الهوية",
@@ -305,6 +305,12 @@ class MyLocale implements Translations {
           "One of the text fields is empty!": "أحد الحقول النصية فارغ!",
           "*Required": "*مطلوب",
           "Reset": "إعادة تعيين",
+          "Quatrain Name  ": "الإسم الرباعي        ",
+          "Note                  ": "ملاحظة           ",
+          "Married2": "متزوجان",
+          "Something Else": "غير ذلك",
+          "Saved": "تم حفظ البيانات بنجاح",
+          "Updated!": "تم تحديث البيانات!",
           "x": "-1"
         },
         "en": {
@@ -471,9 +477,9 @@ class MyLocale implements Translations {
               " If you are not married, do not enter the data of the husband/wife",
           "t3_f":
               " If you do not have an ID card, please enter the passport number instead of the ID",
-          "Section 1": "Section 1",
-          "Section 2": "Section 2",
-          "Section 3": "Section 3",
+          "Section 1": "First Section",
+          "Section 2": "Second Section",
+          "Section 3": "Third Section",
           "Student Name": "Student Name",
           "Student Number": "Student Number",
           "ID Number": "ID Number",
@@ -620,6 +626,12 @@ class MyLocale implements Translations {
               "One of the text fields is empty!",
           "*Required": "*Required",
           "Reset": "Reset",
+          "Quatrain Name  ": "Quatrain Name  ",
+          "Note                  ": "Note                  ",
+          "Married2": "Married2",
+          "Something Else": "Something Else",
+          "Saved": "Data saved successfully",
+          "Updated!": "The data has been updated!",
           "x": "1"
         }
       };
