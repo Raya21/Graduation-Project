@@ -35,6 +35,7 @@ $hwJobDesc = $_POST['hwJobDesc'];
 
 $studentSocialSit = $_POST['studentSocialSit'];
 $parentsSocialSit = $_POST['parentsSocialSit'];
+$userId = $_POST['userId'];
 
 $sql = "SELECT * FROM familydatas1 WHERE studentIdCard='".$studentIdCard."'";
 $result = mysqli_query($mydb,$sql);
@@ -70,7 +71,8 @@ if ($count == 1) {
      hwJobDesc='".$hwJobDesc."',
 
      studentSocialSit='".$studentSocialSit."', 
-     parentsSocialSit='".$parentsSocialSit."'
+     parentsSocialSit='".$parentsSocialSit."',
+     userId='".$userId."'
      
      
      WHERE studentIdCard='".$studentIdCard."'";
@@ -111,7 +113,8 @@ else{
     hwJobDesc,
 
     studentSocialSit,
-    parentsSocialSit
+    parentsSocialSit,
+    userId
 
 
     )VALUES('".$studentIdCard."',
@@ -144,7 +147,8 @@ else{
     '".$hwJobDesc."',
 
     '".$studentSocialSit."',
-    '".$parentsSocialSit."'
+    '".$parentsSocialSit."',
+    '".$userId."'
 
     )";
     $query = mysqli_query($mydb,$insert);

@@ -1,4 +1,6 @@
 <?php
+
+
 $mydb = mysqli_connect("localhost","root","","handinhand");
 
 if(!$mydb){
@@ -17,6 +19,7 @@ if($count==1){
   $sql2 = "SELECT id FROM users WHERE email='".$email."' AND password='".$password."'";
   $id = mysqli_query($mydb,$sql2);
 while ($row = $id->fetch_assoc()) {
+
     echo json_encode(array("message"=>"Success","id"=>$row['id']));
 }
 
