@@ -4,16 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_io/_file_decoder_io.dart';
 import 'package:http/http.dart' as http;
 
+import 'section2_familyData_page.dart';
+
 class Section1 extends StatefulWidget {
-  const Section1({super.key});
+  final int userId;
+  const Section1({super.key, required this.userId});
 
   @override
   State<Section1> createState() => _Section1State();
 }
 
 class _Section1State extends State<Section1> {
+  var userId;
+  @override
+  void initState() {
+    userId = widget.userId;
+  }
+
   var studentSocialSituation = null;
   var parentsSocialSituation = null;
   var fatherCareerStatus = null;
@@ -78,7 +88,8 @@ class _Section1State extends State<Section1> {
       "hwWorkNature": hwWorkNature,
       "hwJobDesc": hwJopDesc.text,
       "studentSocialSit": studentSocialSituation,
-      "parentsSocialSit": parentsSocialSituation
+      "parentsSocialSit": parentsSocialSituation,
+      "userId": userId.toString()
     });
     var data = await json.decode(response.body);
     if (data == "Success") {
@@ -100,6 +111,10 @@ class _Section1State extends State<Section1> {
           textColor: Colors.white,
           fontSize: 16);
     }
+
+    Section2(
+      userId: 77,
+    );
   }
 
   @override
@@ -205,6 +220,42 @@ class _Section1State extends State<Section1> {
             studentSocialSituation = val;
           },
           selectedItem: studentSocialSituation,
+        ),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Container(
+        //color: Color.fromARGB(255, 172, 117, 182),
+        margin: EdgeInsets.only(left: 20, right: 20),
+        child: DropdownSearch<String>(
+          popupProps: PopupProps.menu(
+            showSelectedItems: true,
+            //disabledItemFn: (String s) => s.startsWith('I'),
+          ),
+          items: [
+            "----",
+            "Married2".tr,
+            "One of them is dead".tr,
+            "Separated".tr,
+            "Something Else".tr,
+          ],
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: InputDecoration(
+              labelText: "Parents' social status".tr,
+              labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple, width: 2)),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(color: Colors.purple, width: 2)),
+            ),
+          ),
+          onChanged: (val) {
+            parentsSocialSituation = val;
+          },
+          selectedItem: parentsSocialSituation,
         ),
       ),
       /********************************************************************************  Father information *******************************************************************/
@@ -1095,50 +1146,7 @@ class _Section1State extends State<Section1> {
         height: 20,
       ),
       /******************************************************************************** End of husband/wife information *********************************************************/
-      Divider(
-        color: Colors.pink,
-        thickness: 1,
-      ),
-      Container(
-        //color: Color.fromARGB(255, 172, 117, 182),
-        margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-        child: DropdownSearch<String>(
-          popupProps: PopupProps.menu(
-            showSelectedItems: true,
-            //disabledItemFn: (String s) => s.startsWith('I'),
-          ),
-          items: [
-            "----",
-            "Married2".tr,
-            "One of them is dead".tr,
-            "Separated".tr,
-            "Something Else".tr,
-          ],
-          dropdownDecoratorProps: DropDownDecoratorProps(
-            dropdownSearchDecoration: InputDecoration(
-              labelText: "Parents' social status".tr,
-              labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.purple, width: 2)),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.purple, width: 2)),
-            ),
-          ),
-          onChanged: (val) {
-            parentsSocialSituation = val;
-          },
-          selectedItem: parentsSocialSituation,
-        ),
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      Divider(
-        color: Colors.pink,
-        thickness: 1,
-      ),
+
       ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
@@ -1153,6 +1161,9 @@ class _Section1State extends State<Section1> {
             "Save data".tr,
             style: TextStyle(fontSize: 20),
           )),
+      SizedBox(
+        height: 20,
+      ),
     ]); //Column
   }
 }

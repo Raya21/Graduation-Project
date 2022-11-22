@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class Section2 extends StatefulWidget {
-  const Section2({super.key});
+  final int userId;
+  const Section2({super.key, required this.userId});
 
   @override
   State<Section2> createState() => _Section2State();
@@ -12,6 +16,48 @@ class Section2 extends StatefulWidget {
 class _Section2State extends State<Section2> {
   var selectedItem = null;
   var x = Colors.pink;
+
+  var relativeRelation = null;
+  var workPlace = null;
+  var job = null;
+
+  final name = TextEditingController();
+  final idNumber = TextEditingController();
+  final note = TextEditingController();
+
+  Future save() async {
+    var url = "http://192.168.1.10/handinhand/familydatas2.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "name": name.text,
+      "idNumber": idNumber.text,
+      "note": note.text,
+      "relativeRelation": relativeRelation,
+      "workPlace": workPlace,
+      "job": job,
+      "userId": widget.userId.toString()
+    });
+    var data = await json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Saved".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Updated!".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,8 +102,10 @@ class _Section2State extends State<Section2> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  //onChanged: print,
-                  selectedItem: selectedItem,
+                  onChanged: (val) {
+                    relativeRelation = val;
+                  },
+                  selectedItem: relativeRelation,
                 ),
               ),
               SizedBox(
@@ -81,6 +129,7 @@ class _Section2State extends State<Section2> {
                     SizedBox(
                       width: 210,
                       child: TextFormField(
+                        controller: name,
                         cursorColor: Colors.purple,
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
@@ -112,6 +161,7 @@ class _Section2State extends State<Section2> {
                     SizedBox(
                       width: 210,
                       child: TextFormField(
+                        controller: idNumber,
                         cursorColor: Colors.purple,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -160,8 +210,10 @@ class _Section2State extends State<Section2> {
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
               ),
             ),
-            //onChanged: print,
-            selectedItem: selectedItem,
+            onChanged: (val) {
+              workPlace = val;
+            },
+            selectedItem: workPlace,
           ),
         ),
         Container(
@@ -238,8 +290,10 @@ class _Section2State extends State<Section2> {
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
               ),
             ),
-            //onChanged: print,Teacher
-            selectedItem: selectedItem,
+            onChanged: (val) {
+              job = val;
+            },
+            selectedItem: job,
           ),
         ),
         Container(
@@ -256,6 +310,7 @@ class _Section2State extends State<Section2> {
               SizedBox(
                 width: 210,
                 child: TextFormField(
+                  controller: note,
                   maxLines: 6,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.text,
@@ -268,9 +323,27 @@ class _Section2State extends State<Section2> {
                         borderSide: BorderSide(color: Colors.purple, width: 2)),
                   ),
                 ),
-              )
+              ),
             ],
           ),
+        ),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+            onPressed: (() {
+              //print(widget.userId);
+              save();
+            }),
+            child: Text(
+              "Save data".tr,
+              style: TextStyle(fontSize: 20),
+            )),
+        SizedBox(
+          height: 20,
         ),
       ],
     );

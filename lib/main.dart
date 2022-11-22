@@ -62,10 +62,10 @@ class MyApp extends StatelessWidget {
           "qualifications": (context) => Qualifications(),
           "contactus": (context) => ContactUs(id: 0),
           "sign_up": (context) => SignUp(),
-          "section1_familyData_page": (context) => Section1(),
-          "section2_familyData_page": (context) => Section2(),
+          "section1_familyData_page": (context) => Section1(userId: 0),
+          "section2_familyData_page": (context) => Section2(userId: 0),
           "section3_familyData_page": (context) => Section3(),
-          "family_data": (context) => FamilyData(),
+          "family_data": (context) => FamilyData(userId: 0),
           "forget_password": (context) => ForgetPass()
         },
       );

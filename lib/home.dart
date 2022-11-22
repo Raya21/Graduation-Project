@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 
 import 'contactus.dart';
+import 'family_data.dart';
 
 class Home extends StatefulWidget {
   final int id;
@@ -161,7 +162,11 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("family_data");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    FamilyData(userId: widget.id)));
                       },
                       leading: Icon(
                         Icons.family_restroom,
