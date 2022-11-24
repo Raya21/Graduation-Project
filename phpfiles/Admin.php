@@ -8,6 +8,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,7 @@ if (!isset($_SESSION['loggedin'])) {
         <ul>
             <li><a href="scholarship.html">Scholarships</a></li>
             <li><a href="student.html">Outstanding students</a></li>
+            <li><a href="messages.php">Messages</a></li>
         </ul>
     </nav>
 </div>

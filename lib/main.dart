@@ -5,6 +5,7 @@ import 'package:index/apply_loans.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
+import 'package:index/outstanding_students.dart';
 //import 'package:index/language.dart';
 import 'package:index/reset_password.dart';
 import 'package:index/home.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: value.getTheme,
      locale: controller.initialLang,
       translations: MyLocale(),
-        initialRoute: "login",
+        initialRoute: "home",
         routes: {
           "home": (context) => Home(value: '',),
           "reset_password": (context) => ResetPass(),
@@ -62,7 +63,8 @@ class MyApp extends StatelessWidget {
           "section3_familyData_page": (context) => Section3(),
           "family_data": (context) => FamilyData(),
           "forget_password": (context) => ForgetPass(),
-          "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',)
+          "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',),
+          "outstanding_students": (context) => outstandingStudents()
         },
       );
     }));

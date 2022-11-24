@@ -19,7 +19,7 @@
     .mane{
       background-color: rgb(0,0,0,0.5);
       width: 800px;
-      height: 500px;
+      height: 550px;
       margin: auto;
     }
     form{
@@ -51,7 +51,7 @@
     .des{
       position: relative;
       left: 200px;
-      top: 100px;
+      top: 75px;
       line-height: 40px;
       border-radius: 6px;
       padding: 0 22px;
@@ -66,11 +66,16 @@
       text-transform: capitalize;
       font-size: 14px;
       left: 200px;
-      top: -125px;
+      top: -150px;
+    }
+    .filediv{
+      position: relative;
+      left: 200px;
+      top: 100px;
     }
     button{
       position: relative;
-      top: 80px;
+      top: 100px;
       left: 100px;
       background-color: black;
       display: block;
@@ -88,7 +93,7 @@
     }
     a{
       position: relative;
-      top: 5px;
+      top: 27px;
       left: 400px;
       font-size: 15px;
       background-color: black;
@@ -118,7 +123,7 @@
   <h1>Outstanding Students</h1>
 </div>
 <div class="mane">
-  <form action="student.php" method="post">
+  <form action="student.php" method="post" enctype="multipart/form-data">
     <div id="name">
       <input class="sname" type="text" name="fname"><br>
       <label class="snamelabel">Student Name</label>
@@ -126,6 +131,9 @@
     <div id="desc">
       <textarea name="desc" class="des"></textarea><br>
       <label class="deslabel">Description</label>
+    </div>
+    <div class="filediv">
+      <input type="file" name="image" accept="image/*" />
     </div>
     <button type="submit">Save</button>
   </form>

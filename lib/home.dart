@@ -221,6 +221,22 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
+                        Navigator.of(context).pushNamed("outstanding_students");
+                        /*Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                applyLoans(value: emailvalue)));*/
+                      },
+                      leading: Icon(
+                        Icons.man,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Outstanding Students".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
                         Navigator.of(context).pushNamed("contactus");
                       },
                       leading: Icon(
