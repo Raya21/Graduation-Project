@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 class Section3 extends StatefulWidget {
   final int userId;
+
   const Section3({super.key, required this.userId});
 
   @override
@@ -16,11 +17,19 @@ class Section3 extends StatefulWidget {
 
 class _Section3State extends State<Section3> {
   late int _count;
+  late String _result;
+  String StudentName = '';
+  int RegistrationNumber = 0;
+  String CollegeName = '';
+  String UniversityName = '';
+  late List<Map<String, dynamic>> _values;
   // var userId;
   @override
   void initState() {
     //   userId = widget.userId;
+    _result = '';
     _count = 0;
+    _values = [];
   }
 
   var selectedItem = null;
@@ -36,6 +45,7 @@ class _Section3State extends State<Section3> {
 
   final numFamilyMem = TextEditingController();
   final numUniversityStu = TextEditingController();
+
   final numMemDiseases = TextEditingController();
 
   final cardNumber = TextEditingController();
@@ -47,6 +57,7 @@ class _Section3State extends State<Section3> {
   Future save() async {
     var url = "http://192.168.1.10/handinhand/familydatas3.php";
     var response = await http.post(Uri.parse(url), body: {
+      "BrothersData": _result,
       "userId": widget.userId.toString(),
       "numFamilyMem": numFamilyMem.text,
       "numMemDiseases": numMemDiseases.text,
@@ -88,141 +99,32 @@ class _Section3State extends State<Section3> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "family members".tr,
-                style: TextStyle(fontSize: 19),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numFamilyMem,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
+    return SingleChildScrollView(
+      physics: ScrollPhysics(),
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "family members".tr,
+                  style: TextStyle(fontSize: 19),
                 ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "university students".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numUniversityStu,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
+                SizedBox(
+                  height: 15,
                 ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "chronic diseases".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numMemDiseases,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Family income".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 200,
-                child: DropdownSearch<String>(
-                  popupProps: PopupProps.menu(
-                    showSelectedItems: true,
-                    disabledItemFn: (String s) => s.startsWith('I'),
-                  ),
-                  items: [
-                    "------------",
-                    "0 - 2000",
-                    "2001 - 3000",
-                    "3001 - 4000",
-                    "4001 - 5000",
-                    "5001 - 10000",
-                    "Above 10000".tr
-                  ],
-                  dropdownDecoratorProps: DropDownDecoratorProps(
-                    dropdownSearchDecoration: InputDecoration(
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: numFamilyMem,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -233,41 +135,37 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  onChanged: (val) {
-                    familyIncome = val;
-                  },
-                  selectedItem: familyIncome,
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "assistance".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 100,
-                child: DropdownSearch<String>(
-                  popupProps: PopupProps.menu(
-                    showSelectedItems: true,
-                    disabledItemFn: (String s) => s.startsWith('I'),
-                  ),
-                  items: [
-                    "Yes".tr,
-                    "No".tr,
-                  ],
-                  dropdownDecoratorProps: DropDownDecoratorProps(
-                    dropdownSearchDecoration: InputDecoration(
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "university students".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    onChanged: (val) {
+                      setState(() {
+                        _count = int.parse(val);
+                      });
+                    },
+                    controller: numUniversityStu,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -278,76 +176,32 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  onChanged: (val) {
-                    familyAssistance = val;
-                  },
-                  selectedItem: familyAssistance,
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "affairs card".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 250,
-                child: TextFormField(
-                  controller: cardNumber,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "chronic diseases".tr,
+                  style: TextStyle(fontSize: 20),
                 ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "family housing".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 400,
-                child: DropdownSearch<String>(
-                  popupProps: PopupProps.menu(
-                    showSelectedItems: true,
-                    disabledItemFn: (String s) => s.startsWith('I'),
-                  ),
-                  items: [
-                    "Property".tr,
-                    "Rent".tr,
-                    "Live with another family without paying rent".tr
-                  ],
-                  dropdownDecoratorProps: DropDownDecoratorProps(
-                    dropdownSearchDecoration: InputDecoration(
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: numMemDiseases,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -358,83 +212,38 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  onChanged: (val) {
-                    familyHousing = val;
-                  },
-                  selectedItem: familyHousing,
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "monthly rent".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 200,
-                child: DropdownSearch<String>(
-                  popupProps: PopupProps.menu(
-                    showSelectedItems: true,
-                    disabledItemFn: (String s) => s.startsWith('I'),
-                  ),
-                  items: [
-                    "-------------------",
-                    "0 _ 1000",
-                    "1000 _ 2000",
-                    "2001 _ 3000",
-                    "Above 3000".tr
-                  ],
-                  dropdownDecoratorProps: DropDownDecoratorProps(
-                    dropdownSearchDecoration: InputDecoration(
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(color: Colors.purple, width: 2)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(color: Colors.purple, width: 2)),
-                    ),
-                  ),
-                  onChanged: (val) {
-                    monthlyRent = val;
-                  },
-                  selectedItem: monthlyRent,
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Family income".tr,
+                  style: TextStyle(fontSize: 20),
                 ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Family residence".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 200,
-                child: DropdownSearch<String>(
+                SizedBox(
+                  width: 200,
+                  child: DropdownSearch<String>(
                     popupProps: PopupProps.menu(
                       showSelectedItems: true,
                       disabledItemFn: (String s) => s.startsWith('I'),
                     ),
-                    items: ["City".tr, "Village".tr, "Camp".tr, "Abroad".tr],
+                    items: [
+                      "------------",
+                      "0 - 2000",
+                      "2001 - 3000",
+                      "3001 - 4000",
+                      "4001 - 5000",
+                      "5001 - 10000",
+                      "Above 10000".tr
+                    ],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
                         labelStyle:
@@ -450,168 +259,37 @@ class _Section3State extends State<Section3> {
                       ),
                     ),
                     onChanged: (val) {
-                      familyResidence = val;
+                      familyIncome = val;
                     },
-                    selectedItem: familyResidence),
-              )
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Text(
-            "vehicles".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Private         ".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numPrivate,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
+                    selectedItem: familyIncome,
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Public           ".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numPublic,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "assistance".tr,
+                  style: TextStyle(fontSize: 20),
                 ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Commercial ".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: numCommercial,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "student housing".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: studentHousingFee,
-                  cursorColor: Colors.purple,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Do you smoke ?".tr,
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                width: 100,
-                child: DropdownSearch<String>(
+                SizedBox(
+                  width: 100,
+                  child: DropdownSearch<String>(
                     popupProps: PopupProps.menu(
                       showSelectedItems: true,
                       disabledItemFn: (String s) => s.startsWith('I'),
                     ),
-                    items: ["Yes".tr, "No".tr],
+                    items: [
+                      "Yes".tr,
+                      "No".tr,
+                    ],
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
                         labelStyle:
@@ -627,107 +305,484 @@ class _Section3State extends State<Section3> {
                       ),
                     ),
                     onChanged: (val) {
-                      smoke = val;
+                      familyAssistance = val;
                     },
-                    selectedItem: smoke),
-              )
-            ],
+                    selectedItem: familyAssistance,
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.all(20),
-          child: Text(
-            "Undergraduate fraternity data :".tr,
-            style: TextStyle(fontSize: 20),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "affairs card".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 250,
+                  child: TextFormField(
+                    controller: cardNumber,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Center(
-          child: Table(
-            border: TableBorder.all(),
-            children: [
-              buildRow([
-                'Student Name'.tr,
-                'Registration number'.tr,
-                'College Name'.tr,
-                'University Name'.tr,
-              ]),
-              buildRow([' ', ' ', ' ', ' '], isHeader: true),
-              buildRow([' ', ' ', ' ', ' ']),
-              buildRow([' ', ' ', ' ', ' ']),
-              buildRow([' ', ' ', ' ', ' ']),
-              buildRow([' ', ' ', ' ', ' ']),
-            ],
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "family housing".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 400,
+                  child: DropdownSearch<String>(
+                    popupProps: PopupProps.menu(
+                      showSelectedItems: true,
+                      disabledItemFn: (String s) => s.startsWith('I'),
+                    ),
+                    items: [
+                      "Property".tr,
+                      "Rent".tr,
+                      "Live with another family without paying rent".tr
+                    ],
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        labelStyle:
+                            TextStyle(fontSize: 20, color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                      ),
+                    ),
+                    onChanged: (val) {
+                      familyHousing = val;
+                    },
+                    selectedItem: familyHousing,
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "monthly rent".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 200,
+                  child: DropdownSearch<String>(
+                    popupProps: PopupProps.menu(
+                      showSelectedItems: true,
+                      disabledItemFn: (String s) => s.startsWith('I'),
+                    ),
+                    items: [
+                      "-------------------",
+                      "0 _ 1000",
+                      "1000 _ 2000",
+                      "2001 _ 3000",
+                      "Above 3000".tr
+                    ],
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        labelStyle:
+                            TextStyle(fontSize: 20, color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: Colors.purple, width: 2)),
+                      ),
+                    ),
+                    onChanged: (val) {
+                      monthlyRent = val;
+                    },
+                    selectedItem: monthlyRent,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Family residence".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 200,
+                  child: DropdownSearch<String>(
+                      popupProps: PopupProps.menu(
+                        showSelectedItems: true,
+                        disabledItemFn: (String s) => s.startsWith('I'),
+                      ),
+                      items: ["City".tr, "Village".tr, "Camp".tr, "Abroad".tr],
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          labelStyle:
+                              TextStyle(fontSize: 20, color: Colors.black),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                        ),
+                      ),
+                      onChanged: (val) {
+                        familyResidence = val;
+                      },
+                      selectedItem: familyResidence),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Text(
+              "vehicles".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Private         ".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: numPrivate,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Public           ".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: numPublic,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Commercial ".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: numCommercial,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "student housing".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: studentHousingFee,
+                    cursorColor: Colors.purple,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(color: Colors.purple, width: 2)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Do you smoke ?".tr,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 100,
+                  child: DropdownSearch<String>(
+                      popupProps: PopupProps.menu(
+                        showSelectedItems: true,
+                        disabledItemFn: (String s) => s.startsWith('I'),
+                      ),
+                      items: ["Yes".tr, "No".tr],
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          labelStyle:
+                              TextStyle(fontSize: 20, color: Colors.black),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2)),
+                        ),
+                      ),
+                      onChanged: (val) {
+                        smoke = val;
+                      },
+                      selectedItem: smoke),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(20),
+            child: Text(
+              "Undergraduate fraternity data :".tr,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Table(
+              border: TableBorder.all(),
+              children: [
+                buildRow([
+                  'Student Name'.tr,
+                  'Registration number'.tr,
+                  'College Name'.tr,
+                  'University Name'.tr,
+                ]),
+                buildRow([' ', ' ', ' ', ' '], isHeader: true),
+                buildRow([' ', ' ', ' ', ' ']),
+                buildRow([' ', ' ', ' ', ' ']),
+                buildRow([' ', ' ', ' ', ' ']),
+                buildRow([' ', ' ', ' ', ' ']),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
 
-        /* Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            ListView.builder(
+          /* Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return _row(index);
+                },
+              )
+            ]),
+          ),*/
+
+          /* Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Student Name'.tr),
+                Divider(
+                  height: 6,
+                ),
+                Text('Registration number'.tr),
+                Text('College Name'.tr),
+                Text('University Name'.tr)
+              ],
+            ),
+          ),*/
+          /* Center(
+            child: DataTable(columns: [
+              DataColumn(
+                label: Text(
+                  'Student ',
+                  softWrap: isBlank,
+                ),
+              ),
+              DataColumn(
+                label: Text('Registration '),
+              ),
+              DataColumn(
+                label: Text('College '),
+              ),
+              DataColumn(label: Text('University '))
+            ], rows: []),
+          ),*/
+
+          Divider(
+            height: 15,
+          ),
+          Container(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: 2,
+              itemCount: _count,
               itemBuilder: (context, index) {
                 return _row(index);
               },
-            )
-          ]),
-        ),*/
-
-        /* Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Student Name'.tr),
-              Divider(
-                height: 6,
-              ),
-              Text('Registration number'.tr),
-              Text('College Name'.tr),
-              Text('University Name'.tr)
-            ],
+            ),
           ),
-        ),*/
-        /* Center(
-          child: DataTable(columns: [
-            DataColumn(
-              label: Text(
-                'Student ',
-                softWrap: isBlank,
+          Text(_result),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
-            ),
-            DataColumn(
-              label: Text('Registration '),
-            ),
-            DataColumn(
-              label: Text('College '),
-            ),
-            DataColumn(label: Text('University '))
-          ], rows: []),
-        ),*/
-        Divider(
-          height: 15,
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
-            ),
-            onPressed: (() {
-              // print(userId);
-              save();
-              // _count++;
-            }),
-            child: Text(
-              "Save data".tr,
-              style: TextStyle(fontSize: 20),
-            )),
-      ],
+              onPressed: (() {
+                // print(userId);
+                save();
+                // _count++;
+              }),
+              child: Text(
+                "Save data".tr,
+                style: TextStyle(fontSize: 20),
+              )),
+          SizedBox(
+            height: 15,
+          ),
+        ],
+      ),
     );
   }
 
@@ -743,12 +798,155 @@ class _Section3State extends State<Section3> {
         );
       }).toList());
 
-  _row(int index) {
-    return Row(
-      children: [
-        Text("hello"),
-        TextFormField(),
-      ],
+  _row(int key) {
+    return Container(
+      margin: EdgeInsets.all(20),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Student #$key",
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                onChanged: (val) {
+                  StudentName = val;
+                  _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
+                      UniversityName);
+                },
+                cursorColor: Colors.purple,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  labelText: 'Student Name'.tr,
+                  labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                onChanged: (val) {
+                  RegistrationNumber = int.parse(val);
+                  _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
+                      UniversityName);
+                },
+                cursorColor: Colors.purple,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Registration number'.tr,
+                  labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                onChanged: (val) {
+                  CollegeName = val;
+                  _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
+                      UniversityName);
+                },
+                cursorColor: Colors.purple,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  labelText: 'College Name'.tr,
+                  labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                onChanged: (val) {
+                  UniversityName = val;
+                  _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
+                      UniversityName);
+                },
+                cursorColor: Colors.purple,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  labelText: 'University Name'.tr,
+                  labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.purple, width: 2)),
+                ),
+              ),
+            ),
+          ]),
     );
+  }
+
+  _onUpdate(int key, String StudentName, int RegistrationNumber,
+      String CollegeName, String UniversityName) {
+    int foundKey = -1;
+    for (var map in _values) {
+      if (map.containsKey('id')) {
+        if (map['id'] == key) {
+          foundKey = key;
+          break;
+        }
+      }
+    }
+
+    if (-1 != foundKey) {
+      _values.removeWhere((map) {
+        return map['id'] == foundKey;
+      });
+    }
+
+    Map<String, dynamic> json = {
+      'id': key,
+      'StudentName': StudentName,
+      'RegistrationNumber': RegistrationNumber,
+      'CollegeName': CollegeName,
+      'UniversityName': UniversityName
+    };
+    _values.add(json);
+
+    setState(() {
+      _result = _prettyPrint(_values);
+    });
+  }
+
+  String _prettyPrint(jsonObject) {
+    var encoder = JsonEncoder.withIndent('    ');
+    return encoder.convert(jsonObject);
   }
 }
