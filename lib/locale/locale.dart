@@ -628,7 +628,7 @@ class MyLocale implements Translations {
           "Reset": "Reset",
           "Quatrain Name  ": "Quatrain Name  ",
           "Note                  ": "Note                  ",
-          "Married2": "Married2",
+          "Married2": "Married",
           "Something Else": "Something Else",
           "Saved": "Data saved successfully",
           "Updated!": "The data has been updated!",

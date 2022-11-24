@@ -25,7 +25,7 @@ class _FamilyDataState extends State<FamilyData> {
     sections = [
       Section1(userId: widget.userId),
       Section2(userId: widget.userId),
-      Section3()
+      Section3(userId: widget.userId)
     ];
   }
 

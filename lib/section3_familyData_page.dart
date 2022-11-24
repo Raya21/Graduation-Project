@@ -1,17 +1,91 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class Section3 extends StatefulWidget {
-  const Section3({super.key});
+  final int userId;
+  const Section3({super.key, required this.userId});
 
   @override
   State<Section3> createState() => _Section3State();
 }
 
 class _Section3State extends State<Section3> {
+  late int _count;
+  // var userId;
+  @override
+  void initState() {
+    //   userId = widget.userId;
+    _count = 0;
+  }
+
   var selectedItem = null;
   var x = Colors.pink;
+
+  var familyIncome = null;
+  var familyAssistance = null;
+  var familyHousing = null;
+
+  var monthlyRent = null;
+  var familyResidence = null;
+  var smoke = null;
+
+  final numFamilyMem = TextEditingController();
+  final numUniversityStu = TextEditingController();
+  final numMemDiseases = TextEditingController();
+
+  final cardNumber = TextEditingController();
+  final numPrivate = TextEditingController();
+  final numPublic = TextEditingController();
+  final numCommercial = TextEditingController();
+  final studentHousingFee = TextEditingController();
+
+  Future save() async {
+    var url = "http://192.168.1.10/handinhand/familydatas3.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "userId": widget.userId.toString(),
+      "numFamilyMem": numFamilyMem.text,
+      "numMemDiseases": numMemDiseases.text,
+      "familyIncome": familyIncome,
+      "familyAssistance": familyAssistance,
+      "cardNumber": cardNumber.text,
+      "familyHousing": familyHousing,
+      "monthlyRent": monthlyRent,
+      "familyResidence": familyResidence,
+      "numPrivate": numPrivate.text,
+      "numPublic": numPublic.text,
+      "numCommercial": numCommercial.text,
+      "studentHousingFee": studentHousingFee.text,
+      "smoke": smoke,
+      "numUniversityStu": numUniversityStu.text
+    });
+    var data = await json.decode(response.body);
+    print(data);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Saved".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
+    } else if (data == "Updated") {
+      Fluttertoast.showToast(
+          msg: "Updated!".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,6 +108,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numFamilyMem,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -67,6 +142,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numUniversityStu,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -100,6 +176,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numMemDiseases,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -156,8 +233,10 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  //onChanged: print,
-                  selectedItem: "------------",
+                  onChanged: (val) {
+                    familyIncome = val;
+                  },
+                  selectedItem: familyIncome,
                 ),
               )
             ],
@@ -199,8 +278,10 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  //onChanged: print,
-                  selectedItem: "No".tr,
+                  onChanged: (val) {
+                    familyAssistance = val;
+                  },
+                  selectedItem: familyAssistance,
                 ),
               )
             ],
@@ -224,6 +305,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 250,
                 child: TextFormField(
+                  controller: cardNumber,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -276,8 +358,10 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  //onChanged: print,
-                  selectedItem: "Property".tr,
+                  onChanged: (val) {
+                    familyHousing = val;
+                  },
+                  selectedItem: familyHousing,
                 ),
               )
             ],
@@ -322,8 +406,10 @@ class _Section3State extends State<Section3> {
                               BorderSide(color: Colors.purple, width: 2)),
                     ),
                   ),
-                  //onChanged: print,
-                  selectedItem: "-------------------",
+                  onChanged: (val) {
+                    monthlyRent = val;
+                  },
+                  selectedItem: monthlyRent,
                 ),
               )
             ],
@@ -363,8 +449,10 @@ class _Section3State extends State<Section3> {
                                 BorderSide(color: Colors.purple, width: 2)),
                       ),
                     ),
-                    //onChanged: print,
-                    selectedItem: "City".tr),
+                    onChanged: (val) {
+                      familyResidence = val;
+                    },
+                    selectedItem: familyResidence),
               )
             ],
           ),
@@ -394,6 +482,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numPrivate,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -423,6 +512,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numPublic,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -452,6 +542,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: numCommercial,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -485,6 +576,7 @@ class _Section3State extends State<Section3> {
               SizedBox(
                 width: 100,
                 child: TextFormField(
+                  controller: studentHousingFee,
                   cursorColor: Colors.purple,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -534,8 +626,10 @@ class _Section3State extends State<Section3> {
                                 BorderSide(color: Colors.purple, width: 2)),
                       ),
                     ),
-                    //onChanged: print,
-                    selectedItem: "No".tr),
+                    onChanged: (val) {
+                      smoke = val;
+                    },
+                    selectedItem: smoke),
               )
             ],
           ),
@@ -569,6 +663,54 @@ class _Section3State extends State<Section3> {
         SizedBox(
           height: 15,
         ),
+
+        /* Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return _row(index);
+              },
+            )
+          ]),
+        ),*/
+
+        /* Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Student Name'.tr),
+              Divider(
+                height: 6,
+              ),
+              Text('Registration number'.tr),
+              Text('College Name'.tr),
+              Text('University Name'.tr)
+            ],
+          ),
+        ),*/
+        /* Center(
+          child: DataTable(columns: [
+            DataColumn(
+              label: Text(
+                'Student ',
+                softWrap: isBlank,
+              ),
+            ),
+            DataColumn(
+              label: Text('Registration '),
+            ),
+            DataColumn(
+              label: Text('College '),
+            ),
+            DataColumn(label: Text('University '))
+          ], rows: []),
+        ),*/
+        Divider(
+          height: 15,
+        ),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: Colors.purple,
@@ -576,7 +718,11 @@ class _Section3State extends State<Section3> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
             ),
-            onPressed: (() {}),
+            onPressed: (() {
+              // print(userId);
+              save();
+              // _count++;
+            }),
             child: Text(
               "Save data".tr,
               style: TextStyle(fontSize: 20),
@@ -596,4 +742,13 @@ class _Section3State extends State<Section3> {
           child: Center(child: Text(cell)),
         );
       }).toList());
+
+  _row(int index) {
+    return Row(
+      children: [
+        Text("hello"),
+        TextFormField(),
+      ],
+    );
+  }
 }
