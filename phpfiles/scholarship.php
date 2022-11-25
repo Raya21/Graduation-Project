@@ -23,6 +23,7 @@ $sql = "INSERT INTO scholarships (sname, description, qualifications, percentage
 
 if (mysqli_query($conn, $sql)) {
     echo '<script>alert("New record created successfully")</script>';
+    header('Location: scholarship.html');
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

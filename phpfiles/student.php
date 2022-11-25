@@ -33,12 +33,14 @@ move_uploaded_file(
 $name = $_POST["fname"];
 $desc = $_POST["desc"];
 
-$sql = "INSERT INTO outstanding_students (fname, description, image) VALUES ('$name', '$desc', '$image_name')";
+$sql = "INSERT INTO outstanding_students (fname, description, image) VALUES ('$name', '$desc', 'images/$image_name')";
 
 if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    echo '<script>alert("New record created successfully")</script>';
+    header('Location: student.html');
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo '<script>alert("Error student did not added")</script>';
+    header('Location: student.html');
 }
 
 mysqli_close($conn);

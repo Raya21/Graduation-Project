@@ -68,11 +68,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
                       style: TextStyle(fontSize: 20),
                     ),
                     leading: Container(
-                      child: Image.asset(
-                        "lib/imgs/student.png",
-                        width: 50,
-                        height: 100,
-                      ),
+                        child: Image.network("http://192.168.1.100/handinhand/"+list[i]["image"]),
                     ),
                   ),
                 ),
