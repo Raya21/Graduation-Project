@@ -4,25 +4,72 @@ $mydb = mysqli_connect("localhost","root","","handinhand");
 if(!$mydb){
   echo "Database connection failed";
 }
-
+$BrothersData=json_decode($_POST['BrothersData']);
 $userId= $_POST['userId'];
-$numFamilyMem = $_POST['numFamilyMem'];
-$numMemDiseases = $_POST['numMemDiseases'];
-$familyIncome = $_POST['familyIncome'];
+$numFamilyMem = 1;
+$numMemDiseases = 1;
+$familyIncome = "1";
 
-$familyAssistance = $_POST['familyAssistance'];
-$cardNumber = $_POST['cardNumber'];
-$familyHousing = $_POST['familyHousing'];
-$monthlyRent = $_POST['monthlyRent'];
+$familyAssistance = "f";
+$cardNumber = 3;
+$familyHousing = "r";
+$monthlyRent = "44";
 
-$familyResidence= $_POST['familyResidence'];
-$numPrivate = $_POST['numPrivate'];
-$numPublic = $_POST['numPublic'];
-$numCommercial = $_POST['numCommercial'];
+$familyResidence="kk";
+$numPrivate = 7;
+$numPublic = 9;
+$numCommercial = 7;
 
-$studentHousingFee= $_POST['studentHousingFee'];
-$smoke = $_POST['smoke'];
-$numUniversityStu= $_POST['numUniversityStu'];
+$studentHousingFee= 55;
+$smoke = "l";
+$numUniversityStu= 1;
+
+$StudentName;
+$RegistrationNumber;
+$CollegeName;
+$UniversityName;
+
+$objects;
+
+
+ $i=0;
+  foreach($BrothersData as $key => $value){
+    $i=0;
+    foreach($value as $k => $v){
+     $objects[$i]=$v;
+     $i++;
+   }
+$sql = "SELECT * FROM brothersdata WHERE BrotherId='".$objects[0]."'";
+$result = mysqli_query($mydb,$sql);
+$count  = mysqli_num_rows($result);
+
+if ($count == 1) {
+
+  $update = "UPDATE brothersdata SET BrotherId='".$objects[0]."',
+  StudentName='".$objects[1]."',
+  RegistrationNumber='".$objects[2]."',
+  CollegeName='".$objects[3]."',
+  UniversityName='".$objects[4]."'
+  WHERE BrotherId='".$objects[0]."'";
+  $query = mysqli_query($mydb,$update);
+
+}
+else{
+  $insert = "INSERT INTO brothersdata(BrotherId,
+  StudentName,
+  RegistrationNumber,
+  CollegeName,
+  UniversityName)
+  VALUES('".$objects[0]."',
+  '".$objects[1]."',
+  '".$objects[2]."',
+  '".$objects[3]."',
+  '".$objects[4]."')";
+  $query = mysqli_query($mydb,$insert);
+}
+
+
+ }
 
 $sql2 = "SELECT studentIdCard FROM familydatas1 WHERE userId='".$userId."'";
 $IdCard = mysqli_query($mydb,$sql2);
