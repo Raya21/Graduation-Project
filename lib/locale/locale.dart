@@ -311,6 +311,7 @@ class MyLocale implements Translations {
           "Something Else": "غير ذلك",
           "Saved": "تم حفظ البيانات بنجاح",
           "Updated!": "تم تحديث البيانات!",
+          "Student #": "الطالب #",
           "x": "-1"
         },
         "en": {
@@ -632,6 +633,7 @@ class MyLocale implements Translations {
           "Something Else": "Something Else",
           "Saved": "Data saved successfully",
           "Updated!": "The data has been updated!",
+          "Student #": "Student #",
           "x": "1"
         }
       };

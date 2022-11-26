@@ -16,10 +16,11 @@ class Section3 extends StatefulWidget {
 }
 
 class _Section3State extends State<Section3> {
+  bool _isVisible = false;
   late int _count;
   late String _result;
   String StudentName = '';
-  int RegistrationNumber = 0;
+  String RegistrationNumber = '0';
   String CollegeName = '';
   String UniversityName = '';
   late List<Map<String, dynamic>> _values;
@@ -160,6 +161,11 @@ class _Section3State extends State<Section3> {
                     onChanged: (val) {
                       setState(() {
                         _count = int.parse(val);
+                        if (_count > 0) {
+                          _isVisible = true;
+                        } else {
+                          _isVisible = false;
+                        }
                       });
                     },
                     controller: numUniversityStu,
@@ -672,84 +678,36 @@ class _Section3State extends State<Section3> {
               ],
             ),
           ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.all(20),
-            child: Text(
-              "Undergraduate fraternity data :".tr,
-              style: TextStyle(fontSize: 20),
+          Visibility(
+            visible: _isVisible,
+            child: Container(
+              width: double.infinity,
+              margin: EdgeInsets.all(20),
+              child: Text(
+                "Undergraduate fraternity data :".tr,
+                style: TextStyle(fontSize: 20),
+              ),
             ),
           ),
-          Center(
-            child: Table(
-              border: TableBorder.all(),
-              children: [
-                buildRow([
-                  'Student Name'.tr,
-                  'Registration number'.tr,
-                  'College Name'.tr,
-                  'University Name'.tr,
-                ]),
-                buildRow([' ', ' ', ' ', ' '], isHeader: true),
-                buildRow([' ', ' ', ' ', ' ']),
-                buildRow([' ', ' ', ' ', ' ']),
-                buildRow([' ', ' ', ' ', ' ']),
-                buildRow([' ', ' ', ' ', ' ']),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
+          // Center(
+          //   child: Table(
+          //     border: TableBorder.all(),
+          //     children: [
+          //       buildRow([
+          //         'Student Name'.tr,
+          //         'Registration number'.tr,
+          //         'College Name'.tr,
+          //         'University Name'.tr,
+          //       ]),
+          //       buildRow([' ', ' ', ' ', ' '], isHeader: true),
+          //       buildRow([' ', ' ', ' ', ' ']),
+          //       buildRow([' ', ' ', ' ', ' ']),
+          //       buildRow([' ', ' ', ' ', ' ']),
+          //       buildRow([' ', ' ', ' ', ' ']),
+          //     ],
+          //   ),
+          // ),
 
-          /* Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(children: [
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return _row(index);
-                },
-              )
-            ]),
-          ),*/
-
-          /* Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Student Name'.tr),
-                Divider(
-                  height: 6,
-                ),
-                Text('Registration number'.tr),
-                Text('College Name'.tr),
-                Text('University Name'.tr)
-              ],
-            ),
-          ),*/
-          /* Center(
-            child: DataTable(columns: [
-              DataColumn(
-                label: Text(
-                  'Student ',
-                  softWrap: isBlank,
-                ),
-              ),
-              DataColumn(
-                label: Text('Registration '),
-              ),
-              DataColumn(
-                label: Text('College '),
-              ),
-              DataColumn(label: Text('University '))
-            ], rows: []),
-          ),*/
-
-          Divider(
-            height: 15,
-          ),
           Container(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -757,7 +715,7 @@ class _Section3State extends State<Section3> {
               shrinkWrap: true,
               itemCount: _count,
               itemBuilder: (context, index) {
-                return _row(index);
+                return _row(index.toString());
               },
             ),
           ),
@@ -786,19 +744,19 @@ class _Section3State extends State<Section3> {
     );
   }
 
-  TableRow buildRow(List<String> cells, {bool isHeader = false}) => TableRow(
-          children: cells.map((cell) {
-        final Style = TextStyle(
-          fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-          fontSize: 18,
-        );
-        return Padding(
-          padding: const EdgeInsets.all(12),
-          child: Center(child: Text(cell)),
-        );
-      }).toList());
+  // TableRow buildRow(List<String> cells, {bool isHeader = false}) => TableRow(
+  //         children: cells.map((cell) {
+  //       final Style = TextStyle(
+  //         fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+  //         fontSize: 18,
+  //       );
+  //       return Padding(
+  //         padding: const EdgeInsets.all(12),
+  //         child: Center(child: Text(cell)),
+  //       );
+  //     }).toList());
 
-  _row(int key) {
+  _row(String key) {
     return Container(
       margin: EdgeInsets.all(20),
       child: Column(
@@ -806,7 +764,7 @@ class _Section3State extends State<Section3> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Student #$key",
+              "Student #".tr + "$key",
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(
@@ -841,7 +799,7 @@ class _Section3State extends State<Section3> {
               width: 300,
               child: TextFormField(
                 onChanged: (val) {
-                  RegistrationNumber = int.parse(val);
+                  RegistrationNumber = val;
                   _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
                       UniversityName);
                 },
@@ -913,9 +871,9 @@ class _Section3State extends State<Section3> {
     );
   }
 
-  _onUpdate(int key, String StudentName, int RegistrationNumber,
+  _onUpdate(String key, String StudentName, String RegistrationNumber,
       String CollegeName, String UniversityName) {
-    int foundKey = -1;
+    String foundKey = '-1';
     for (var map in _values) {
       if (map.containsKey('id')) {
         if (map['id'] == key) {
