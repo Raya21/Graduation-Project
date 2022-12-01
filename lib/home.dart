@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
   }
 
   Future GetData() async {
-    var url = "http://192.168.1.106/handinhand/home.php";
+    var url = "http://192.168.1.104/handinhand/home.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
@@ -345,7 +345,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
-                                          Scholarship(value: "${list[i]["sname"]}", value1: "${list[i]["qualifications"]}", value2: "${list[i]["percentage"]}", value3: "${list[i]["attachments"]}", emailv:emailvalue,)));
+                                          Scholarship(value: "${list[i]["sname"]}", value1: "${list[i]["conditions"]}", value2: "${list[i]["percentage"]}", value3: "${list[i]["attachments"]}", emailv:emailvalue,)));
                                 },
                               ),
                             ),

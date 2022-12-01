@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: value.getTheme,
      locale: controller.initialLang,
       translations: MyLocale(),
-        initialRoute: "home",
+        initialRoute: "login",
         routes: {
           "home": (context) => Home(value: '',),
           "reset_password": (context) => ResetPass(),

@@ -64,7 +64,7 @@ class _applyLoansState extends State<applyLoans> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
-            label: "Qualifications".tr,
+            label: "Conditions".tr,
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
@@ -100,7 +100,7 @@ class _QualificationsState extends State<Qualifications> {
           child: Column(
         children: [
           Text(
-            "Qualifications:".tr,
+            "Conditions:".tr,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           Divider(

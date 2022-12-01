@@ -80,7 +80,7 @@ class _ScholarshipState extends State<Scholarship> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
-            label: "Qualifications".tr,
+            label: "Conditions".tr,
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
@@ -115,7 +115,7 @@ class _QualificationsState extends State<Qualifications> {
       child: SingleChildScrollView(
           child: Column(children: [
         Text(
-          "Qualifications:".tr,
+          "Conditions:".tr,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         Divider(
@@ -184,7 +184,7 @@ class _attachmentsState extends State<attachments> {
   }
 
   Future uploadImage() async {
-    final uri = await Uri.parse("http://192.168.1.106/handinhand/supload.php");
+    final uri = await Uri.parse("http://192.168.1.108/handinhand/supload.php");
     var request1 = http.MultipartRequest('POST', uri);
     request1.fields['email'] = emailglo;
     request1.fields['sname'] = sname;
@@ -213,7 +213,7 @@ class _attachmentsState extends State<attachments> {
     }
   }
   Future requestScholar() async {
-    var url = "http://192.168.1.106/handinhand/requestScholar.php";
+    var url = "http://192.168.1.108/handinhand/requestScholar.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
       "sname": sname,

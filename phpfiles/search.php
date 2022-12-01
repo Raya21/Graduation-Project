@@ -11,12 +11,10 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-if(isset($_GET['email'])){
-    echo $_GET['email'];
-}
-$sql = "SELECT * FROM scholarships";
-$result = $conn->query($sql);
-while($row = $result->fetch_assoc()){
-    $data[]=$row;
+$fname = $_POST['query'];
+$sql = "SELECT * FROM outstanding_students WHERE fname LIKE '%$fname%'";
+$res = $conn->query($sql);
+while ($row = $res->fetch_assoc()){
+    $data[] = $row;
 }
 echo json_encode($data);

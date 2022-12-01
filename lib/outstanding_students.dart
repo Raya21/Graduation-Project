@@ -14,7 +14,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
   List list = [];
 
   Future GetData() async {
-    var url = "http://192.168.1.113/handinhand/outStudent.php";
+    var url = "http://192.168.1.104/handinhand/outStudent.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
@@ -27,7 +27,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
 
   List Data = [];
   Future Suggestion() async {
-    var url = "http://192.168.1.113/handinhand/suggestion.php";
+    var url = "http://192.168.1.104/handinhand/suggestion.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
@@ -60,7 +60,8 @@ class _outstandingStudentsState extends State<outstandingStudents> {
           actions: [
             IconButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: DataSearch(data: Data));
+                  showSearch(
+                      context: context, delegate: DataSearch(data: Data));
                 },
                 icon: Icon(Icons.search))
           ],
@@ -94,7 +95,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
                       style: TextStyle(fontSize: 20),
                     ),
                     leading: Container(
-                      child: Image.network("http://192.168.1.113/handinhand/" +
+                      child: Image.network("http://192.168.1.104/handinhand/" +
                           list[i]["image"]),
                     ),
                   ),
@@ -107,38 +108,98 @@ class _outstandingStudentsState extends State<outstandingStudents> {
 class DataSearch extends SearchDelegate {
   List data = [];
   DataSearch({required this.data});
+
+  Future getStudentData() async {
+    var url = "http://192.168.1.104/handinhand/search.php";
+    var res = await http.post(Uri.parse(url), body: {"query": query});
+    if (res.statusCode == 200) {
+      var stuData = jsonDecode(res.body);
+      return stuData;
+    }
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () {
-      query = "";
-    }, icon: Icon(Icons.close))];
+    return [
+      IconButton(
+          onPressed: () {
+            query = "";
+          },
+          icon: Icon(Icons.close))
+    ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(onPressed: () {
-      close(context, null);
-    }, icon: Icon(Icons.arrow_back));
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: Icon(Icons.arrow_back));
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text(query,
-    style: TextStyle(fontSize: 20),);
+    return FutureBuilder<dynamic>(
+        future: getStudentData(),
+        builder: (stx, snp) {
+          if (!snp.hasData) {
+            return Center(
+              child: Text("There is No Student with this name!"),
+            );
+          } else if (snp.hasError) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView.builder(
+                itemCount: snp.data.length,
+                itemBuilder: (ctx, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 198, 126, 211),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: ListTile(
+                        title: Text('${snp.data[index]['fname']}',style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                        subtitle: Text(
+                          "${snp.data[index]["description"]}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        leading: Container(
+                          child: Image.network(
+                              "http://192.168.1.104/handinhand/" +
+                                  snp.data[index]["image"]),
+                        ),
+                      ),
+                    ),
+                  );
+                });
+          }
+        });
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var datasuggestion = query.isEmpty ? data : data.where((element) => element.toString().toLowerCase().contains(query)).toList();
+    var datasuggestion = query.isEmpty
+        ? data
+        : data
+            .where(
+                (element) => element.toString().toLowerCase().contains(query))
+            .toList();
     return ListView.builder(
-      itemCount: datasuggestion.length,
-    itemBuilder: (ctn,index){
-      return ListTile(
-        onTap: (){
-          query = datasuggestion[index];
-          showResults(context);
-        },
-        leading: Icon(Icons.person),
-        title: Text('${datasuggestion[index]}'),);});
+        itemCount: datasuggestion.length,
+        itemBuilder: (ctn, index) {
+          return ListTile(
+            onTap: () {
+              query = datasuggestion[index];
+              showResults(context);
+            },
+            leading: Icon(Icons.person),
+            title: Text('${datasuggestion[index]}'),
+          );
+        });
   }
 }

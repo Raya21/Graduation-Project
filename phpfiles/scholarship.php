@@ -15,11 +15,13 @@ if (!$conn) {
 
 $sname = $_POST["s_name"];
 $desc = $_POST["desc"];
-$quali = $_POST["quali"];
+$cond = $_POST["quali"];
 $percent = $_POST["percent"];
+$college = $_POST['college'];
+$gpa = $_POST['gpa'];
 $attach = $_POST['attach'];
 
-$sql = "INSERT INTO scholarships (sname, description, qualifications, percentage, attachments) VALUES ('$sname', '$desc','$quali','$percent','$attach')";
+$sql = "INSERT INTO scholarships (sname, description, conditions, percentage, college, gpa, attachments) VALUES ('$sname', '$desc','$cond','$percent','$college','$gpa','$attach')";
 
 if (mysqli_query($conn, $sql)) {
     echo '<script>alert("New record created successfully")</script>';

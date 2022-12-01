@@ -104,7 +104,7 @@ class _personInfoState extends State<personInfo> {
 
   Future person() async {
     idglo = id.text;
-    var url = "http://192.168.1.105/handinhand/personInfo.php";
+    var url = "http://192.168.1.108/handinhand/personInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
       "fname": fname.text,
@@ -480,7 +480,7 @@ class _contactInfoState extends State<contactInfo> {
   String _errorMessage = '';
 
   Future contact() async {
-    var url = "http://192.168.1.105/handinhand/contactInfo.php";
+    var url = "http://192.168.1.108/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "TPhone": Tphone.text,
@@ -618,11 +618,11 @@ class _eduInfoState extends State<eduInfo> {
   String selectedBranch = "Study branch".tr;
   String selectedDegree = "Undergraduate degree".tr;
   String selectedYear = "Academic year".tr;
+  String selectedUni = "University".tr;
+  String selectedCollege = "College".tr;
   TextEditingController yearofEn = TextEditingController();
   TextEditingController schoolcon = TextEditingController();
   TextEditingController gradecon = TextEditingController();
-  TextEditingController uni = TextEditingController();
-  TextEditingController collegecon = TextEditingController();
   TextEditingController dep = TextEditingController();
   TextEditingController gpacon = TextEditingController();
   TextEditingController uniid = TextEditingController();
@@ -630,15 +630,15 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.1.105/handinhand/eduInfo.php";
+    var url = "http://192.168.1.108/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "email": emailglo,
       "yearofEn": yearofEn.text,
       "school": schoolcon.text,
       "grade": gradecon.text,
-      "university": uni.text,
-      "college": collegecon.text,
+      "university": selectedUni,
+      "college": selectedCollege,
       "department": dep.text,
       "gpa": gpacon.text,
       "yearofEnUni": yearofEnUni.text,
@@ -879,20 +879,67 @@ class _eduInfoState extends State<eduInfo> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              TextFormField(
-                controller: uni,
-                keyboardType: TextInputType.name,
-                cursorColor: Colors.purple,
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 10.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide:
-                            BorderSide(color: Colors.purple, width: 2))),
+              Align(
+                //alignment: Alignment.topLeft,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.purple,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: DropdownButton(
+                    isExpanded: true,
+                    items: [
+                      "University".tr,
+                      "Al-Quds University".tr,
+                      "Birzeit University".tr,
+                      "An-Najah National University".tr,
+                      "Palestine Polytechnic University".tr,
+                      "Khalel university".tr,
+                      "Bethlehem University".tr,
+                      "University College of Educational Sciences - Teachers' House".tr,
+                      "Palestine Technical University - Kadoorie".tr,
+                      "Arab American University - Jenin".tr,
+                      "Al-Istiqlal University".tr,
+                      "Ibn Sina College of Health Sciences".tr,
+                      "Bethlehem Bible College - Technical and Vocational Education and Training".tr,
+                      "Palestine Technical College - Al-Arroub".tr,
+                      "Palestine Technical College - Ramallah".tr,
+                      "Wajdi Nihad Abu Gharbia University College of Technology".tr,
+                      "Palestine Ahliya University".tr,
+                      "Al-Hajjah Andalib Al-Amad College of Nursing and Midwifery".tr,
+                      "Hebron College of Nursing".tr,
+                      "Abrahamic Community College".tr,
+                      "Talitha National Community College".tr,
+                      "Dar Al-Kalima University College of Arts and Culture".tr,
+                      "Al-Quds Open University".tr,
+                      "Islamic Call College - Qalqilya".tr,
+                      "Faculty of Nursing, Makassed Association".tr,
+                      "Family Revival College - Vocational and Technical Education and Training".tr,
+                      "Caritas College of Nursing".tr,
+                      "Rawda College for Professional Sciences".tr,
+                      "Islamic University".tr,
+                      "Al Azhar university".tr,
+                      "Gaza University".tr,
+                      "Al-Aqsa University".tr,
+                      "Palestine University".tr,
+                      "Al-Zaytoonah University of Science and Technology".tr
+                    ]
+                        .map((e) => DropdownMenuItem(
+                              child: Text("$e", style: TextStyle(fontSize: 17)),
+                              value: e,
+                            ))
+                        .toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        selectedUni = val!;
+                      });
+                    },
+                    value: selectedUni,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -904,20 +951,64 @@ class _eduInfoState extends State<eduInfo> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              TextFormField(
-                controller: collegecon,
-                keyboardType: TextInputType.name,
-                cursorColor: Colors.purple,
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 10.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.purple, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide:
-                            BorderSide(color: Colors.purple, width: 2))),
+              Align(
+                //alignment: Alignment.topLeft,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.purple,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: DropdownButton(
+                    isExpanded: true,
+                    items: [
+                      "College".tr,
+                      "Business school".tr,
+                      "Faculty of Educational Sciences".tr,
+                      "faculty of Pharmacy".tr,
+                      "Advocacy College".tr,
+                      "College of Engineering".tr,
+                      "Faculty of Dentistry".tr,
+                      "College of Health Professions".tr,
+                      "Al-Quds College- Bard".tr,
+                      "College of Quran and Islamic Studies".tr,
+                      "College of Dual Studies".tr,
+                      "Hind Al Husseini College".tr,
+                      "College of Literature".tr,
+                      "College of Public Health".tr,
+                      "College of Human Medicine".tr,
+                      "College of Science".tr,
+                      "College of Agriculture and Veterinary Medicine".tr,
+                      "Hisham Hijjawi College".tr,
+                      "College of Sharia".tr,
+                      "Faculty of Medicine and Health Sciences".tr,
+                      "College of Fine Arts".tr,
+                      "College of Commerce and Economics".tr,
+                      "College of Law and Public Administration".tr,
+                      "Faculty of Education".tr,
+                      "College of Administrative Sciences and Information Systems".tr,
+                      "College of Information Technology".tr,
+                      "College of Applied Professions".tr,
+                      "College of Finance and Administration".tr,
+                      "Graduate School".tr,
+                      "Institute of Hotel and Tourism Management".tr,
+                      "College of Media".tr,
+                    ]
+                        .map((e) => DropdownMenuItem(
+                              child: Text("$e", style: TextStyle(fontSize: 17)),
+                              value: e,
+                            ))
+                        .toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        selectedCollege = val!;
+                      });
+                    },
+                    value: selectedCollege,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 15,

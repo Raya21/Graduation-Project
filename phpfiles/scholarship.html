@@ -19,7 +19,7 @@
         .mane{
             background-color: rgb(0,0,0,0.5);
             width: 800px;
-            height: 1000px;
+            height: 1300px;
             margin: auto;
         }
         form{
@@ -108,17 +108,36 @@
             left: 200px;
             top: -130px;
         }
+        .gpalabel{
+            position: relative;
+            color: #E5E5E5;
+            text-transform: capitalize;
+            font-size: 14px;
+            left: 200px;
+            top: 150px;
+        }
+        .gpa{
+            position: relative;
+            left: 170px;
+            top: 170px;
+            line-height: 40px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 16px;
+            color: #555;
+            width: 300px;
+        }
         .att{
             position: relative;
             left: 200px;
-            top: 125px;
+            top: 215px;
             line-height: 20px;
             border-radius: 6px;
             padding: 0 22px;
             font-size: 16px;
             color: #555;
             width: 300px;
-            height: 150px;
+            height: 130px;
         }
         .attlabel{
             position: relative;
@@ -126,11 +145,11 @@
             text-transform: capitalize;
             font-size: 14px;
             left: 200px;
-            top: -50px;
+            top: 65px;
         }
         button{
             position: relative;
-            top: 100px;
+            top: 190px;
             left: 100px;
             background-color: black;
             display: block;
@@ -148,7 +167,7 @@
         }
         a{
             position: relative;
-            top: 25px;
+            top: 115px;
             left: 400px;
             font-size: 15px;
             background-color: black;
@@ -165,7 +184,26 @@
             height: 45px;
 
         }
-
+        .coll{
+            position: relative;
+            left: 150px;
+            top: 125px;
+            line-height: 20px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 16px;
+            color: #555;
+            width: 300px;
+            height: 20px;
+        }
+        .collabel{
+            position: relative;
+            color: #E5E5E5;
+            text-transform: capitalize;
+            font-size: 14px;
+            left: 200px;
+            top: 105px;
+        }
     </style>
 </head>
 <body>
@@ -184,11 +222,55 @@
         </div>
         <div id="quali">
             <textarea name="quali" class="qua"></textarea><br>
-            <label class="qualabel">Qualifications</label>
+            <label class="qualabel">Conditions</label>
         </div>
         <div id="percent">
             <textarea name="percent" class="per"></textarea><br>
             <label class="perlabel">Scholarship Percentage</label>
+        </div>
+        <div id="colle">
+            <label class="collabel" for="coll">College</label>
+            <select  name="college" id="coll" class="coll">
+                <option value="Business school">Business school</option>
+                <option value="Faculty of Educational Sciences">Faculty of Educational Sciences</option>
+                <option value="faculty of Pharmacy">faculty of Pharmacy</option>
+                <option value="Advocacy College">Advocacy College</option>
+                <option value="College of Engineering">College of Engineering</option>
+                <option value="Faculty of Dentistry">Faculty of Dentistry</option>
+                <option value="College of Health Professions">College of Health Professions</option>
+                <option value="Al-Quds College- Bard">Al-Quds College- Bard</option>
+                <option value="College of Quran and Islamic Studies">College of Quran and Islamic Studies</option>
+                <option value="College of Dual Studies">College of Dual Studies</option>
+                <option value="Hind Al Husseini College">Hind Al Husseini College</option>
+                <option value="College of Literature">College of Literature</option>
+                <option value="College of Public Health">College of Public Health</option>
+                <option value="College of Human Medicine">College of Human Medicine</option>
+                <option value="College of Science">College of Science</option>
+                <option value="College of Agriculture and Veterinary Medicine">College of Agriculture and Veterinary Medicine</option>
+                <option value="Hisham Hijjawi College">Hisham Hijjawi College</option>
+                <option value="College of Sharia">College of Sharia</option>
+                <option value="Faculty of Medicine and Health Sciences">Faculty of Medicine and Health Sciences</option>
+                <option value="College of Fine Arts">College of Fine Arts</option>
+                <option value="College of Commerce and Economics">College of Commerce and Economics</option>
+                <option value="College of Law and Public Administration">College of Law and Public Administration</option>
+                <option value="Faculty of Education">Faculty of Education</option>
+                <option value="College of Administrative Sciences and Information Systems">College of Administrative Sciences and Information Systems</option>
+                <option value="College of Information Technology">College of Information Technology</option>
+                <option value="College of Applied Professions">College of Applied Professions</option>
+                <option value="College of Finance and Administration">College of Finance and Administration</option>
+                <option value="Graduate School">Graduate School</option>
+                <option value="Institute of Hotel and Tourism Management">Institute of Hotel and Tourism Management</option>
+                <option value="College of Media">College of Media</option>
+            </select>
+        </div>
+        <div id="gpa">
+            <label for="gpaa" class="gpalabel">GPA</label>
+            <select name="gpa" id="gpaa" class="gpa">
+                <option value="4">4</option>
+                <option value="More than 3.5">More than 3.5</option>
+                <option value="More than 3">More than 3.5</option>
+                <option value="More than 2.5">More than 2.5</option>
+            </select>
         </div>
         <div id="attach">
             <textarea name="attach" class="att"></textarea><br>
