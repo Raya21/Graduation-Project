@@ -95,14 +95,25 @@ class _HomeState extends State<Home> {
 
   Future GetData() async {
     var url = "http://192.168.1.104/handinhand/home.php";
-    var res = await http.get(Uri.parse(url));
+    var response = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+    //var data = await json.decode(response.body);
+    
+      var red = json.decode(response.body);
+      setState(() {
+        list.addAll(red);
+      });
+      print(list);
+    
+    /*var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
       setState(() {
         list.addAll(red);
       });
       print(list);
-    }
+    }*/
   }
 
   @override

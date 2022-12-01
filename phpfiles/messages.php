@@ -104,14 +104,15 @@ $result = mysqli_query($conn,$query);
             <tr>
 
                 <?php
+                $i=0;
                 while ($row = mysqli_fetch_assoc($result)){
                 ?>
                 <td><?php echo $row['id'];?></td>
                 <td><?php echo $row['username'];?></td>
-                <td><?php echo $row['email'];?></td>
+                <td><a href="#" style="color: white" name="em"><?php echo $row['email'];?></a></td>
                 <td><?php echo $row['topic'];?></td>
-                <td><?php echo $row['message']; $message = $row['message'];?></td>
-                <td><a href="read.php?message=$message"><i class="fa-solid fa-eye" style="color: white"></i></a></td>
+                <td><?php echo $row['message'];?></td>
+                <td><a href="read.php?id=<?php echo $i?>" id="<?php $i++;?>"><i class="fa-solid fa-eye" style="color: white"></i></a></td>
             </tr>
             <?php
             }

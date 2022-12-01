@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 01:44 PM
+-- Generation Time: Dec 01, 2022 at 05:41 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -1446,13 +1446,13 @@ CREATE TABLE `contactus` (
 --
 
 INSERT INTO `contactus` (`id`, `username`, `email`, `topic`, `message`, `date`, `status`) VALUES
-(1, '', '', '', '', '2022-11-17', 'not read'),
-(2, 'raya', 'rta@gmail.com', 'c', 'c', '2022-11-17', 'not read'),
-(3, 'h', 'hh@gmail.com', 'موضوع', 'لا وووو', '2022-11-17', 'not read'),
-(4, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'not read'),
-(5, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'not read'),
-(6, 'raya', 'rta@gmail.com', 'uu', 'cf', '2022-11-17', 'not read'),
-(7, 'raya', 'rta@gmail.com', 'الىىى', 'متتت', '2022-11-17', 'not read'),
+(1, '', '', '', '', '2022-11-17', 'read'),
+(2, 'raya', 'rta@gmail.com', 'c', 'c', '2022-11-17', 'read'),
+(3, 'h', 'hh@gmail.com', 'موضوع', 'لا وووو', '2022-11-17', 'read'),
+(4, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'read'),
+(5, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'read'),
+(6, 'raya', 'rta@gmail.com', 'uu', 'cf', '2022-11-17', 'read'),
+(7, 'raya', 'rta@gmail.com', 'الىىى', 'متتت', '2022-11-17', 'read'),
 (8, 'raya', 'rta@gmail.com', 'gg', 'ggggg', '2022-11-17', 'not read'),
 (9, 'raya', 'rta@gmail.com', 't', 'h', '2022-11-17', 'not read'),
 (10, 'raya', 'rta@gmail.com', 'rrr', 'fffff', '2022-11-17', 'not read'),
@@ -1513,7 +1513,7 @@ CREATE TABLE `edu_info` (
 
 INSERT INTO `edu_info` (`id`, `email`, `schoolyoe`, `school`, `grade`, `branch`, `unidegree`, `university`, `college`, `department`, `academicyear`, `gpa`, `uniid`, `uniyoe`) VALUES
 (321542131, '', 2016, 'Al Ashia High School', 98.6, 'Scientific', 'BA', 'An-Najah National University', 'Faculty of Engineering', 'Computer Engineering', 'Fifth', 3.5, 11816547, 2018),
-(1597538426, 'ayaq@gmail.com', 2015, 'Amria Male School', 99.5, 'Scientific', 'BA', 'An Najah National University', 'Faculty of Engineering', 'Computer Engineering', 'Fifth', 2.98, 11716842, 2017),
+(363412745, 'ayaq@gmail.com', 2015, 'Al Omarya High School For Male', 98.5, 'Scientific', 'BA', 'An-Najah National University', 'College of Engineering', 'Computer Engineering', 'Fifth', 3.82, 11719564, 2017),
 (2147483647, '', 1212, ' bjhbjhb', 25, 'Literary', 'BA', 'kjnjkn', 'mbjb', 'MN jb', 'Third', 521, 215521, 212);
 
 -- --------------------------------------------------------
@@ -1600,14 +1600,7 @@ CREATE TABLE `person_info` (
 --
 
 INSERT INTO `person_info` (`id`, `email`, `fname`, `birthdate`, `birthplace`, `city`, `income`, `gender`, `socialstatus`) VALUES
-(515212, '', ' no he ', '2012-11-07', 'knknkn', 'knkk n', '1000-1500 NIS', 'Male', 'Single'),
-(32154131, '', 'Sara Issa', '2000-11-08', 'Rafidya Hospital', 'Nablus', '1000-1500 NIS', 'Female', 'Single'),
-(321542131, '', 'Sara Issa', '2022-11-10', 'Rafidya Hospital', 'Nablus ', '1000-1500 NIS', 'Female', 'Single'),
-(363412745, 'ayaq@gmail.com', 'Qasem Tamimi', '1999-11-02', 'Rafidya Hospital', 'Nablus', '500-1000 NIS', 'Male', 'Single'),
-(649645641, 'ayaq@gmail.com', 'jhvjhvj', '2022-11-02', 'nhjkbkjb', 'jkbjbjb', '500-1000 NIS', 'Male', 'Single'),
-(842567416, 'ayaq@gmail.com', 'Ali Qader', '1999-11-03', 'Rafidya Hospital', 'Nablus', '500-1000 NIS', 'Male', 'Single'),
-(1597538426, 'ayaq@gmail.com', 'Tamer Fahid', '1999-11-10', 'Rafidya Hospital', 'Nablus', '500-1000 NIS', 'Male', 'Single'),
-(2147483647, '', 'nknkn', '2022-11-08', 'knjkb', 'jbjbjb', '1000-1500 NIS', 'Female', 'Single');
+(363412745, 'ayaq@gmail.com', 'Qasem Tamimi', '1999-11-01', 'Rafidya Hospital', 'Nablus', '1000-1500 NIS', 'Male', 'Single');
 
 -- --------------------------------------------------------
 
@@ -1618,8 +1611,10 @@ INSERT INTO `person_info` (`id`, `email`, `fname`, `birthdate`, `birthplace`, `c
 CREATE TABLE `scholarships` (
   `sname` varchar(200) NOT NULL,
   `description` text NOT NULL,
-  `qualifications` text NOT NULL,
+  `conditions` text NOT NULL,
   `percentage` text NOT NULL,
+  `college` varchar(500) NOT NULL,
+  `gpa` varchar(100) NOT NULL,
   `attachments` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1627,11 +1622,12 @@ CREATE TABLE `scholarships` (
 -- Dumping data for table `scholarships`
 --
 
-INSERT INTO `scholarships` (`sname`, `description`, `qualifications`, `percentage`, `attachments`) VALUES
-('kbjvjhv', 'The Deanship of Student Affairs at An-Najah National University presents you with its best regards. We inform you that the door to apply for scholarships provided by the Ministry of Higher Education has been opened through the following link:\r\n', '', '', ''),
-('knhkbnk,', 'kn k,nm ,mn k,mnknkjbnjkbjkbjk, mn m m m, ', ',bklvjvj.vj.vv jknklnklnkcvjhvzcjvhzv', 'jgcjvbjh nnv hdvhvznc n z', 'mjbjbjvcjh vmvx cnvhvxcvnv x'),
-('lkhsckbjbscjabjkmbc ', 'knckld nks dmsd jkbjk', 'ksdnaksjkc jkb jcjk cm cjbdjgbudvrjhjhvrv', 'jbjklbsjkfcdbewjha bne cfjhe jh cjh jhe hw chj', 'lncnwcebuwbefcwbjfcbljebbcjwbheh'),
-('The Ministry of Higher Education scholarship for students in Palestinian universities from the class of 2022', 'The Deanship of Student Affairs at An-Najah National University presents you with its best regards. We inform you that the door to apply for scholarships provided by the Ministry of Higher Education has been opened through the following link:\r\n\r\nhttps://www.mohe.pna.ps/scholarships/Post/5663', '', '', '');
+INSERT INTO `scholarships` (`sname`, `description`, `conditions`, `percentage`, `college`, `gpa`, `attachments`) VALUES
+('', 'mn,bmnb', 'jkhjkb', 'kjhkjn', 'College of Dual Studies', '3.5', ',n.,.nkl.nk'),
+('kbjvjhv', 'The Deanship of Student Affairs at An-Najah National University presents you with its best regards. We inform you that the door to apply for scholarships provided by the Ministry of Higher Education has been opened through the following link:\r\n', '', '', '', '', ''),
+('knhkbnk,', 'kn k,nm ,mn k,mnknkjbnjkbjkbjk, mn m m m, ', ',bklvjvj.vj.vv jknklnklnkcvjhvzcjvhzv', 'jgcjvbjh nnv hdvhvznc n z', '', '', 'mjbjbjvcjh vmvx cnvhvxcvnv x'),
+('lkhsckbjbscjabjkmbc ', 'knckld nks dmsd jkbjk', 'ksdnaksjkc jkb jcjk cm cjbdjgbudvrjhjhvrv', 'jbjklbsjkfcdbewjha bne cfjhe jh cjh jhe hw chj', 'College of Engineering', '4', 'lncnwcebuwbefcwbjfcbljebbcjwbheh'),
+('The Ministry of Higher Education scholarship for students in Palestinian universities from the class of 2022', 'The Deanship of Student Affairs at An-Najah National University presents you with its best regards. We inform you that the door to apply for scholarships provided by the Ministry of Higher Education has been opened through the following link:\r\n\r\nhttps://www.mohe.pna.ps/scholarships/Post/5663', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
