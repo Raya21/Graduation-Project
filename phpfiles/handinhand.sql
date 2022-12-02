@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2022 at 05:41 PM
+-- Generation Time: Dec 02, 2022 at 03:21 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -1448,7 +1448,7 @@ CREATE TABLE `contactus` (
 INSERT INTO `contactus` (`id`, `username`, `email`, `topic`, `message`, `date`, `status`) VALUES
 (1, '', '', '', '', '2022-11-17', 'read'),
 (2, 'raya', 'rta@gmail.com', 'c', 'c', '2022-11-17', 'read'),
-(3, 'h', 'hh@gmail.com', 'موضوع', 'لا وووو', '2022-11-17', 'read'),
+(3, 'h', 'hh@gmail.com', 'موضوع', 'لا وووو', '2022-11-17', 'not read'),
 (4, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'read'),
 (5, 'raya', 'rta@gmail.com', '', '', '2022-11-17', 'read'),
 (6, 'raya', 'rta@gmail.com', 'uu', 'cf', '2022-11-17', 'read'),
@@ -1456,10 +1456,10 @@ INSERT INTO `contactus` (`id`, `username`, `email`, `topic`, `message`, `date`, 
 (8, 'raya', 'rta@gmail.com', 'gg', 'ggggg', '2022-11-17', 'not read'),
 (9, 'raya', 'rta@gmail.com', 't', 'h', '2022-11-17', 'not read'),
 (10, 'raya', 'rta@gmail.com', 'rrr', 'fffff', '2022-11-17', 'not read'),
-(11, 'raya', 'rta@gmail.com', 'r', 'v', '2022-11-17', 'not read'),
-(12, 'raya', 'rta@gmail.com', 't', 's', '2022-11-17', 'not read'),
+(11, 'raya', 'rta@gmail.com', 'r', 'v', '2022-11-17', 'read'),
+(12, 'raya', 'rta@gmail.com', 't', 's', '2022-11-17', 'read'),
 (13, 'raya', 'rta@gmail.com', 'ff', 'gg', '2022-11-17', 'not read'),
-(14, 'raya', 'rta@gmail.com', 'cc', 'c', '2022-11-17', 'not read'),
+(14, 'raya', 'rta@gmail.com', 'cc', 'c', '2022-11-17', 'read'),
 (15, '', '', '', '', '2022-11-19', 'not read');
 
 -- --------------------------------------------------------
@@ -1558,9 +1558,11 @@ CREATE TABLE `outstanding_students` (
 --
 
 INSERT INTO `outstanding_students` (`fname`, `description`, `image`) VALUES
+('', '', 'images/'),
 ('j,bjmvbznmbvjdgfv', ',xchjkvbgmnbmbcgmn', 'images/RDY.PNG'),
 ('jgjkfscbjkxb', ',khdvkb.jmxdbgvnm', 'images/Screenshot_1664878578.png'),
 ('jkbjlbvjh', 'lhkjgjbnb', 'images/1.PNG'),
+('jmj,hjk', 'mbjb', 'images/Download wallpapers L Lawliet, Ryuk, manga, Death Note for desktop free_ Pictures for desktop free.png'),
 ('kldcnklasn,cm', 'ljsfklankncfbn', 'images/Capture.PNG'),
 ('klhgkjsdbjmn', 'd,sk.nkgnm,n', 'images/Screenshot_1667298746.png'),
 ('lkfhdgjhljkdfn', 'kdflnhgujhftjbjgnbdvn', 'images/Screenshot_1664878578.png');
@@ -1601,6 +1603,27 @@ CREATE TABLE `person_info` (
 
 INSERT INTO `person_info` (`id`, `email`, `fname`, `birthdate`, `birthplace`, `city`, `income`, `gender`, `socialstatus`) VALUES
 (363412745, 'ayaq@gmail.com', 'Qasem Tamimi', '1999-11-01', 'Rafidya Hospital', 'Nablus', '1000-1500 NIS', 'Male', 'Single');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reply_msg`
+--
+
+CREATE TABLE `reply_msg` (
+  `id` int(11) NOT NULL,
+  `to_email` varchar(50) NOT NULL,
+  `from_email` varchar(50) NOT NULL,
+  `subject` varchar(500) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reply_msg`
+--
+
+INSERT INTO `reply_msg` (`id`, `to_email`, `from_email`, `subject`, `message`) VALUES
+(1, 'rta@gmail.com', 'handinhand@gmail.com', 'rrr', 'jbgjj');
 
 -- --------------------------------------------------------
 
@@ -1756,6 +1779,12 @@ ALTER TABLE `person_info`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `reply_msg`
+--
+ALTER TABLE `reply_msg`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `scholarships`
 --
 ALTER TABLE `scholarships`
@@ -1800,6 +1829,12 @@ ALTER TABLE `attachs`
 --
 ALTER TABLE `contactus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `reply_msg`
+--
+ALTER TABLE `reply_msg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `scholarship_attachs`

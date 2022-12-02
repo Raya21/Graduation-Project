@@ -11,8 +11,14 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$query = "SELECT * from contactus WHERE status='not read'";
+$id = $_GET['id'];
+$query = "SELECT email from contactus WHERE id=$id";
 $result = mysqli_query($conn,$query);
+while($row = $result->fetch_assoc()) {
+    $email = $row['email'];
+}
+$sql = "SELECT * from contactus WHERE email = '$email'";
+$result1 = mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +44,7 @@ $result = mysqli_query($conn,$query);
         .mane{
             background-color: rgb(0,0,0,0.5);
             width: 1000px;
-            height: auto;
+            height: 1200px;
             margin: auto;
         }
         .scholar{
@@ -89,41 +95,43 @@ $result = mysqli_query($conn,$query);
 </head>
 <body>
 <div class="scholar">
-    <h1>Messages</h1>
+    <h1>Message to this Email</h1>
 </div>
 <div class="mane">
     <form action="read.php" method="get">
-    <div style="padding: 50px; overflow-x: auto;">
-        <table>
-            <tr>
-                <td>User ID</td>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Subject</td>
-                <td>Message</td>
-                <td>Read</td>
-                <td>Reply</td>
-            </tr>
-            <tr>
+        <div style="padding: 50px; overflow-x: auto;">
+            <table>
+                <tr>
+                    <td>User ID</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Subject</td>
+                    <td>Message</td>
+                    <td>Read</td>
+                    <td>Reply</td>
+                </tr>
 
+                <tr>
+
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result1)){
+                    ?>
+                    <td><?php echo $i=$row['id'];?></td>
+                    <td><?php echo $row['username'];?></td>
+                    <td><a href="msgofemail.php?id=<?php echo $i?>" style="color: white" name="em"><?php echo $row['email'];?></a></td>
+                    <td><?php echo $row['topic'];?></td>
+                    <td><?php echo $row['message'];?></td>
+                    <td><a href="read.php?id=<?php echo $i?>" ><i class="fa-solid fa-eye" style="color: white"></i></a></td>
+                    <td><a href="reply.php?id=<?php echo $i?>" ><i class="fa-solid fa-message" style="color: white"></i></a></td>
+                </tr>
                 <?php
-                while ($row = mysqli_fetch_assoc($result)){
+                }
                 ?>
-                <td><?php echo $i=$row['id'];?></td>
-                <td><?php echo $row['username'];?></td>
-                <td><a href="msgofemail.php?id=<?php echo $i?>" style="color: white" name="em"><?php echo $row['email'];?></a></td>
-                <td><?php echo $row['topic'];?></td>
-                <td><?php echo $row['message'];?></td>
-                <td><a href="read.php?id=<?php echo $i?>" ><i class="fa-solid fa-eye" style="color: white"></i></a></td>
-                <td><a href="reply.php?id=<?php echo $i?>" ><i class="fa-solid fa-message" style="color: white"></i></a></td>
-            </tr>
-            <?php
-            }
-            ?>
 
-        </table>
-    </div>
+            </table>
+        </div>
     </form>
+    <a class="aback" href="messages.php">Back</a>
 </div>
 </body>
 </html>
