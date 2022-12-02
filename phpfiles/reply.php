@@ -37,7 +37,7 @@ if (!$conn) {
         .mane{
             background-color: rgb(0,0,0,0.5);
             width: 1000px;
-            height: 600px;
+            height: 1200px;
             margin: auto;
         }
         .scholar{
