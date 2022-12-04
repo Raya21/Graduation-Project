@@ -11,9 +11,17 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$email = $_POST['email'];
-$query = "SELECT college, gpa FROM edu_info WHERE email LIKE '%$email%'";
-$res = $conn->query($query);
+//echo $_POST['email'];
+$sql = "SELECT * FROM scholarships";
+$result = $conn->query($sql);
+while($row = $result->fetch_assoc()){
+    $data[]=$row;
+}
+echo json_encode($data);
+
+//$email = $_POST['email'];
+//$query = "SELECT college, gpa FROM edu_info WHERE email LIKE '%$email%'";
+/*$res = $conn->query($query);
 if($res->num_rows>0){
     while ($row = $res->fetch_assoc()){
         if($row['gpa'] == 4){
@@ -25,7 +33,7 @@ if($res->num_rows>0){
             echo json_encode($list);
         }
     }
-}
+}*/
 
 
 
