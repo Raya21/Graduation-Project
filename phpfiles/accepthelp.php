@@ -11,7 +11,7 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$query = "SELECT * from contactus WHERE status='not read'";
+$query = "SELECT * from add_help WHERE accept='not accept'";
 $result = mysqli_query($conn,$query);
 ?>
 <!DOCTYPE html>
@@ -89,20 +89,17 @@ $result = mysqli_query($conn,$query);
 </head>
 <body>
 <div class="scholar">
-    <h1>Messages</h1>
+    <h1>Helping Messages</h1>
 </div>
 <div class="mane">
-    <form action="read.php" method="get">
+    <form action="accept.php" method="get">
         <div style="padding: 50px; overflow-x: auto;">
             <table>
                 <tr>
                     <td>User ID</td>
-                    <td>Username</td>
                     <td>Email</td>
-                    <td>Subject</td>
-                    <td>Message</td>
-                    <td>Read</td>
-                    <td>Reply</td>
+                    <td>Help Text</td>
+                    <td>Accept</td>
                 </tr>
                 <tr>
 
@@ -110,12 +107,9 @@ $result = mysqli_query($conn,$query);
                     while ($row = mysqli_fetch_assoc($result)){
                     ?>
                     <td><?php echo $i=$row['id'];?></td>
-                    <td><?php echo $row['username'];?></td>
-                    <td><a href="msgofemail.php?id=<?php echo $i?>" style="color: white" name="em"><?php echo $row['email'];?></a></td>
-                    <td><?php echo $row['topic'];?></td>
-                    <td><?php echo $row['message'];?></td>
-                    <td><a href="read.php?id=<?php echo $i?>" ><i class="fa-solid fa-eye" style="color: white"></i></a></td>
-                    <td><a href="reply.php?id=<?php echo $i?>" ><i class="fa-solid fa-message" style="color: white"></i></a></td>
+                    <td><?php echo $row['email'];?></td>
+                    <td><?php echo $row['help'];?></td>
+                    <td><a href="accept.php?id=<?php echo $i?>" ><i class="fa-solid fa-check" style="color: white"></i></a></td>
                 </tr>
                 <?php
                 }

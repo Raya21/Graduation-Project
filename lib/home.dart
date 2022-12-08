@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:index/apply_loans.dart';
+import 'package:index/asking_for_help.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
 import 'package:index/scholarship.dart';
@@ -101,7 +102,7 @@ class _HomeState extends State<Home> {
     
   }*/
   Future GetData() async {
-    var url = "http://192.168.1.33/handinhand/home.php";
+    var url = "http://192.168.1.9/handinhand/home.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
@@ -245,6 +246,23 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    AskForHelp(value: emailvalue)));
+                      },
+                      leading: Icon(
+                        Icons.help,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Asking For Help".tr,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
                         Navigator.of(context).pushNamed("contactus");
                       },
                       leading: Icon(
@@ -352,13 +370,19 @@ class _HomeState extends State<Home> {
                                 ),
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          Scholarship(value: "${list[i]["sname"]}", value1: "${list[i]["conditions"]}", value2: "${list[i]["percentage"]}", value3: "${list[i]["attachments"]}", emailv:emailvalue,)));
+                                      builder: (context) => Scholarship(
+                                            value: "${list[i]["sname"]}",
+                                            value1: "${list[i]["conditions"]}",
+                                            value2: "${list[i]["percentage"]}",
+                                            value3: "${list[i]["attachments"]}",
+                                            emailv: emailvalue,
+                                          )));
                                 },
                               ),
                             ),
                           );
-                        })),
+                        })
+                        ),
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {

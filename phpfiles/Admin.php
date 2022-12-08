@@ -36,6 +36,7 @@ if (!isset($_SESSION['loggedin'])) {
             <li><a href="scholarship.html" target="_myiframe">Scholarships</a></li>
             <li><a href="student.html" target="_myiframe">Outstanding students</a></li>
             <li><a href="messages.php" target="_myiframe">Messages</a></li>
+            <li><a href="accepthelp.php" target="_myiframe">Helping Messages</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

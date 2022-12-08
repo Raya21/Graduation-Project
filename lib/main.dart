@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:index/addhelp.dart';
 import 'package:index/apply_loans.dart';
+import 'package:index/asking_for_help.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
@@ -64,7 +66,9 @@ class MyApp extends StatelessWidget {
           "family_data": (context) => FamilyData(),
           "forget_password": (context) => ForgetPass(),
           "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',),
-          "outstanding_students": (context) => outstandingStudents()
+          "outstanding_students": (context) => outstandingStudents(),
+          "asking_for_help":(context) =>AskForHelp(value: '',),
+          "addhelp":(context) => AddHelp(value: '',)
         },
       );
     }));

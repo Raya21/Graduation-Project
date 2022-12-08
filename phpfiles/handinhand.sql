@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2022 at 03:21 PM
+-- Generation Time: Dec 08, 2022 at 03:47 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `handinhand`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_help`
+--
+
+CREATE TABLE `add_help` (
+  `id` int(11) NOT NULL,
+  `email` varchar(500) NOT NULL,
+  `help` text NOT NULL,
+  `accept` varchar(50) NOT NULL DEFAULT 'not accept'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `add_help`
+--
+
+INSERT INTO `add_help` (`id`, `email`, `help`, `accept`) VALUES
+(2, 'ayaq@gmail.com', 'I am a computer engineering student I need a laptop', 'accept'),
+(4, 'ayaq@gmail.com', 'Hi Can someone help me please I need a laptop but I havent money to buy it', 'accept');
 
 -- --------------------------------------------------------
 
@@ -1724,6 +1745,12 @@ INSERT INTO `users` (`id`, `email`, `password`) VALUES
 --
 
 --
+-- Indexes for table `add_help`
+--
+ALTER TABLE `add_help`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
@@ -1811,6 +1838,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `add_help`
+--
+ALTER TABLE `add_help`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `admins`
