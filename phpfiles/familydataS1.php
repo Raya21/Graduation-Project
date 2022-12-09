@@ -37,9 +37,10 @@ $studentSocialSit = $_POST['studentSocialSit'];
 $parentsSocialSit = $_POST['parentsSocialSit'];
 $userId = $_POST['userId'];
 
-$sql = "SELECT * FROM familydatas1 WHERE studentIdCard='".$studentIdCard."'";
+$sql = "SELECT * FROM familydatas1 WHERE  userId='".$userId."'";
 $result = mysqli_query($mydb,$sql);
 $count  = mysqli_num_rows($result);
+
 
 if ($count == 1) {
     $update = "UPDATE familydatas1 SET  studentIdCard='".$studentIdCard."', 
@@ -75,7 +76,7 @@ if ($count == 1) {
      userId='".$userId."'
      
      
-     WHERE studentIdCard='".$studentIdCard."'";
+     WHERE  userId='".$userId."'";
 
 
     $query = mysqli_query($mydb,$update);

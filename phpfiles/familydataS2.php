@@ -23,6 +23,8 @@ $sql = "SELECT * FROM familydatas2 WHERE userId='".$userId."'";
 $result = mysqli_query($mydb,$sql);
 $count  = mysqli_num_rows($result);
 
+
+
 if($count == 1)
 {
     $update = "UPDATE familydatas2 SET  studentIdCard='".$row["studentIdCard"]."', 

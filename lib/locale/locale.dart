@@ -312,6 +312,8 @@ class MyLocale implements Translations {
           "Saved": "تم حفظ البيانات بنجاح",
           "Updated!": "تم تحديث البيانات!",
           "Student #": "الطالب #",
+          "Be sure to enter the required text fields!":
+              "تأكد من إدخال الحقول النصية المطلوبة!",
           "x": "-1"
         },
         "en": {
@@ -634,6 +636,8 @@ class MyLocale implements Translations {
           "Saved": "Data saved successfully",
           "Updated!": "The data has been updated!",
           "Student #": "Student #",
+          "Be sure to enter the required text fields!":
+              "Be sure to enter the required text fields!",
           "x": "1"
         }
       };

@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
+import 'sqldb.dart';
 
 class Section2 extends StatefulWidget {
   final int userId;
@@ -14,6 +17,7 @@ class Section2 extends StatefulWidget {
 }
 
 class _Section2State extends State<Section2> {
+  SqlDb sqlDb = SqlDb();
   var selectedItem = null;
   var x = Colors.pink;
 
@@ -24,6 +28,37 @@ class _Section2State extends State<Section2> {
   final name = TextEditingController();
   final idNumber = TextEditingController();
   final note = TextEditingController();
+  var h;
+  List userData = [];
+  bool isLoading = true;
+
+  Future getData() async {
+    final result = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'familydatas2' WHERE `userId`=${widget.userId}");
+    final count = Sqflite.firstIntValue(result);
+
+    if (count == 1) {
+      List<Map> response = await sqlDb.readData(
+          "SELECT * FROM 'familydatas2' WHERE `userId`=${widget.userId}");
+      isLoading = false;
+      if (this.mounted) {
+        setState(() {
+          relativeRelation = response[0]["relativeRelation"];
+          workPlace = response[0]["workPlace"];
+          job = response[0]["job"];
+          name.text = response[0]["name"];
+          idNumber.text = response[0]["idNumber"].toString();
+          note.text = response[0]["note"];
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   Future save() async {
     var url = "http://192.168.1.10/handinhand/familydatas2.php";
@@ -129,6 +164,7 @@ class _Section2State extends State<Section2> {
                     SizedBox(
                       width: 210,
                       child: TextFormField(
+                        onChanged: (val) {},
                         controller: name,
                         cursorColor: Colors.purple,
                         keyboardType: TextInputType.name,
@@ -162,6 +198,7 @@ class _Section2State extends State<Section2> {
                       width: 210,
                       child: TextFormField(
                         controller: idNumber,
+                        onChanged: (val) {},
                         cursorColor: Colors.purple,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -310,6 +347,7 @@ class _Section2State extends State<Section2> {
               SizedBox(
                 width: 210,
                 child: TextFormField(
+                  onChanged: (val) {},
                   controller: note,
                   maxLines: 6,
                   cursorColor: Colors.purple,
@@ -334,8 +372,49 @@ class _Section2State extends State<Section2> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
             ),
-            onPressed: (() {
-              //print(widget.userId);
+            onPressed: (() async {
+              var studentidcard;
+              // await sqlDb.mydeleteDatabase();
+
+              final _studentIdCard = await sqlDb.readData(
+                  "SELECT COUNT(*)  FROM 'familydatas1' WHERE `userId`=${widget.userId}");
+              final countt = Sqflite.firstIntValue(_studentIdCard);
+
+              if (countt == 1) {
+                List<Map> response = await sqlDb.readData(
+                    "SELECT * FROM 'familydatas1' WHERE `userId`=${widget.userId}");
+                studentidcard = response[0]["studentIdCard"].toString();
+              }
+
+              final result = await sqlDb.readData(
+                  "SELECT COUNT(*)  FROM 'familydatas2' WHERE `userId`=${widget.userId}");
+              final count = Sqflite.firstIntValue(result);
+              if (count == 0) {
+                int response = await sqlDb.insertData('''
+               INSERT INTO familydatas2 (`studentIdCard` ,`userId`,`relativeRelation`,`name`,`idNumber`,`workPlace`,`job`,`note`)
+               VALUES (${studentidcard},${widget.userId},"${relativeRelation}","${name.text}","${idNumber.text}","${workPlace}","${job}","${note.text}")
+               ''');
+              } else {
+                int response = await sqlDb.updateData('''
+                    UPDATE familydatas2 SET
+                    studentIdCard = ${studentidcard},
+                    userId = ${widget.userId},
+                    relativeRelation = "${relativeRelation}",
+                    name = "${name.text}",
+                    idNumber = "${idNumber.text}",
+                    workPlace = "${workPlace}",
+                    job = "${job}",
+                    note ="${note.text}"
+
+                    WHERE `userId`=${widget.userId}
+                    ''');
+              }
+
+              List<Map> response =
+                  await sqlDb.readData("SELECT * FROM 'familydatas2'");
+
+              print(count);
+              print("$response");
               save();
             }),
             child: Text(

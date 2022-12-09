@@ -42,14 +42,15 @@ dependencies:
   url_launcher: ^6.1.6
   shared_preferences: ^2.0.15
   provider: ^6.0.4
+  mailer: ^5.2.0
+  get: ^4.6.5
+  get_storage: ^2.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dropdown_search: ^5.0.3
-  get: ^4.6.5
-  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,9 @@ flutter:
     - lib/imgs/background.jpg
     - lib/imgs/logo.png
     - lib/imgs/nopic.png
+    - lib/imgs/family.png
+    - lib/imgs/family1.png
+    - lib/imgs/family2.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -106,6 +110,9 @@ flutter:
      - family: Maven_Pro
        fonts:
          - asset: lib/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf
+     - family: Poor_Story
+       fonts:
+         - asset: lib/fonts/Poor_Story/PoorStory-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

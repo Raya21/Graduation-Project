@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
       "password": passwordcontroller.text,
     });
     var data = await json.decode(response.body);
-    print(data['message']);
+    //print(data['message']);
     if (data['message'] == "Success") {
       Fluttertoast.showToast(
           msg: "Login Successful".tr,

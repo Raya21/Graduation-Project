@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:index/sqldb.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Section3 extends StatefulWidget {
   final int userId;
@@ -16,6 +19,8 @@ class Section3 extends StatefulWidget {
 }
 
 class _Section3State extends State<Section3> {
+  var uId;
+  SqlDb sqlDb = SqlDb();
   bool _isVisible = false;
   late int _count;
   late String _result;
@@ -25,13 +30,6 @@ class _Section3State extends State<Section3> {
   String UniversityName = '';
   late List<Map<String, dynamic>> _values;
   // var userId;
-  @override
-  void initState() {
-    //   userId = widget.userId;
-    _result = '';
-    _count = 0;
-    _values = [];
-  }
 
   var selectedItem = null;
   var x = Colors.pink;
@@ -54,6 +52,99 @@ class _Section3State extends State<Section3> {
   final numPublic = TextEditingController();
   final numCommercial = TextEditingController();
   final studentHousingFee = TextEditingController();
+
+  bool isLoading = true;
+
+  Map<String, TextEditingController> _StudentName = {};
+  h() {
+    for (int i = 0; i < 75; i++) {
+      _StudentName.addAll({"$i $uId": TextEditingController()});
+    }
+
+    // setState(() {
+    //   _StudentName['1 $uId']!.text = "kkk";
+    // });
+  }
+
+  //  h2(String i) {
+
+  //     _StudentName.addAll({"$i $uId": TextEditingController()});
+
+  //   // setState(() {
+  //   //   _StudentName['1 $uId']!.text = "kkk";
+  //   // });
+  // }
+
+  Future getData() async {
+    final result = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'familydatas3' WHERE `userId`=${widget.userId}");
+    final count = Sqflite.firstIntValue(result);
+
+    if (count == 1) {
+      List<Map> response = await sqlDb.readData(
+          "SELECT * FROM 'familydatas3' WHERE `userId`=${widget.userId}");
+      isLoading = false;
+      if (this.mounted) {
+        setState(() {
+          numFamilyMem.text = response[0]["numFamilyMem"].toString();
+          numUniversityStu.text = response[0]["numUniversityStu"].toString();
+          _count = response[0]["numUniversityStu"];
+
+          if (_count > 0) {
+            _isVisible = true;
+          } else {
+            _isVisible = false;
+          }
+
+          numMemDiseases.text = response[0]["numMemDiseases"].toString();
+          familyIncome = response[0]["familyIncome"];
+          familyAssistance = response[0]["familyAssistance"];
+          cardNumber.text = response[0]["cardNumber"].toString();
+          familyHousing = response[0]["familyHousing"];
+          monthlyRent = response[0]["monthlyRent"];
+          familyResidence = response[0]["familyResidence"];
+          numPrivate.text = response[0]["numPrivate"].toString();
+          numPublic.text = response[0]["numPublic"].toString();
+          numCommercial.text = response[0]["numCommercial"].toString();
+          studentHousingFee.text = response[0]["studentHousingFee"].toString();
+          smoke = response[0]["smoke"];
+        });
+      }
+    }
+
+    final result2 = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'brothersdata' WHERE `userId`=${widget.userId}");
+    final count2 = Sqflite.firstIntValue(result2);
+    if (count2 != Null) {
+      List<Map> response = await sqlDb.readData(
+          "SELECT * FROM 'brothersdata' WHERE `userId`=${widget.userId}");
+      setState(() {
+        for (int bId = 0; bId < count2!; bId++) {
+          _StudentName['$bId $uId']!.text = response[bId]["StudentName"];
+        }
+      });
+    }
+  }
+
+  // List<TextEditingController> _controller = [];
+  // h() {
+  //   for (int i = 1; i < 75; i++) _controller.add(TextEditingController());
+  //   setState(() {
+  //     _controller[1].text = "kkk";
+  //   });
+  // }
+
+  @override
+  void initState() {
+    uId = widget.userId;
+    h();
+    _result = '';
+    _count = 0;
+    _values = [];
+
+    getData();
+    super.initState();
+  }
 
   Future save() async {
     var url = "http://192.168.1.10/handinhand/familydatas3.php";
@@ -122,6 +213,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: numFamilyMem,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -159,14 +251,17 @@ class _Section3State extends State<Section3> {
                   width: 100,
                   child: TextFormField(
                     onChanged: (val) {
-                      setState(() {
-                        _count = int.parse(val);
-                        if (_count > 0) {
-                          _isVisible = true;
-                        } else {
-                          _isVisible = false;
-                        }
-                      });
+                      // familyDataS3.write('numUniversityStu', val);
+                      if (val != null) {
+                        setState(() {
+                          _count = int.parse(val);
+                          if (_count > 0) {
+                            _isVisible = true;
+                          } else {
+                            _isVisible = false;
+                          }
+                        });
+                      }
                     },
                     controller: numUniversityStu,
                     cursorColor: Colors.purple,
@@ -204,6 +299,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: numMemDiseases,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -337,6 +433,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 250,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: cardNumber,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -518,6 +615,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: numPrivate,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -550,6 +648,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: numPublic,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -582,6 +681,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: numCommercial,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -618,6 +718,7 @@ class _Section3State extends State<Section3> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
+                    onChanged: (val) {},
                     controller: studentHousingFee,
                     cursorColor: Colors.purple,
                     keyboardType: TextInputType.number,
@@ -689,25 +790,6 @@ class _Section3State extends State<Section3> {
               ),
             ),
           ),
-          // Center(
-          //   child: Table(
-          //     border: TableBorder.all(),
-          //     children: [
-          //       buildRow([
-          //         'Student Name'.tr,
-          //         'Registration number'.tr,
-          //         'College Name'.tr,
-          //         'University Name'.tr,
-          //       ]),
-          //       buildRow([' ', ' ', ' ', ' '], isHeader: true),
-          //       buildRow([' ', ' ', ' ', ' ']),
-          //       buildRow([' ', ' ', ' ', ' ']),
-          //       buildRow([' ', ' ', ' ', ' ']),
-          //       buildRow([' ', ' ', ' ', ' ']),
-          //     ],
-          //   ),
-          // ),
-
           Container(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -715,6 +797,7 @@ class _Section3State extends State<Section3> {
               shrinkWrap: true,
               itemCount: _count,
               itemBuilder: (context, index) {
+                // h2(index.toString());
                 return _row(index.toString());
               },
             ),
@@ -727,8 +810,144 @@ class _Section3State extends State<Section3> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
               ),
-              onPressed: (() {
-                // print(userId);
+              onPressed: (() async {
+                var studentidcard;
+                //await sqlDb.mydeleteDatabase();
+
+                final _studentIdCard = await sqlDb.readData(
+                    "SELECT COUNT(*)  FROM 'familydatas1' WHERE `userId`=${widget.userId}");
+                final countt = Sqflite.firstIntValue(_studentIdCard);
+
+                if (countt == 1) {
+                  List<Map> response = await sqlDb.readData(
+                      "SELECT * FROM 'familydatas1' WHERE `userId`=${widget.userId}");
+                  studentidcard = response[0]["studentIdCard"].toString();
+                }
+
+                final result = await sqlDb.readData(
+                    "SELECT COUNT(*)  FROM 'familydatas3' WHERE `userId`=${widget.userId}");
+                final count = Sqflite.firstIntValue(result);
+                if (count == 0) {
+                  int response = await sqlDb.insertData('''
+               INSERT INTO familydatas3 (
+                `studentIdCard` ,
+                `userId`,
+                `numFamilyMem`,
+                `numMemDiseases`,
+                `familyIncome`,
+                `familyAssistance`,
+                `cardNumber`,
+                `familyHousing`,
+                `monthlyRent`,
+                `familyResidence`,
+                `numPrivate`,
+                `numPublic`,
+                `numCommercial`,
+                `studentHousingFee`,
+                `smoke`,
+                `numUniversityStu`
+
+                )
+               VALUES (
+                ${studentidcard},
+                ${widget.userId},
+                "${numFamilyMem.text}",
+                "${numMemDiseases.text}",
+                "${familyIncome}",
+                "${familyAssistance}",
+                "${cardNumber.text}",
+                "${familyHousing}",
+
+                "${monthlyRent}",
+                "${familyResidence}",
+                "${numPrivate.text}",
+                "${numPublic.text}",
+                "${numCommercial.text}",
+                "${studentHousingFee.text}",
+                "${smoke}",
+                "${numUniversityStu.text}"
+                )
+               ''');
+                } else {
+                  int response = await sqlDb.updateData('''
+                    UPDATE familydatas3 SET
+                    studentIdCard = ${studentidcard},
+                    userId = ${widget.userId},
+                    numFamilyMem = "${numFamilyMem.text}",
+                    numMemDiseases = "${numMemDiseases.text}",
+                    familyIncome = "${familyIncome}",
+                    familyAssistance = "${familyAssistance}",
+                    cardNumber = "${cardNumber.text}",
+                    familyHousing ="${familyHousing}",
+
+                    monthlyRent="${monthlyRent}",
+                    familyResidence="${familyResidence}",
+                    numPrivate="${numPrivate.text}",
+                    numPublic="${numPublic.text}",
+                    numCommercial="${numCommercial.text}",
+                    studentHousingFee="${studentHousingFee.text}",
+                    smoke="${smoke}",
+                    numUniversityStu="${numUniversityStu.text}"
+
+
+
+                    WHERE `userId`=${widget.userId}
+                    ''');
+                }
+
+                List<Map> response =
+                    await sqlDb.readData("SELECT * FROM 'familydatas3'");
+
+                print(count);
+                print("$response");
+
+                for (int i = 0; i < _count; i++) {
+                  var id = _values[i]["id"];
+                  final result = await sqlDb.readData(
+                      "SELECT COUNT(*)  FROM 'brothersdata' WHERE `userId`=${widget.userId} AND `BrotherId`=${id}");
+                  final count = Sqflite.firstIntValue(result);
+                  if (count == 0) {
+                    int response = await sqlDb.insertData('''
+                 INSERT INTO brothersdata (
+                  `userId` ,
+                  `userIdCard`,
+                  `BrotherId`,
+                  `StudentName`,
+                  `RegistrationNumber`,
+                  `CollegeName`,
+                  `UniversityName`
+
+                  )
+                 VALUES (
+                  ${widget.userId},
+                  ${studentidcard},
+                  "${_values[i]["id"]}",
+                  "${_values[i]["StudentName"]}",
+                  "${_values[i]["RegistrationNumber"]}",
+                  "${_values[i]["CollegeName"]}",
+                  "${_values[i]["UniversityName"]}"
+                  )
+                 ''');
+                  } else {
+                    int response = await sqlDb.updateData('''
+                    UPDATE brothersdata SET
+                    userId =  ${widget.userId},
+                    userIdCard = ${studentidcard},
+                    BrotherId = "${_values[i]["id"]}",
+                    StudentName = "${_values[i]["StudentName"]}",
+                    RegistrationNumber = "${_values[i]["RegistrationNumber"]}",
+                    CollegeName = "${_values[i]["CollegeName"]}",
+                    UniversityName =  "${_values[i]["UniversityName"]}"
+
+                    WHERE `userId`=${widget.userId} AND `BrotherId`=${id}
+                    ''');
+                  }
+                }
+
+                List<Map> response2 =
+                    await sqlDb.readData("SELECT * FROM 'brothersdata'");
+
+                print("$response2");
                 save();
                 // _count++;
               }),
@@ -743,18 +962,6 @@ class _Section3State extends State<Section3> {
       ),
     );
   }
-
-  // TableRow buildRow(List<String> cells, {bool isHeader = false}) => TableRow(
-  //         children: cells.map((cell) {
-  //       final Style = TextStyle(
-  //         fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-  //         fontSize: 18,
-  //       );
-  //       return Padding(
-  //         padding: const EdgeInsets.all(12),
-  //         child: Center(child: Text(cell)),
-  //       );
-  //     }).toList());
 
   _row(String key) {
     return Container(
@@ -773,6 +980,7 @@ class _Section3State extends State<Section3> {
             SizedBox(
               width: 300,
               child: TextFormField(
+                controller: _StudentName['$key $uId'],
                 onChanged: (val) {
                   StudentName = val;
                   _onUpdate(key, StudentName, RegistrationNumber, CollegeName,
