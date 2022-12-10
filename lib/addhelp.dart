@@ -3,27 +3,27 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:index/creditional.dart';
+
 class AddHelp extends StatefulWidget {
   //const AddHelp({super.key});
   final String value;
-const AddHelp({Key? key, required this.value}) : super(key: key);
+  const AddHelp({Key? key, required this.value}) : super(key: key);
   @override
   State<AddHelp> createState() => _AddHelpState();
 }
 
 class _AddHelpState extends State<AddHelp> {
   TextEditingController helpCon = TextEditingController();
+  bool editmode = false;
   Future addingHelp() async {
-    var url = "http://192.168.1.9/handinhand/addhelp.php";
+    var url = "http://" + IPADDRESS + "/handinhand/addhelp.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": widget.value,
       "help": helpCon.text,
-      
     });
     var data = await json.decode(response.body);
     if (data == "Success") {
-      //emailvalue=emailcontroller.text;
-      //print(emailvalue);
       Fluttertoast.showToast(
           msg: "Added Successfully".tr,
           toastLength: Toast.LENGTH_SHORT,
@@ -32,7 +32,6 @@ class _AddHelpState extends State<AddHelp> {
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home(value:emailvalue)));
     } else {
       Fluttertoast.showToast(
           msg: "Add Faild".tr,
@@ -43,14 +42,14 @@ class _AddHelpState extends State<AddHelp> {
           textColor: Colors.white,
           fontSize: 16);
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Help",
+          "Add Help".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -67,15 +66,19 @@ class _AddHelpState extends State<AddHelp> {
       ),
       body: Column(children: [
         Card(
+            margin: EdgeInsets.all(10),
             color: Color.fromARGB(255, 197, 175, 201),
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 controller: helpCon,
                 maxLines: 8, //or null
                 decoration: InputDecoration.collapsed(
-                    hintText: "Enter your text here",
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintText: "Enter your text here".tr,
+                    hintStyle: TextStyle(fontSize: 20, color: Colors.black)),
               ),
             )),
         SizedBox(
@@ -94,7 +97,7 @@ class _AddHelpState extends State<AddHelp> {
                 addingHelp();
               },
               child: Text(
-                "Add",
+                "Save".tr,
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,

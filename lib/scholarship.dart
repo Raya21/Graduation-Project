@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:index/creditional.dart';
 
 late String sname;
 late String quali;
@@ -184,7 +185,7 @@ class _attachmentsState extends State<attachments> {
   }
 
   Future uploadImage() async {
-    final uri = await Uri.parse("http://192.168.1.108/handinhand/supload.php");
+    final uri = await Uri.parse("http://"+IPADDRESS+"/handinhand/supload.php");
     var request1 = http.MultipartRequest('POST', uri);
     request1.fields['email'] = emailglo;
     request1.fields['sname'] = sname;
@@ -213,7 +214,7 @@ class _attachmentsState extends State<attachments> {
     }
   }
   Future requestScholar() async {
-    var url = "http://192.168.1.108/handinhand/requestScholar.php";
+    var url = "http://"+IPADDRESS+"/handinhand/requestScholar.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
       "sname": sname,

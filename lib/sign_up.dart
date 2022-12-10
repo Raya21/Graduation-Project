@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:index/creditional.dart';
 
 import 'home.dart';
 import 'login.dart';
@@ -22,7 +23,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController usernamecontroller = TextEditingController();
 
   Future register() async {
-    var url = "http://192.168.1.10/handinhand/register.php";
+    var url = "http://"+IPADDRESS+"/handinhand/register.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "password": passwordcontroller.text,

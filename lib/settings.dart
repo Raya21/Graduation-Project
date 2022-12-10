@@ -112,10 +112,9 @@ class _settingsState extends State<settings> {
                 },
               ),
             ),
-            buildAccountOption(context, "Content Settings".tr),
-            buildAccountOption(context, "Social".tr),
+            
             buildAccountOption(context, "Language".tr),
-            buildAccountOption(context, "Privacy and Security".tr),
+            
             SizedBox(
               height: 40,
             ),

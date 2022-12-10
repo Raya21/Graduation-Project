@@ -115,6 +115,9 @@ flutter:
      - family: Poor_Story
        fonts:
          - asset: lib/fonts/Poor_Story/PoorStory-Regular.ttf
+     - family: Rajdhani
+       fonts:
+         - asset: lib/fonts/Rajdhani/Rajdhani-SemiBold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

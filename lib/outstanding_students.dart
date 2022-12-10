@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:index/creditional.dart';
+
 class outstandingStudents extends StatefulWidget {
   const outstandingStudents({super.key});
 
@@ -14,7 +16,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
   List list = [];
 
   Future GetData() async {
-    var url = "http://192.168.1.104/handinhand/outStudent.php";
+    var url = "http://"+IPADDRESS+"/handinhand/outStudent.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var red = json.decode(res.body);
@@ -27,7 +29,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
 
   List Data = [];
   Future Suggestion() async {
-    var url = "http://192.168.1.104/handinhand/suggestion.php";
+    var url = "http://"+IPADDRESS+"/handinhand/suggestion.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
@@ -95,7 +97,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
                       style: TextStyle(fontSize: 20),
                     ),
                     leading: Container(
-                      child: Image.network("http://192.168.1.104/handinhand/" +
+                      child: Image.network("http://"+IPADDRESS+"/handinhand/" +
                           list[i]["image"]),
                     ),
                   ),
@@ -110,7 +112,7 @@ class DataSearch extends SearchDelegate {
   DataSearch({required this.data});
 
   Future getStudentData() async {
-    var url = "http://192.168.1.104/handinhand/search.php";
+    var url = "http://"+IPADDRESS+"/handinhand/search.php";
     var res = await http.post(Uri.parse(url), body: {"query": query});
     if (res.statusCode == 200) {
       var stuData = jsonDecode(res.body);
@@ -170,7 +172,7 @@ class DataSearch extends SearchDelegate {
                         ),
                         leading: Container(
                           child: Image.network(
-                              "http://192.168.1.104/handinhand/" +
+                              "http://"+IPADDRESS+"/handinhand/" +
                                   snp.data[index]["image"]),
                         ),
                       ),

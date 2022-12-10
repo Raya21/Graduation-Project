@@ -3,11 +3,17 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:index/creditional.dart';
+
 class EditHelp extends StatefulWidget {
   final String value;
   final String value1;
   final String value2;
-  const EditHelp({super.key, required this.value, required this.value1, required this.value2});
+  const EditHelp(
+      {super.key,
+      required this.value,
+      required this.value1,
+      required this.value2});
 
   @override
   State<EditHelp> createState() => _EditHelpState();
@@ -15,14 +21,13 @@ class EditHelp extends StatefulWidget {
 
 class _EditHelpState extends State<EditHelp> {
   TextEditingController helpCon = TextEditingController();
-  Future addingHelp() async {
-    var url = "http://192.168.1.9/handinhand/edithelp.php";
+  Future editHelp() async {
+    var url = "http://" + IPADDRESS + "/handinhand/edithelp.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": widget.value,
       "oldhelp": widget.value1,
       "help": helpCon.text,
       "id": widget.value2
-      
     });
     var data = await json.decode(response.body);
     if (data == "Success") {
@@ -47,14 +52,22 @@ class _EditHelpState extends State<EditHelp> {
           textColor: Colors.white,
           fontSize: 16);
     }
-
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    helpCon.text = widget.value1;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Edit",
+          "Update Help".tr,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -71,15 +84,20 @@ class _EditHelpState extends State<EditHelp> {
       ),
       body: Column(children: [
         Card(
+            margin: EdgeInsets.all(10),
             color: Color.fromARGB(255, 197, 175, 201),
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 controller: helpCon,
                 maxLines: 8, //or null
-                decoration: InputDecoration.collapsed(
+                style: TextStyle(fontSize: 20),
+                /*decoration: InputDecoration.collapsed(
                     hintText: widget.value1,
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: TextStyle(color: Colors.black)),*/
               ),
             )),
         SizedBox(
@@ -95,10 +113,10 @@ class _EditHelpState extends State<EditHelp> {
                     borderRadius: BorderRadius.circular(20)),
               ),
               onPressed: () {
-                addingHelp();
+                editHelp();
               },
               child: Text(
-                "Edit",
+                "Update".tr,
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,

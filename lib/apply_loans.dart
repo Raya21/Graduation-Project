@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:index/creditional.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
@@ -310,7 +311,7 @@ class _attachmentsState extends State<attachments> {
 
   Future uploadImage() async {
     print(emailglo);
-    final uri = await Uri.parse("http://192.168.1.105/handinhand/upload.php");
+    final uri = await Uri.parse("http://"+IPADDRESS+"/handinhand/upload.php");
     //image 1
     var request1 = http.MultipartRequest('POST', uri);
     request1.fields['email'] = emailglo;
@@ -423,7 +424,7 @@ class _attachmentsState extends State<attachments> {
   }
 
   Future requestLoan() async {
-    var url = "http://192.168.1.105/handinhand/request.php";
+    var url = "http://"+IPADDRESS+"/handinhand/request.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
     });

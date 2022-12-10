@@ -20,7 +20,7 @@ class _ForgetPassState extends State<ForgetPass> {
   bool verifyButton = false;
   late String verifyLink;
   Future checkUser() async {
-    var response = await http.post(Uri.parse('http://192.168.1.101/handinhand/check.php'),
+    var response = await http.post(Uri.parse("http://"+IPADDRESS+"/handinhand/check.php"),
         body: {"username": email.text});
     var link = json.decode(response.body);
     if (link == "INVALIDUSER") {

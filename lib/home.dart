@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/asking_for_help.dart';
+import 'package:index/creditional.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
 import 'package:index/scholarship.dart';
@@ -25,7 +26,7 @@ class _HomeState extends State<Home> {
   double value = 0;
   PickedFile? _imagefile;
   final ImagePicker _picker = ImagePicker();
-  List list = [];
+  
   Widget bottomSheet() {
     return Container(
       height: 100,
@@ -102,22 +103,10 @@ class _HomeState extends State<Home> {
     
   }*/
   Future GetData() async {
-    var url = "http://192.168.1.9/handinhand/home.php";
+    var url = "http://" + IPADDRESS + "/handinhand/home.php";
     var res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      var red = json.decode(res.body);
-      setState(() {
-        list.addAll(red);
-      });
-      print(list);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    //setEmail();
-    GetData();
+    var red = json.decode(res.body);
+    return red;
   }
 
   @override
@@ -337,52 +326,69 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    body: ListView.builder(
-                        itemCount: list.length,
-                        itemBuilder: (cts, i) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 198, 126, 211),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: ListTile(
-                                title: Text(
-                                  "${list[i]["sname"]}",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                subtitle: Text(
-                                  "${list[i]["description"]}",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                leading: Container(
-                                  child: Image.asset(
-                                    "lib/imgs/scholarship.png",
-                                    width: 50,
-                                    height: 100,
-                                  ),
-                                ),
-                                trailing: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                ),
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Scholarship(
-                                            value: "${list[i]["sname"]}",
-                                            value1: "${list[i]["conditions"]}",
-                                            value2: "${list[i]["percentage"]}",
-                                            value3: "${list[i]["attachments"]}",
-                                            emailv: emailvalue,
-                                          )));
-                                },
-                              ),
-                            ),
-                          );
-                        })
-                        ),
+                    body: FutureBuilder(
+                      future: GetData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) print(snapshot.error);
+                        return snapshot.hasData
+                            ? ListView.builder(
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (cts, i) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Text(
+                                          "${snapshot.data[i]["sname"]}",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(
+                                          "${snapshot.data[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Scholarship(
+                                                        value:
+                                                            "${snapshot.data[i]["sname"]}",
+                                                        value1:
+                                                            "${snapshot.data[i]["conditions"]}",
+                                                        value2:
+                                                            "${snapshot.data[i]["percentage"]}",
+                                                        value3:
+                                                            "${snapshot.data[i]["attachments"]}",
+                                                        emailv: emailvalue,
+                                                      )));
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                })
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              );
+                      },
+                    )),
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {

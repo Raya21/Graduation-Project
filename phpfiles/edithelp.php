@@ -14,13 +14,11 @@ $result = mysqli_query($mydb,$sql);
 $count  = mysqli_num_rows($result);
 
 if($count==1){
-    $update = "UPDATE add_help SET help='.$help.' WHERE email='".$email."'";
+    $update = "UPDATE add_help SET help='.$help.' WHERE id='".$id."'";
     $query = mysqli_query($mydb,$update);
     if($query){
         echo json_encode("Success");
     }
-
-
 }
 else{
     echo json_encode("Failed");

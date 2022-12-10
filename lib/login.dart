@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:index/creditional.dart';
 import 'package:index/reset_password.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/home.dart';
@@ -24,7 +25,7 @@ class _LoginState extends State<Login> {
   late String emailvalue;
 
   Future login() async {
-    var url = "http://192.168.1.9/handinhand/login.php";
+    var url = "http://"+IPADDRESS+"/handinhand/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "password": passwordcontroller.text,
@@ -91,7 +92,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 35,
-                        fontFamily: "Roboto",
+                        fontFamily: "Rajdhani",
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -110,7 +111,7 @@ class _LoginState extends State<Login> {
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "E-mail".tr,
                               hintStyle:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: UnderlineInputBorder(
@@ -137,7 +138,7 @@ class _LoginState extends State<Login> {
                                   Icon(Icons.password, color: Colors.pink),
                               hintText: "Password".tr,
                               hintStyle:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: UnderlineInputBorder(

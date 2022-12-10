@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:index/creditional.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
@@ -104,7 +105,7 @@ class _personInfoState extends State<personInfo> {
 
   Future person() async {
     idglo = id.text;
-    var url = "http://192.168.1.108/handinhand/personInfo.php";
+    var url = "http://"+IPADDRESS+"/handinhand/personInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
       "fname": fname.text,
@@ -480,7 +481,7 @@ class _contactInfoState extends State<contactInfo> {
   String _errorMessage = '';
 
   Future contact() async {
-    var url = "http://192.168.1.108/handinhand/contactInfo.php";
+    var url = "http://"+IPADDRESS+"/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "TPhone": Tphone.text,
@@ -630,7 +631,7 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://192.168.1.108/handinhand/eduInfo.php";
+    var url = "http://"+IPADDRESS+"/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "id": idglo,
       "email": emailglo,

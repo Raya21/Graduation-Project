@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:index/creditional.dart';
 import 'package:index/login.dart';
 import 'package:index/settings.dart';
 
@@ -22,7 +23,7 @@ class _ResetPassState extends State<ResetPass> {
   TextEditingController oldpasswordcontroller = TextEditingController();
 
   Future resetpassword() async {
-    var url = "http://192.168.1.10/handinhand/reset_password.php";
+    var url = "http://"+IPADDRESS+"/handinhand/reset_password.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "oldpassword": oldpasswordcontroller.text,

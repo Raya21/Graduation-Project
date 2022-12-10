@@ -6,7 +6,7 @@ ThemeData lightTheme =ThemeData(
   textTheme: lightTextTheme,
   primaryColor: Colors.white,
   colorScheme: ColorScheme.light(),
-  fontFamily: 'Average_Sans',
+  fontFamily: 'Rajdhani',
   //cardColor: Colors.white,
   );
 
@@ -22,7 +22,7 @@ ThemeData darkTheme =ThemeData(
   textTheme: darkTextTheme,
   colorScheme: ColorScheme.dark(),
   primaryColor: Colors.grey.shade900,
-  fontFamily: 'Average_Sans',
+  fontFamily: 'Rajdhani',
   //cardColor: Colors.grey.shade900,
   );
 
