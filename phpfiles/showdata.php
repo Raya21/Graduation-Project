@@ -57,7 +57,7 @@ if (!$conn) {
             width: 500px;
             text-align: center;
             color: white;
-            margin-top: 30px;
+            margin-top: 10px;
             margin-left: 200px;
         }
 
@@ -93,6 +93,19 @@ if (!$conn) {
             width: 250px;
             height: 35px;
         }
+        h3{
+            color: white;
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+        .sid{
+            position: relative;
+            left: 30px;
+            top: 80px;
+            color: white;
+
+
+        }
 
     </style>
 </head>
@@ -102,7 +115,7 @@ if (!$conn) {
 </div>
 <div class="mane">
     <form action="" method="post">
-        <h3 style="color: white; left: 100px; top: 80px; position: relative">Student ID Card:</h3>
+        <h3 class="sid">Student ID Card:</h3>
         <input type="text" name="search" class="searchtxt">
         <input type="submit" name="btn_search" value="Search" class="search">
     </form>
@@ -111,6 +124,7 @@ if (!$conn) {
 
     ?>
         <div style="padding: 50px; overflow-x: auto;">
+            <h3>Student Information:</h3>
             <table>
                 <?php
                 $search = $_POST['search'];
@@ -135,6 +149,7 @@ if (!$conn) {
                 </tr>
 
             </table>
+            <h3>Father Information:</h3>
             <table>
                 <tr>
                     <td>Father Name</td>
@@ -166,6 +181,7 @@ if (!$conn) {
                 </tr>
 
             </table>
+            <h3>Mother Information:</h3>
             <table>
                 <tr>
                     <td>Mother Name</td>
@@ -197,6 +213,7 @@ if (!$conn) {
                 </tr>
 
             </table>
+            <h3>Husband/Wife Information:</h3>
             <table>
                 <tr>
                     <td>Husband/Wife Name</td>
@@ -227,13 +244,14 @@ if (!$conn) {
                     <td><?php echo $row['hwJobDesc'];?></td>
                 </tr>
             </table>
+            <h3>Social Situation:</h3>
             <table>
                 <tr>
-                    <td>Student Social Sit</td>
+                    <td>Student Social Situation</td>
                     <td><?php echo $row['studentSocialSit'];?></td>
                 </tr>
                 <tr>
-                    <td>Student Social Sit</td>
+                    <td>Parents Social Situation</td>
                     <td><?php echo $row['parentsSocialSit'];?></td>
                 </tr>
             </table>
@@ -245,6 +263,7 @@ if (!$conn) {
             $sh1 = mysqli_query($conn,"SELECT * FROM familydatas2 WHERE studentIdCard LIKE '%$search%'");
             while($row=mysqli_fetch_assoc($sh1)){
                 ?>
+                <h3>The funder of university costs:</h3>
             <table>
                 <tr>
                     <td>Relative Relation</td>
@@ -317,15 +336,15 @@ if (!$conn) {
                     <td><?php echo $row['familyResidence'];?></td>
                 </tr>
                 <tr>
-                    <td>Number Private</td>
+                    <td>Number of vehicles (Private)</td>
                     <td><?php echo $row['numPrivate'];?></td>
                 </tr>
                 <tr>
-                    <td>Number Public</td>
+                    <td>Number of vehicles (Public)</td>
                     <td><?php echo $row['numPublic'];?></td>
                 </tr>
                 <tr>
-                    <td>Number Commercial</td>
+                    <td>Number of vehicles (Commercial)</td>
                     <td><?php echo $row['numCommercial'];?></td>
                 </tr>
                 <tr>
@@ -344,6 +363,34 @@ if (!$conn) {
 
             <?php
             }
+            ?>
+            <h3>Undergraduate fraternity data:</h3>
+            <table>
+                <tr>
+                    <td>Brother ID</td>
+                    <td>Student Name</td>
+                    <td>Registration Number</td>
+                    <td>College Name</td>
+                    <td>University Name</td>
+                </tr>
+            <?php
+            $search = $_POST['search'];
+            $sh2 = mysqli_query($conn,"SELECT * FROM brothersdata WHERE userIdCard LIKE '%$search%'");
+            while($row=mysqli_fetch_assoc($sh2)){
+                ?>
+                    <tr>
+                        <td><?php echo $row['BrotherId'];?></td>
+                        <td><?php echo $row['StudentName'];?></td>
+                        <td><?php echo $row['RegistrationNumber'];?></td>
+                        <td><?php echo $row['CollegeName'];?></td>
+                        <td><?php echo $row['UniversityName'];?></td>
+                    </tr>
+
+            <?php
+            }
+            ?>
+            </table>
+                <?php
             }
             ?>
         </div>
