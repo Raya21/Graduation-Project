@@ -103,12 +103,12 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person, color: Colors.pink),
-                            hintText: "User Name".tr,
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintText: "Username".tr,
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.pink, width: 1,)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white))),
+                                borderSide: BorderSide(color: Colors.pink, width: 1,))),
                       ),
                       SizedBox(
                         height: 20,
@@ -118,12 +118,12 @@ class _SignUpState extends State<SignUp> {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email, color: Colors.pink),
-                            hintText: "E-mail".tr,
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintText: "Email".tr,
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.pink, width: 1.5,)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white))),
+                                borderSide: BorderSide(color: Colors.pink, width: 1.5,))),
                         onChanged: (val) {
                           validateEmail(val);
                         },
@@ -146,11 +146,11 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon:
                                 Icon(Icons.password, color: Colors.pink),
                             hintText: "Password".tr,
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                             enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.pink, width: 1.5,)),
                             focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white))),
+                                borderSide: BorderSide(color: Colors.pink, width: 1.5,))),
                       ),
                       SizedBox(
                         height: 30,
@@ -172,7 +172,7 @@ class _SignUpState extends State<SignUp> {
                               register();
                             },
                             child: Text(
-                              "Create Account".tr,
+                              "Create Account".tr, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(300, 50),
@@ -199,9 +199,10 @@ class _SignUpState extends State<SignUp> {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 20,
                             ),
                           ),
+                          SizedBox(width: 2,),
                           InkWell(
                             onTap: () {
                               Navigator.of(context)
@@ -212,7 +213,7 @@ class _SignUpState extends State<SignUp> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 216, 51, 122),
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 20,
                               ),
                             ),
                           )

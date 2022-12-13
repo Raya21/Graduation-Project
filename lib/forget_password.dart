@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -17,66 +18,26 @@ class ForgetPass extends StatefulWidget {
 class _ForgetPassState extends State<ForgetPass> {
   TextEditingController email = TextEditingController();
 
-  bool verifyButton = false;
-  late String verifyLink;
-  Future checkUser() async {
-    var response = await http.post(Uri.parse("http://"+IPADDRESS+"/handinhand/check.php"),
-        body: {"username": email.text});
-    var link = json.decode(response.body);
-    if (link == "INVALIDUSER") {
-      Fluttertoast.showToast(
-        msg: "This user not in our database",
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 6,
-      );
-    } else {
-      sendMAil();
-      setState(() {
-        verifyLink = link;
-        verifyButton = true;
-      });
-      Fluttertoast.showToast(
-        msg: "Click Verify Button To Reset Password",
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 4,
-      );
-    }
-    print(link);
+  @override
+  void dispose() {
+    email.dispose();
+    super.dispose();
   }
 
-  int newPass = 0;
-  Future resetPassword(String verifyLink) async {
-    var response = await http.post(Uri.parse(verifyLink));//in video he put verifyLink without Uri.parse but without it i got an error
-    var link = json.decode(response.body);
-    setState(() {
-      newPass = link;
-      verifyButton = false;
-    });
-    print(link);
-    Fluttertoast.showToast(
-      msg: "Your Password has been reset: $newPass",
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 4,
-    );
-  }
-
-  sendMAil() async {
-    String username = EMAIL;
-    String password = PASS;
-
-    final SmtpServer = gmail(username, password);
-    final message = Message()
-      ..from = Address(username)
-      ..recipients.add("signaturesoftit@gmail.com")
-      ..subject = "Password recover link: ${DateTime.now()}"
-      ..html =
-          "<h3>Thanks for with localhost. Please click this link to reset your password</h3>\n<p><a href='$verifyLink'>Click me to reset</a></p>";
-
+  Future RecoverPassword() async {
     try {
-      final SendReport = await send(message, SmtpServer);
-      print("Message sent: " + SendReport.toString());
-    } on MailerException catch (e) {
-      print("Message not sent. \n" + e.toString());
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text("Password reset Link sent! Check your email"),
+          );
+        },
+      );
     }
   }
 
@@ -133,7 +94,7 @@ class _ForgetPassState extends State<ForgetPass> {
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "Email",
                               hintStyle: TextStyle(
-                                  color: Colors.grey.shade600, fontSize: 20),
+                                  color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.pink, width: 2)),
@@ -142,39 +103,41 @@ class _ForgetPassState extends State<ForgetPass> {
                                       color: Colors.pink, width: 2))),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: MaterialButton(
-                            color: Colors.pink,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            color: Colors.white,
                             onPressed: () {
-                              checkUser();
+                              RecoverPassword();
                             },
                             child: Text(
                               "Recover Password",
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  color: Colors.pink),
                             ),
                           ),
                         ),
-                        verifyButton
-                            ? MaterialButton(
-                                color: Colors.black,
-                                onPressed: () {
-                                  resetPassword(verifyLink);
-                                },
-                                child: Text(
-                                  "Verify",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              )
-                            : Container(),
-                        newPass == 0
-                            ? Container()
-                            : Text("New Password is $newPass")
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            color: Colors.white,
+                            onPressed: () {
+                              Navigator.pushNamed(context, "login");
+                            },
+                            child: Text(
+                              "Back",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.pink),
+                            ),
+                          ),
+                        ),
                       ],
                     )))
               ],

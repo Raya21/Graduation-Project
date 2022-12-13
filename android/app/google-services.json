@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "25709537079",
+    "project_id": "handinhand-1b8d5",
+    "storage_bucket": "handinhand-1b8d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25709537079:android:46062d1d0ce0505ebf1cb2",
+        "android_client_info": {
+          "package_name": "com.example.index"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25709537079-pt0dda5vavl6ktqbqmmbjq5onca77tmq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.index",
+            "certificate_hash": "32885978d2b8999ab701f05d950ccf09d3724533"
+          }
+        },
+        {
+          "client_id": "25709537079-q2vpiurp0qnn45ladsc0tdngne2h6p8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO94kliZD8mdy-EWvsxvBU59qSojlIfFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25709537079-q2vpiurp0qnn45ladsc0tdngne2h6p8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

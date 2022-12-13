@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 35,
-                        fontFamily: "Rajdhani",
+                        fontFamily: "Comic_Neue",
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -109,13 +109,13 @@ class _LoginState extends State<Login> {
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
-                              hintText: "E-mail".tr,
+                              hintText: "Email".tr,
                               hintStyle:
-                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
+                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                               enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white)),
+                                  borderSide: BorderSide(color: Colors.pink)),
                               focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white))),
+                                  borderSide: BorderSide(color: Colors.pink))),
                           onChanged: (val) {
                             validateEmail(val);
                           },
@@ -138,11 +138,11 @@ class _LoginState extends State<Login> {
                                   Icon(Icons.password, color: Colors.pink),
                               hintText: "Password".tr,
                               hintStyle:
-                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
+                                  TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                               enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white)),
+                                  borderSide: BorderSide(color: Colors.pink)),
                               focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white))),
+                                  borderSide: BorderSide(color: Colors.pink))),
                           obscureText: true,
                         ),
                         SizedBox(
@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
                               onPressed: () {
                                 login();
                               },
-                              child: Text("Login".tr),
+                              child: Text("Login".tr, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                               style: ElevatedButton.styleFrom(
                                   fixedSize: Size(300, 50),
                                   backgroundColor: Colors.white,
@@ -179,18 +179,18 @@ class _LoginState extends State<Login> {
                               "Forget Password?".tr,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 75),
+                          margin: EdgeInsets.only(top: 65),
                           child: Text(
                             "Don't have an account?".tr,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -205,7 +205,7 @@ class _LoginState extends State<Login> {
                               },
                               child: Text(
                                 "Create".tr,
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               style: ElevatedButton.styleFrom(
                                   fixedSize: Size(150, 50),

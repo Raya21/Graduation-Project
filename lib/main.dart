@@ -22,7 +22,7 @@ import 'package:index/sign_up.dart';
 import 'package:index/themenotifier.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'locale/locale.dart';
 import 'locale/locale_controller.dart';
 
@@ -30,6 +30,7 @@ import 'locale/locale_controller.dart';
 Future<void> main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SharedPreferences pref = await SharedPreferences.getInstance();
   bool themebool = pref.getBool("isdark") ?? false;
   runApp(ChangeNotifierProvider(

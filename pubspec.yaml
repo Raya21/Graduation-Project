@@ -45,6 +45,9 @@ dependencies:
   mailer: ^5.2.0
   get: ^4.6.5
   get_storage: ^2.0.3
+  firebase_core: ^2.4.0
+  firebase_auth: ^4.2.0
+  cloud_firestore: ^4.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -118,6 +121,9 @@ flutter:
      - family: Rajdhani
        fonts:
          - asset: lib/fonts/Rajdhani/Rajdhani-SemiBold.ttf
+     - family: Comic_Neue
+       fonts:
+         - asset: lib/fonts/Comic_Neue/ComicNeue-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
