@@ -15,7 +15,7 @@ late String emailglo;
 class profile extends StatefulWidget {
   final String value;
   //const profile({super.key});
-   const profile({Key? key, required this.value}) : super(key: key);
+  const profile({Key? key, required this.value}) : super(key: key);
   @override
   State<profile> createState() => _profileState();
 }
@@ -27,8 +27,9 @@ class _profileState extends State<profile> {
   @override
   void initState() {
     super.initState();
-    emailglo=widget.value;
+    emailglo = widget.value;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +60,7 @@ class _profileState extends State<profile> {
             _currentIndex = val;
             emailglo = widget.value;
           });
+          print(emailglo);
         },
         items: [
           BottomNavigationBarItem(
@@ -84,9 +86,8 @@ class _profileState extends State<profile> {
 }
 
 class personInfo extends StatefulWidget {
-
   const personInfo({Key? key}) : super(key: key);
-  
+
   @override
   State<personInfo> createState() => _personInfoState();
 }
@@ -105,7 +106,7 @@ class _personInfoState extends State<personInfo> {
 
   Future person() async {
     idglo = id.text;
-    var url = "http://"+IPADDRESS+"/handinhand/personInfo.php";
+    var url = "http://" + IPADDRESS + "/handinhand/personInfo.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
       "fname": fname.text,
@@ -481,9 +482,12 @@ class _contactInfoState extends State<contactInfo> {
   String _errorMessage = '';
 
   Future contact() async {
-    var url = "http://"+IPADDRESS+"/handinhand/contactInfo.php";
+    print(emailglo);
+    print(Tphone.text);
+    print(Mphone.text);
+    var url = "http://" + IPADDRESS + "/handinhand/contactInfo.php";
     var response = await http.post(Uri.parse(url), body: {
-      "id": idglo,
+      "email": emailglo,
       "TPhone": Tphone.text,
       "MPhone": Mphone.text,
     });
@@ -631,9 +635,8 @@ class _eduInfoState extends State<eduInfo> {
   String _errorMessage = '';
 
   Future education() async {
-    var url = "http://"+IPADDRESS+"/handinhand/eduInfo.php";
+    var url = "http://" + IPADDRESS + "/handinhand/eduInfo.php";
     var response = await http.post(Uri.parse(url), body: {
-      "id": idglo,
       "email": emailglo,
       "yearofEn": yearofEn.text,
       "school": schoolcon.text,
@@ -661,6 +664,33 @@ class _eduInfoState extends State<eduInfo> {
     } else {
       Fluttertoast.showToast(
           msg: "Updated!".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    }
+  }
+
+  Future JoinToDonors() async {
+    var url = "http://" + IPADDRESS + "/handinhand/jointodonors.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "email": emailglo,
+    });
+    var data = await json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Joined successfully".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromARGB(255, 203, 158, 211),
+          textColor: Colors.purple,
+          fontSize: 16);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Join Failed! You should fill your profile info. fisrt".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -900,17 +930,21 @@ class _eduInfoState extends State<eduInfo> {
                       "Palestine Polytechnic University".tr,
                       "Khalel university".tr,
                       "Bethlehem University".tr,
-                      "University College of Educational Sciences - Teachers' House".tr,
+                      "University College of Educational Sciences - Teachers' House"
+                          .tr,
                       "Palestine Technical University - Kadoorie".tr,
                       "Arab American University - Jenin".tr,
                       "Al-Istiqlal University".tr,
                       "Ibn Sina College of Health Sciences".tr,
-                      "Bethlehem Bible College - Technical and Vocational Education and Training".tr,
+                      "Bethlehem Bible College - Technical and Vocational Education and Training"
+                          .tr,
                       "Palestine Technical College - Al-Arroub".tr,
                       "Palestine Technical College - Ramallah".tr,
-                      "Wajdi Nihad Abu Gharbia University College of Technology".tr,
+                      "Wajdi Nihad Abu Gharbia University College of Technology"
+                          .tr,
                       "Palestine Ahliya University".tr,
-                      "Al-Hajjah Andalib Al-Amad College of Nursing and Midwifery".tr,
+                      "Al-Hajjah Andalib Al-Amad College of Nursing and Midwifery"
+                          .tr,
                       "Hebron College of Nursing".tr,
                       "Abrahamic Community College".tr,
                       "Talitha National Community College".tr,
@@ -918,7 +952,8 @@ class _eduInfoState extends State<eduInfo> {
                       "Al-Quds Open University".tr,
                       "Islamic Call College - Qalqilya".tr,
                       "Faculty of Nursing, Makassed Association".tr,
-                      "Family Revival College - Vocational and Technical Education and Training".tr,
+                      "Family Revival College - Vocational and Technical Education and Training"
+                          .tr,
                       "Caritas College of Nursing".tr,
                       "Rawda College for Professional Sciences".tr,
                       "Islamic University".tr,
@@ -989,7 +1024,8 @@ class _eduInfoState extends State<eduInfo> {
                       "College of Commerce and Economics".tr,
                       "College of Law and Public Administration".tr,
                       "Faculty of Education".tr,
-                      "College of Administrative Sciences and Information Systems".tr,
+                      "College of Administrative Sciences and Information Systems"
+                          .tr,
                       "College of Information Technology".tr,
                       "College of Applied Professions".tr,
                       "College of Finance and Administration".tr,
@@ -1179,10 +1215,36 @@ class _eduInfoState extends State<eduInfo> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     )),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.purple,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    onPressed: () {
+                      JoinToDonors();
+                    },
+                    child: Text(
+                      "Join to donors".tr,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ),
+               SizedBox(
+                height: 40,
+              ),
             ],
           ),
         )));
   }
 }
-

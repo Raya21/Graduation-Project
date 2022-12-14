@@ -123,7 +123,7 @@ flutter:
          - asset: lib/fonts/Rajdhani/Rajdhani-SemiBold.ttf
      - family: Comic_Neue
        fonts:
-         - asset: lib/fonts/Comic_Neue/ComicNeue-Regular.ttf
+         - asset: lib/fonts/Comic_Neue/ComicNeue-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
