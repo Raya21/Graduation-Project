@@ -674,7 +674,8 @@ class _eduInfoState extends State<eduInfo> {
   }
 
   Future JoinToDonors() async {
-    var url = "http://" + IPADDRESS + "/handinhand/jointodonors.php";
+    try{
+      var url = "http://" + IPADDRESS + "/handinhand/jointodonors.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailglo,
     });
@@ -697,6 +698,9 @@ class _eduInfoState extends State<eduInfo> {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16);
+    }
+    }catch(e){
+      print(e.toString());
     }
   }
 
