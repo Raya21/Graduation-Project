@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:index/addhelp.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/asking_for_help.dart';
+import 'package:index/chat.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
@@ -69,7 +70,8 @@ class MyApp extends StatelessWidget {
           "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',),
           "outstanding_students": (context) => outstandingStudents(),
           "asking_for_help":(context) =>AskForHelp(value: '',),
-          "addhelp":(context) => AddHelp(value: '',)
+          "addhelp":(context) => AddHelp(value: '',),
+          "chat":(context) => ChatScreen(value: '',)
         },
       );
     }));

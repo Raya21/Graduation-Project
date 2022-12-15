@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/asking_for_help.dart';
+import 'package:index/chat.dart';
 import 'package:index/creditional.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
@@ -322,7 +323,11 @@ class _HomeState extends State<Home> {
                         ),
                         IconButton(
                           icon: Icon(Icons.chat),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                ChatScreen(value: emailvalue)));
+                          },
                         ),
                       ],
                     ),

@@ -86,6 +86,8 @@ flutter:
     - lib/imgs/family2.png
     - lib/imgs/scholarship.png
     - lib/imgs/student.png
+    - lib/imgs/images.jpeg
+    - lib/imgs/chat.PNG
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
