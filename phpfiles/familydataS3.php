@@ -27,6 +27,7 @@ $numUniversityStu=  $_POST['numUniversityStu'];
 
 $objects;
 
+
 if($cardNumber==NULL)
 $cardNumber = 0;
 
@@ -39,6 +40,7 @@ $IdCard = mysqli_query($mydb,$sql2);
 $row = $IdCard->fetch_assoc();
  
 $i=0;
+if($BrothersData!=null)
 foreach($BrothersData as $key => $value){
   $i=0;
   foreach($value as $k => $v){
@@ -64,6 +66,7 @@ $query = mysqli_query($mydb,$update);
 
 }
 else{
+//echo("brothers");
 $insert = "INSERT INTO brothersdata(
 userId,
 userIdCard,
@@ -123,6 +126,7 @@ if($count2 == 1)
 
 
 else if($count2 == 0){
+//echo("s3");
 
     $insert = "INSERT INTO familydatas3(
     studentIdCard,
