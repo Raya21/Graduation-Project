@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
 import 'contactus.dart';
 import 'family_data.dart';
 
@@ -16,9 +18,54 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String imagePath = " ";
+  int flag = 0;
+  var image = " ";
+  var _image;
+  final picker = ImagePicker();
+  //int IPADDRESS = 192.168.1.10;
+
+  // Future choiceImage(ImageSource source) async {
+  //   var pickedImage = await picker.getImage(source: source);
+  //   setState(() {
+  //     _image = File(pickedImage!.path);
+  //   });
+  // }
+
   double value = 0;
-  PickedFile? _imagefile;
-  final ImagePicker _picker = ImagePicker();
+
+  Future getProfileImage() async {
+    var f = 0;
+    var url = "http://192.168.1.10/handinhand/viewProfileImage.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "userId": widget.id.toString(),
+    });
+    List list = await json.decode(response.body);
+    if (list[0] == "nopic.png") {
+      f = 1;
+    }
+
+    if (mounted)
+      setState(() {
+        if (f == 0) {
+          image = "lib/ProfileImages/${list[0]['image']}";
+        } else if (f == 1) {
+          image = "lib/ProfileImages/nopic.png";
+        }
+
+        // image =
+        //     "http://192.168.1.10/handinhand/ProfileImages/${list[0]['image']}";
+      });
+
+    return (image);
+  }
+
+  @override
+  void initState() {
+    //getProfileImage();
+    super.initState();
+  }
+
   Widget bottomSheet() {
     return Container(
       height: 100,
@@ -52,6 +99,7 @@ class _HomeState extends State<Home> {
               ),
               onTap: () {
                 takePhoto(ImageSource.camera);
+                //choiceImage(ImageSource.camera);
               },
             ),
             SizedBox(
@@ -72,6 +120,7 @@ class _HomeState extends State<Home> {
               ),
               onTap: () {
                 takePhoto(ImageSource.gallery);
+                //choiceImage(ImageSource.gallery);
               },
             )
           ],
@@ -81,10 +130,34 @@ class _HomeState extends State<Home> {
   }
 
   void takePhoto(ImageSource source) async {
-    final pickedFile = await _picker.getImage(source: source);
+    var pickedImage = await picker.getImage(source: source);
+    //final pickedFile = await _picker.getImage(source: source);
+
     setState(() {
-      _imagefile = pickedFile!;
+      //_imagefile = pickedFile!;
+      _image = File(pickedImage!.path);
+      imagePath = pickedImage.path;
     });
+
+    print(imagePath);
+    uploadImage();
+  }
+
+  Future uploadImage() async {
+    final uri =
+        await Uri.parse("http://192.168.1.10/handinhand/uploadProfileImg.php");
+    //image
+    var request1 = http.MultipartRequest('POST', uri);
+    request1.fields['userId'] = (widget.id).toString();
+    var pic1 = await http.MultipartFile.fromPath("image", _image.path);
+    request1.files.add(pic1);
+    var response1 = await request1.send();
+
+    if (response1.statusCode == 200) {
+      print("Image Uploaded");
+    } else {
+      print("Image Not Uploaded");
+    }
   }
 
   @override
@@ -107,33 +180,55 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Stack(
-                children: [
-                  CircleAvatar(
-                      radius: 50.0,
-                      backgroundImage: _imagefile == null
-                          ? null
-                          : FileImage(File(_imagefile!.path))
-                      /*backgroundImage: _imageFile == null 
-                        ? AssetImage("lib/imgs/nopic.png") 
-                        : FileImage(File(_imageFile.path)),*/
-                      ),
-                  Positioned(
-                      bottom: 4,
-                      right: 4,
-                      child: InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheet()));
-                          },
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Color.fromARGB(255, 219, 203, 203),
-                            size: 28,
-                          ))),
-                ],
-              ),
+              FutureBuilder(
+                  future: getProfileImage(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) print(snapshot.error);
+                    return snapshot.hasData
+                        ? Stack(
+                            children: [
+                              CircleAvatar(
+                                  radius: 50.0,
+                                  //backgroundImage: _image == null ? null : FileImage(_image)
+                                  // backgroundImage: _image == null ? null : FileImage(_image)
+
+                                  /*backgroundImage: _imageFile == null 
+                            ? AssetImage("lib/imgs/nopic.png") 
+                            : FileImage(File(_imageFile.path)),*/
+
+                                  // backgroundImage: AssetImage('lib/imgs/nopic.png'), هاي صح اشتغلت
+
+                                  // backgroundImage: AssetImage(
+                                  //     "lib/ProfileImages/image_picker1023303032194065037.png"),    هاي اشتغلت صح برضو
+
+                                  //backgroundImage: NetworkImage(image),
+
+                                  //backgroundImage: AssetImage(snapshot.data),
+                                  backgroundImage: _image == null
+                                      ? AssetImage(snapshot.data)
+                                      : AssetImage("$imagePath")),
+                              Positioned(
+                                  bottom: 4,
+                                  right: 4,
+                                  child: InkWell(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: ((builder) =>
+                                                bottomSheet()));
+                                      },
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color:
+                                            Color.fromARGB(255, 219, 203, 203),
+                                        size: 28,
+                                      ))),
+                            ],
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  }),
               SizedBox(
                 height: 10,
               ),

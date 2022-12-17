@@ -6,28 +6,32 @@ if(!$mydb){
 }
 $BrothersData=json_decode($_POST['BrothersData']);
 $userId= $_POST['userId'];
-$numFamilyMem =  $_POST['numFamilyMem'];;
-$numMemDiseases =  $_POST['numMemDiseases'];;
-$familyIncome =  $_POST['familyIncome'];;
+$numFamilyMem =  $_POST['numFamilyMem'];
+$numMemDiseases =  $_POST['numMemDiseases'];
+$familyIncome =  $_POST['familyIncome'];
 
-$familyAssistance =  $_POST['familyAssistance'];;
-$cardNumber =  $_POST['cardNumber'];;
-$familyHousing =  $_POST['familyHousing'];;
-$monthlyRent =  $_POST['monthlyRent'];;
+$familyAssistance =  $_POST['familyAssistance'];
+$cardNumber =  $_POST['cardNumber'];
+$familyHousing =  $_POST['familyHousing'];
+$monthlyRent =  $_POST['monthlyRent'];
 
-$familyResidence= $_POST['familyResidence'];;
-$numPrivate =  $_POST['numPrivate'];;
-$numPublic =  $_POST['numPublic'];;
-$numCommercial =  $_POST['numCommercial'];;
+$familyResidence= $_POST['familyResidence'];
+$numPrivate =  $_POST['numPrivate'];
+$numPublic =  $_POST['numPublic'];
+$numCommercial =  $_POST['numCommercial'];
 
-$studentHousingFee=  $_POST['studentHousingFee'];;
-$smoke =  $_POST['smoke'];;
-$numUniversityStu=  $_POST['numUniversityStu'];;
+$studentHousingFee=  $_POST['studentHousingFee'];
+$smoke =  $_POST['smoke'];
+$numUniversityStu=  $_POST['numUniversityStu'];
 
 
 $objects;
 
+if($cardNumber==NULL)
+$cardNumber = 0;
 
+if($studentHousingFee==NULL)
+$studentHousingFee = 0;
 
 
 $sql2 = "SELECT studentIdCard FROM familydatas1 WHERE userId='".$userId."'";
