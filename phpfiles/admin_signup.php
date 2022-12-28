@@ -23,7 +23,7 @@
         .box{
             position: relative;
             width: 380px;
-            height: 450px;
+            height: 500px;
             background: #1c1c1c;
             border-radius: 8px;
             overflow: hidden;
@@ -34,7 +34,7 @@
             top: -50%;
             left: -50%;
             width: 380px;
-            height: 450px;
+            height: 500px;
             background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
             transform-origin: bottom right;
             animation: animate 6s linear infinite;
@@ -45,7 +45,7 @@
             top: -50%;
             left: -50%;
             width: 380px;
-            height: 450px;
+            height: 500px;
             background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
             transform-origin: bottom right;
             animation: animate 6s linear infinite;
@@ -104,6 +104,8 @@ if (isset($_REQUEST['username'])) {
                 <span>Password</span>
                 <i></i>
             </div>
+            <input type="checkbox" id="employee" name="employee" value="employee">
+            <label for="employee" style="color: #8f8f8f; margin-top: 10px"> Sign up as employee</label><br>
             <input type="submit" value="Sign Up">
         </form>
     </div>

@@ -80,7 +80,7 @@ flutter:
   assets:
     - lib/imgs/background.jpg
     - lib/imgs/logo.png
-    - lib/imgs/nopic.png
+    - lib/ProfileImages/nopic.png
     - lib/imgs/family.png
     - lib/imgs/family1.png
     - lib/imgs/family2.png

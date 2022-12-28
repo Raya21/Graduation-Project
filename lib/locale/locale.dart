@@ -405,14 +405,22 @@ class MyLocale implements Translations {
           "Edit Faild": "فشل التعديل",
           "Update Help": "تعديل مساعدة",
           "Update": "تعديل",
-          "Join to donors":"الانتساب للمتبرعين",
-          "Joined successfully":"تم الانتساب بنجاح",
-          "Join Failed! You should fill your profile info. fisrt":"فشلت عملية الانتساب! يجب ملأ المعلومات الشخصية اولاً",
+          "Join to donors": "الانتساب للمتبرعين",
+          "Joined successfully": "تم الانتساب بنجاح",
+          "Join Failed! You should fill your profile info. fisrt":
+              "فشلت عملية الانتساب! يجب ملأ المعلومات الشخصية اولاً",
+          "Be sure to enter the required text fields!":
+              "تأكد من إدخال الحقول النصية المطلوبة!",
+          "Student #": "الطالب #",
         },
         "en": {
-          "Join to donors":"Join to donors",
-          "Joined successfully":"Joined successfully",
-          "Join Failed! You should fill your profile info. fisrt":"Join Failed! You should fill your profile info. fisrt",
+          "Student #": "Student #",
+          "Be sure to enter the required text fields!":
+              "Be sure to enter the required text fields!",
+          "Join to donors": "Join to donors",
+          "Joined successfully": "Joined successfully",
+          "Join Failed! You should fill your profile info. fisrt":
+              "Join Failed! You should fill your profile info. fisrt",
           "Update": "Update",
           "Update Help": "Update Help",
           "Edit Faild": "Edit Faild",

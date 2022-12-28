@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:index/creditional.dart';
+import 'package:index/sqldb.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
 
 late String idglo;
 late String emailglo;
@@ -93,6 +95,7 @@ class personInfo extends StatefulWidget {
 }
 
 class _personInfoState extends State<personInfo> {
+  SqlDb sqlDb = SqlDb();
   final _formKey1 = GlobalKey<FormState>();
   String selectedIncome = "-";
   String selectedGender = "Male".tr;
@@ -103,6 +106,34 @@ class _personInfoState extends State<personInfo> {
   TextEditingController city = TextEditingController();
   TextEditingController bdate = TextEditingController();
   String _errorMessage = '';
+  bool isLoading = true;
+
+  Future getData() async {
+    idglo = id.text;
+    final result = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'person_info' WHERE `email`='${emailglo}'");
+    final count = Sqflite.firstIntValue(result);
+
+    if (count == 1) {
+      List<Map> response = await sqlDb
+          .readData("SELECT * FROM 'person_info' WHERE `email`='${emailglo}'");
+      isLoading = false;
+      if (this.mounted) {
+        setState(() {
+          fname.text = response[0]["fname"];
+          id.text = response[0]["id"].toString();
+          bdate.text = response[0]["birthdate"].toString();
+          birthplace.text = response[0]["birthplace"];
+          city.text = response[0]["city"];
+          selectedIncome = response[0]["income"];
+          selectedGender = response[0]["gender"];
+          selectedSS = response[0]["socialstatus"];
+          //Tphone.text = response[0]["tphone"].toString();
+          // Mphone.text = response[0]["mphone"].toString();
+        });
+      }
+    }
+  }
 
   Future person() async {
     idglo = id.text;
@@ -143,6 +174,7 @@ class _personInfoState extends State<personInfo> {
   @override
   void initState() {
     super.initState();
+    getData();
     bdate.text = "";
   }
 
@@ -449,7 +481,59 @@ class _personInfoState extends State<personInfo> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      //await sqlDb.mydeleteDatabase();
+                     idglo = id.text;
+
+                      final result = await sqlDb.readData(
+                          "SELECT COUNT(*)  FROM 'person_info' WHERE `email`='${emailglo}'");
+                      final count = Sqflite.firstIntValue(result);
+                      if (count == 0) {
+                        int response = await sqlDb.insertData('''
+                       INSERT INTO person_info (
+                        `id`,
+                        `email`,
+                        `fname`,
+                        `birthdate`,
+                        `birthplace`,
+                        `city`,
+                        `income`,
+                        `gender`,
+                        `socialstatus`
+                        )
+                       VALUES (
+                        ${idglo},
+                       "${emailglo}",
+                       "${fname.text}",
+                       "${bdate.text}",
+                       "${birthplace.text}",
+                       "${city.text}",
+                       "${selectedIncome}",
+                       "${selectedGender}",
+                       "${selectedSS}"
+                        )
+                       ''');
+                      } else {
+                        int response = await sqlDb.updateData('''
+                            UPDATE person_info SET
+                        id= ${idglo},
+                        email="${emailglo}",
+                        fname="${fname.text}",
+                        birthdate="${bdate.text}",
+                        birthplace="${birthplace.text}",
+                        city= "${city.text}",
+                        income="${selectedIncome}",
+                        gender="${selectedGender}",
+                        socialstatus="${selectedSS}"
+                            WHERE `email`="${emailglo}"
+                            ''');
+                      }
+
+                      List<Map> response =
+                          await sqlDb.readData("SELECT * FROM 'person_info'");
+
+                      print(count);
+                      print("$response");
                       person();
                     },
                     child: Text(
@@ -476,10 +560,37 @@ class contactInfo extends StatefulWidget {
 }
 
 class _contactInfoState extends State<contactInfo> {
+  SqlDb sqlDb = SqlDb();
   final _formKey2 = GlobalKey<FormState>();
   TextEditingController Tphone = TextEditingController();
   TextEditingController Mphone = TextEditingController();
   String _errorMessage = '';
+
+  bool isLoading = true;
+
+  Future getData() async {
+    final result = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'contact_info' WHERE `email`='${emailglo}'");
+    final count = Sqflite.firstIntValue(result);
+
+    if (count == 1) {
+      List<Map> response = await sqlDb
+          .readData("SELECT * FROM 'contact_info' WHERE `email`='${emailglo}'");
+      isLoading = false;
+      if (this.mounted) {
+        setState(() {
+          Tphone.text = response[0]["tphone"].toString();
+          Mphone.text = response[0]["mphone"].toString();
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   Future contact() async {
     print(emailglo);
@@ -593,7 +704,53 @@ class _contactInfoState extends State<contactInfo> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    var studentidcard;
+                    //await sqlDb.mydeleteDatabase();
+                    final _studentIdCard = await sqlDb.readData(
+                        "SELECT COUNT(*)  FROM 'person_info' WHERE `email`='${emailglo}'");
+                    final countt = Sqflite.firstIntValue(_studentIdCard);
+
+                    if (countt == 1) {
+                      List<Map> response = await sqlDb.readData(
+                          "SELECT * FROM 'person_info' WHERE `email`='${emailglo}'");
+                      studentidcard = response[0]["id"].toString();
+                    }
+                    final result = await sqlDb.readData(
+                        "SELECT COUNT(*)  FROM 'contact_info' WHERE `email`='${emailglo}'");
+                    final count = Sqflite.firstIntValue(result);
+                    if (count == 0) {
+                      int response = await sqlDb.insertData('''
+                     INSERT INTO contact_info (
+                      `id` ,
+                      `tphone`,
+                      `mphone`,
+                      `email`
+                      )
+                     VALUES (
+                      ${studentidcard},
+                     "${Tphone.text}",
+                     "${Mphone.text}",
+                     "${emailglo}"
+                      )
+                     ''');
+                    } else {
+                      int response = await sqlDb.updateData('''
+                          UPDATE contact_info SET
+                          id = ${studentidcard},
+                          tphone = "${Tphone.text}",
+                          mphone = "${Mphone.text}",
+                          email="${emailglo}"
+                          WHERE `email`="${emailglo}"
+                          ''');
+                    }
+
+                    List<Map> response =
+                        await sqlDb.readData("SELECT * FROM 'contact_info'");
+
+                    print(count);
+                    print("$response");
+
                     contact();
                   },
                   child: Text(
@@ -619,6 +776,7 @@ class eduInfo extends StatefulWidget {
 }
 
 class _eduInfoState extends State<eduInfo> {
+  SqlDb sqlDb = SqlDb();
   final _formKey3 = GlobalKey<FormState>();
   String selectedBranch = "Study branch".tr;
   String selectedDegree = "Undergraduate degree".tr;
@@ -633,6 +791,43 @@ class _eduInfoState extends State<eduInfo> {
   TextEditingController uniid = TextEditingController();
   TextEditingController yearofEnUni = TextEditingController();
   String _errorMessage = '';
+  bool isLoading = true;
+
+  Future getData() async {
+    final result = await sqlDb.readData(
+        "SELECT COUNT(*)  FROM 'edu_info' WHERE `email`='${emailglo}'");
+    final count = Sqflite.firstIntValue(result);
+
+    if (count == 1) {
+      List<Map> response = await sqlDb
+          .readData("SELECT * FROM 'edu_info' WHERE `email`='${emailglo}'");
+      isLoading = false;
+      if (this.mounted) {
+        setState(() {
+          yearofEn.text = response[0]["uniyoe"].toString();
+          schoolcon.text = response[0]["school"];
+          gradecon.text = response[0]["grade"].toString();
+          selectedBranch = response[0]["branch"].toString();
+          selectedDegree = response[0]["unidegree"];
+
+          selectedUni = response[0]["university"];
+          selectedCollege = response[0]["college"];
+          dep.text = response[0]["department"];
+
+          selectedYear = response[0]["academicyear"];
+          gpacon.text = response[0]["gpa"].toString();
+          uniid.text = response[0]["uniid"].toString();
+          yearofEnUni.text = response[0]["uniyoe"].toString();
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   Future education() async {
     var url = "http://" + IPADDRESS + "/handinhand/eduInfo.php";
@@ -674,32 +869,32 @@ class _eduInfoState extends State<eduInfo> {
   }
 
   Future JoinToDonors() async {
-    try{
+    try {
       var url = "http://" + IPADDRESS + "/handinhand/jointodonors.php";
-    var response = await http.post(Uri.parse(url), body: {
-      "email": emailglo,
-    });
-    var data = await json.decode(response.body);
-    if (data == "Success") {
-      Fluttertoast.showToast(
-          msg: "Joined successfully".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-    } else {
-      Fluttertoast.showToast(
-          msg: "Join Failed! You should fill your profile info. fisrt".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16);
-    }
-    }catch(e){
+      var response = await http.post(Uri.parse(url), body: {
+        "email": emailglo,
+      });
+      var data = await json.decode(response.body);
+      if (data == "Success") {
+        Fluttertoast.showToast(
+            msg: "Joined successfully".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Color.fromARGB(255, 203, 158, 211),
+            textColor: Colors.purple,
+            fontSize: 16);
+      } else {
+        Fluttertoast.showToast(
+            msg: "Join Failed! You should fill your profile info. fisrt".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16);
+      }
+    } catch (e) {
       print(e.toString());
     }
   }
@@ -1209,7 +1404,82 @@ class _eduInfoState extends State<eduInfo> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      var studentidcard;
+                      //await sqlDb.mydeleteDatabase();
+                      final _studentIdCard = await sqlDb.readData(
+                          "SELECT COUNT(*)  FROM 'person_info' WHERE `email`='${emailglo}'");
+                      final countt = Sqflite.firstIntValue(_studentIdCard);
+
+                      if (countt == 1) {
+                        List<Map> response = await sqlDb.readData(
+                            "SELECT * FROM 'person_info' WHERE `email`='${emailglo}'");
+                        studentidcard = response[0]["id"].toString();
+                      }
+                      final result = await sqlDb.readData(
+                          "SELECT COUNT(*)  FROM 'edu_info' WHERE `email`='${emailglo}'");
+                      final count = Sqflite.firstIntValue(result);
+                      if (count == 0) {
+                        int response = await sqlDb.insertData('''
+                     INSERT INTO edu_info (
+                      `id`,
+                      `schoolyoe`,
+                      `school`,
+                      `grade`,
+                      `branch`,
+                      `unidegree`,
+                      `university`,
+                      `college`,
+                      `department`,
+                      `academicyear`,
+                      `gpa`,
+                      `uniid`,
+                      `uniyoe`,
+                      `email`
+                      )
+                     VALUES (
+                      ${studentidcard},
+                     "${yearofEn.text}",
+                     "${schoolcon.text}",
+                     "${gradecon.text}",
+                     "${selectedBranch}",
+                     "${selectedDegree}",
+                     "${selectedUni}",
+                     "${selectedCollege}",
+                     "${dep.text}",
+                     "${selectedYear}",
+                     "${gpacon.text}",
+                     "${uniid.text}",
+                     "${yearofEnUni.text}",
+                     "${emailglo}"
+                      )
+                     ''');
+                      } else {
+                        int response = await sqlDb.updateData('''
+                          UPDATE edu_info SET
+                      id= ${studentidcard},
+                      schoolyoe="${yearofEn.text}",
+                      school="${schoolcon.text}",
+                      grade="${gradecon.text}",
+                      branch="${selectedBranch}",
+                      unidegree="${selectedDegree}",
+                      university="${selectedUni}",
+                      college="${selectedCollege}",
+                      department="${dep.text}",
+                      academicyear="${selectedYear}",
+                      gpa="${gpacon.text}",
+                      uniid="${uniid.text}",
+                      uniyoe="${yearofEnUni.text}",
+                      email="${emailglo}"
+                      WHERE `email`="${emailglo}"
+                          ''');
+                      }
+
+                      List<Map> response =
+                          await sqlDb.readData("SELECT * FROM 'edu_info'");
+
+                      print(count);
+                      print("$response");
                       education();
                     },
                     child: Text(
@@ -1244,7 +1514,7 @@ class _eduInfoState extends State<eduInfo> {
                           fontWeight: FontWeight.bold),
                     )),
               ),
-               SizedBox(
+              SizedBox(
                 height: 40,
               ),
             ],

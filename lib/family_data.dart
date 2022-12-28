@@ -6,16 +6,29 @@ import 'section3_familyData_page.dart';
 import 'package:get/get.dart';
 
 class FamilyData extends StatefulWidget {
-  const FamilyData({super.key});
+  final int userId;
+  const FamilyData({super.key, required this.userId});
 
   @override
   State<FamilyData> createState() => _FamilyDataState();
 }
 
 class _FamilyDataState extends State<FamilyData> {
-  var section = Section1();
+  var UserId;
+  var section;
   var sectionNumber = 0;
-  List sections = [Section1(), Section2(), Section3()];
+  var sections;
+  @override
+  void initState() {
+    var section = Section1(userId: widget.userId);
+
+    sections = [
+      Section1(userId: widget.userId),
+      Section2(userId: widget.userId),
+      Section3(userId: widget.userId)
+    ];
+  }
+
   var selectedItem = null;
   var x = Colors.black;
   @override
@@ -105,6 +118,9 @@ class _FamilyDataState extends State<FamilyData> {
               /********************************************************************************  End of Notes Section  *******************************************************************/
 
               /************************************************************************************  Sections Bar *************************************************************************/
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 color: Theme.of(context).brightness == Brightness.light
                     ? Colors.white

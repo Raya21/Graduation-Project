@@ -5,6 +5,7 @@ import 'package:index/addhelp.dart';
 import 'package:index/apply_loans.dart';
 import 'package:index/asking_for_help.dart';
 import 'package:index/chat.dart';
+import 'package:index/chatmenu.dart';
 import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
@@ -62,16 +63,17 @@ class MyApp extends StatelessWidget {
           "apply_loans": (context) => applyLoans(value: '',),
           "contactus": (context) => ContactUs(),
           "sign_up": (context) => SignUp(),
-          "section1_familyData_page": (context) => Section1(),
-          "section2_familyData_page": (context) => Section2(),
-          "section3_familyData_page": (context) => Section3(),
-          "family_data": (context) => FamilyData(),
+          "section1_familyData_page": (context) => Section1(userId: 0),
+          "section2_familyData_page": (context) => Section2(userId: 0),
+          "section3_familyData_page": (context) => Section3(userId: 0),
+          "family_data": (context) => FamilyData(userId: 0),
           "forget_password": (context) => ForgetPass(),
           "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',),
           "outstanding_students": (context) => outstandingStudents(),
           "asking_for_help":(context) =>AskForHelp(value: '',),
           "addhelp":(context) => AddHelp(value: '',),
-          "chat":(context) => ChatScreen(value: '',)
+          "chat":(context) => ChatScreen(value: ''),
+          "chatmenu":(context) => ChatMenu(value: '')
         },
       );
     }));

@@ -171,7 +171,7 @@ class DataSearch extends SearchDelegate {
                           style: TextStyle(fontSize: 20),
                         ),
                         leading: Container(
-                          child: Image.network(
+                          child: Image.asset(
                               "http://"+IPADDRESS+"/handinhand/" +
                                   snp.data[index]["image"]),
                         ),

@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mailer/mailer.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:index/creditional.dart';
 
 final firestore = FirebaseFirestore.instance;
 late String email;
@@ -23,6 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
     print(message.data());
   }
 }*/
+
   void messageStream() async {
     await for (var snapshot in firestore.collection('messages').snapshots()) {
       for (var message in snapshot.docs) {
@@ -41,24 +45,14 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.purple,
-          title: Row(children: [
-            Image.asset(
-              "lib/imgs/chat.PNG",
-              height: 30,
-              width: 30,
+          title: Text(
+            "Chat",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              "Chat",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ]),
+          ),
           leading: IconButton(
               onPressed: () {
                 email = "";
@@ -159,6 +153,16 @@ class MessageLine extends StatelessWidget {
   final String? sender;
   final String? text;
   final bool isMe;
+  Future<String> getUsername(String em) async {
+    var url = "http://" + IPADDRESS + "/handinhand/getusername.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "email": em,
+    });
+    var data = await json.decode(response.body);
+
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -167,7 +171,8 @@ class MessageLine extends StatelessWidget {
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text("$sender", style: TextStyle(fontSize: 20, color: Colors.purple)),
+          Text(isMe ? "" : '$sender',
+              style: TextStyle(fontSize: 20, color: Colors.purple)),
           Material(
             elevation: 5,
             borderRadius: isMe
