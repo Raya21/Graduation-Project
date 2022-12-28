@@ -147,12 +147,17 @@ class MessageStreamBuilder extends StatelessWidget {
   }
 }
 
-class MessageLine extends StatelessWidget {
-  const MessageLine({Key? key, this.text, this.sender, required this.isMe})
-      : super(key: key);
+class MessageLine extends StatefulWidget {
   final String? sender;
   final String? text;
   final bool isMe;
+  const MessageLine({Key? key, this.text, this.sender, required this.isMe})
+      : super(key: key);
+  @override
+  State<MessageLine> createState() => _MessageLineState();
+}
+
+class _MessageLineState extends State<MessageLine> {
   Future<String> getUsername(String em) async {
     var url = "http://" + IPADDRESS + "/handinhand/getusername.php";
     var response = await http.post(Uri.parse(url), body: {
@@ -162,20 +167,29 @@ class MessageLine extends StatelessWidget {
 
     return data;
   }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            widget.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(isMe ? "" : '$sender',
-              style: TextStyle(fontSize: 20, color: Colors.purple)),
+          FutureBuilder(
+              future: getUsername('${widget.sender}'),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) print(snapshot.error);
+                return snapshot.hasData
+                    ? Text(widget.isMe ? "" : "${snapshot.data}",
+                        style: TextStyle(fontSize: 20, color: Colors.purple))
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      );
+              }),
+          /**/
           Material(
             elevation: 5,
-            borderRadius: isMe
+            borderRadius: widget.isMe
                 ? BorderRadius.only(
                     topLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
@@ -184,13 +198,13 @@ class MessageLine extends StatelessWidget {
                     topRight: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                     bottomLeft: Radius.circular(30)),
-            color: isMe ? Colors.purple[400] : Colors.white,
+            color: widget.isMe ? Colors.purple[400] : Colors.white,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Text(
-                "$text",
+                "${widget.text}",
                 style: TextStyle(
-                    fontSize: 20, color: isMe ? Colors.white : Colors.purple),
+                    fontSize: 20, color: widget.isMe ? Colors.white : Colors.purple),
               ),
             ),
           ),
