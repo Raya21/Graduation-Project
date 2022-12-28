@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'contactus.dart';
 import 'family_data.dart';
+import 'package:index/scholarship.dart';
 
 class Home extends StatefulWidget {
   final int id;
@@ -22,6 +23,7 @@ class _HomeState extends State<Home> {
   int flag = 0;
   var image = " ";
   var _image;
+  var _img;
   final picker = ImagePicker();
   //int IPADDRESS = 192.168.1.10;
 
@@ -56,7 +58,7 @@ class _HomeState extends State<Home> {
         // image =
         //     "http://192.168.1.10/handinhand/ProfileImages/${list[0]['image']}";
       });
-
+    //_img = File(image);
     return (image);
   }
 
@@ -132,12 +134,12 @@ class _HomeState extends State<Home> {
   void takePhoto(ImageSource source) async {
     var pickedImage = await picker.getImage(source: source);
     //final pickedFile = await _picker.getImage(source: source);
-
-    setState(() {
-      //_imagefile = pickedFile!;
-      _image = File(pickedImage!.path);
-      imagePath = pickedImage.path;
-    });
+    if (mounted)
+      setState(() {
+        //_imagefile = pickedFile!;
+        _image = File(pickedImage!.path);
+        imagePath = pickedImage.path;
+      });
 
     print(imagePath);
     uploadImage();
@@ -158,6 +160,20 @@ class _HomeState extends State<Home> {
     } else {
       print("Image Not Uploaded");
     }
+  }
+
+  Future GetData() async {
+    var url = "http://192.168.1.10/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": "rta@gmail.com",
+    });
+    print(res.body);
+    var red = json.decode(res.body);
+    if (red == "No data") {
+      print("No data");
+      return;
+    } else
+      return red;
   }
 
   @override
@@ -203,10 +219,16 @@ class _HomeState extends State<Home> {
 
                                   //backgroundImage: NetworkImage(image),
 
-                                  //backgroundImage: AssetImage(snapshot.data),
+                                  // backgroundImage: AssetImage(snapshot.data),
+                                  // backgroundImage: _image == null
+                                  //     ? AssetImage(snapshot.data)
+                                  //     : AssetImage('$imagePath')),
+
                                   backgroundImage: _image == null
                                       ? AssetImage(snapshot.data)
-                                      : AssetImage("$imagePath")),
+                                      : null),
+
+                              //backgroundImage: AssetImage(snapshot.data)),
                               Positioned(
                                   bottom: 4,
                                   right: 4,
@@ -348,28 +370,91 @@ class _HomeState extends State<Home> {
                   ..setEntry(0, 3, int.parse("x".tr) * 200 * val)
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
-                  appBar: AppBar(
-                    title: Text(
-                      "Home".tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                    appBar: AppBar(
+                      title: Text(
+                        "Home".tr,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      backgroundColor: Colors.purple,
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.notifications),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chat),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                    backgroundColor: Colors.purple,
-                    actions: [
-                      IconButton(
-                        icon: Icon(Icons.notifications),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.chat),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  // body: ,
-                ),
+                    body: FutureBuilder(
+                      future: GetData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) print(snapshot.error);
+                        return snapshot.hasData
+                            ? ListView.builder(
+                                itemCount: snapshot.data.length == 1
+                                    ? 0
+                                    : snapshot.data.length,
+                                itemBuilder: (cts, i) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Text(
+                                          "${snapshot.data[i]["sname"]}",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(
+                                          "${snapshot.data[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Scholarship(
+                                                        value:
+                                                            "${snapshot.data[i]["sname"]}",
+                                                        value1:
+                                                            "${snapshot.data[i]["conditions"]}",
+                                                        value2:
+                                                            "${snapshot.data[i]["percentage"]}",
+                                                        value3:
+                                                            "${snapshot.data[i]["attachments"]}",
+                                                        emailv: "rta@gmail.com",
+                                                      )));
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                })
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              );
+                      },
+                    )),
               ));
             }),
         GestureDetector(onHorizontalDragUpdate: (details) {
