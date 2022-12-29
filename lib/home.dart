@@ -153,9 +153,16 @@ class _HomeState extends State<Home> {
 
   Future GetData() async {
     var url = "http://" + IPADDRESS + "/handinhand/home.php";
-    var res = await http.get(Uri.parse(url));
+    var res = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+    print(res.body);
     var red = json.decode(res.body);
-    return red;
+    if (red == "No data") {
+      print("No data");
+      return;
+    } else
+      return red;
   }
 
   @override
@@ -385,6 +392,10 @@ class _HomeState extends State<Home> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
+                      leading: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {},
+                      ),
                       backgroundColor: Colors.purple,
                       actions: [
                         IconButton(
@@ -407,7 +418,9 @@ class _HomeState extends State<Home> {
                         if (snapshot.hasError) print(snapshot.error);
                         return snapshot.hasData
                             ? ListView.builder(
-                                itemCount: snapshot.data.length,
+                                itemCount: snapshot.data[0] == "No data"
+                                    ? 0
+                                    : snapshot.data.length,
                                 itemBuilder: (cts, i) {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),

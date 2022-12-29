@@ -12,28 +12,44 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 //echo $_POST['email'];
-$sql = "SELECT * FROM scholarships";
-$result = $conn->query($sql);
-while($row = $result->fetch_assoc()){
-    $data[]=$row;
-}
-echo json_encode($data);
+$email = $_POST['email'];
+$list = array();
 
-//$email = $_POST['email'];
-//$query = "SELECT college, gpa FROM edu_info WHERE email LIKE '%$email%'";
-/*$res = $conn->query($query);
-if($res->num_rows>0){
-    while ($row = $res->fetch_assoc()){
-        if($row['gpa'] == 4){
-            $coll = $row['college'];
-            $sql = "SELECT * FROM scholarships WHERE college LIKE '%$coll%' AND gpa = 4 ";
-            $result = $conn->query($sql);
-            $list = $conn->fetch_all();
-            $conn->free_result();
+$sql = "SELECT college, gpa FROM edu_info WHERE email='".$email."'";
+$result = mysqli_query($conn,$sql);
+$count  = mysqli_num_rows($result);
+$count2 =0;
+
+if($count==1){
+    while ($row = $result->fetch_assoc()) {
+
+
+        $sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
+        $result2 = mysqli_query($conn,$sql2);
+        $count2=mysqli_num_rows($result2);
+
+        if($count2>0)
+        {
+            while($rowdata= $result2->fetch_assoc())
+            {
+                $list[]=$rowdata;
+            }
+
             echo json_encode($list);
         }
+
+        else if($count2==0)
+        {
+            $list[]="No data";
+            echo json_encode($list);
+
+        }
     }
-}*/
+}
 
+else if($count==0)
+{
+    $list[]="No data";
+    echo json_encode($list);
 
-
+}
