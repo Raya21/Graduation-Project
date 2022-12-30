@@ -412,8 +412,10 @@ class MyLocale implements Translations {
           "Be sure to enter the required text fields!":
               "تأكد من إدخال الحقول النصية المطلوبة!",
           "Student #": "الطالب #",
+          "From:": "من:",
         },
         "en": {
+          "From:": "From:",
           "Student #": "Student #",
           "Be sure to enter the required text fields!":
               "Be sure to enter the required text fields!",

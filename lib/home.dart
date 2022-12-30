@@ -9,6 +9,7 @@ import 'package:index/apply_loans.dart';
 import 'package:index/asking_for_help.dart';
 import 'package:index/chat.dart';
 import 'package:index/chatmenu.dart';
+import 'package:index/contactus.dart';
 import 'package:index/creditional.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
@@ -330,7 +331,11 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("contactus");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ContactUs(value: emailvalue)));
                       },
                       leading: Icon(
                         Icons.contact_mail_sharp,
