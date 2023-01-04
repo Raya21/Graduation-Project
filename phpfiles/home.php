@@ -12,7 +12,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 //echo $_POST['email'];
-$email = $_POST['email'];
+$email =$_POST['email'];
 $list = array();
 
 $sql = "SELECT college, gpa FROM edu_info WHERE email='".$email."'";
@@ -24,7 +24,8 @@ if($count==1){
     while ($row = $result->fetch_assoc()) {
 
 
-        $sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
+        //$sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
+        $sql2 = "SELECT * FROM scholarships WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' ";
         $result2 = mysqli_query($conn,$sql2);
         $count2=mysqli_num_rows($result2);
 
@@ -38,7 +39,7 @@ if($count==1){
           echo json_encode($list);
       }
 
-      else if($count==0)
+      else if($count2==0)
       {
         $list[]="No data";
        echo json_encode($list);
