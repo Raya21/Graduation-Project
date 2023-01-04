@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
     var response = await http.post(Uri.parse(url), body: {
       "userId": widget.id.toString(),
     });
+    print(response.body);
     List list = await json.decode(response.body);
     if (list[0] == "nopic.png") {
       f = 1;
@@ -122,6 +123,7 @@ class _HomeState extends State<Home> {
               ),
               onTap: () {
                 takePhoto(ImageSource.gallery);
+
                 //choiceImage(ImageSource.gallery);
               },
             )
@@ -141,7 +143,7 @@ class _HomeState extends State<Home> {
         imagePath = pickedImage.path;
       });
 
-    print(imagePath);
+    // print(imagePath);
     uploadImage();
   }
 
@@ -165,9 +167,9 @@ class _HomeState extends State<Home> {
   Future GetData() async {
     var url = "http://192.168.1.10/handinhand/home.php";
     var res = await http.post(Uri.parse(url), body: {
-      "email": "rta@gmail.com",
+      "email": "tt@gmail.com",
     });
-    print(res.body);
+    //print(res.body);
     var red = json.decode(res.body);
     if (red == "No data") {
       print("No data");
@@ -197,60 +199,133 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FutureBuilder(
-                  future: getProfileImage(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) print(snapshot.error);
-                    return snapshot.hasData
-                        ? Stack(
-                            children: [
-                              CircleAvatar(
-                                  radius: 50.0,
-                                  //backgroundImage: _image == null ? null : FileImage(_image)
-                                  // backgroundImage: _image == null ? null : FileImage(_image)
+                future: getProfileImage(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) print(snapshot.error);
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: _image == null ? 1 : 0,
+                          itemBuilder: (cts, i) {
+                            return Stack(
+                              children: [
+                                CircleAvatar(
+                                    radius: 50.0,
+                                    backgroundImage: AssetImage(snapshot.data)),
+                                Positioned(
+                                    bottom: 4,
+                                    right: 4,
+                                    child: InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                              context: context,
+                                              builder: ((builder) =>
+                                                  bottomSheet()));
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: Color.fromARGB(
+                                              255, 219, 203, 203),
+                                          size: 28,
+                                        ))),
+                              ],
+                            );
+                          })
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        );
+                },
+              ),
 
-                                  /*backgroundImage: _imageFile == null 
-                            ? AssetImage("lib/imgs/nopic.png") 
-                            : FileImage(File(_imageFile.path)),*/
+              // FutureBuilder(
+              //     future: getProfileImage(),
+              //     builder: (context, snapshot) {
+              //       if (snapshot.hasError) print(snapshot.error);
+              //       return snapshot.hasData
+              //           ? Stack(
+              //               children: [
+              //                 CircleAvatar(
+              //                     radius: 50.0,
+              //                     //backgroundImage: _image == null ? null : FileImage(_image)
+              //                     // backgroundImage: _image == null ? null : FileImage(_image)
 
-                                  // backgroundImage: AssetImage('lib/imgs/nopic.png'), هاي صح اشتغلت
+              //                     /*backgroundImage: _imageFile == null
+              //               ? AssetImage("lib/imgs/nopic.png")
+              //               : FileImage(File(_imageFile.path)),*/
 
-                                  // backgroundImage: AssetImage(
-                                  //     "lib/ProfileImages/image_picker1023303032194065037.png"),    هاي اشتغلت صح برضو
+              //                     // backgroundImage: AssetImage('lib/imgs/nopic.png'), هاي صح اشتغلت
 
-                                  //backgroundImage: NetworkImage(image),
+              //                     // backgroundImage: AssetImage(
+              //                     //     "lib/ProfileImages/image_picker1023303032194065037.png"),    هاي اشتغلت صح برضو
 
-                                  // backgroundImage: AssetImage(snapshot.data),
-                                  // backgroundImage: _image == null
-                                  //     ? AssetImage(snapshot.data)
-                                  //     : AssetImage('$imagePath')),
+              //                     //backgroundImage: NetworkImage(image),
 
-                                  backgroundImage: _image == null
-                                      ? AssetImage(snapshot.data)
-                                      : null),
+              //                     // backgroundImage: AssetImage(snapshot.data),
+              //                     backgroundImage: _image == null
+              //                         ? AssetImage(snapshot.data)
+              //                         : AssetImage('$imagePath')),
 
-                              //backgroundImage: AssetImage(snapshot.data)),
-                              Positioned(
-                                  bottom: 4,
-                                  right: 4,
-                                  child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                            context: context,
-                                            builder: ((builder) =>
-                                                bottomSheet()));
-                                      },
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color:
-                                            Color.fromARGB(255, 219, 203, 203),
-                                        size: 28,
-                                      ))),
-                            ],
-                          )
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  }),
+              //                 // backgroundImage: _image == null
+              //                 //     ? AssetImage(snapshot.data)
+              //                 //     : null),
+
+              //                 //backgroundImage: AssetImage(snapshot.data)),
+              //                 Positioned(
+              //                     bottom: 4,
+              //                     right: 4,
+              //                     child: InkWell(
+              //                         onTap: () {
+              //                           showModalBottomSheet(
+              //                               context: context,
+              //                               builder: ((builder) =>
+              //                                   bottomSheet()));
+              //                         },
+              //                         child: Icon(
+              //                           Icons.camera_alt,
+              //                           color:
+              //                               Color.fromARGB(255, 219, 203, 203),
+              //                           size: 28,
+              //                         ))),
+              //               ],
+              //             )
+              //           : Center(
+              //               child: CircularProgressIndicator(),
+              //             );
+              //     }),
+
+              Container(
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _image == null ? 0 : 1,
+                  itemBuilder: (context, index) {
+                    return Stack(
+                      children: [
+                        CircleAvatar(
+                            radius: 50.0, backgroundImage: FileImage(_image)),
+                        Positioned(
+                            bottom: 4,
+                            right: 4,
+                            child: InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: ((builder) => bottomSheet()));
+                                },
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Color.fromARGB(255, 219, 203, 203),
+                                  size: 28,
+                                ))),
+                      ],
+                    );
+                  },
+                ),
+              ),
+
               SizedBox(
                 height: 10,
               ),
@@ -396,7 +471,7 @@ class _HomeState extends State<Home> {
                         if (snapshot.hasError) print(snapshot.error);
                         return snapshot.hasData
                             ? ListView.builder(
-                                itemCount: snapshot.data.length == 1
+                                itemCount: snapshot.data[0] == "No data"
                                     ? 0
                                     : snapshot.data.length,
                                 itemBuilder: (cts, i) {
@@ -435,6 +510,8 @@ class _HomeState extends State<Home> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       Scholarship(
+                                                        scholarship_id: int.parse(
+                                                            "${snapshot.data[i]["scholarship_id"]}"),
                                                         value:
                                                             "${snapshot.data[i]["sname"]}",
                                                         value1:
