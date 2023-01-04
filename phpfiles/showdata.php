@@ -67,7 +67,7 @@ if (!$conn) {
         }
         .search{
             position: relative;
-            top: -10px;
+            top: -50px;
             left: 600px;
             background-color: black;
             display: block;
@@ -84,7 +84,7 @@ if (!$conn) {
         .searchtxt{
             position: relative;
             left: 300px;
-            top: 50px;
+            top: 10px;
             line-height: 20px;
             border-radius: 6px;
             padding: 0 22px;
@@ -101,7 +101,7 @@ if (!$conn) {
         .sid{
             position: relative;
             left: 30px;
-            top: 80px;
+            top: 40px;
             color: white;
 
 
@@ -114,6 +114,7 @@ if (!$conn) {
     <h1>Users Info.</h1>
 </div>
 <div class="mane">
+    <a href="searchforidbyuname.php" style="color: white; font-size: 20px;"><i class='far fa-hand-point-right' style='font-size:20px;color:white; padding-left: 200px; padding-top: 20px'></i>Click here to search for student's ID Card</a>
     <form action="" method="post">
         <h3 class="sid">Student ID Card:</h3>
         <input type="text" name="search" class="searchtxt">
