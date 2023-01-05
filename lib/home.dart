@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:index/loans.dart';
 import 'contactus.dart';
 import 'family_data.dart';
 import 'package:index/scholarship.dart';
@@ -166,6 +167,20 @@ class _HomeState extends State<Home> {
 
   Future GetData() async {
     var url = "http://192.168.1.10/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": "tt@gmail.com",
+    });
+    //print(res.body);
+    var red = json.decode(res.body);
+    if (red == "No data") {
+      print("No data");
+      return;
+    } else
+      return red;
+  }
+
+  Future GetLoans() async {
+    var url = "http://192.168.1.10/handinhand/home_loans.php";
     var res = await http.post(Uri.parse(url), body: {
       "email": "tt@gmail.com",
     });
@@ -465,72 +480,150 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    body: FutureBuilder(
-                      future: GetData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) print(snapshot.error);
-                        return snapshot.hasData
-                            ? ListView.builder(
-                                itemCount: snapshot.data[0] == "No data"
-                                    ? 0
-                                    : snapshot.data.length,
-                                itemBuilder: (cts, i) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 198, 126, 211),
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      child: ListTile(
-                                        title: Text(
-                                          "${snapshot.data[i]["sname"]}",
-                                          style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        subtitle: Text(
-                                          "${snapshot.data[i]["description"]}",
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                        leading: Container(
-                                          child: Image.asset(
-                                            "lib/imgs/scholarship.png",
-                                            width: 50,
-                                            height: 100,
+                    body: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FutureBuilder(
+                          future: GetData(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) print(snapshot.error);
+                            return snapshot.hasData
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data[0] == "No data"
+                                        ? 0
+                                        : snapshot.data.length,
+                                    itemBuilder: (cts, i) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 198, 126, 211),
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: ListTile(
+                                            title: Text(
+                                              "${snapshot.data[i]["sname"]}",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            subtitle: Text(
+                                              "${snapshot.data[i]["description"]}",
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                            leading: Container(
+                                              child: Image.asset(
+                                                "lib/imgs/scholarship.png",
+                                                width: 50,
+                                                height: 100,
+                                              ),
+                                            ),
+                                            trailing: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Scholarship(
+                                                            scholarship_id:
+                                                                int.parse(
+                                                                    "${snapshot.data[i]["scholarship_id"]}"),
+                                                            value:
+                                                                "${snapshot.data[i]["sname"]}",
+                                                            value1:
+                                                                "${snapshot.data[i]["conditions"]}",
+                                                            value2:
+                                                                "${snapshot.data[i]["percentage"]}",
+                                                            value3:
+                                                                "${snapshot.data[i]["attachments"]}",
+                                                            emailv:
+                                                                "rta@gmail.com",
+                                                          )));
+                                            },
                                           ),
                                         ),
-                                        trailing: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.white,
-                                        ),
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Scholarship(
-                                                        scholarship_id: int.parse(
-                                                            "${snapshot.data[i]["scholarship_id"]}"),
-                                                        value:
-                                                            "${snapshot.data[i]["sname"]}",
-                                                        value1:
-                                                            "${snapshot.data[i]["conditions"]}",
-                                                        value2:
-                                                            "${snapshot.data[i]["percentage"]}",
-                                                        value3:
-                                                            "${snapshot.data[i]["attachments"]}",
-                                                        emailv: "rta@gmail.com",
-                                                      )));
-                                        },
-                                      ),
-                                    ),
+                                      );
+                                    })
+                                : Center(
+                                    child: CircularProgressIndicator(),
                                   );
-                                })
-                            : Center(
-                                child: CircularProgressIndicator(),
-                              );
-                      },
+                          },
+                        ),
+                        FutureBuilder(
+                          future: GetLoans(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) print(snapshot.error);
+                            return snapshot.hasData
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data[0] == "No data"
+                                        ? 0
+                                        : snapshot.data.length,
+                                    itemBuilder: (cts, i) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 198, 126, 211),
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: ListTile(
+                                            title: Text(
+                                              "${snapshot.data[i]["lname"]}",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            subtitle: Text(
+                                              "${snapshot.data[i]["description"]}",
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                            leading: Container(
+                                              child: Image.asset(
+                                                "lib/imgs/scholarship.png",
+                                                width: 50,
+                                                height: 100,
+                                              ),
+                                            ),
+                                            trailing: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Loan(
+                                                            loan_id: int.parse(
+                                                                "${snapshot.data[i]["loan_id"]}"),
+                                                            value:
+                                                                "${snapshot.data[i]["lname"]}",
+                                                            value1:
+                                                                "${snapshot.data[i]["conditions"]}",
+                                                            value2:
+                                                                "${snapshot.data[i]["percentage"]}",
+                                                            value3:
+                                                                "${snapshot.data[i]["attachments"]}",
+                                                            emailv:
+                                                                "rta@gmail.com",
+                                                          )));
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    })
+                                : Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                          },
+                        ),
+                      ],
                     )),
               ));
             }),

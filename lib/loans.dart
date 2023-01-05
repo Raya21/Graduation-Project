@@ -10,8 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:index/creditional.dart';
 
 int flag = 0;
-late int scholarship_id;
-late String sname;
+late int loan_id;
+late String lname;
 late String quali;
 late String percent;
 late List<String> attach;
@@ -21,12 +21,12 @@ late String emailglo;
 var flages;
 late List<File> _image;
 
-class Scholarship extends StatefulWidget {
+class Loan extends StatefulWidget {
   final String value, value1, value2, value3, emailv;
-  final int scholarship_id;
-  const Scholarship(
+  final int loan_id;
+  const Loan(
       {Key? key,
-      required this.scholarship_id,
+      required this.loan_id,
       required this.value,
       required this.value1,
       required this.value2,
@@ -35,18 +35,18 @@ class Scholarship extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<Scholarship> createState() => _ScholarshipState();
+  State<Loan> createState() => _LoanState();
 }
 
-class _ScholarshipState extends State<Scholarship> {
+class _LoanState extends State<Loan> {
   var x = "alignment".tr;
   int _currentIndex = 0;
-  List<Widget> pages = [Qualifications(), ScholarshipPercent(), attachments()];
+  List<Widget> pages = [Qualifications(), LoanPercent(), attachments()];
   @override
   void initState() {
     super.initState();
-    scholarship_id = widget.scholarship_id;
-    sname = widget.value;
+    loan_id = widget.loan_id;
+    lname = widget.value;
     quali = widget.value1;
     percent = widget.value2;
     attach = widget.value3.split(',');
@@ -105,9 +105,9 @@ class _ScholarshipState extends State<Scholarship> {
         unselectedItemColor: Colors.white,
         onTap: (value) {
           setState(() {
-            scholarship_id = widget.scholarship_id;
+            loan_id = widget.loan_id;
             _currentIndex = value;
-            sname = widget.value;
+            lname = widget.value;
             quali = widget.value1;
             percent = widget.value2;
             attach = widget.value3.split(',');
@@ -152,7 +152,7 @@ class _QualificationsState extends State<Qualifications> {
       child: SingleChildScrollView(
           child: Column(children: [
         Text(
-          "Scholarship Conditions:".tr,
+          "Loan Conditions:".tr,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         Divider(
@@ -170,14 +170,14 @@ class _QualificationsState extends State<Qualifications> {
   }
 }
 
-class ScholarshipPercent extends StatefulWidget {
-  const ScholarshipPercent({super.key});
+class LoanPercent extends StatefulWidget {
+  const LoanPercent({super.key});
 
   @override
-  State<ScholarshipPercent> createState() => _ScholarshipPercentState();
+  State<LoanPercent> createState() => _LoanPercentState();
 }
 
-class _ScholarshipPercentState extends State<ScholarshipPercent> {
+class _LoanPercentState extends State<LoanPercent> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -185,7 +185,7 @@ class _ScholarshipPercentState extends State<ScholarshipPercent> {
       child: SingleChildScrollView(
           child: Column(children: [
         Text(
-          "Scholarship Percentage:".tr,
+          "Loan Percentage:".tr,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         Divider(
@@ -229,14 +229,14 @@ class _attachmentsState extends State<attachments> {
   }
 
   Future uploadImage() async {
-    final uri = await Uri.parse("http://192.168.1.10/handinhand/supload.php");
+    final uri = await Uri.parse("http://192.168.1.10/handinhand/lupload.php");
     var request1;
     for (int i = 0; i < attach.length - 1; i++) {
       request1 = http.MultipartRequest('POST', uri);
       request1.fields['num_attach'] = (attach.length - 1).toString();
-      request1.fields['scholarship_id'] = scholarship_id.toString();
+      request1.fields['loan_id'] = loan_id.toString();
       request1.fields['email'] = "tt@gmail.com";
-      request1.fields['sname'] = sname;
+      request1.fields['lname'] = lname;
       request1.fields['attach_name'] = attach[i];
 
       var pic1 = await http.MultipartFile.fromPath("image", _image[i].path);
@@ -258,7 +258,6 @@ class _attachmentsState extends State<attachments> {
               backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 16);
-
           flag = 1;
         } else if (response1.statusCode == 200) {
           Fluttertoast.showToast(
@@ -269,7 +268,6 @@ class _attachmentsState extends State<attachments> {
               backgroundColor: Color.fromARGB(255, 203, 158, 211),
               textColor: Colors.purple,
               fontSize: 16);
-
           flag = 1;
 
           // setState(() {
@@ -291,12 +289,12 @@ class _attachmentsState extends State<attachments> {
     }
   }
 
-  Future requestScholar() async {
-    var url = "http://192.168.1.10/handinhand/requestScholar.php";
+  Future requestLoan() async {
+    var url = "http://192.168.1.10/handinhand/requestLoan.php";
     var response = await http.post(Uri.parse(url), body: {
-      "scholarship_id": scholarship_id.toString(),
+      "loan_id": loan_id.toString(),
       "email": "tt@gmail.com",
-      "sname": sname,
+      "lname": lname,
     });
     print(response.body);
     var data = await json.decode(response.body);
@@ -329,7 +327,7 @@ class _attachmentsState extends State<attachments> {
           fontSize: 16);
     } else if (data == "submitted before") {
       Fluttertoast.showToast(
-          msg: "The scholarship request has been submitted before!".tr,
+          msg: "The loan request has been submitted before!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -355,7 +353,7 @@ class _attachmentsState extends State<attachments> {
         ),
         Align(
           child: Text(
-            "To apply for the scholarship, please upload the following attachments:"
+            "To apply for the loan, please upload the following attachments:"
                 .tr,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -492,10 +490,10 @@ class _attachmentsState extends State<attachments> {
                         textColor: Colors.white,
                         fontSize: 16);
                   } else
-                    requestScholar();
+                    requestLoan();
                 },
                 child: Text(
-                  "Scholarship Request".tr,
+                  "Loan Request".tr,
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
