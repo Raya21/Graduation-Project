@@ -24,7 +24,7 @@ if($count==1){
     while ($row = $result->fetch_assoc()) {
 
 
-        $sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
+        $sql2 = "SELECT * FROM scholarships WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' ";
         $result2 = mysqli_query($conn,$sql2);
         $count2=mysqli_num_rows($result2);
 

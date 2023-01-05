@@ -17,11 +17,24 @@ $sname = $_POST["s_name"];
 $desc = $_POST["desc"];
 $cond = $_POST["quali"];
 $percent = $_POST["percent"];
-$college = $_POST['college'];
+//$college = $_POST['college'];
 $gpa = $_POST['gpa'];
-$attach = $_POST['attach'];
 
-$sql = "INSERT INTO scholarships (sname, description, conditions, percentage, college, gpa, attachments) VALUES ('$sname', '$desc','$cond','$percent','$college','$gpa','$attach')";
+$attachments="";
+$college="";
+
+foreach ($_POST['attachment'] as $value) {
+    $attachments=$attachments.$value;
+    $attachments=$attachments.",";
+
+}
+
+foreach ($_POST['college'] as $value) {
+    $college=$college.$value;
+    $college=$college.",";
+
+}
+$sql = "INSERT INTO scholarships (sname, description, conditions, percentage, college, gpa, attachments) VALUES ('$sname', '$desc','$cond','$percent','$college','$gpa','$attachments')";
 
 if (mysqli_query($conn, $sql)) {
     echo '<script>alert("New record created successfully")</script>';
@@ -33,4 +46,3 @@ if (mysqli_query($conn, $sql)) {
 mysqli_close($conn);
 
 ?>
-

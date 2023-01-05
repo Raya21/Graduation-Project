@@ -9,16 +9,23 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/creditional.dart';
 
+late int scholarship_id;
 late String sname;
 late String quali;
 late String percent;
-late String attach;
+late List<String> attach;
 late String emailglo;
+//bool _isVisible = false;
+//bool _SaveButton_isVisible = true;
+var flages;
+late List<File> _image;
 
 class Scholarship extends StatefulWidget {
   final String value, value1, value2, value3, emailv;
+  final int scholarship_id;
   const Scholarship(
       {Key? key,
+      required this.scholarship_id,
       required this.value,
       required this.value1,
       required this.value2,
@@ -37,11 +44,37 @@ class _ScholarshipState extends State<Scholarship> {
   @override
   void initState() {
     super.initState();
+    scholarship_id = widget.scholarship_id;
     sname = widget.value;
     quali = widget.value1;
     percent = widget.value2;
-    attach = widget.value3;
+    attach = widget.value3.split(',');
     emailglo = widget.emailv;
+    _image = [
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1")
+    ];
+
+    flages = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    print(_image.elementAt(0));
+    for (int y = 0; y < attach.length - 1; y++) {}
   }
 
   @override
@@ -71,11 +104,12 @@ class _ScholarshipState extends State<Scholarship> {
         unselectedItemColor: Colors.white,
         onTap: (value) {
           setState(() {
+            scholarship_id = widget.scholarship_id;
             _currentIndex = value;
             sname = widget.value;
             quali = widget.value1;
             percent = widget.value2;
-            attach = widget.value3;
+            attach = widget.value3.split(',');
           });
         },
         items: [
@@ -116,7 +150,7 @@ class _QualificationsState extends State<Qualifications> {
       child: SingleChildScrollView(
           child: Column(children: [
         Text(
-          "Conditions:".tr,
+          "Scholarship Conditions:".tr,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         Divider(
@@ -175,63 +209,120 @@ class attachments extends StatefulWidget {
 }
 
 class _attachmentsState extends State<attachments> {
-  late File _image;
+  //var _image = [];
+  var i = attach.length - 1;
+  // List<File> _image = [];
   final picker = ImagePicker();
-  Future choiceImage() async {
+  Future choiceImage(int index) async {
     var pickedImage = await picker.getImage(source: ImageSource.gallery);
+    //if(pickedImage==null) return;
+
     setState(() {
-      _image = File(pickedImage!.path);
+      _image[index] = File(pickedImage!.path);
+      flages[index] = 1;
+      //_image.insert(index, File(pickedImage!.path));
     });
+
+    //print(_image);
   }
 
   Future uploadImage() async {
     final uri = await Uri.parse("http://"+IPADDRESS+"/handinhand/supload.php");
-    var request1 = http.MultipartRequest('POST', uri);
-    request1.fields['email'] = emailglo;
-    request1.fields['sname'] = sname;
-    var pic1 = await http.MultipartFile.fromPath("image", _image.path);
-    request1.files.add(pic1);
-    var response1 = await request1.send();
-    if (response1.statusCode == 200) {
-      Fluttertoast.showToast(
-          msg: "File Uploaded".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-    } else {
-      Fluttertoast.showToast(
-          msg: "File Not Uploaded".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-      print("Images Not Uploaded");
+    var request1;
+    for (int i = 0; i < attach.length - 1; i++) {
+      request1 = http.MultipartRequest('POST', uri);
+      request1.fields['scholarship_id'] = scholarship_id.toString();
+      request1.fields['email'] = emailglo;
+      request1.fields['sname'] = sname;
+      request1.fields['attach_name'] = attach[i];
+
+      var pic1 = await http.MultipartFile.fromPath("image", _image[i].path);
+      request1.files.add(pic1);
+
+      var response1 = await request1.send();
+
+      var data = await json.decode(await response1.stream.bytesToString());
+      print(data);
+      //var data = await json.decode(await response1.stream.bytesToString());
+
+      if (i == attach.length - 2) {
+        if (data == "already attached") {
+          Fluttertoast.showToast(
+              msg: "Attachments are attached before!".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16);
+        } else if (response1.statusCode == 200) {
+          Fluttertoast.showToast(
+              msg: "Images have been attached successfully".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(255, 203, 158, 211),
+              textColor: Colors.purple,
+              fontSize: 16);
+
+          // setState(() {
+          //   _isVisible = true;
+          //   _SaveButton_isVisible = false;
+          // });
+        } else {
+          Fluttertoast.showToast(
+              msg: "Failed to attach Images".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16);
+          print("Images Not Uploaded");
+        }
+      }
     }
   }
+
   Future requestScholar() async {
     var url = "http://"+IPADDRESS+"/handinhand/requestScholar.php";
     var response = await http.post(Uri.parse(url), body: {
+      "scholarship_id": scholarship_id.toString(),
       "email": emailglo,
       "sname": sname,
     });
+    print(response.body);
     var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Submission successful".tr,
+          msg: "The request has been submitted successfully".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-    } else {
+    } else if (data == "Failed") {
       Fluttertoast.showToast(
           msg: "Submission failed".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    } else if (data == "no profile data") {
+      Fluttertoast.showToast(
+          msg: "Be sure to enter profile data!".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    } else if (data == "submitted before") {
+      Fluttertoast.showToast(
+          msg: "The scholarship request has been submitted before!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -265,58 +356,115 @@ class _attachmentsState extends State<attachments> {
         SizedBox(
           height: 10,
         ),
-        Align(
-          child: Text(
-            attach,
-            style: TextStyle(fontSize: 20),
+        Container(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: attach.length - 1,
+            itemBuilder: (context, index) {
+              // h2(index.toString());
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      attach[index],
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Visibility(
+                    //visible: _SaveButton_isVisible,
+                    child: TextButton(
+                        onPressed: () {
+                          choiceImage(index);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.attach_file,
+                              color: Colors.purple,
+                            ),
+                            Text(
+                              "Pick Image".tr,
+                              style:
+                                  TextStyle(color: Colors.purple, fontSize: 20),
+                            ),
+                          ],
+                        )),
+                  ),
+                  Container(
+                      child: flages?[index] == 0
+                          ? Text(
+                              'No Image Selected'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          : Image.file(_image[index])),
+                  // Image.file(_image[index])
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              );
+            },
           ),
         ),
-        SizedBox(
-          height: 30,
-        ),
-        TextButton(
-            onPressed: () {
-              choiceImage();
-            },
-            child: Row(
-              children: [
-                Icon(
-                  Icons.attach_file,
-                  color: Colors.purple,
-                ),
-                Text(
-                  "Pick Files".tr,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
-                ),
-              ],
-            )),
         SizedBox(
           height: 20,
         ),
-        Align(
-          alignment: Alignment.center,
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
-                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-              ),
-              onPressed: () {
-                uploadImage();
-              },
-              child: Text(
-                "Save".tr,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              )),
+        Visibility(
+          //visible: _SaveButton_isVisible,
+          child: Align(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+                onPressed: () {
+                  var count = 0;
+                  for (int i = 0; i < attach.length - 1; i++) {
+                    if (flages[i] == 1) {
+                      count++;
+                    }
+                  }
+
+                  if (count != attach.length - 1) {
+                    Fluttertoast.showToast(
+                        msg: "Be sure to attach all the attachments!".tr,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16);
+                  } else {
+                    uploadImage();
+                  }
+                },
+                child: Text(
+                  "Save".tr,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                )),
+          ),
         ),
         SizedBox(
-            height: 15,
-          ),
-          Align(
+          height: 15,
+        ),
+        Visibility(
+          //visible: _isVisible,
+          child: Align(
             alignment: Alignment.center,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -335,7 +483,8 @@ class _attachmentsState extends State<attachments> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 )),
-          )
+          ),
+        )
       ])),
     );
   }

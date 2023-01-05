@@ -412,6 +412,29 @@ class MyLocale implements Translations {
           "Be sure to enter the required text fields!":
               "تأكد من إدخال الحقول النصية المطلوبة!",
           "Student #": "الطالب #",
+          "Attachments:": "المرفقات:",
+          "Scholarship Percentage:": "نسبة المنحة:",
+          "Scholarship Conditions:": "شروط المنحة:",
+          "Conditions": "الشروط",
+          "Percentage": "النسبة",
+          "To apply for the scholarship, please upload the following attachments:":
+              "للتقدم للمنحة يرجى إرفاق المرفقات التالية:",
+          "No Image Selected": "لم يتم اختيار صورة",
+          "Pick Image": "اختر صورة",
+          "Please attach all attachments": "يرجى ارفاق كافة المرفقات",
+          "Be sure to attach all the attachments!":
+              "تأكد من إرفاق جميع المرفقات!",
+          "Images have been attached successfully": "تم إرفاق الصور بنجاح",
+          "Failed to attach Images": "فشل إرفاق الصور",
+          "Scholarship Request": "طلب المنحة",
+          "Be sure to enter profile data!":
+              "تأكد من إدخال بيانات الملف الشخصي!",
+          "The request has been submitted successfully": "تم تقديم الطلب بنجاح",
+          "Submission failed": "فشل التقديم",
+          "The scholarship request has been submitted before!":
+              "تم تقديم طلب المنحة من قبل!",
+          "Attachments are already attached!": "المرفقات مرفقة بالفعل!",
+          "Attachments are attached before!": "المرفقات مرفقة من قبل!",
           "From:": "من:",
         },
         "en": {
@@ -419,6 +442,32 @@ class MyLocale implements Translations {
           "Student #": "Student #",
           "Be sure to enter the required text fields!":
               "Be sure to enter the required text fields!",
+          "Attachments:": "Attachments:",
+          "Scholarship Percentage:": "Scholarship Percentage:",
+          "Scholarship Conditions:": "Scholarship Conditions:",
+          "Conditions": "Conditions",
+          "Percentage": "Percentage",
+          "To apply for the scholarship, please upload the following attachments:":
+              "To apply for the scholarship, please upload the following attachments:",
+          "No Image Selected": "No Image Selected",
+          "Pick Image": "Pick Image",
+          "Please attach all attachments": "Please attach all attachments",
+          "Be sure to attach all the attachments!":
+              "Be sure to attach all the attachments!",
+          "Images have been attached successfully":
+              "Images have been attached successfully",
+          "Failed to attach Images": "Failed to attach Images",
+          "Scholarship Request": "Scholarship Request",
+          "Be sure to enter profile data!": "Be sure to enter profile data!",
+          "The request has been submitted successfully":
+              "The request has been submitted successfully",
+          "Submission failed": "Submission failed",
+          "The scholarship request has been submitted before!":
+              "The scholarship request has been submitted before!",
+          "Attachments are already attached!":
+              "Attachments are already attached!",
+          "Attachments are attached before!":
+              "Attachments are attached before!",
           "Join to donors": "Join to donors",
           "Joined successfully": "Joined successfully",
           "Join Failed! You should fill your profile info. fisrt":

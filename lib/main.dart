@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           "section3_familyData_page": (context) => Section3(userId: 0),
           "family_data": (context) => FamilyData(userId: 0),
           "forget_password": (context) => ForgetPass(),
-          "scholarship": (context) => Scholarship(value: '', value1: '', value2: '', value3: '', emailv: '',),
+          "scholarship": (context) => Scholarship(scholarship_id: 0, value: '', value1: '', value2: '', value3: '', emailv: '',),
           "outstanding_students": (context) => outstandingStudents(),
           "asking_for_help":(context) =>AskForHelp(value: '',),
           "addhelp":(context) => AddHelp(value: '',),

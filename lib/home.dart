@@ -33,7 +33,8 @@ class _HomeState extends State<Home> {
   var _image;
   final picker = ImagePicker();
   Future getProfileImage() async {
-    var f = 0;
+    try{
+      var f = 0;
     var url = "http://" + IPADDRESS + "/handinhand/viewProfileImage.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailvalue,
@@ -56,6 +57,9 @@ class _HomeState extends State<Home> {
       });
 
     return (image);
+    }catch(e){
+      print(e.toString());
+    }
   }
 
   @override
@@ -462,6 +466,8 @@ class _HomeState extends State<Home> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       Scholarship(
+                                                        scholarship_id: int.parse(
+                                                            "${snapshot.data[i]["scholarship_id"]}"),
                                                         value:
                                                             "${snapshot.data[i]["sname"]}",
                                                         value1:

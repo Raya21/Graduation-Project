@@ -54,6 +54,9 @@ class _AskForHelpState extends State<AskForHelp> {
           fontSize: 16);
     }
   }
+  Future replyHelp(String email, String help, String id) async {
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -105,16 +108,16 @@ class _AskForHelpState extends State<AskForHelp> {
                                 borderRadius: BorderRadius.circular(12)),
                             child: ListTile(
                               title: Text(
-                                "${snapshot.data[i]["email"]}",
+                                "${snapshot.data[i]["username"]}",
                                 style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
+                                    fontSize: 25, fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
                                 "${snapshot.data[i]["help"]}",
                                 style: TextStyle(fontSize: 20),
                               ),
                               leading: Icon(Icons.help_rounded),
-                              trailing: Wrap(
+                              trailing: widget.value == "${snapshot.data[i]["email"]}" ? Wrap(
                                 spacing: 5, // space between two icons
                                 children: <Widget>[
                                   IconButton(
@@ -140,7 +143,14 @@ class _AskForHelpState extends State<AskForHelp> {
                                       },
                                       icon: Icon(Icons.delete)),
                                 ],
-                              ),
+                              ) : IconButton(
+                                      onPressed: () {
+                                        replyHelp(
+                                            widget.value,
+                                            "${snapshot.data[i]["help"]}",
+                                            "${snapshot.data[i]["id"]}");
+                                      },
+                                      icon: Icon(Icons.reply)),
                             ),
                           ),
                         );
