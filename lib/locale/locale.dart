@@ -337,6 +337,14 @@ class MyLocale implements Translations {
               "تم تقديم طلب المنحة من قبل!",
           "Attachments are already attached!": "المرفقات مرفقة بالفعل!",
           "Attachments are attached before!": "المرفقات مرفقة من قبل!",
+          "Loan Conditions:": "شروط القرض:",
+          "Loan Percentage:": "نسبة القرض:",
+          "To apply for the loan, please upload the following attachments:":
+              "لتقديم طلب قرض ، يرجى إرفاق المرفقات التالية:",
+          "The loan request has been submitted before!":
+              "تم تقديم طلب القرض من قبل!",
+          "Be sure to attach and save all the attachments!":
+              "تأكد من إرفاق كافة المرفقات وحفظها!",
           "x": "-1"
         },
         "en": {
@@ -687,6 +695,14 @@ class MyLocale implements Translations {
               "Attachments are already attached!",
           "Attachments are attached before!":
               "Attachments are attached before!",
+          "Loan Conditions:": "Loan Conditions:",
+          "Loan Percentage:": "Loan Percentage:",
+          "To apply for the loan, please upload the following attachments:":
+              "To apply for the loan, please upload the following attachments:",
+          "The loan request has been submitted before!":
+              "The loan request has been submitted before!",
+          "Be sure to attach and save all the attachments!":
+              "Be sure to attach and save all the attachments!",
           "x": "1"
         }
       };
