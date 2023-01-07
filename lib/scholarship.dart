@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/creditional.dart';
 
+int flag = 0;
 late int scholarship_id;
 late String sname;
 late String quali;
@@ -231,6 +232,7 @@ class _attachmentsState extends State<attachments> {
     var request1;
     for (int i = 0; i < attach.length - 1; i++) {
       request1 = http.MultipartRequest('POST', uri);
+      request1.fields['num_attach'] = (attach.length - 1).toString();
       request1.fields['scholarship_id'] = scholarship_id.toString();
       request1.fields['email'] = emailglo;
       request1.fields['sname'] = sname;
@@ -255,6 +257,7 @@ class _attachmentsState extends State<attachments> {
               backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 16);
+              flag = 1;
         } else if (response1.statusCode == 200) {
           Fluttertoast.showToast(
               msg: "Images have been attached successfully".tr,
@@ -264,7 +267,7 @@ class _attachmentsState extends State<attachments> {
               backgroundColor: Color.fromARGB(255, 203, 158, 211),
               textColor: Colors.purple,
               fontSize: 16);
-
+              flag = 1;
           // setState(() {
           //   _isVisible = true;
           //   _SaveButton_isVisible = false;
@@ -474,7 +477,18 @@ class _attachmentsState extends State<attachments> {
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () {
-                  requestScholar();
+                  if (flag == 0) {
+                    Fluttertoast.showToast(
+                        msg: "Be sure to attach and save all the attachments!"
+                            .tr,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16);
+                  } else
+                    requestScholar();
                 },
                 child: Text(
                   "Scholarship Request".tr,

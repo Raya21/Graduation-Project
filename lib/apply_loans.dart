@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:index/contactus.dart';
 import 'package:index/creditional.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
@@ -10,12 +11,31 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 //late String idglo;
-late String emailglo;
+late String emailglobal;
+int flag = 0;
+late int loan_id;
+late String lname;
+late String quali;
+late String percent;
+late List<String> attach;
+//bool _isVisible = false;
+//bool _SaveButton_isVisible = true;
+var flages;
+late List<File> _image;
 
 class applyLoans extends StatefulWidget {
   //const applyLoans({super.key});
-  final String value;
-  const applyLoans({Key? key, required this.value}) : super(key: key);
+  final String value, value1, value2, value3, emailv;
+  final int loan_id;
+  const applyLoans(
+      {Key? key,
+      required this.loan_id,
+      required this.value,
+      required this.value1,
+      required this.value2,
+      required this.value3,
+      required this.emailv})
+      : super(key: key);
 
   @override
   State<applyLoans> createState() => _applyLoansState();
@@ -28,7 +48,37 @@ class _applyLoansState extends State<applyLoans> {
   @override
   void initState() {
     super.initState();
-    emailglo = widget.value;
+    loan_id = widget.loan_id;
+    lname = widget.value;
+    quali = widget.value1;
+    percent = widget.value2;
+    attach = widget.value3.split(',');
+    emailglobal = widget.emailv;
+    _image = [
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1"),
+      File("1")
+    ];
+
+    flages = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    print(_image.elementAt(0));
+    for (int y = 0; y < attach.length - 1; y++) {}
   }
 
   @override
@@ -59,7 +109,7 @@ class _applyLoansState extends State<applyLoans> {
         onTap: (value) {
           setState(() {
             _currentIndex = value;
-            emailglo = widget.value;
+           
           });
         },
         items: [
@@ -98,50 +148,22 @@ class _QualificationsState extends State<Qualifications> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
-          child: Column(
-        children: [
-          Text(
-            "Conditions:".tr,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          Divider(
-            height: 20,
-            thickness: 2,
-          ),
-          Text(
-            "t1_q".tr,
+          child: Column(children: [
+        Text(
+          "Loan Conditions:".tr,
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        Divider(
+          height: 20,
+          thickness: 2,
+        ),
+        Align(
+          child: Text(
+            quali,
             style: TextStyle(fontSize: 20),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t2_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t3_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t4_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t5_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-        ],
-      )),
+        ),
+      ])),
     );
   }
 }
@@ -157,56 +179,25 @@ class _LoanPercentState extends State<LoanPercent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-            child: Column(children: [
-          Text(
-            "Notes:".tr,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          Divider(
-            height: 20,
-            thickness: 2,
-          ),
-          Text(
-            "t6_q".tr,
+      margin: EdgeInsets.all(20.0),
+      child: SingleChildScrollView(
+          child: Column(children: [
+        Text(
+          "Loan Percentage:".tr,
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        Divider(
+          height: 20,
+          thickness: 2,
+        ),
+        Align(
+          child: Text(
+            percent,
             style: TextStyle(fontSize: 20),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t7_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "t8_q".tr,
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          /* Align(
-            alignment: Alignment.topRight,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed("loans_request");
-                },
-                child: Text(
-                  "Apply for a loan".tr,
-                  style: TextStyle(fontSize: 20),
-                )),
-          )*/
-        ])));
+        ),
+      ])),
+    );
   }
 }
 
@@ -218,229 +209,127 @@ class attachments extends StatefulWidget {
 }
 
 class _attachmentsState extends State<attachments> {
-  late File _image1;
-  final picker1 = ImagePicker();
-  late File _image2;
-  final picker2 = ImagePicker();
-  late File _image3;
-  final picker3 = ImagePicker();
-  late File _image4;
-  final picker4 = ImagePicker();
-  late File _image5;
-  final picker5 = ImagePicker();
-  late File _image6;
-  final picker6 = ImagePicker();
-  late File _image7;
-  final picker7 = ImagePicker();
-  late File _image8;
-  final picker8 = ImagePicker();
-  late File _image9;
-  final picker9 = ImagePicker();
-  late File _image10;
-  final picker10 = ImagePicker();
+  //var _image = [];
+  var i = attach.length - 1;
+  // List<File> _image = [];
+  final picker = ImagePicker();
+  Future choiceImage(int index) async {
+    var pickedImage = await picker.getImage(source: ImageSource.gallery);
+    //if(pickedImage==null) return;
 
-  Future choiceImage1() async {
-    var pickedImage = await picker1.getImage(source: ImageSource.gallery);
     setState(() {
-      _image1 = File(pickedImage!.path);
+      _image[index] = File(pickedImage!.path);
+      flages[index] = 1;
+      //_image.insert(index, File(pickedImage!.path));
     });
-  }
 
-  Future choiceImage2() async {
-    var pickedImage = await picker2.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image2 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage3() async {
-    var pickedImage = await picker3.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image3 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage4() async {
-    var pickedImage = await picker4.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image4 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage5() async {
-    var pickedImage = await picker5.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image5 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage6() async {
-    var pickedImage = await picker6.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image6 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage7() async {
-    var pickedImage = await picker7.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image7 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage8() async {
-    var pickedImage = await picker8.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image8 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage9() async {
-    var pickedImage = await picker9.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image9 = File(pickedImage!.path);
-    });
-  }
-
-  Future choiceImage10() async {
-    var pickedImage = await picker10.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image10 = File(pickedImage!.path);
-    });
+    //print(_image);
   }
 
   Future uploadImage() async {
-    print(emailglo);
-    final uri = await Uri.parse("http://"+IPADDRESS+"/handinhand/upload.php");
-    //image 1
-    var request1 = http.MultipartRequest('POST', uri);
-    request1.fields['email'] = emailglo;
-    var pic1 = await http.MultipartFile.fromPath("image", _image1.path);
-    request1.files.add(pic1);
-    var response1 = await request1.send();
-    //image 2
-    var request2 = http.MultipartRequest('POST', uri);
-    request2.fields['email'] = emailglo;
-    var pic2 = await http.MultipartFile.fromPath("image", _image2.path);
-    request2.files.add(pic2);
-    var response2 = await request2.send();
-    //image 3
-    var request3 = http.MultipartRequest('POST', uri);
-    request3.fields['email'] = emailglo;
-    var pic3 = await http.MultipartFile.fromPath("image", _image3.path);
-    request3.files.add(pic3);
-    var response3 = await request3.send();
-    //image 4
-    var request4 = http.MultipartRequest('POST', uri);
-    request4.fields['email'] = emailglo;
-    var pic4 = await http.MultipartFile.fromPath("image", _image4.path);
-    request4.files.add(pic4);
-    var response4 = await request4.send();
-    //image 5
-    var request5 = http.MultipartRequest('POST', uri);
-    request5.fields['email'] = emailglo;
-    var pic5 = await http.MultipartFile.fromPath("image", _image5.path);
-    request5.files.add(pic5);
-    var response5 = await request5.send();
-    //image 6
-    var request6 = http.MultipartRequest('POST', uri);
-    request6.fields['email'] = emailglo;
-    var pic6 = await http.MultipartFile.fromPath("image", _image6.path);
-    request6.files.add(pic6);
-    var response6 = await request6.send();
-    //image 7
-    var request7 = http.MultipartRequest('POST', uri);
-    request7.fields['email'] = emailglo;
-    var pic7 = await http.MultipartFile.fromPath("image", _image7.path);
-    request7.files.add(pic7);
-    var response7 = await request7.send();
-    //image 8
-    var request8 = http.MultipartRequest('POST', uri);
-    request8.fields['email'] = emailglo;
-    var pic8 = await http.MultipartFile.fromPath("image", _image8.path);
-    request8.files.add(pic8);
-    var response8 = await request8.send();
-    //image 9
-    var request9 = http.MultipartRequest('POST', uri);
-    request9.fields['email'] = emailglo;
-    var pic9 = await http.MultipartFile.fromPath("image", _image9.path);
-    request9.files.add(pic9);
-    var response9 = await request9.send();
-    //image 10
-    var request10 = http.MultipartRequest('POST', uri);
-    request10.fields['email'] = emailglo;
-    var pic10 = await http.MultipartFile.fromPath("image", _image10.path);
-    request10.files.add(pic10);
-    var response10 = await request10.send();
-    // if (pic1 == Null &&
-    //     pic2 == Null &&
-    //     pic3 == Null &&
-    //     pic4 == Null &&
-    //     pic5 == Null &&
-    //     pic6 == Null &&
-    //     pic7 == Null &&
-    //     pic8 == Null &&
-    //     pic9 == Null &&
-    //     pic10 == Null) {
-    //   Fluttertoast.showToast(
-    //       msg: "You must pick all files".tr,
-    //       toastLength: Toast.LENGTH_SHORT,
-    //       gravity: ToastGravity.CENTER,
-    //       timeInSecForIosWeb: 1,
-    //       backgroundColor: Color.fromARGB(255, 203, 158, 211),
-    //       textColor: Colors.purple,
-    //       fontSize: 16);
-    // }
-    if (response1.statusCode == 200 &&
-        response2.statusCode == 200 &&
-        response3.statusCode == 200 &&
-        response4.statusCode == 200 &&
-        response5.statusCode == 200 &&
-        response6.statusCode == 200 &&
-        response7.statusCode == 200 &&
-        response8.statusCode == 200 &&
-        response9.statusCode == 200 &&
-        response10.statusCode == 200) {
+    final uri =
+        await Uri.parse("http://" + IPADDRESS + "/handinhand/lupload.php");
+    var request1;
+    for (int i = 0; i < attach.length - 1; i++) {
+      request1 = http.MultipartRequest('POST', uri);
+      request1.fields['num_attach'] = (attach.length - 1).toString();
+      request1.fields['loan_id'] = loan_id.toString();
+      request1.fields['email'] = emailglobal;
+      request1.fields['lname'] = lname;
+      request1.fields['attach_name'] = attach[i];
+
+      var pic1 = await http.MultipartFile.fromPath("image", _image[i].path);
+      request1.files.add(pic1);
+
+      var response1 = await request1.send();
+
+      var data = await json.decode(await response1.stream.bytesToString());
+      print(data);
+      //var data = await json.decode(await response1.stream.bytesToString());
+
+      if (i == attach.length - 2) {
+        if (data == "already attached") {
           Fluttertoast.showToast(
-          msg: "Files Uploaded".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-      print("Images Uploaded");
-    } else {
-      Fluttertoast.showToast(
-          msg: "Files Not Uploaded".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-      print("Images Not Uploaded");
+              msg: "Attachments are attached before!".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16);
+          flag = 1;
+        } else if (response1.statusCode == 200) {
+          Fluttertoast.showToast(
+              msg: "Images have been attached successfully".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Color.fromARGB(255, 203, 158, 211),
+              textColor: Colors.purple,
+              fontSize: 16);
+          flag = 1;
+
+          // setState(() {
+          //   _isVisible = true;
+          //   _SaveButton_isVisible = false;
+          // });
+        } else {
+          Fluttertoast.showToast(
+              msg: "Failed to attach Images".tr,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16);
+          print("Images Not Uploaded");
+        }
+      }
     }
   }
 
   Future requestLoan() async {
-    var url = "http://"+IPADDRESS+"/handinhand/request.php";
+    print(loan_id.toString());
+    print(emailglobal);
+    print(lname);
+    var url = "http://" + IPADDRESS + "/handinhand/requestLoan.php";
     var response = await http.post(Uri.parse(url), body: {
-      "email": emailglo,
+      "loan_id": loan_id.toString(),
+      "email": emailglobal,
+      "lname": lname,
     });
+    print(response.body);
     var data = await json.decode(response.body);
     if (data == "Success") {
       Fluttertoast.showToast(
-          msg: "Submission successful".tr,
+          msg: "The request has been submitted successfully".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Color.fromARGB(255, 203, 158, 211),
           textColor: Colors.purple,
           fontSize: 16);
-    } else {
+    } else if (data == "Failed") {
       Fluttertoast.showToast(
           msg: "Submission failed".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    } else if (data == "no profile data") {
+      Fluttertoast.showToast(
+          msg: "Be sure to enter profile data!".tr,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16);
+    } else if (data == "submitted before") {
+      Fluttertoast.showToast(
+          msg: "The loan request has been submitted before!".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -455,313 +344,90 @@ class _attachmentsState extends State<attachments> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
-          child: Column(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Attachments".tr,
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
+          child: Column(children: [
+        Text(
+          "Attachments:".tr,
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        Divider(
+          height: 20,
+          thickness: 2,
+        ),
+        Align(
+          child: Text(
+            "To apply for the loan, please upload the following attachments:"
+                .tr,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          Divider(
-            height: 20,
-            thickness: 2,
-          ),
-          Align(
-            child: Text(
-              "t0_a".tr,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "1. ID Card".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage1();
-              },
-              child: Row(
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: attach.length - 1,
+            itemBuilder: (context, index) {
+              // h2(index.toString());
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
+                  Container(
+                    child: Text(
+                      attach[index],
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Visibility(
+                    //visible: _SaveButton_isVisible,
+                    child: TextButton(
+                        onPressed: () {
+                          choiceImage(index);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.attach_file,
+                              color: Colors.purple,
+                            ),
+                            Text(
+                              "Pick Image".tr,
+                              style:
+                                  TextStyle(color: Colors.purple, fontSize: 20),
+                            ),
+                          ],
+                        )),
+                  ),
+                  Container(
+                      child: flages?[index] == 0
+                          ? Text(
+                              'No Image Selected'.tr,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          : Image.file(_image[index])),
+                  // Image.file(_image[index])
+                  SizedBox(
+                    height: 20,
                   ),
                 ],
-              )),
-          SizedBox(
-            height: 10,
+              );
+            },
           ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "2. Student Card".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage2();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "3. Transcript for the last semester".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage3();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t7_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage4();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "5. ID card of the head of the family, showing the family members"
-                  .tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage5();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t1_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage6();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t2_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage7();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t3_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage8();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t4_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage9();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          Align(
-            //alignment: Alignment.topLeft,
-            child: Text(
-              "t5_a".tr,
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                choiceImage10();
-              },
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.purple,
-                  ),
-                  Text(
-                    "Pick Files".tr,
-                    style: TextStyle(color: Colors.purple, fontSize: 20),
-                  ),
-                ],
-              )),
-          SizedBox(
-            height: 20,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-                onPressed: (() {
-                  uploadImage();
-                }),
-                child: Text(
-                  "Save".tr,
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                )),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Align(
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Visibility(
+          //visible: _SaveButton_isVisible,
+          child: Align(
             alignment: Alignment.center,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -771,7 +437,62 @@ class _attachmentsState extends State<attachments> {
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () {
-                  requestLoan();
+                  var count = 0;
+                  for (int i = 0; i < attach.length - 1; i++) {
+                    if (flages[i] == 1) {
+                      count++;
+                    }
+                  }
+
+                  if (count != attach.length - 1) {
+                    Fluttertoast.showToast(
+                        msg: "Be sure to attach all the attachments!".tr,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16);
+                  } else {
+                    uploadImage();
+                  }
+                },
+                child: Text(
+                  "Save".tr,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                )),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Visibility(
+          //visible: _isVisible,
+          child: Align(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+                onPressed: () {
+                  if (flag == 0) {
+                    Fluttertoast.showToast(
+                        msg: "Be sure to attach and save all the attachments!"
+                            .tr,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16);
+                  } else
+                    requestLoan();
                 },
                 child: Text(
                   "Loan Request".tr,
@@ -780,9 +501,9 @@ class _attachmentsState extends State<attachments> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 )),
-          )
-        ],
-      )),
+          ),
+        )
+      ])),
     );
   }
 }

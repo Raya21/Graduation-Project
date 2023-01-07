@@ -91,6 +91,8 @@ class _ForgetPassState extends State<ForgetPass> {
                       children: <Widget>[
                         TextFormField(
                           controller: email,
+                          cursorColor: Colors.white,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "Email",

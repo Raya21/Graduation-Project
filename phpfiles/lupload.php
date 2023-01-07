@@ -11,24 +11,25 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$scholarship_id = $_POST['scholarship_id'];
+$num_attach=$_POST['num_attach'];
+$loan_id = $_POST['loan_id'];
 $email1 = $_POST['email'];
-$sname = $_POST['sname'];
+$lname = $_POST['lname'];
 $image = $_FILES['image']['name'];
 $attach_name = $_POST['attach_name'];
 
 
 
-$sql2="SELECT * FROM scholarship_request WHERE email='".$email1."' AND scholarship_id='".$scholarship_id."'";
+$sql2="SELECT * FROM loan_attachs WHERE email='".$email1."' AND loan_id='".$loan_id."'";
 $result2 = $conn->query($sql2);
 $count  = mysqli_num_rows($result2);
 
-if($count==0)
+if($count!=$num_attach)
 {
-    $imagePath = 'suploads/'.$image;
+    $imagePath = 'luploads/'.$image;
     $tmp_name = $_FILES['image']['tmp_name'];
     move_uploaded_file($tmp_name,$imagePath);
-    $conn->query("INSERT INTO scholarship_attachs (scholarship_id,email,sname,image,attach_name) VALUES ('".$scholarship_id."','".$email1."','".$sname."','".$image."','".$attach_name."')");
+    $conn->query("INSERT INTO loan_attachs (loan_id,email,lname,image,attach_name) VALUES ('".$loan_id."','".$email1."','".$lname."','".$image."','".$attach_name."')");
     echo json_encode("success");
 }
 

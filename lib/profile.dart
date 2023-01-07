@@ -209,6 +209,7 @@ class _personInfoState extends State<personInfo> {
                 controller: fname,
                 keyboardType: TextInputType.name,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 20.0),
@@ -233,6 +234,7 @@ class _personInfoState extends State<personInfo> {
               TextFormField(
                 controller: id,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -261,6 +263,7 @@ class _personInfoState extends State<personInfo> {
                 child: TextFormField(
                   controller: bdate,
                   keyboardType: TextInputType.datetime,
+                  style: TextStyle(fontSize: 20),
                   decoration: const InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 15.0, horizontal: 10.0),
@@ -337,6 +340,7 @@ class _personInfoState extends State<personInfo> {
                 controller: city,
                 keyboardType: TextInputType.name,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 10.0),
@@ -655,6 +659,7 @@ class _contactInfoState extends State<contactInfo> {
               controller: Tphone,
               keyboardType: TextInputType.phone,
               cursorColor: Colors.purple,
+              style: TextStyle(fontSize: 20),
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 10.0),
@@ -681,6 +686,7 @@ class _contactInfoState extends State<contactInfo> {
               controller: Mphone,
               keyboardType: TextInputType.phone,
               cursorColor: Colors.purple,
+              style: TextStyle(fontSize: 20),
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 10.0),
@@ -940,6 +946,7 @@ class _eduInfoState extends State<eduInfo> {
                 controller: yearofEn,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 10.0),
@@ -965,6 +972,7 @@ class _eduInfoState extends State<eduInfo> {
                 controller: schoolcon,
                 keyboardType: TextInputType.name,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 10.0),
@@ -989,6 +997,7 @@ class _eduInfoState extends State<eduInfo> {
               TextFormField(
                 controller: gradecon,
                 keyboardType: TextInputType.number,
+                style: TextStyle(fontSize: 20),
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -1260,6 +1269,7 @@ class _eduInfoState extends State<eduInfo> {
                 controller: dep,
                 keyboardType: TextInputType.name,
                 cursorColor: Colors.purple,
+                style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0, horizontal: 10.0),
@@ -1354,6 +1364,7 @@ class _eduInfoState extends State<eduInfo> {
               TextFormField(
                 controller: uniid,
                 keyboardType: TextInputType.number,
+                style: TextStyle(fontSize: 20),
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -1379,6 +1390,7 @@ class _eduInfoState extends State<eduInfo> {
               TextFormField(
                 controller: yearofEnUni,
                 keyboardType: TextInputType.datetime,
+                style: TextStyle(fontSize: 20),
                 cursorColor: Colors.purple,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(

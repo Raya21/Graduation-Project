@@ -107,6 +107,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           controller: emailcontroller,
                           cursorColor: Colors.white,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "Email".tr,
@@ -133,6 +134,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           controller: passwordcontroller,
                           cursorColor: Colors.white,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                           decoration: InputDecoration(
                               prefixIcon:
                                   Icon(Icons.password, color: Colors.pink),

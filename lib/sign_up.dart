@@ -101,6 +101,7 @@ class _SignUpState extends State<SignUp> {
                       TextFormField(
                         controller: usernamecontroller,
                         cursorColor: Colors.white,
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person, color: Colors.pink),
                             hintText: "Username".tr,
@@ -116,6 +117,7 @@ class _SignUpState extends State<SignUp> {
                       TextFormField(
                         controller: emailcontroller,
                         cursorColor: Colors.white,
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email, color: Colors.pink),
                             hintText: "Email".tr,
@@ -142,6 +144,7 @@ class _SignUpState extends State<SignUp> {
                         controller: passwordcontroller,
                         obscureText: true,
                         cursorColor: Colors.white,
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                         decoration: InputDecoration(
                             prefixIcon:
                                 Icon(Icons.password, color: Colors.pink),

@@ -13,23 +13,17 @@ class outstandingStudents extends StatefulWidget {
 }
 
 class _outstandingStudentsState extends State<outstandingStudents> {
-  List list = [];
-
+ 
   Future GetData() async {
-    var url = "http://"+IPADDRESS+"/handinhand/outStudent.php";
+    var url = "http://" + IPADDRESS + "/handinhand/outStudent.php";
     var res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      var red = json.decode(res.body);
-      setState(() {
-        list.addAll(red);
-      });
-      print(list);
-    }
+    var red = json.decode(res.body);
+    return red;
   }
 
   List Data = [];
   Future Suggestion() async {
-    var url = "http://"+IPADDRESS+"/handinhand/suggestion.php";
+    var url = "http://" + IPADDRESS + "/handinhand/suggestion.php";
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
@@ -46,7 +40,6 @@ class _outstandingStudentsState extends State<outstandingStudents> {
   void initState() {
     super.initState();
     Suggestion();
-    GetData();
   }
 
   @override
@@ -77,33 +70,43 @@ class _outstandingStudentsState extends State<outstandingStudents> {
             },
           ),
         ),
-        body: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (cts, i) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 198, 126, 211),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: ListTile(
-                    title: Text(
-                      "${list[i]["fname"]}",
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      "${list[i]["description"]}",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    leading: Container(
-                      child: Image.network("http://"+IPADDRESS+"/handinhand/" +
-                          list[i]["image"]),
-                    ),
-                  ),
-                ),
-              );
-            }));
+        body: FutureBuilder(
+          future: GetData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (cts, i) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 198, 126, 211),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: ListTile(
+                            title: Text(
+                              "${snapshot.data[i]["fname"]}",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              "${snapshot.data[i]["description"]}",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            leading: Container(
+                              child: Image.asset(
+                                  "lib/studentImages/" + snapshot.data[i]["image"]),
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+                : Center(
+                    child: CircularProgressIndicator(),
+                  );
+          },
+        ));
   }
 }
 
@@ -112,7 +115,7 @@ class DataSearch extends SearchDelegate {
   DataSearch({required this.data});
 
   Future getStudentData() async {
-    var url = "http://"+IPADDRESS+"/handinhand/search.php";
+    var url = "http://" + IPADDRESS + "/handinhand/search.php";
     var res = await http.post(Uri.parse(url), body: {"query": query});
     if (res.statusCode == 200) {
       var stuData = jsonDecode(res.body);
@@ -164,16 +167,20 @@ class DataSearch extends SearchDelegate {
                           color: Color.fromARGB(255, 198, 126, 211),
                           borderRadius: BorderRadius.circular(12)),
                       child: ListTile(
-                        title: Text('${snp.data[index]['fname']}',style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                        title: Text(
+                          '${snp.data[index]['fname']}',
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
                         subtitle: Text(
                           "${snp.data[index]["description"]}",
                           style: TextStyle(fontSize: 20),
                         ),
                         leading: Container(
-                          child: Image.asset(
-                              "http://"+IPADDRESS+"/handinhand/" +
-                                  snp.data[index]["image"]),
+                          child: Image.asset("http://" +
+                              IPADDRESS +
+                              "/handinhand/" +
+                              snp.data[index]["image"]),
                         ),
                       ),
                     ),

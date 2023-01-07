@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
           "login": (context) => Login(),
           "profile": (context) => profile(value: '',),
           "settings": (context) => settings(),
-          "apply_loans": (context) => applyLoans(value: '',),
+          "apply_loans": (context) => applyLoans(loan_id: 0, value: '', value1: '', value2: '', value3: '', emailv: '',),
           "contactus": (context) => ContactUs(value: '',),
           "sign_up": (context) => SignUp(),
           "section1_familyData_page": (context) => Section1(userId: 0),

@@ -33,39 +33,106 @@ class _HomeState extends State<Home> {
   var _image;
   final picker = ImagePicker();
   Future getProfileImage() async {
-    try{
+    try {
       var f = 0;
-    var url = "http://" + IPADDRESS + "/handinhand/viewProfileImage.php";
-    var response = await http.post(Uri.parse(url), body: {
-      "email": emailvalue,
-    });
-    List list = await json.decode(response.body);
-    if (list[0] == "nopic.png") {
-      f = 1;
-    }
-
-    if (mounted)
-      setState(() {
-        if (f == 0) {
-          image = "lib/ProfileImages/${list[0]['image']}";
-        } else if (f == 1) {
-          image = "lib/ProfileImages/nopic.png";
-        }
-
-        // image =
-        //     "http://192.168.1.10/handinhand/ProfileImages/${list[0]['image']}";
+      var url = "http://" + IPADDRESS + "/handinhand/viewProfileImage.php";
+      var response = await http.post(Uri.parse(url), body: {
+        "email": emailvalue,
       });
+      List list = await json.decode(response.body);
+      if (list[0] == "nopic.png") {
+        f = 1;
+      }
 
-    return (image);
-    }catch(e){
+      if (mounted)
+        setState(() {
+          if (f == 0) {
+            image = "lib/ProfileImages/${list[0]['image']}";
+          } else if (f == 1) {
+            image = "lib/ProfileImages/nopic.png";
+          }
+
+          // image =
+          //     "http://192.168.1.10/handinhand/ProfileImages/${list[0]['image']}";
+        });
+
+      return (image);
+    } catch (e) {
       print(e.toString());
     }
   }
 
+  List _allScholar = [];
+  Future GetData2() async {
+    var url = "http://" + IPADDRESS + "/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+    //print(res.body);
+    var red = json.decode(res.body);
+    setState(() {
+      _allScholar.addAll(red);
+    });
+  }
+
+  List _allLoan = [];
+  Future GetLoans2() async {
+    var url = "http://" + IPADDRESS + "/handinhand/home_loans.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+    //print(res.body);
+    var red = json.decode(res.body);
+    setState(() {
+      _allLoan.addAll(red);
+    });
+  }
+
+  List _foundScholar = [];
+  List _foundLoan = [];
+
   @override
   void initState() {
+    _foundScholar = _allScholar;
+    _foundLoan = _allLoan;
     //getProfileImage();
     super.initState();
+    GetData2();
+    GetLoans2();
+  }
+
+  void _runFilter(String enteredKeyword) {
+    List results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _allScholar;
+    } else {
+      results = _allScholar
+          .where((scholar) => scholar["sname"]
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundScholar = results;
+    });
+  }
+
+  void _runFilter2(String enteredKeyword) {
+    List results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _allLoan;
+    } else {
+      results = _allLoan
+          .where((loan) => loan["lname"]
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundLoan = results;
+    });
   }
 
   Widget bottomSheet() {
@@ -156,20 +223,6 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future GetData() async {
-    var url = "http://" + IPADDRESS + "/handinhand/home.php";
-    var res = await http.post(Uri.parse(url), body: {
-      "email": emailvalue,
-    });
-    print(res.body);
-    var red = json.decode(res.body);
-    if (red == "No data") {
-      print("No data");
-      return;
-    } else
-      return red;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,50 +248,73 @@ class _HomeState extends State<Home> {
                   builder: (context, snapshot) {
                     if (snapshot.hasError) print(snapshot.error);
                     return snapshot.hasData
-                        ? Stack(
-                            children: [
-                              CircleAvatar(
-                                  radius: 50.0,
-                                  //backgroundImage: _image == null ? null : FileImage(_image)
-                                  // backgroundImage: _image == null ? null : FileImage(_image)
-
-                                  /*backgroundImage: _imageFile == null 
-                            ? AssetImage("lib/imgs/nopic.png") 
-                            : FileImage(File(_imageFile.path)),*/
-
-                                  // backgroundImage: AssetImage('lib/imgs/nopic.png'), هاي صح اشتغلت
-
-                                  // backgroundImage: AssetImage(
-                                  //     "lib/ProfileImages/image_picker1023303032194065037.png"),    هاي اشتغلت صح برضو
-
-                                  //backgroundImage: NetworkImage(image),
-
-                                  //backgroundImage: AssetImage(snapshot.data),
-                                  backgroundImage: _image == null
-                                      ? AssetImage(snapshot.data)
-                                      : AssetImage("$imagePath")),
-                              Positioned(
-                                  bottom: 4,
-                                  right: 4,
-                                  child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                            context: context,
-                                            builder: ((builder) =>
-                                                bottomSheet()));
-                                      },
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color:
-                                            Color.fromARGB(255, 219, 203, 203),
-                                        size: 28,
-                                      ))),
-                            ],
-                          )
+                        ? ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: _image == null ? 1 : 0,
+                            itemBuilder: (cts, i) {
+                              return Stack(
+                                children: [
+                                  CircleAvatar(
+                                      radius: 50.0,
+                                      backgroundImage:
+                                          AssetImage(snapshot.data)),
+                                  Positioned(
+                                      bottom: 4,
+                                      right: 85,
+                                      child: InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                                context: context,
+                                                builder: ((builder) =>
+                                                    bottomSheet()));
+                                          },
+                                          child: Icon(
+                                            Icons.camera_alt,
+                                            color: Color.fromARGB(
+                                                255, 219, 203, 203),
+                                            size: 28,
+                                          ))),
+                                ],
+                              );
+                            })
                         : Center(
                             child: CircularProgressIndicator(),
                           );
                   }),
+              Container(
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _image == null ? 0 : 1,
+                  itemBuilder: (context, index) {
+                    return Stack(
+                      children: [
+                        CircleAvatar(
+                            radius: 50.0, backgroundImage: FileImage(_image)),
+                        Positioned(
+                            bottom: 4,
+                            right: 4,
+                            //left: 4,
+                            //top: 4,
+                            child: InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: ((builder) => bottomSheet()));
+                                },
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Color.fromARGB(255, 219, 203, 203),
+                                  size: 28,
+                                ))),
+                      ],
+                    );
+                  },
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -281,22 +357,6 @@ class _HomeState extends State<Home> {
                       ),
                       title: Text(
                         "Family Data".tr,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
-                    ListTile(
-                      onTap: () {
-                        //Navigator.of(context).pushNamed("qualifications");
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                applyLoans(value: emailvalue)));
-                      },
-                      leading: Icon(
-                        Icons.money,
-                        color: Colors.white,
-                      ),
-                      title: Text(
-                        "Loan Request".tr,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
@@ -401,10 +461,7 @@ class _HomeState extends State<Home> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      leading: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
-                      ),
+                      automaticallyImplyLeading: false,
                       backgroundColor: Colors.purple,
                       actions: [
                         IconButton(
@@ -421,17 +478,64 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    body: FutureBuilder(
-                      future: GetData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) print(snapshot.error);
-                        return snapshot.hasData
-                            ? ListView.builder(
-                                itemCount: snapshot.data[0] == "No data"
-                                    ? 0
-                                    : snapshot.data.length,
-                                itemBuilder: (cts, i) {
-                                  return Padding(
+                    body: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          child: TextField(
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            cursorColor: Colors.purple,
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                              labelText: "Search".tr,
+                              labelStyle: TextStyle(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              suffixIcon:
+                                  Icon(Icons.search, color: Colors.purple),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Icon(Icons.label_important,
+                                    color: Colors.purple),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  "Scholarships :".tr,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: _foundScholar.isNotEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: _foundScholar[0] == "No data"
+                                      ? 0
+                                      : _foundScholar.length,
+                                  itemBuilder: (cts, i) => Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -441,13 +545,13 @@ class _HomeState extends State<Home> {
                                               BorderRadius.circular(12)),
                                       child: ListTile(
                                         title: Text(
-                                          "${snapshot.data[i]["sname"]}",
+                                          "${_foundScholar[i]["sname"]}",
                                           style: TextStyle(
                                               fontSize: 22,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         subtitle: Text(
-                                          "${snapshot.data[i]["description"]}",
+                                          "${_foundScholar[i]["description"]}",
                                           style: TextStyle(fontSize: 20),
                                         ),
                                         leading: Container(
@@ -467,26 +571,147 @@ class _HomeState extends State<Home> {
                                                   builder: (context) =>
                                                       Scholarship(
                                                         scholarship_id: int.parse(
-                                                            "${snapshot.data[i]["scholarship_id"]}"),
+                                                            "${_foundScholar[i]["scholarship_id"]}"),
                                                         value:
-                                                            "${snapshot.data[i]["sname"]}",
+                                                            "${_foundScholar[i]["sname"]}",
                                                         value1:
-                                                            "${snapshot.data[i]["conditions"]}",
+                                                            "${_foundScholar[i]["conditions"]}",
                                                         value2:
-                                                            "${snapshot.data[i]["percentage"]}",
+                                                            "${_foundScholar[i]["percentage"]}",
                                                         value3:
-                                                            "${snapshot.data[i]["attachments"]}",
+                                                            "${_foundScholar[i]["attachments"]}",
+                                                        emailv: "rta@gmail.com",
+                                                      )));
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Center(
+                                  child: Text(
+                                    'No results found'.tr,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          child: TextField(
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            cursorColor: Colors.purple,
+                            onChanged: (value) => _runFilter2(value),
+                            decoration: InputDecoration(
+                              labelText: "Search".tr,
+                              labelStyle: TextStyle(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              suffixIcon:
+                                  Icon(Icons.search, color: Colors.purple),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Icon(Icons.label_important,
+                                    color: Colors.purple),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  "Loans :".tr,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                        Container(
+                          child: _foundLoan.isNotEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: _foundLoan[0] == "No data"
+                                      ? 0
+                                      : _foundLoan.length,
+                                  itemBuilder: (cts, i) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Text(
+                                          "${_foundLoan[i]["lname"]}",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(
+                                          "${_foundLoan[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      applyLoans(
+                                                        loan_id: int.parse(
+                                                            "${_foundLoan[i]["loan_id"]}"),
+                                                        value:
+                                                            "${_foundLoan[i]["lname"]}",
+                                                        value1:
+                                                            "${_foundLoan[i]["conditions"]}",
+                                                        value2:
+                                                            "${_foundLoan[i]["percentage"]}",
+                                                        value3:
+                                                            "${_foundLoan[i]["attachments"]}",
                                                         emailv: emailvalue,
                                                       )));
                                         },
                                       ),
                                     ),
-                                  );
-                                })
-                            : Center(
-                                child: CircularProgressIndicator(),
-                              );
-                      },
+                                  ),
+                                )
+                              : Center(
+                                  child: Text(
+                                    'No results found'.tr,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                        ),
+                      ],
                     )),
               ));
             }),
