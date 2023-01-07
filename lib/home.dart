@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
   var _image;
   var _img;
   final picker = ImagePicker();
+
   //int IPADDRESS = 192.168.1.10;
 
   // Future choiceImage(ImageSource source) async {
@@ -36,7 +37,6 @@ class _HomeState extends State<Home> {
   // }
 
   double value = 0;
-
   Future getProfileImage() async {
     var f = 0;
     var url = "http://192.168.1.10/handinhand/viewProfileImage.php";
@@ -64,10 +64,77 @@ class _HomeState extends State<Home> {
     return (image);
   }
 
+  List _allScholar = [];
+  Future GetData2() async {
+    var url = "http://192.168.1.10/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": "tt@gmail.com",
+    });
+    //print(res.body);
+    var red = json.decode(res.body);
+    setState(() {
+      _allScholar.addAll(red);
+    });
+  }
+
+  List _allLoan = [];
+  Future GetLoans2() async {
+    var url = "http://192.168.1.10/handinhand/home_loans.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": "tt@gmail.com",
+    });
+    //print(res.body);
+    var red = json.decode(res.body);
+    setState(() {
+      _allLoan.addAll(red);
+    });
+  }
+
+  List _foundScholar = [];
+  List _foundLoan = [];
+
   @override
   void initState() {
     //getProfileImage();
+    _foundScholar = _allScholar;
+    _foundLoan = _allLoan;
     super.initState();
+    GetData2();
+    GetLoans2();
+  }
+
+  void _runFilter(String enteredKeyword) {
+    List results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _allScholar;
+    } else {
+      results = _allScholar
+          .where((scholar) => scholar["sname"]
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundScholar = results;
+    });
+  }
+
+  void _runFilter2(String enteredKeyword) {
+    List results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _allLoan;
+    } else {
+      results = _allLoan
+          .where((loan) => loan["lname"]
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundLoan = results;
+    });
   }
 
   Widget bottomSheet() {
@@ -163,34 +230,6 @@ class _HomeState extends State<Home> {
     } else {
       print("Image Not Uploaded");
     }
-  }
-
-  Future GetData() async {
-    var url = "http://192.168.1.10/handinhand/home.php";
-    var res = await http.post(Uri.parse(url), body: {
-      "email": "tt@gmail.com",
-    });
-    //print(res.body);
-    var red = json.decode(res.body);
-    if (red == "No data") {
-      print("No data");
-      return;
-    } else
-      return red;
-  }
-
-  Future GetLoans() async {
-    var url = "http://192.168.1.10/handinhand/home_loans.php";
-    var res = await http.post(Uri.parse(url), body: {
-      "email": "tt@gmail.com",
-    });
-    //print(res.body);
-    var red = json.decode(res.body);
-    if (red == "No data") {
-      print("No data");
-      return;
-    } else
-      return red;
   }
 
   @override
@@ -324,6 +363,8 @@ class _HomeState extends State<Home> {
                         Positioned(
                             bottom: 4,
                             right: 4,
+                            //left: 4,
+                            //top: 4,
                             child: InkWell(
                                 onTap: () {
                                   showModalBottomSheet(
@@ -461,6 +502,7 @@ class _HomeState extends State<Home> {
                   ..rotateY((pi / 6) * val),
                 child: Scaffold(
                     appBar: AppBar(
+                      automaticallyImplyLeading: false,
                       title: Text(
                         "Home".tr,
                         style: TextStyle(
@@ -480,148 +522,237 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    body: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    body: ListView(
+                      scrollDirection: Axis.vertical,
                       children: [
-                        FutureBuilder(
-                          future: GetData(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError) print(snapshot.error);
-                            return snapshot.hasData
-                                ? ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data[0] == "No data"
-                                        ? 0
-                                        : snapshot.data.length,
-                                    itemBuilder: (cts, i) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Color.fromARGB(
-                                                  255, 198, 126, 211),
-                                              borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          child: ListTile(
-                                            title: Text(
-                                              "${snapshot.data[i]["sname"]}",
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            subtitle: Text(
-                                              "${snapshot.data[i]["description"]}",
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                            leading: Container(
-                                              child: Image.asset(
-                                                "lib/imgs/scholarship.png",
-                                                width: 50,
-                                                height: 100,
-                                              ),
-                                            ),
-                                            trailing: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                            ),
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Scholarship(
-                                                            scholarship_id:
-                                                                int.parse(
-                                                                    "${snapshot.data[i]["scholarship_id"]}"),
-                                                            value:
-                                                                "${snapshot.data[i]["sname"]}",
-                                                            value1:
-                                                                "${snapshot.data[i]["conditions"]}",
-                                                            value2:
-                                                                "${snapshot.data[i]["percentage"]}",
-                                                            value3:
-                                                                "${snapshot.data[i]["attachments"]}",
-                                                            emailv:
-                                                                "rta@gmail.com",
-                                                          )));
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    })
-                                : Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                          },
+                        const SizedBox(
+                          height: 20,
                         ),
-                        FutureBuilder(
-                          future: GetLoans(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError) print(snapshot.error);
-                            return snapshot.hasData
-                                ? ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data[0] == "No data"
-                                        ? 0
-                                        : snapshot.data.length,
-                                    itemBuilder: (cts, i) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Color.fromARGB(
-                                                  255, 198, 126, 211),
-                                              borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          child: ListTile(
-                                            title: Text(
-                                              "${snapshot.data[i]["lname"]}",
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            subtitle: Text(
-                                              "${snapshot.data[i]["description"]}",
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                            leading: Container(
-                                              child: Image.asset(
-                                                "lib/imgs/scholarship.png",
-                                                width: 50,
-                                                height: 100,
-                                              ),
-                                            ),
-                                            trailing: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.white,
-                                            ),
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Loan(
-                                                            loan_id: int.parse(
-                                                                "${snapshot.data[i]["loan_id"]}"),
-                                                            value:
-                                                                "${snapshot.data[i]["lname"]}",
-                                                            value1:
-                                                                "${snapshot.data[i]["conditions"]}",
-                                                            value2:
-                                                                "${snapshot.data[i]["percentage"]}",
-                                                            value3:
-                                                                "${snapshot.data[i]["attachments"]}",
-                                                            emailv:
-                                                                "rta@gmail.com",
-                                                          )));
-                                            },
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          child: TextField(
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            cursorColor: Colors.purple,
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                              labelText: "Search".tr,
+                              labelStyle: TextStyle(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              suffixIcon:
+                                  Icon(Icons.search, color: Colors.purple),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Icon(Icons.label_important,
+                                    color: Colors.purple),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  "Scholarships :".tr,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: _foundScholar.isNotEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: _foundScholar[0] == "No data"
+                                      ? 0
+                                      : _foundScholar.length,
+                                  itemBuilder: (cts, i) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Text(
+                                          "${_foundScholar[i]["sname"]}",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(
+                                          "${_foundScholar[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
                                           ),
                                         ),
-                                      );
-                                    })
-                                : Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                          },
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Scholarship(
+                                                        scholarship_id: int.parse(
+                                                            "${_foundScholar[i]["scholarship_id"]}"),
+                                                        value:
+                                                            "${_foundScholar[i]["sname"]}",
+                                                        value1:
+                                                            "${_foundScholar[i]["conditions"]}",
+                                                        value2:
+                                                            "${_foundScholar[i]["percentage"]}",
+                                                        value3:
+                                                            "${_foundScholar[i]["attachments"]}",
+                                                        emailv: "rta@gmail.com",
+                                                      )));
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Center(
+                                  child: Text(
+                                    'No results found'.tr,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          child: TextField(
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            cursorColor: Colors.purple,
+                            onChanged: (value) => _runFilter2(value),
+                            decoration: InputDecoration(
+                              labelText: "Search".tr,
+                              labelStyle: TextStyle(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              suffixIcon:
+                                  Icon(Icons.search, color: Colors.purple),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.purple, width: 2),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Icon(Icons.label_important,
+                                    color: Colors.purple),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  "Loans :".tr,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )),
+                        Container(
+                          child: _foundLoan.isNotEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: _foundLoan[0] == "No data"
+                                      ? 0
+                                      : _foundLoan.length,
+                                  itemBuilder: (cts, i) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Text(
+                                          "${_foundLoan[i]["lname"]}",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(
+                                          "${_foundLoan[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                                  builder: (context) => Loan(
+                                                        loan_id: int.parse(
+                                                            "${_foundLoan[i]["loan_id"]}"),
+                                                        value:
+                                                            "${_foundLoan[i]["lname"]}",
+                                                        value1:
+                                                            "${_foundLoan[i]["conditions"]}",
+                                                        value2:
+                                                            "${_foundLoan[i]["percentage"]}",
+                                                        value3:
+                                                            "${_foundLoan[i]["attachments"]}",
+                                                        emailv: "rta@gmail.com",
+                                                      )));
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Center(
+                                  child: Text(
+                                    'No results found'.tr,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                         ),
                       ],
                     )),
