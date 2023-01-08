@@ -200,7 +200,7 @@ $email = $_GET['email'];
                     $update = "UPDATE makedate SET  sname='".$sname."', fname='".$fname."', datetime='".$date."' WHERE email='".$email."'";
                     if (mysqli_query($conn, $update)) {
                         echo '<script>alert("The date has been modified")</script>';
-                        echo '<script>window.location.assign("makedatescholar.php")</script>';
+                        echo '<script>window.location.assign("getscholars.php")</script>';
                     } else {
                         echo "Error: " . $update . "<br>" . mysqli_error($conn);
                     }
@@ -209,7 +209,7 @@ $email = $_GET['email'];
                     $sql = "INSERT INTO makedate (email,sname, fname, datetime) VALUES ('$email','$sname','$fname','$date')";
                     if (mysqli_query($conn, $sql)) {
                         echo '<script>alert("An appointment has been booked")</script>';
-                        echo '<script>window.location.assign("makedatescholar.php")</script>';
+                        echo '<script>window.location.assign("getscholars.php")</script>';
                     } else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }

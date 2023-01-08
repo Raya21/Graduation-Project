@@ -131,44 +131,39 @@ if (!$conn) {
     <h1>Make an appointment</h1>
 </div>
 <div class="mane">
+    <form action="" method="post">
+        <h3 class="sid">Scholarship Name:</h3>
+        <input type="text" name="search1" class="searchtxt">
+        <input type="submit" name="btn_search1" value="Search" class="search">
+    </form>
+    <?php
+    if(isset($_POST['btn_search1'])){
 
-        <div style="padding: 50px; overflow-x: auto;">
+    ?>
+    <div style="padding: 50px; overflow-x: auto;">
 
-            <table>
-                <?php
-                $id = $_GET['sid'];
-                $sh = mysqli_query($conn,"SELECT * FROM scholarship_request WHERE scholarship_id LIKE '%$id%'");
-                while($row=mysqli_fetch_assoc($sh)){
-                ?>
-                <tr>
-                    <td>Scholarship ID</td>
-                    <td>Scholarship Name</td>
-                    <td>Student ID</td>
-                    <td>Student Name</td>
-                    <td>Email</td>
-                    <td>City</td>
-                    <td>University ID Number</td>
-                    <td>GPA</td>
-                    <td>Make an appointment</td>
-                </tr>
-                <form action="">
-                <tr>
-                    <td><?php echo $row['scholarship_id'];?></td>
-                    <td><?php echo $i=$row['sname'];?></td>
-                    <td><?php echo $row['id'];?></td>
-                    <td><?php echo $j=$row['fname'];?></td>
-                    <td><?php echo $k=$row['email'];?></td>
-                    <td><?php echo $row['city'];?></td>
-                    <td><?php echo $row['uniid'];?></td>
-                    <td><?php echo $row['gpa'];?></td>
-                    <td><a href="makedate.php?sname=<?php echo $i?>&fname=<?php echo $j?>&email=<?php echo $k?>" ><i class="fa fa-calendar" style="color: white"></i></a></td>
-                </tr>
-                </form>
-            </table>
+        <table>
             <?php
-            }
+            $search1 = $_POST['search1'];
+            $sh = mysqli_query($conn,"SELECT * FROM scholarships WHERE sname LIKE '%$search1%'");
+            while($row=mysqli_fetch_assoc($sh)){
             ?>
-        </div>
+            <tr>
+                <td>Scholarship ID</td>
+                <td>Scholarship Name</td>
+            </tr>
+            <form action="">
+                <tr>
+                    <td><?php echo $i=$row['scholarship_id'];?></td>
+                    <td><a href="makedatescholar.php?sid=<?php echo $i?>" style="color: white" name="em"><?php echo $row['sname'];?></a></td>
+                </tr>
+            </form>
+        </table>
+        <?php
+        }
+        }
+        ?>
+    </div>
 
 </div>
 </body>

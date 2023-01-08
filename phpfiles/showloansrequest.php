@@ -16,7 +16,7 @@ if (!$conn) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Make an appointment</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script src="https://kit.fontawesome.com/9c69e75105.js" crossorigin="anonymous"></script>
@@ -52,25 +52,7 @@ if (!$conn) {
         form{
             padding: 10px;
         }
-        .aback{
-            position: relative;
-            top: -30px;
-            left: 400px;
-            font-size: 15px;
-            background-color: black;
-            display: block;
-            margin: 20px 0 0 20px;
-            text-align: center;
-            border-radius: 12px;
-            border: 2px solid mediumpurple;
-            padding: 14px 65px;
-            outline: none;
-            color: white;
-            cursor: pointer;
-            width: 180px;
-            height: 45px;
 
-        }
         table {
             border: 1px solid;
             border-collapse: collapse;
@@ -128,47 +110,42 @@ if (!$conn) {
 </head>
 <body>
 <div class="scholar">
-    <h1>Make an appointment</h1>
+    <h1>Loan Requests</h1>
 </div>
 <div class="mane">
+    <form action="" method="post">
+        <h3 class="sid">Loan Name:</h3>
+        <input type="text" name="search1" class="searchtxt">
+        <input type="submit" name="btn_search1" value="Search" class="search">
+    </form>
+    <?php
+    if(isset($_POST['btn_search1'])){
 
-        <div style="padding: 50px; overflow-x: auto;">
+    ?>
+    <div style="padding: 50px; overflow-x: auto;">
 
-            <table>
-                <?php
-                $id = $_GET['sid'];
-                $sh = mysqli_query($conn,"SELECT * FROM scholarship_request WHERE scholarship_id LIKE '%$id%'");
-                while($row=mysqli_fetch_assoc($sh)){
-                ?>
-                <tr>
-                    <td>Scholarship ID</td>
-                    <td>Scholarship Name</td>
-                    <td>Student ID</td>
-                    <td>Student Name</td>
-                    <td>Email</td>
-                    <td>City</td>
-                    <td>University ID Number</td>
-                    <td>GPA</td>
-                    <td>Make an appointment</td>
-                </tr>
-                <form action="">
-                <tr>
-                    <td><?php echo $row['scholarship_id'];?></td>
-                    <td><?php echo $i=$row['sname'];?></td>
-                    <td><?php echo $row['id'];?></td>
-                    <td><?php echo $j=$row['fname'];?></td>
-                    <td><?php echo $k=$row['email'];?></td>
-                    <td><?php echo $row['city'];?></td>
-                    <td><?php echo $row['uniid'];?></td>
-                    <td><?php echo $row['gpa'];?></td>
-                    <td><a href="makedate.php?sname=<?php echo $i?>&fname=<?php echo $j?>&email=<?php echo $k?>" ><i class="fa fa-calendar" style="color: white"></i></a></td>
-                </tr>
-                </form>
-            </table>
+        <table>
             <?php
-            }
+            $search1 = $_POST['search1'];
+            $sh = mysqli_query($conn,"SELECT * FROM loans WHERE lname LIKE '%$search1%'");
+            while($row=mysqli_fetch_assoc($sh)){
             ?>
-        </div>
+            <tr>
+                <td>Loan ID</td>
+                <td>Loan Name</td>
+            </tr>
+            <form action="">
+                <tr>
+                    <td><?php echo $i=$row['loan_id'];?></td>
+                    <td><a href="getloan.php?lid=<?php echo $i?>" style="color: white" name="em"><?php echo $row['lname'];?></a></td>
+                </tr>
+            </form>
+        </table>
+        <?php
+        }
+        }
+        ?>
+    </div>
 
 </div>
 </body>
