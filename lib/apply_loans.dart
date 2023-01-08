@@ -86,7 +86,7 @@ class _applyLoansState extends State<applyLoans> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Loans Request".tr,
+          widget.value,
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),

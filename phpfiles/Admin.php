@@ -33,13 +33,14 @@ if (!isset($_SESSION['loggedin'])) {
     <nav>
         <h2 class="logo">Hand <br><span style="padding-left: 25px">In</span><br> Hand</h2>
         <ul>
-            <li><a href="scholarship.html" target="_myiframe">Scholarships</a></li>
+            <li style="padding-left: 70px"><a href="scholarship.html" target="_myiframe">Scholarships</a></li>
             <li><a href="loans.html" target="_myiframe">Loans</a></li>
             <li><a href="student.html" target="_myiframe">Outstanding students</a></li>
             <li><a href="messages.php" target="_myiframe">Messages</a></li>
             <li><a href="accepthelp.php" target="_myiframe">Helping Messages</a></li>
             <li><a href="showdata.php" target="_myiframe">Users Info.</a></li>
             <li><a href="chart.php" target="_myiframe">Dashboard</a></li>
+            <li style="padding-left: 70px"><a href="makedatescholar.php" target="_myiframe">Make an appointment</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

@@ -370,7 +370,7 @@ class _personInfoState extends State<personInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -414,7 +414,7 @@ class _personInfoState extends State<personInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -450,7 +450,7 @@ class _personInfoState extends State<personInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -1027,7 +1027,7 @@ class _eduInfoState extends State<eduInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -1083,7 +1083,7 @@ class _eduInfoState extends State<eduInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -1125,7 +1125,7 @@ class _eduInfoState extends State<eduInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -1202,7 +1202,7 @@ class _eduInfoState extends State<eduInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
@@ -1298,7 +1298,7 @@ class _eduInfoState extends State<eduInfo> {
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.purple,
-                          width: 1,
+                          width: 2,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(20)),
                   child: DropdownButton(
