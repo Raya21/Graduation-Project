@@ -65,6 +65,7 @@ if ( mysqli_connect_errno() ) {
     // If there is an error with the connection, stop the script and display the error.
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
+
 if (isset($_REQUEST['username'])) {
     // removes backslashes
     $username = stripslashes($_REQUEST['username']);
@@ -75,14 +76,26 @@ if (isset($_REQUEST['username'])) {
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($con, $password);
     $create_datetime = date("Y-m-d H:i:s");
-    $query    = "INSERT into `admins` (username, password, email, created_at)
-                     VALUES ('$username', '$password', '$email', '$create_datetime')";
-    $result   = mysqli_query($con, $query);
-    if ($result) {
-        header('Location: admin_login.html');
-    } else {
-        header('Location: admin_signup.php');
+    if(isset($_POST['employee'])){
+        $query    = "INSERT into `admins` (username, password, email, created_at, admin_employee)
+                     VALUES ('$username', '$password', '$email', '$create_datetime', 'employee')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            header('Location: admin_login.html');
+        } else {
+            header('Location: admin_signup.php');
+        }
+    }else{
+        $query    = "INSERT into `admins` (username, password, email, created_at, admin_employee)
+                     VALUES ('$username', '$password', '$email', '$create_datetime', 'admin')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            header('Location: admin_login.html');
+        } else {
+            header('Location: admin_signup.php');
+        }
     }
+
 } else {
 ?>
 <div class="box">
@@ -104,7 +117,7 @@ if (isset($_REQUEST['username'])) {
                 <span>Password</span>
                 <i></i>
             </div>
-            <input type="checkbox" id="employee" name="employee" value="employee">
+            <input type="checkbox" name="employee" value="employee">
             <label for="employee" style="color: #8f8f8f; margin-top: 10px"> Sign up as employee</label><br>
             <input type="submit" value="Sign Up">
         </form>
