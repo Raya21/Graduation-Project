@@ -76,16 +76,50 @@ if (isset($_REQUEST['username'])) {
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($con, $password);
     $create_datetime = date("Y-m-d H:i:s");
-    if(isset($_POST['employee'])){
-        $query    = "INSERT into `admins` (username, password, email, created_at, admin_employee)
-                     VALUES ('$username', '$password', '$email', '$create_datetime', 'employee')";
+    if(isset($_POST['lemployee'])){
+        $query    = "INSERT into `employee_requests` (username, password, email, emp_type, created_at)
+                     VALUES ('$username', '$password', '$email', 'loans employee','$create_datetime')";
         $result   = mysqli_query($con, $query);
         if ($result) {
+            echo '<script>alert("Please wait the admin to accept your request")</script>';
             header('Location: admin_login.html');
         } else {
             header('Location: admin_signup.php');
         }
-    }else{
+    }else if(isset($_POST['osemployee'])){
+        $query    = "INSERT into `employee_requests` (username, password, email, emp_type, created_at)
+                     VALUES ('$username', '$password', '$email', 'outstanding student employee','$create_datetime')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            echo '<script>alert("Please wait the admin to accept your request")</script>';
+            header('Location: admin_login.html');
+        } else {
+            header('Location: admin_signup.php');
+        }
+    }
+    else if(isset($_POST['memployee'])){
+        $query    = "INSERT into `employee_requests` (username, password, email, emp_type, created_at)
+                     VALUES ('$username', '$password', '$email', 'messages employee','$create_datetime')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            echo '<script>alert("Please wait the admin to accept your request")</script>';
+            header('Location: admin_login.html');
+        } else {
+            header('Location: admin_signup.php');
+        }
+    }
+    else if(isset($_POST['semployee'])){
+        $query    = "INSERT into `employee_requests` (username, password, email, emp_type, created_at)
+                     VALUES ('$username', '$password', '$email', 'scholarships employee','$create_datetime')";
+        $result   = mysqli_query($con, $query);
+        if ($result) {
+            echo '<script>alert("Please wait the admin to accept your request")</script>';
+            header('Location: admin_login.html');
+        } else {
+            header('Location: admin_signup.php');
+        }
+    }
+    else{
         $query    = "INSERT into `admins` (username, password, email, created_at, admin_employee)
                      VALUES ('$username', '$password', '$email', '$create_datetime', 'admin')";
         $result   = mysqli_query($con, $query);
@@ -117,8 +151,14 @@ if (isset($_REQUEST['username'])) {
                 <span>Password</span>
                 <i></i>
             </div>
-            <input type="checkbox" name="employee" value="employee">
-            <label for="employee" style="color: #8f8f8f; margin-top: 10px"> Sign up as employee</label><br>
+            <input type="checkbox" name="lemployee" value="lemployee">
+            <label for="lemployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as loans's employee</label><br>
+            <input type="checkbox" name="semployee" value="semployee">
+            <label for="semployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as scholarships's employee</label><br>
+            <input type="checkbox" name="osemployee" value="osemployee">
+            <label for="osemployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as outstanding students's employee</label><br>
+            <input type="checkbox" name="memployee" value="memployee">
+            <label for="memployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as messages's employee</label><br>
             <input type="submit" value="Sign Up">
         </form>
     </div>

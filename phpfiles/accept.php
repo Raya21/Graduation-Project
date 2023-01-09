@@ -12,7 +12,6 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 $id = $_GET['id'];
-echo $id;
 $sql = "SELECT * FROM add_help WHERE id='".$id."'";
 $result = mysqli_query($conn,$sql);
 $count  = mysqli_num_rows($result);

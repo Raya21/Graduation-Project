@@ -120,7 +120,6 @@ if (!$conn) {
     </form>
     <?php
     if(isset($_POST['btn_search1'])){
-
     ?>
     <div style="padding: 50px; overflow-x: auto;">
 
