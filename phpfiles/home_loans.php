@@ -19,13 +19,14 @@ $sql = "SELECT college, gpa FROM edu_info WHERE email='".$email."'";
 $result = mysqli_query($conn,$sql);
 $count  = mysqli_num_rows($result);
 $count2 =0;
+$date=date('Y-m-d');
 
 if($count==1){
     while ($row = $result->fetch_assoc()) {
 
 
         //$sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
-        $sql2 = "SELECT * FROM loans WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' ";
+        $sql2 = "SELECT * FROM loans WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' AND  end_date >= '".$date."' ";
         $result2 = mysqli_query($conn,$sql2);
         $count2=mysqli_num_rows($result2);
 

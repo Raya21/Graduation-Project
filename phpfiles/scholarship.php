@@ -14,6 +14,9 @@ if (!$conn) {
 }
 
 $sname = $_POST["s_name"];
+$start_date = $_POST["start_date"];
+$end_date = $_POST["end_date"];
+
 $desc = $_POST["desc"];
 $cond = $_POST["quali"];
 $percent = $_POST["percent"];
@@ -34,7 +37,7 @@ foreach ($_POST['attachment'] as $value) {
     $college=$college.",";
 
   }
-$sql = "INSERT INTO scholarships (sname, description, conditions, percentage, college, gpa, attachments) VALUES ('$sname', '$desc','$cond','$percent','$college','$gpa','$attachments')";
+$sql = "INSERT INTO scholarships (sname,start_date,end_date, description, conditions, percentage, college, gpa, attachments) VALUES ('$sname','$start_date','$end_date', '$desc','$cond','$percent','$college','$gpa','$attachments')";
 
 if (mysqli_query($conn, $sql)) {
     echo '<script>alert("New record created successfully")</script>';
