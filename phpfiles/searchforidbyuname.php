@@ -25,7 +25,7 @@ if (!$conn) {
             padding: 0;
         }
         body{
-            background-color: purple;
+            background-color: rgb(0,0,0,0.5);
             background-size: cover;
             background-position: center;
             font-family: sans-serif;
@@ -129,7 +129,7 @@ if (!$conn) {
         <table>
             <?php
             $search1 = $_POST['search1'];
-            $sh = mysqli_query($conn,"SELECT person_info.fname, familydatas1.studentIdCard FROM person_info, familydatas1 WHERE person_info.fname LIKE '%$search1%'");
+            $sh = mysqli_query($conn,"SELECT person_info.fname, familydatas1.studentIdCard FROM person_info, familydatas1 WHERE person_info.fname LIKE '%$search1%' AND familydatas1.studentName LIKE '%$search1%'");
             while($row=mysqli_fetch_assoc($sh)){
             ?>
             <tr>
@@ -140,9 +140,12 @@ if (!$conn) {
                 <td><?php echo $row['fname'];?></td>
                 <td><?php echo $row['studentIdCard'];?></td>
             </tr>
+            <?php
+            }
+            ?>
         </table>
         <?php
-        }
+
         }
         ?>
     </div>

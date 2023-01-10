@@ -22,8 +22,8 @@
         }
         .box{
             position: relative;
-            width: 380px;
-            height: 500px;
+            width: 500px;
+            height: 570px;
             background: #1c1c1c;
             border-radius: 8px;
             overflow: hidden;
@@ -33,8 +33,8 @@
             position: absolute;
             top: -50%;
             left: -50%;
-            width: 380px;
-            height: 500px;
+            width: 500px;
+            height: 570px;
             background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
             transform-origin: bottom right;
             animation: animate 6s linear infinite;
@@ -44,8 +44,8 @@
             position: absolute;
             top: -50%;
             left: -50%;
-            width: 380px;
-            height: 500px;
+            width: 500px;
+            height: 570px;
             background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
             transform-origin: bottom right;
             animation: animate 6s linear infinite;
@@ -120,14 +120,8 @@ if (isset($_REQUEST['username'])) {
         }
     }
     else{
-        $query    = "INSERT into `admins` (username, password, email, created_at, admin_employee)
-                     VALUES ('$username', '$password', '$email', '$create_datetime', 'admin')";
-        $result   = mysqli_query($con, $query);
-        if ($result) {
-            header('Location: admin_login.html');
-        } else {
-            header('Location: admin_signup.php');
-        }
+        echo '<script>alert("Please choose one type of employee")</script>';
+        header('Location: admin_login.html');
     }
 
 } else {
@@ -151,14 +145,14 @@ if (isset($_REQUEST['username'])) {
                 <span>Password</span>
                 <i></i>
             </div>
-            <input type="checkbox" name="lemployee" value="lemployee">
-            <label for="lemployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as loans's employee</label><br>
-            <input type="checkbox" name="semployee" value="semployee">
-            <label for="semployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as scholarships's employee</label><br>
-            <input type="checkbox" name="osemployee" value="osemployee">
-            <label for="osemployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as outstanding students's employee</label><br>
-            <input type="checkbox" name="memployee" value="memployee">
-            <label for="memployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as messages's employee</label><br>
+            <input type="radio" name="lemployee" value="lemployee" style="color: #8f8f8f; margin-top: 20px">
+            <label for="lemployee" style="color: #8f8f8f; margin-top: 20px"> Sign up as loans staff</label><br>
+            <input type="radio" name="semployee" value="semployee">
+            <label for="semployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as scholarships staff</label><br>
+            <input type="radio" name="osemployee" value="osemployee">
+            <label for="osemployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as outstanding students staff</label><br>
+            <input type="radio" name="memployee" value="memployee">
+            <label for="memployee" style="color: #8f8f8f; margin-top: 10px"> Sign up as messages staff</label><br>
             <input type="submit" value="Sign Up">
         </form>
     </div>

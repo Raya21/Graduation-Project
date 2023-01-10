@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Messages's Employee</title>
+    <title>Messages staff</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@700;800;900&display=swap">

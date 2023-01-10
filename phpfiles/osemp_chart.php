@@ -12,14 +12,27 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+
+$query = "SELECT * FROM outstanding_students";
+
+// Execute the query and store the result set
+$result = mysqli_query($conn, $query);
+
+if ($result)
+{
+    // it return number of rows in the table.
+    $row = mysqli_num_rows($result);
+
+    /*if ($row)
+    {
+        printf("Number of row in the table : " . $row);
+    }*/
+    // close the result.
+    mysqli_free_result($result);
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Make an appointment</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script src="https://kit.fontawesome.com/9c69e75105.js" crossorigin="anonymous"></script>
     <style>
         *{
             margin: 0;
@@ -49,25 +62,9 @@ if (!$conn) {
             text-align: center;
             border-radius: 15px 15px 0px 0px;
         }
-        form{
-            padding: 10px;
-        }
-
-        table {
-            border: 1px solid;
-            border-collapse: collapse;
-            width: 100%;
-            text-align: center;
-            color: white;
-        }
-
-        th, td {
-            text-align: center;
-            padding: 8px;
-        }
         .search{
             position: relative;
-            top: -50px;
+            top: -20px;
             left: 600px;
             background-color: black;
             display: block;
@@ -83,8 +80,8 @@ if (!$conn) {
         }
         .searchtxt{
             position: relative;
-            left: 320px;
-            top: 10px;
+            left: 330px;
+            top: 40px;
             line-height: 20px;
             border-radius: 6px;
             padding: 0 22px;
@@ -95,57 +92,57 @@ if (!$conn) {
         }
         h3{
             color: white;
-            margin-top: 20px;
+            margin-top: 10px;
             margin-left: 100px;
         }
         .sid{
             position: relative;
             left: 30px;
-            top: 40px;
+            top: 70px;
             color: white;
 
 
         }
+
     </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart1);
+
+        function drawChart1() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['outstanding students', 'No. of outstanding students'],
+                <?php
+                echo "['No. of outstanding students',".$row."],";
+                ?>
+            ]);
+
+            var options = {
+
+                title:  "No. of outstanding students= "+<?php echo $row;?>
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+            chart.draw(data, options);
+        }
+
+
+    </script>
+
+
 </head>
 <body>
 <div class="scholar">
-    <h1>Loan Requests</h1>
+    <h1>Dashboard</h1>
 </div>
 <div class="mane">
-    <form action="" method="post">
-        <h3 class="sid">Loan Name:</h3>
-        <input type="text" name="search1" class="searchtxt">
-        <input type="submit" name="btn_search1" value="Search" class="search">
-    </form>
-    <?php
-    if(isset($_POST['btn_search1'])){
-    ?>
-    <div style="padding: 50px; overflow-x: auto;">
-
-        <table>
-            <?php
-            $search1 = $_POST['search1'];
-            $sh = mysqli_query($conn,"SELECT * FROM loans WHERE lname LIKE '%$search1%'");
-            while($row=mysqli_fetch_assoc($sh)){
-            ?>
-            <tr>
-                <td>Loan ID</td>
-                <td>Loan Name</td>
-            </tr>
-            <form action="">
-                <tr>
-                    <td><?php echo $i=$row['loan_id'];?></td>
-                    <td><a href="getloan.php?lid=<?php echo $i?>" style="color: white" name="em"><?php echo $row['lname'];?></a></td>
-                </tr>
-            </form>
-        </table>
-        <?php
-        }
-        }
-        ?>
-    </div>
+    <div id="piechart1" width="600" height="300" style="background-color: #f00;"></div>
 
 </div>
+<div class="mane">
 </body>
 </html>
+

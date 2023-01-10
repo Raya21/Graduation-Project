@@ -28,7 +28,7 @@ $email = $_GET['email'];
             padding: 0;
         }
         body{
-            background-color: white;
+            background-color: rgb(0,0,0,0.5);
             background-size: cover;
             background-position: center;
             font-family: sans-serif;

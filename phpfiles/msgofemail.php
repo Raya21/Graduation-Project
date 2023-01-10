@@ -35,7 +35,7 @@ $result2 = mysqli_query($conn,$sql1);
             padding: 0;
         }
         body{
-            background-color: purple;
+            background-color: rgb(0,0,0,0.5);
             background-size: cover;
             background-position: center;
             font-family: sans-serif;

@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Outstanding Students's Employee</title>
+    <title>Outstanding Students staff</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@700;800;900&display=swap">
@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggedin'])) {
         <h2 class="logo">Hand <br><span style="padding-left: 25px">In</span><br> Hand</h2>
         <ul>
             <li><a href="student.html" target="_myiframe">Outstanding students</a></li>
-            <li><a href="chart.php" target="_myiframe">Dashboard</a></li>
+            <li><a href="osemp_chart.php" target="_myiframe">Dashboard</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

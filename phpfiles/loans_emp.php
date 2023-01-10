@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Loans's Employee</title>
+    <title>Loans staff</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@700;800;900&display=swap">
@@ -44,7 +44,7 @@ if (!isset($_SESSION['loggedin'])) {
             <li><a href="loans.html" target="_myiframe">Loans</a></li>
             <li><a href="showloansrequest.php" target="_myiframe">Loans Requests</a></li>
             <li><a href="showdata.php" target="_myiframe">Users Info.</a></li>
-            <li><a href="chart.php" target="_myiframe">Dashboard</a></li>
+            <li><a href="lemp_charts.php" target="_myiframe">Dashboard</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>
