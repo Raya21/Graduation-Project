@@ -345,6 +345,11 @@ class MyLocale implements Translations {
               "تم تقديم طلب القرض من قبل!",
           "Be sure to attach and save all the attachments!":
               "تأكد من إرفاق كافة المرفقات وحفظها!",
+          "Scholarships :": "المنح :",
+          "Search": "بحث",
+          "Loans :": "القروض :",
+          "No results found": "لم يتم العثور على نتائج",
+          "Last submission date: ": "آخر موعد للتقديم: ",
           "x": "-1"
         },
         "en": {
@@ -703,6 +708,11 @@ class MyLocale implements Translations {
               "The loan request has been submitted before!",
           "Be sure to attach and save all the attachments!":
               "Be sure to attach and save all the attachments!",
+          "Search": "Search",
+          "Scholarships :": "Scholarships :",
+          "Loans :": "Loans :",
+          "No results found": "No results found",
+          "Last submission date: ": "Last submission date: ",
           "x": "1"
         }
       };
