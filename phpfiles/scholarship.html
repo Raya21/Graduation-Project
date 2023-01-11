@@ -11,7 +11,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link
+            href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css"
+            rel="stylesheet"
+    />
 
     <style>
         * {
@@ -19,7 +22,7 @@
             padding: 0;
         }
         body {
-            background-color: rgb(0,0,0,0.5);
+            background-color: rgb(0, 0, 0, 0.5);
             background-size: cover;
             background-position: center;
             font-family: sans-serif;
@@ -47,7 +50,7 @@
             text-transform: capitalize;
             font-size: 14px;
             left: 200px;
-            top: -30px;
+            top: -50px;
         }
         .sname {
             position: relative;
@@ -59,6 +62,44 @@
             font-size: 16px;
             color: #555;
             width: 300px;
+        }
+
+        .sdatelabel {
+            position: relative;
+            color: #e5e5e5;
+            text-transform: capitalize;
+            font-size: 14px;
+            left: 200px;
+            top: 20px;
+        }
+
+        .sdate {
+            position: relative;
+            left: 200px;
+            top: 50px;
+            line-height: 40px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 16px;
+            color: #555;
+            width: 200px;
+        }
+        .content {
+            margin-top: -10px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            position: relative;
+            left: 200px;
+            top: 50px;
+            line-height: 40px;
+            border-radius: 6px;
+            padding: 0;
+            font-size: 14px;
+            color: #e5e5e5;
         }
         .qua {
             position: relative;
@@ -263,11 +304,22 @@
 </div>
 <div class="mane">
     <form action="scholarship.php" method="post">
-
         <div id="name">
             <input class="sname" type="text" name="s_name" /><br />
+
             <label class="snamelabel">Scholarship Name</label>
         </div>
+
+        <div id="date">
+            <div class="sdatelabel">Submission Period</div>
+            <div class="content">
+                <p>From</p>
+                <input class="sdate" type="date" name="start_date" /><br />
+                <p>To</p>
+                <input class="sdate" type="date" name="end_date" /><br />
+            </div>
+        </div>
+
         <div id="desc">
             <textarea name="desc" class="des"></textarea><br />
             <label class="deslabel">Description</label>
@@ -282,7 +334,14 @@
         </div>
         <div id="colle">
             <label class="collabel" for="coll">College</label>
-            <select name="college[]" id="coll" class="coll" data-placeholder="Begin typing a name to filter..." multiple  name="test">
+            <select
+                    name="college[]"
+                    id="coll"
+                    class="coll"
+                    data-placeholder="Begin typing a name to filter..."
+                    multiple
+                    name="test"
+            >
                 <option value="Business school">Business school</option>
                 <option value="Faculty of Educational Sciences">
                     Faculty of Educational Sciences
@@ -375,8 +434,8 @@
 
 <script>
     $(".chosen-select").chosen({
-        no_results_text: "Oops, nothing found!"
-    })
+        no_results_text: "Oops, nothing found!",
+    });
     var recordNumber = 1;
     function deleteSpacificTimeRecord(parent_id_of_clicked_element) {
         document.getElementById(`${parent_id_of_clicked_element}`).remove();

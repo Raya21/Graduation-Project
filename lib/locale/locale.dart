@@ -444,8 +444,18 @@ class MyLocale implements Translations {
           "Be sure to attach and save all the attachments!":
               "تأكد من إرفاق كافة المرفقات وحفظها!",
           "From:": "من:",
+          "Scholarships :": "المنح :",
+          "Search": "بحث",
+          "Loans :": "القروض :",
+          "No results found": "لم يتم العثور على نتائج",
+          "Last submission date: ": "آخر موعد للتقديم: ",
         },
         "en": {
+          "Search": "Search",
+          "Scholarships :": "Scholarships :",
+          "Loans :": "Loans :",
+          "No results found": "No results found",
+          "Last submission date: ": "Last submission date: ",
           "From:": "From:",
           "Student #": "Student #",
           "Be sure to enter the required text fields!":

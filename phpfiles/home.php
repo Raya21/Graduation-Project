@@ -12,19 +12,22 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 //echo $_POST['email'];
-$email = $_POST['email'];
+$email =$_POST['email'];
 $list = array();
 
 $sql = "SELECT college, gpa FROM edu_info WHERE email='".$email."'";
 $result = mysqli_query($conn,$sql);
 $count  = mysqli_num_rows($result);
 $count2 =0;
+$date=date('Y-m-d');
+
 
 if($count==1){
     while ($row = $result->fetch_assoc()) {
 
 
-        $sql2 = "SELECT * FROM scholarships WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' ";
+        //$sql2 = "SELECT * FROM scholarships WHERE college='".$row['college']."' AND gpa <= '".$row['gpa']."' ";
+        $sql2 = "SELECT * FROM scholarships WHERE college LIKE '%{$row['college']}%' AND gpa <= '".$row['gpa']."' AND  end_date >= '".$date."' ";
         $result2 = mysqli_query($conn,$sql2);
         $count2=mysqli_num_rows($result2);
 
@@ -53,3 +56,7 @@ else if($count==0)
     echo json_encode($list);
 
 }
+
+
+
+

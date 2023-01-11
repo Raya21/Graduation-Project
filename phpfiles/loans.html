@@ -19,7 +19,7 @@
             padding: 0;
         }
         body {
-            background-color: rgb(0,0,0,0.5);
+            background-color: rgb(0, 0, 0, 0.5);
             background-size: cover;
             background-position: center;
             font-family: sans-serif;
@@ -47,7 +47,7 @@
             text-transform: capitalize;
             font-size: 14px;
             left: 200px;
-            top: -30px;
+            top: -50px;
         }
         .sname {
             position: relative;
@@ -59,6 +59,44 @@
             font-size: 16px;
             color: #555;
             width: 300px;
+        }
+
+        .ldatelabel {
+            position: relative;
+            color: #e5e5e5;
+            text-transform: capitalize;
+            font-size: 14px;
+            left: 200px;
+            top: 20px;
+        }
+
+        .ldate {
+            position: relative;
+            left: 200px;
+            top: 50px;
+            line-height: 40px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 16px;
+            color: #555;
+            width: 200px;
+        }
+        .content {
+            margin-top: -10px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            position: relative;
+            left: 200px;
+            top: 50px;
+            line-height: 40px;
+            border-radius: 6px;
+            padding: 0;
+            font-size: 14px;
+            color: #e5e5e5;
         }
         .qua {
             position: relative;
@@ -268,6 +306,17 @@
             <input class="sname" type="text" name="l_name" /><br />
             <label class="snamelabel">Loan Name</label>
         </div>
+
+        <div id="date">
+            <div class="ldatelabel">Loan Period</div>
+            <div class="content">
+                <p>From</p>
+                <input class="ldate" type="date" name="start_date" /><br />
+                <p>To</p>
+                <input class="ldate" type="date" name="end_date" /><br />
+            </div>
+        </div>
+
         <div id="desc">
             <textarea name="desc" class="des"></textarea><br />
             <label class="deslabel">Description</label>

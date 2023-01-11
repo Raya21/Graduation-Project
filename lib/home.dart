@@ -558,11 +558,22 @@ class _HomeState extends State<Home> {
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     child: ListTile(
-                                      title: Text(
-                                        "${_foundScholar[i]["sname"]}",
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold),
+                                      title: Column(
+                                        children: [
+                                          Text(
+                                            "${_foundScholar[i]["sname"]}",
+                                            style: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            "Last submission date: ".tr +
+                                                "${_foundScholar[i]["end_date"]}",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
                                       subtitle: Text(
                                         "${_foundScholar[i]["description"]}",
@@ -675,11 +686,22 @@ class _HomeState extends State<Home> {
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     child: ListTile(
-                                      title: Text(
-                                        "${_foundLoan[i]["lname"]}",
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold),
+                                      title: Column(
+                                        children: [
+                                          Text(
+                                            "${_foundLoan[i]["lname"]}",
+                                            style: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            "Last submission date: ".tr +
+                                                "${_foundLoan[i]["end_date"]}",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
                                       ),
                                       subtitle: Text(
                                         "${_foundLoan[i]["description"]}",
