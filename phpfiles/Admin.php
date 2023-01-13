@@ -39,7 +39,7 @@ if (!isset($_SESSION['loggedin'])) {
             <li><a href="messages.php" target="_myiframe">Messages</a></li>
             <li><a href="accepthelp.php" target="_myiframe">Helping Messages</a></li>
             <li><a href="showdata.php" target="_myiframe">Users Info.</a></li>
-            <li><a href="admin_chart.php" target="_myiframe">Dashboard</a></li>
+            <li><a href="admin_charts.php" target="_myiframe">Dashboard</a></li>
             <li style="padding-left: 70px"><a href="getscholars.php" target="_myiframe">Make an appointment</a></li>
             <li><a href="showloansrequest.php" target="_myiframe">Loans Requests</a></li>
             <li><a href="jscompanies.html" target="_myiframe">Joint Stock Companies</a></li>

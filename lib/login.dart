@@ -175,7 +175,7 @@ class _LoginState extends State<Login> {
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context)
-                                  .pushReplacementNamed("forget_password");
+                                  .pushNamed("forget_password");
                             },
                             child: Text(
                               "Forget Password?".tr,
@@ -247,4 +247,5 @@ class _LoginState extends State<Login> {
       });
     }
   }
+  
 }

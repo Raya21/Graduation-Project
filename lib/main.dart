@@ -75,7 +75,8 @@ class MyApp extends StatelessWidget {
           "addhelp":(context) => AddHelp(value: '',),
           "chat":(context) => ChatScreen(value: ''),
           "chatmenu":(context) => ChatMenu(value: ''),
-          "company":(context) => company(value: '', value1: '', value2: '')
+          "company":(context) => company(value: '', value1: '', value2: ''),
+          
         },
       );
     }));

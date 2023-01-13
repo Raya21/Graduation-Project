@@ -1,12 +1,10 @@
 import 'dart:convert';
-
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:index/creditional.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
 
 class ForgetPass extends StatefulWidget {
   const ForgetPass({super.key});
@@ -16,30 +14,44 @@ class ForgetPass extends StatefulWidget {
 }
 
 class _ForgetPassState extends State<ForgetPass> {
-  TextEditingController email = TextEditingController();
-
-  @override
-  void dispose() {
-    email.dispose();
-    super.dispose();
-  }
+  TextEditingController _emailcon = new TextEditingController();
+  String _errorMessage = '';
+  bool _obscureText = true;
 
   Future RecoverPassword() async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: email.text.trim());
-          showDialog(
+    var url = "http://" + IPADDRESS + "/handinhand/forget_password.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": _emailcon.text,
+    });
+    var red = json.decode(res.body);
+
+    showDialog(
         context: context,
-        builder: (context) {
+        builder: (BuildContext context) {
           return AlertDialog(
-            content: Text("Password reset Link sent! Check your email"),
+            title: Text("Recover your password!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            content: Text(red.toString(), style: TextStyle(fontSize: 20),),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Colse".tr,
+                    style: TextStyle(fontSize: 20,color: Colors.purple),
+                  ))
+            ],
           );
-        },
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      
-    }
+        });
+
+    /*Fluttertoast.showToast(
+        msg: red.toString(),
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 300,
+        backgroundColor: Color.fromARGB(255, 203, 158, 211),
+        textColor: Colors.purple,
+        fontSize: 16);*/
   }
 
   @override
@@ -90,20 +102,25 @@ class _ForgetPassState extends State<ForgetPass> {
                         child: Column(
                       children: <Widget>[
                         TextFormField(
-                          controller: email,
+                          controller: _emailcon,
                           cursorColor: Colors.white,
                           style: TextStyle(fontSize: 20, color: Colors.white),
                           decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email, color: Colors.pink),
                               hintText: "Email",
                               hintStyle: TextStyle(
-                                  color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
                               enabledBorder: UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: Colors.pink, width: 2)),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.pink, width: 2))),
+                          onChanged: (val) {
+                            validateEmail(val);
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -149,5 +166,21 @@ class _ForgetPassState extends State<ForgetPass> {
         ),
       ),
     );
+  }
+
+  void validateEmail(String val) {
+    if (val.isEmpty) {
+      setState(() {
+        _errorMessage = "Email can not be empty".tr;
+      });
+    } else if (!EmailValidator.validate(val, true)) {
+      setState(() {
+        _errorMessage = "Invalid Email Address".tr;
+      });
+    } else {
+      setState(() {
+        _errorMessage = "";
+      });
+    }
   }
 }
