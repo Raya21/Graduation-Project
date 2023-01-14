@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggedin'])) {
         <h2 class="logo">Hand <br><span style="padding-left: 25px">In</span><br> Hand</h2>
         <ul>
             <li><a href="messages.php" target="_myiframe">Messages</a></li>
-            <li><a href="accepthelp.php" target="_myiframe">Helping Messages</a></li>
+            <li><a href="accepthelp.php" target="_myiframe">Donation Requests</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

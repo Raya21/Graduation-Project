@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:mailer/mailer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -46,7 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
           backgroundColor: Colors.purple,
           title: Text(
-            "Chat",
+            "Chat".tr,
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -81,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        hintText: "Write your message here...",
+                        hintText: "Write your message here...".tr,
                         border: InputBorder.none),
                   ),
                 ),
@@ -95,7 +96,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       });
                     },
                     child: Text(
-                      "Send",
+                      "Send".tr,
                       style: TextStyle(
                           color: Colors.purple,
                           fontWeight: FontWeight.bold,
@@ -167,6 +168,7 @@ class _MessageLineState extends State<MessageLine> {
 
     return data;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -204,7 +206,8 @@ class _MessageLineState extends State<MessageLine> {
               child: Text(
                 "${widget.text}",
                 style: TextStyle(
-                    fontSize: 20, color: widget.isMe ? Colors.white : Colors.purple),
+                    fontSize: 20,
+                    color: widget.isMe ? Colors.white : Colors.purple),
               ),
             ),
           ),

@@ -12,7 +12,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 //echo $_POST['email'];
-$sql = "SELECT * FROM add_help WHERE accept='accept'";
+$sql = "SELECT * FROM add_help WHERE accept='accept' AND remaining!=0";
 $result = $conn->query($sql);
 while($row = $result->fetch_assoc()){
     $data[]=$row;

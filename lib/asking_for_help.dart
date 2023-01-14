@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:index/creditional.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:index/editHelp.dart';
+import 'package:index/reply_donate.dart';
 
 class AskForHelp extends StatefulWidget {
   final String value;
@@ -26,44 +26,13 @@ class _AskForHelpState extends State<AskForHelp> {
     return red;
   }
 
-  Future deleteHelp(String email, String help, String id) async {
-    var url = "http://"+IPADDRESS+"/handinhand/deletehelp.php";
-    var response = await http
-        .post(Uri.parse(url), body: {"email": email, "help": help, "id": id});
-    var data = await json.decode(response.body);
-    if (data == "Success") {
-      //emailvalue=emailcontroller.text;
-      //print(emailvalue);
-      Fluttertoast.showToast(
-          msg: "Deleted Successfully".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 203, 158, 211),
-          textColor: Colors.purple,
-          fontSize: 16);
-      //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home(value:emailvalue)));
-    } else {
-      Fluttertoast.showToast(
-          msg: "Delete Faild".tr,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16);
-    }
-  }
-  Future replyHelp(String email, String help, String id) async {
-  }
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Asking For Help".tr,
+            "Donations".tr,
             style: TextStyle(
                 color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -113,42 +82,24 @@ class _AskForHelpState extends State<AskForHelp> {
                                     fontSize: 25, fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
-                                "${snapshot.data[i]["help"]}",
-                                style: TextStyle(fontSize: 20),
+                                "${snapshot.data[i]["post"]}",
+                                style: TextStyle(fontSize: 20,),
                               ),
-                              leading: Icon(Icons.help_rounded),
-                              trailing: widget.value == "${snapshot.data[i]["email"]}" ? Wrap(
-                                spacing: 5, // space between two icons
-                                children: <Widget>[
-                                  IconButton(
+                              leading: Icon(Icons.request_page, color: Colors.white,),
+                              trailing: widget.value == "${snapshot.data[i]["email"]}" ? Icon(Icons.arrow_forward_ios, color: Colors.white,) : IconButton(
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                                builder: (context) => EditHelp(
-                                                      value:
-                                                          "${snapshot.data[i]["email"]}",
-                                                      value1:
-                                                          "${snapshot.data[i]["help"]}",
-                                                      value2:
-                                                          "${snapshot.data[i]["id"]}",
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ReplyDonate(
+                                                      value: widget.value,
+                                                      value1: "${snapshot.data[i]["id"]}",
+                                                      value2: "${snapshot.data[i]["email"]}",
+                                                      value3: "${snapshot.data[i]["typed"]}",
+                                                      value4: "${snapshot.data[i]["money"]}",
+                                                      value5: "${snapshot.data[i]["cost"]}",
+                                                      value6: "${snapshot.data[i]["remaining"]}",
                                                     )));
-                                      },
-                                      icon: Icon(Icons.edit)),
-                                  IconButton(
-                                      onPressed: () {
-                                        deleteHelp(
-                                            "${snapshot.data[i]["email"]}",
-                                            "${snapshot.data[i]["help"]}",
-                                            "${snapshot.data[i]["id"]}");
-                                      },
-                                      icon: Icon(Icons.delete)),
-                                ],
-                              ) : IconButton(
-                                      onPressed: () {
-                                        replyHelp(
-                                            widget.value,
-                                            "${snapshot.data[i]["help"]}",
-                                            "${snapshot.data[i]["id"]}");
                                       },
                                       icon: Icon(Icons.reply)),
                             ),

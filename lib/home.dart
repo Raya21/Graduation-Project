@@ -397,11 +397,11 @@ class _HomeState extends State<Home> {
                                     AskForHelp(value: emailvalue)));
                       },
                       leading: Icon(
-                        Icons.help,
+                        Icons.request_page,
                         color: Colors.white,
                       ),
                       title: Text(
-                        "Asking For Help".tr,
+                        "Donations".tr,
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),

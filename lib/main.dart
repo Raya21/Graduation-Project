@@ -11,6 +11,7 @@ import 'package:index/contactus.dart';
 import 'package:index/family_data.dart';
 import 'package:index/forget_password.dart';
 import 'package:index/outstanding_students.dart';
+import 'package:index/reply_donate.dart';
 //import 'package:index/language.dart';
 import 'package:index/reset_password.dart';
 import 'package:index/home.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
           "outstanding_students": (context) => outstandingStudents(),
           "asking_for_help":(context) =>AskForHelp(value: '',),
           "addhelp":(context) => AddHelp(value: '',),
+          "reply_donate":(context) => ReplyDonate(value: '', value1: '', value2: '', value3: '', value4: '', value5: '', value6: ''),
           "chat":(context) => ChatScreen(value: ''),
           "chatmenu":(context) => ChatMenu(value: ''),
           "company":(context) => company(value: '', value1: '', value2: ''),

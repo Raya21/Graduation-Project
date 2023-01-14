@@ -89,16 +89,21 @@ $result = mysqli_query($conn,$query);
 </head>
 <body>
 <div class="scholar">
-    <h1>Helping Messages</h1>
+    <h1>Donation Requests</h1>
 </div>
 <div class="mane">
     <form action="accept.php" method="get">
         <div style="padding: 50px; overflow-x: auto;">
             <table>
                 <tr>
-                    <td>User ID</td>
+                    <td>Donation ID</td>
                     <td>Email</td>
-                    <td>Help Text</td>
+                    <td>Username</td>
+                    <td>typed</td>
+                    <td>The amount of money</td>
+                    <td>Thing name</td>
+                    <td>The cost</td>
+                    <td>Post</td>
                     <td>Accept</td>
                 </tr>
                 <tr>
@@ -106,10 +111,15 @@ $result = mysqli_query($conn,$query);
                     <?php
                     while ($row = mysqli_fetch_assoc($result)){
                     ?>
-                    <td><?php echo $i=$row['id'];?></td>
+                    <td><?php echo $j=$row['id'];?></td>
                     <td><?php echo $row['email'];?></td>
-                    <td><?php echo $row['help'];?></td>
-                    <td><a href="accept.php?id=<?php echo $i?>" ><i class="fa-solid fa-check" style="color: white"></i></a></td>
+                    <td><?php echo $row['username'];?></td>
+                    <td><?php echo $i=$row['typed'];?></td>
+                    <td><?php echo $row['money'];?></td>
+                    <td><?php echo $row['thingname'];?></td>
+                    <td><?php echo $i=$row['cost'];?></td>
+                    <td><?php echo $row['post'];?></td>
+                    <td><a href="accept.php?id=<?php echo $j;?>" ><i class="fa-solid fa-check" style="color: white"></i></a></td>
                 </tr>
                 <?php
                 }
