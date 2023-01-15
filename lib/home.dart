@@ -16,6 +16,8 @@ import 'package:index/login.dart';
 import 'package:index/profile.dart';
 import 'package:index/scholarship.dart';
 
+late String emval;
+
 class Home extends StatefulWidget {
   final String value;
   //const Home({super.key});
@@ -63,77 +65,64 @@ class _HomeState extends State<Home> {
     }
   }
 
-  List _allScholar = [];
-  Future GetData2() async {
+  Future GetData() async {
     var url = "http://" + IPADDRESS + "/handinhand/home.php";
     var res = await http.post(Uri.parse(url), body: {
       "email": emailvalue,
     });
     //print(res.body);
     var red = json.decode(res.body);
-    setState(() {
-      _allScholar.addAll(red);
-    });
+    return red;
   }
 
-  List _allLoan = [];
-  Future GetLoans2() async {
+  List Data1 = [];
+  Future Suggestion1() async {
+    var url = "http://" + IPADDRESS + "/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+    var red = json.decode(res.body);
+    for (int i = 0; i < red.length; i++) {
+      setState(() {
+        Data1.add(red[i]['sname']);
+      });
+    }
+    print(Data1);
+  }
+
+  Future GetLoans() async {
     var url = "http://" + IPADDRESS + "/handinhand/home_loans.php";
     var res = await http.post(Uri.parse(url), body: {
       "email": emailvalue,
     });
     //print(res.body);
     var red = json.decode(res.body);
-    setState(() {
-      _allLoan.addAll(red);
-    });
+    return red;
   }
 
-  List _foundScholar = [];
-  List _foundLoan = [];
+  List Data2 = [];
+  Future Suggestion2() async {
+    var url = "http://" + IPADDRESS + "/handinhand/home.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "email": emailvalue,
+    });
+
+    var red = json.decode(res.body);
+    for (int i = 0; i < red.length; i++) {
+      setState(() {
+        Data2.add(red[i]['lname']);
+      });
+    }
+    print(Data2);
+  }
 
   @override
   void initState() {
-    _foundScholar = _allScholar;
-    _foundLoan = _allLoan;
     //getProfileImage();
+    emval = widget.value;
     super.initState();
-    GetData2();
-    GetLoans2();
-  }
-
-  void _runFilter(String enteredKeyword) {
-    List results = [];
-    if (enteredKeyword.isEmpty) {
-      results = _allScholar;
-    } else {
-      results = _allScholar
-          .where((scholar) => scholar["sname"]
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-    }
-
-    setState(() {
-      _foundScholar = results;
-    });
-  }
-
-  void _runFilter2(String enteredKeyword) {
-    List results = [];
-    if (enteredKeyword.isEmpty) {
-      results = _allLoan;
-    } else {
-      results = _allLoan
-          .where((loan) => loan["lname"]
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-    }
-
-    setState(() {
-      _foundLoan = results;
-    });
+    Suggestion1();
+    Suggestion2();
   }
 
   Widget bottomSheet() {
@@ -496,31 +485,38 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        margin: EdgeInsets.all(8),
-                        child: TextField(
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                          cursorColor: Colors.purple,
-                          onChanged: (value) => _runFilter(value),
-                          decoration: InputDecoration(
-                            labelText: "Search".tr,
-                            labelStyle: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                            suffixIcon:
-                                Icon(Icons.search, color: Colors.purple),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.purple, width: 2),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.purple, width: 2),
-                            ),
-                          ),
-                        ),
+                      GestureDetector(
+                        onTap: () {
+                          showSearch(
+                              context: context,
+                              delegate: DataSearch(data: Data1));
+                        },
+                        child: Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Search",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.purple),
+                                ),
+                                SizedBox(
+                                  width: 265,
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      showSearch(
+                                          context: context,
+                                          delegate: DataSearch(data: Data1));
+                                    },
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: Colors.purple,
+                                    ))
+                              ],
+                            )),
                       ),
                       Container(
                           margin: EdgeInsets.all(8),
@@ -540,115 +536,122 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        child: _foundScholar.isNotEmpty
-                            ? ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: _foundScholar[0] == "No data"
-                                    ? 0
-                                    : _foundScholar.length,
-                                itemBuilder: (cts, i) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Color.fromARGB(255, 198, 126, 211),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: ListTile(
-                                      title: Column(
-                                        children: [
-                                          Text(
-                                            "${_foundScholar[i]["sname"]}",
-                                            style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            "Last submission date: ".tr +
-                                                "${_foundScholar[i]["end_date"]}",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                      subtitle: Text(
-                                        "${_foundScholar[i]["description"]}",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      leading: Container(
-                                        child: Image.asset(
-                                          "lib/imgs/scholarship.png",
-                                          width: 50,
-                                          height: 100,
+                      FutureBuilder(
+                        future: GetData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) print(snapshot.error);
+                          return snapshot.hasData
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data[0] == "No data"
+                                      ? 0
+                                      : snapshot.data.length,
+                                  itemBuilder: (cts, i) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Column(
+                                          children: [
+                                            Text(
+                                              "${snapshot.data[i]["sname"]}",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              "Last submission date: ".tr +
+                                                  "${snapshot.data[i]["end_date"]}",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
+                                        subtitle: Text(
+                                          "${snapshot.data[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/scholarship.png",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Scholarship(
+                                                        scholarship_id: int.parse(
+                                                            "${snapshot.data[i]["scholarship_id"]}"),
+                                                        value:
+                                                            "${snapshot.data[i]["sname"]}",
+                                                        value1:
+                                                            "${snapshot.data[i]["conditions"]}",
+                                                        value2:
+                                                            "${snapshot.data[i]["percentage"]}",
+                                                        value3:
+                                                            "${snapshot.data[i]["attachments"]}",
+                                                        emailv: emailvalue,
+                                                      )));
+                                        },
                                       ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                      ),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Scholarship(
-                                                      scholarship_id: int.parse(
-                                                          "${_foundScholar[i]["scholarship_id"]}"),
-                                                      value:
-                                                          "${_foundScholar[i]["sname"]}",
-                                                      value1:
-                                                          "${_foundScholar[i]["conditions"]}",
-                                                      value2:
-                                                          "${_foundScholar[i]["percentage"]}",
-                                                      value3:
-                                                          "${_foundScholar[i]["attachments"]}",
-                                                      emailv: emailvalue,
-                                                    )));
-                                      },
                                     ),
                                   ),
-                                ),
-                              )
-                            : Center(
-                                child: Text(
-                                  'No results found'.tr,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
+                                )
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                        },
                       ),
+
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        margin: EdgeInsets.all(8),
-                        child: TextField(
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                          cursorColor: Colors.purple,
-                          onChanged: (value) => _runFilter2(value),
-                          decoration: InputDecoration(
-                            labelText: "Search".tr,
-                            labelStyle: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                            suffixIcon:
-                                Icon(Icons.search, color: Colors.purple),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.purple, width: 2),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.purple, width: 2),
-                            ),
-                          ),
-                        ),
+                      GestureDetector(
+                        onTap: () {
+                          showSearch(
+                              context: context,
+                              delegate: DataSearch2(data: Data2));
+                        },
+                        child: Container(
+                            margin: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Search",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.purple),
+                                ),
+                                SizedBox(
+                                  width: 265,
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      showSearch(
+                                          context: context,
+                                          delegate: DataSearch2(data: Data2));
+                                    },
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: Colors.purple,
+                                    ))
+                              ],
+                            )),
                       ),
                       const SizedBox(
                         height: 20,
@@ -668,87 +671,87 @@ class _HomeState extends State<Home> {
                               ),
                             ],
                           )),
-                      Container(
-                        child: _foundLoan.isNotEmpty
-                            ? ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: _foundLoan[0] == "No data"
-                                    ? 0
-                                    : _foundLoan.length,
-                                itemBuilder: (cts, i) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Color.fromARGB(255, 198, 126, 211),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: ListTile(
-                                      title: Column(
-                                        children: [
-                                          Text(
-                                            "${_foundLoan[i]["lname"]}",
-                                            style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            "Last submission date: ".tr +
-                                                "${_foundLoan[i]["end_date"]}",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                      subtitle: Text(
-                                        "${_foundLoan[i]["description"]}",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      leading: Container(
-                                        child: Image.asset(
-                                          "lib/imgs/loan.PNG",
-                                          width: 50,
-                                          height: 100,
+                      FutureBuilder(
+                        future: GetLoans(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) print(snapshot.error);
+                          return snapshot.hasData
+                              ? ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data[0] == "No data"
+                                      ? 0
+                                      : snapshot.data.length,
+                                  itemBuilder: (cts, i) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 198, 126, 211),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: ListTile(
+                                        title: Column(
+                                          children: [
+                                            Text(
+                                              "${snapshot.data[i]["lname"]}",
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              "Last submission date: ".tr +
+                                                  "${snapshot.data[i]["end_date"]}",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
+                                        subtitle: Text(
+                                          "${snapshot.data[i]["description"]}",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        leading: Container(
+                                          child: Image.asset(
+                                            "lib/imgs/loan.PNG",
+                                            width: 50,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      applyLoans(
+                                                        loan_id: int.parse(
+                                                            "${snapshot.data[i]["loan_id"]}"),
+                                                        value:
+                                                            "${snapshot.data[i]["lname"]}",
+                                                        value1:
+                                                            "${snapshot.data[i]["conditions"]}",
+                                                        value2:
+                                                            "${snapshot.data[i]["percentage"]}",
+                                                        value3:
+                                                            "${snapshot.data[i]["attachments"]}",
+                                                        emailv: emailvalue,
+                                                      )));
+                                        },
                                       ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                      ),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    applyLoans(
-                                                      loan_id: int.parse(
-                                                          "${_foundLoan[i]["loan_id"]}"),
-                                                      value:
-                                                          "${_foundLoan[i]["lname"]}",
-                                                      value1:
-                                                          "${_foundLoan[i]["conditions"]}",
-                                                      value2:
-                                                          "${_foundLoan[i]["percentage"]}",
-                                                      value3:
-                                                          "${_foundLoan[i]["attachments"]}",
-                                                      emailv: emailvalue,
-                                                    )));
-                                      },
                                     ),
                                   ),
-                                ),
-                              )
-                            : Center(
-                                child: Text(
-                                  'No results found'.tr,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
+                                )
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                        },
                       ),
+
                       SizedBox(
                         height: 20,
                       ),
@@ -843,5 +846,265 @@ class _HomeState extends State<Home> {
         }),
       ],
     ));
+  }
+}
+
+class DataSearch extends SearchDelegate {
+  List data = [];
+  DataSearch({required this.data});
+
+  Future getScholarshipData() async {
+    var url = "http://" + IPADDRESS + "/handinhand/search1.php";
+    var res = await http.post(Uri.parse(url), body: {"query": query});
+    if (res.statusCode == 200) {
+      var scholarData = jsonDecode(res.body);
+      return scholarData;
+    }
+  }
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = "";
+          },
+          icon: Icon(Icons.close))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return FutureBuilder<dynamic>(
+        future: getScholarshipData(),
+        builder: (stx, snp) {
+          if (!snp.hasData) {
+            return Center(
+              child: Text("There is No Scholarship with this name!"),
+            );
+          } else if (snp.hasError) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView.builder(
+                itemCount: snp.data.length,
+                itemBuilder: (ctx, i) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 198, 126, 211),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: ListTile(
+                        title: Column(
+                          children: [
+                            Text(
+                              "${snp.data[i]["sname"]}",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Last submission date: ".tr +
+                                  "${snp.data[i]["end_date"]}",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        subtitle: Text(
+                          "${snp.data[i]["description"]}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        leading: Container(
+                          child: Image.asset(
+                            "lib/imgs/scholarship.png",
+                            width: 50,
+                            height: 100,
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Scholarship(
+                                    scholarship_id: int.parse(
+                                        "${snp.data[i]["scholarship_id"]}"),
+                                    value: "${snp.data[i]["sname"]}",
+                                    value1: "${snp.data[i]["conditions"]}",
+                                    value2: "${snp.data[i]["percentage"]}",
+                                    value3: "${snp.data[i]["attachments"]}",
+                                    emailv: emval,
+                                  )));
+                        },
+                      ),
+                    ),
+                  );
+                });
+          }
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    var datasuggestion = query.isEmpty
+        ? data
+        : data
+            .where(
+                (element) => element.toString().toLowerCase().contains(query))
+            .toList();
+    return ListView.builder(
+        itemCount: datasuggestion.length,
+        itemBuilder: (ctn, index) {
+          return ListTile(
+            onTap: () {
+              query = datasuggestion[index];
+              showResults(context);
+            },
+            leading: Icon(Icons.star),
+            title: Text('${datasuggestion[index]}'),
+          );
+        });
+  }
+}
+
+class DataSearch2 extends SearchDelegate {
+  List data = [];
+  DataSearch2({required this.data});
+
+  Future getLoanData() async {
+    var url = "http://" + IPADDRESS + "/handinhand/search1.php";
+    var res = await http.post(Uri.parse(url), body: {"query": query});
+    if (res.statusCode == 200) {
+      var scholarData = jsonDecode(res.body);
+      return scholarData;
+    }
+  }
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = "";
+          },
+          icon: Icon(Icons.close))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return FutureBuilder<dynamic>(
+        future: getLoanData(),
+        builder: (stx, snp) {
+          if (!snp.hasData) {
+            return Center(
+              child: Text("There is No Scholarship with this name!"),
+            );
+          } else if (snp.hasError) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView.builder(
+                itemCount: snp.data.length,
+                itemBuilder: (ctx, i) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 198, 126, 211),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: ListTile(
+                        title: Column(
+                          children: [
+                            Text(
+                              "${snp.data[i]["lname"]}",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Last submission date: ".tr +
+                                  "${snp.data[i]["end_date"]}",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        subtitle: Text(
+                          "${snp.data[i]["description"]}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        leading: Container(
+                          child: Image.asset(
+                            "lib/imgs/loan.PNG",
+                            width: 50,
+                            height: 100,
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => applyLoans(
+                                    loan_id:
+                                        int.parse("${snp.data[i]["loan_id"]}"),
+                                    value: "${snp.data[i]["lname"]}",
+                                    value1: "${snp.data[i]["conditions"]}",
+                                    value2: "${snp.data[i]["percentage"]}",
+                                    value3: "${snp.data[i]["attachments"]}",
+                                    emailv: emval,
+                                  )));
+                        },
+                      ),
+                    ),
+                  );
+                });
+          }
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    var datasuggestion = query.isEmpty
+        ? data
+        : data
+            .where(
+                (element) => element.toString().toLowerCase().contains(query))
+            .toList();
+    return ListView.builder(
+        itemCount: datasuggestion.length,
+        itemBuilder: (ctn, index) {
+          return ListTile(
+            onTap: () {
+              query = datasuggestion[index];
+              showResults(context);
+            },
+            leading: Icon(Icons.star),
+            title: Text('${datasuggestion[index]}'),
+          );
+        });
   }
 }
