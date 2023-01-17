@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin'])) {
             justify-content: space-between;
             padding-top: 40px;
             padding-left: 15%;
-            padding-right: 50%;
+            padding-right: 40%;
         }
     </style>
 </head>
@@ -43,6 +43,7 @@ if (!isset($_SESSION['loggedin'])) {
         <ul>
             <li><a href="student.html" target="_myiframe">Outstanding students</a></li>
             <li><a href="osemp_chart.php" target="_myiframe">Dashboard</a></li>
+            <li><a href="admin_login.html">Logout</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

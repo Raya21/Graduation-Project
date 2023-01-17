@@ -15,6 +15,7 @@ import 'package:index/creditional.dart';
 import 'package:index/login.dart';
 import 'package:index/profile.dart';
 import 'package:index/scholarship.dart';
+import 'package:virtual_keyboard_multi_language/virtual_keyboard_multi_language.dart';
 
 late String emval;
 
@@ -81,11 +82,14 @@ class _HomeState extends State<Home> {
     var res = await http.post(Uri.parse(url), body: {
       "email": emailvalue,
     });
-    var red = json.decode(res.body);
-    for (int i = 0; i < red.length; i++) {
-      setState(() {
-        Data1.add(red[i]['sname']);
-      });
+    if (res.statusCode == 200) {
+      print("hi");
+      var red = json.decode(res.body);
+      for (int i = 0; i < red.length; i++) {
+        setState(() {
+          Data1.add(red[i]);
+        });
+      }
     }
     print(Data1);
   }
@@ -110,7 +114,7 @@ class _HomeState extends State<Home> {
     var red = json.decode(res.body);
     for (int i = 0; i < red.length; i++) {
       setState(() {
-        Data2.add(red[i]['lname']);
+        Data2.add(red[i]);
       });
     }
     print(Data2);
@@ -426,7 +430,7 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed("login");
+                        Navigator.of(context).pushReplacementNamed("login");
                       },
                       leading: Icon(
                         Icons.logout,
@@ -496,7 +500,7 @@ class _HomeState extends State<Home> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Search",
+                                  "Search".tr,
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -631,7 +635,7 @@ class _HomeState extends State<Home> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Search",
+                                  "Search".tr,
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -984,11 +988,11 @@ class DataSearch2 extends SearchDelegate {
   DataSearch2({required this.data});
 
   Future getLoanData() async {
-    var url = "http://" + IPADDRESS + "/handinhand/search1.php";
+    var url = "http://" + IPADDRESS + "/handinhand/search2.php";
     var res = await http.post(Uri.parse(url), body: {"query": query});
     if (res.statusCode == 200) {
-      var scholarData = jsonDecode(res.body);
-      return scholarData;
+      var loanData = jsonDecode(res.body);
+      return loanData;
     }
   }
 
@@ -1019,7 +1023,7 @@ class DataSearch2 extends SearchDelegate {
         builder: (stx, snp) {
           if (!snp.hasData) {
             return Center(
-              child: Text("There is No Scholarship with this name!"),
+              child: Text("There is No Loan with this name!"),
             );
           } else if (snp.hasError) {
             return Center(

@@ -127,7 +127,7 @@ class _Section2State extends State<Section2> {
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
                       labelText: "Relative Relation".tr,
-                      labelStyle: TextStyle(fontSize: 20),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -239,7 +239,7 @@ class _Section2State extends State<Section2> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Place".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -319,7 +319,7 @@ class _Section2State extends State<Section2> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Job".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -420,7 +420,7 @@ class _Section2State extends State<Section2> {
             }),
             child: Text(
               "Save data".tr,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20),
             )),
         SizedBox(
           height: 20,

@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin'])) {
             justify-content: space-between;
             padding-top: 40px;
             padding-left: 15%;
-            padding-right: 35%;
+            padding-right: 30%;
         }
     </style>
 </head>
@@ -45,6 +45,8 @@ if (!isset($_SESSION['loggedin'])) {
             <li><a href="showloansrequest.php" target="_myiframe">Loans Requests</a></li>
             <li><a href="showdata.php" target="_myiframe">Users Info.</a></li>
             <li><a href="lemp_charts.php" target="_myiframe">Dashboard</a></li>
+            <li><a href="admin_login.html">Logout</a></li>
+
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>

@@ -48,11 +48,13 @@ if ($stmt = $con->prepare('SELECT id, password, admin_employee FROM admins WHERE
             }
 
         } else {
-            echo '<script>alert("Incorrect username and/or password!")</script>';
+            echo '<script>alert("Your Request does not accept yet!")</script>';
+            header('Location: admin_login.html');
         }
     } else {
         // Incorrect username
         echo '<script>alert("Incorrect username and/or password!")</script>';
+        header('Location: admin_login.html');
     }
 
     $stmt->close();

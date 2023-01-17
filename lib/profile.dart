@@ -286,7 +286,7 @@ class _personInfoState extends State<personInfo> {
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(1960),
-                      lastDate: DateTime(2023),
+                      lastDate: DateTime(2024),
                     );
                     if (pickedDate != null) {
                       setState(() {

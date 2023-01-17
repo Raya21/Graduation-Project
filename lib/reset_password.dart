@@ -23,7 +23,7 @@ class _ResetPassState extends State<ResetPass> {
   TextEditingController oldpasswordcontroller = TextEditingController();
 
   Future resetpassword() async {
-    var url = "http://"+IPADDRESS+"/handinhand/reset_password.php";
+    var url = "http://"+IPADDRESS+"/handinhand/changepass.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": emailcontroller.text,
       "oldpassword": oldpasswordcontroller.text,

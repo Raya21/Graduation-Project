@@ -124,21 +124,21 @@ class _Section1State extends State<Section1> {
       "studentName": studentName.text,
       "studentNumber": studentId.text.toString(),
       "fatherName": fatherName.text,
-      "fatherIdCard": fatherId.text.toString(),
+      "fatherIdCard": fatherId.text,
       "fatherCareerStatus": fatherCareerStatus,
       "fatherWorkPlace": fatherWorkPlace,
       "fatherJob": fatherJop,
       "fatherWorkNature": fatherWorkNature,
       "fatherJobDesc": fatherJopDesc.text,
       "motherName": motherName.text,
-      "motherIdCard": motherId.text.toString(),
+      "motherIdCard": motherId.text,
       "motherCareerStatus": motherCareerStatus,
       "motherWorkPlace": motherWorkPlace,
       "motherJob": motherJop,
       "motherWorkNature": motherWorkNature,
       "motherJobDesc": motherJopDesc.text,
       "hwName": hwName.text,
-      "hwIdCard": hwId.text.toString(),
+      "hwIdCard": hwId.text,
       "hwCareerStatus": hwCareerStatus,
       "hwWorkPlace": hwWorkPlace,
       "hwJob": hwJop,
@@ -201,7 +201,7 @@ class _Section1State extends State<Section1> {
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Student Name".tr,
-                      labelStyle: TextStyle(fontSize: 20),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -231,7 +231,7 @@ class _Section1State extends State<Section1> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: "Student Number".tr,
-                      labelStyle: TextStyle(fontSize: 20),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -261,7 +261,7 @@ class _Section1State extends State<Section1> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: "ID Number".tr,
-                      labelStyle: TextStyle(fontSize: 20),
+                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -293,7 +293,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Social Situation".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -330,7 +330,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Parents' social status".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -455,7 +455,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Career Status".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -490,7 +490,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Place".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -572,7 +572,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Job".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -605,7 +605,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Nature".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -772,7 +772,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Career Status".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -806,7 +806,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Place".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -887,7 +887,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Job".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -919,7 +919,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Nature".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -1068,7 +1068,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Career Status".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -1102,7 +1102,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Place".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -1183,7 +1183,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Job".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -1215,7 +1215,7 @@ class _Section1State extends State<Section1> {
             dropdownDecoratorProps: DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Work Nature".tr,
-                labelStyle: TextStyle(fontSize: 20),
+                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(color: Colors.purple, width: 2)),
@@ -1412,7 +1412,7 @@ class _Section1State extends State<Section1> {
             }),
             child: Text(
               "Save data".tr,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20),
             )),
         SizedBox(
           height: 20,

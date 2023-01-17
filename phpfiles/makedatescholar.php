@@ -161,7 +161,7 @@ if (!$conn) {
                     <td><?php echo $row['city'];?></td>
                     <td><?php echo $row['uniid'];?></td>
                     <td><?php echo $row['gpa'];?></td>
-                    <td><a href="makedate.php?sname=<?php echo $i?>&fname=<?php echo $j?>&email=<?php echo $k?>" ><i class="fa fa-calendar" style="color: white"></i></a></td>
+                    <td><a href="makedate.php?sname=<?php echo $i;?>&fname=<?php echo $j;?>&email=<?php echo $k;?>" ><i class="fa fa-calendar" style="color: white"></i></a></td>
                 </tr>
                 </form>
             </table>

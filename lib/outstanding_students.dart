@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
@@ -13,7 +14,6 @@ class outstandingStudents extends StatefulWidget {
 }
 
 class _outstandingStudentsState extends State<outstandingStudents> {
- 
   Future GetData() async {
     var url = "http://" + IPADDRESS + "/handinhand/outStudent.php";
     var res = await http.get(Uri.parse(url));
@@ -47,7 +47,7 @@ class _outstandingStudentsState extends State<outstandingStudents> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Outstanding Students",
+            "Outstanding Students".tr,
             style: TextStyle(
                 color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -96,7 +96,11 @@ class _outstandingStudentsState extends State<outstandingStudents> {
                             ),
                             leading: Container(
                               child: Image.asset(
-                                  "lib/studentImages/" + snapshot.data[i]["image"]),
+                                "lib/studentImages/" +
+                                    snapshot.data[i]["image"],
+                                width: 100,
+                                height: 100,
+                              ),
                             ),
                           ),
                         ),
@@ -150,7 +154,7 @@ class DataSearch extends SearchDelegate {
         builder: (stx, snp) {
           if (!snp.hasData) {
             return Center(
-              child: Text("There is No Student with this name!"),
+              child: Text("There is No Student with this name!".tr),
             );
           } else if (snp.hasError) {
             return Center(
@@ -177,10 +181,11 @@ class DataSearch extends SearchDelegate {
                           style: TextStyle(fontSize: 20),
                         ),
                         leading: Container(
-                          child: Image.asset("http://" +
-                              IPADDRESS +
-                              "/handinhand/" +
-                              snp.data[index]["image"]),
+                          child: Image.asset(
+                            "lib/studentImages/" + snp.data[index]["image"],
+                            width: 100,
+                            height: 100,
+                          ),
                         ),
                       ),
                     ),

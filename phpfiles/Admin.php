@@ -44,6 +44,7 @@ if (!isset($_SESSION['loggedin'])) {
             <li><a href="showloansrequest.php" target="_myiframe">Loans Requests</a></li>
             <li><a href="jscompanies.html" target="_myiframe">Joint Stock Companies</a></li>
             <li><a href="employeereq.php" target="_myiframe">Employee Requests</a></li>
+            <li><a href="admin_login.html">Logout</a></li>
         </ul>
     </nav>
     <iframe src="" name="_myiframe" id="1"></iframe>
