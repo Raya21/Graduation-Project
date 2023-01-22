@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reset Password</title>
+  <link rel="stylesheet" type="text/css" href="styles/style1.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
+  <style>
+    input[type="submit"]{
+      border: none;
+      outline: none;
+      background: rebeccapurple;
+      padding: 11px 25px;
+      width: 100px;
+      margin-top: 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    input[type="submit"]:active{
+      opacity: 0.8;
+    }
+    .box{
+      position: relative;
+      width: 380px;
+      height: 480px;
+      background: #1c1c1c;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .box::before{
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 380px;
+      height: 480px;
+      background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
+      transform-origin: bottom right;
+      animation: animate 6s linear infinite;
+    }
+    .box::after{
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 380px;
+      height: 480px;
+      background: linear-gradient(0deg,transparent,rebeccapurple,rebeccapurple);
+      transform-origin: bottom right;
+      animation: animate 6s linear infinite;
+      animation-delay: -3s;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="form">
+    <h2>Reset Password</h2>
+    <form action="reset_password.php" method="post">
+      <?php include('messages.php'); ?>
+      <div class="inputBox">
+        <input type="email" required="required" name="email">
+        <span>Email</span>
+        <i></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" required="required" name="password">
+        <span>New password</span>
+        <i></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" required="required" name="npassword">
+        <span>Confirm new password</span>
+        <i></i>
+      </div>
+      <input type="submit" value="Confirm">
+    </form>
+  </div>
+</div>
+</body>
+</html>

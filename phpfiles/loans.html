@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loans</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: purple;
+        background-size: cover;
+        background-position: center;
+        font-family: sans-serif;
+        margin-top: 0px;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      .mane {
+        background-color: rgb(0, 0, 0, 0.5);
+        width: 1000px;
+        height: 1600px; 
+        margin: auto;
+      }
+      form {
+        padding: 10px;
+      }
+      #name {
+        width: 100%;
+        height: 100px;
+      }
+      .snamelabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: -30px;
+      }
+      .sname {
+        position: relative;
+        left: 200px;
+        top: 50px;
+        line-height: 40px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+      }
+
+      .ldatelabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: 40px;
+      }
+
+      .ldate {
+        position: relative;
+        left: 200px;
+        top: 50px;
+        line-height: 40px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 200px;
+      }
+      .content {
+        margin-top: -10px;
+        display: flex;
+        gap: 4px;
+        margin-bottom: 30px;
+      }
+
+      .content p {
+        position: relative;
+        left: 200px;
+        top: 50px;
+        line-height: 40px;
+        border-radius: 6px;
+        padding: 0;
+        font-size: 14px;
+        color: #e5e5e5;
+      }
+      .qua {
+        position: relative;
+        left: 200px;
+        top: 75px;
+        line-height: 20px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+        height: 150px;
+      }
+      .qualabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: -100px;
+      }
+      .per {
+        position: relative;
+        left: 200px;
+        top: 100px;
+        line-height: 20px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+        height: 150px;
+      }
+      .perlabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: -75px;
+      }
+      .des {
+        position: relative;
+        left: 200px;
+        top: 45px;
+        line-height: 20px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+        height: 150px;
+      }
+      .deslabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: -130px;
+      }
+      .gpalabel {
+        position: relative;
+    color: #e5e5e5;
+    text-transform: capitalize;
+    font-size: 14px;
+    left: 200px;
+    top: 150px;
+      }
+      .gpa {
+        position: relative;
+    left: 170px;
+    top: 170px;
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+    color: #555;
+    width: 300px;
+      }
+      .att {
+        position: relative;
+        left: 200px;
+        top: 215px;
+        line-height: 20px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+        height: 130px;
+      }
+      .attlabel {
+        position: relative;
+        color: #e5e5e5;
+        text-transform: capitalize;
+        font-size: 14px;
+        left: 200px;
+        top: 65px;
+      }
+      button {
+        position: relative;
+        top: 190px;
+        left: 200px;
+        background-color: black;
+        display: block;
+        margin: 20px 0 0 20px;
+        text-align: center;
+        border-radius: 12px;
+        border: 2px solid mediumpurple;
+        padding: 14px 65px;
+        outline: none;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        color: mediumpurple;
+      }
+      a {
+        position: relative;
+        top: 115px;
+        left: 400px;
+        font-size: 15px;
+        background-color: black;
+        display: block;
+        margin: 20px 0 0 20px;
+        text-align: center;
+        border-radius: 12px;
+        border: 2px solid mediumpurple;
+        padding: 14px 65px;
+        outline: none;
+        color: white;
+        cursor: pointer;
+        width: 180px;
+        height: 45px;
+      }
+      .coll {
+        position: relative;
+    left: 150px;
+    top: 125px;
+    line-height: 20px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+    color: #555;
+    width: 400px;
+    height: 80px;
+      }
+      .collabel {
+        position: relative;
+    color: #e5e5e5;
+    text-transform: capitalize;
+    font-size: 14px;
+    left: 200px;
+    top: 40px;
+      }
+
+      #attachment-records {
+        display: block;
+        position: relative;
+        font-size: 14px;
+        left: 0px;
+        top: 150px;
+        margin-top: 50px;
+      }
+
+      input {
+        position: relative;
+        left: 200px;
+        margin-bottom: 20px;
+        line-height: 40px;
+        border-radius: 6px;
+        padding: 0 22px;
+        font-size: 16px;
+        color: #555;
+        width: 300px;
+      }
+
+      i {
+        position: relative;
+        left: 200px;
+        margin-bottom: 20px;
+        line-height: 40px;
+        border-radius: 6px;
+        padding: 0 22px;
+        cursor: pointer;
+        color: #e5e5e5;
+        display: inline-block;
+      }
+
+      .mane #attachment-recordss {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scholar">
+      <h1>Loans</h1>
+    </div>
+    <div class="mane">
+      <form action="loan.php" method="post">
+
+        <div id="name">
+          <input class="sname" type="text" name="l_name" /><br />
+          <label class="snamelabel">Loan Name</label>
+        </div>
+
+        <div id="date">
+          <div class="ldatelabel">Loan Period</div>
+          <div class="content">
+            <p>From</p>
+            <input class="ldate" type="date" name="start_date" /><br />
+            <p>To</p>
+            <input class="ldate" type="date" name="end_date" /><br />
+          </div>
+        </div>
+
+        <div id="desc">
+          <textarea name="desc" class="des"></textarea><br />
+          <label class="deslabel">Description</label>
+        </div>
+        <div id="quali">
+          <textarea name="quali" class="qua"></textarea><br />
+          <label class="qualabel">Conditions</label>
+        </div>
+        <div id="percent">
+          <textarea name="percent" class="per"></textarea><br />
+          <label class="perlabel">Loan Percentage</label>
+        </div>
+        <div id="colle">
+          <label class="collabel" for="coll">College</label>
+          <select name="college[]" id="coll" class="coll" data-placeholder="Begin typing a name to filter..." multiple  name="test">
+            <option value="Business school">Business school</option>
+            <option value="Faculty of Educational Sciences">
+              Faculty of Educational Sciences
+            </option>
+            <option value="faculty of Pharmacy">faculty of Pharmacy</option>
+            <option value="Advocacy College">Advocacy College</option>
+            <option value="College of Engineering">
+              College of Engineering
+            </option>
+            <option value="Faculty of Dentistry">Faculty of Dentistry</option>
+            <option value="College of Health Professions">
+              College of Health Professions
+            </option>
+            <option value="Al-Quds College- Bard">Al-Quds College- Bard</option>
+            <option value="College of Quran and Islamic Studies">
+              College of Quran and Islamic Studies
+            </option>
+            <option value="College of Dual Studies">
+              College of Dual Studies
+            </option>
+            <option value="Hind Al Husseini College">
+              Hind Al Husseini College
+            </option>
+            <option value="College of Literature">College of Literature</option>
+            <option value="College of Public Health">
+              College of Public Health
+            </option>
+            <option value="College of Human Medicine">
+              College of Human Medicine
+            </option>
+            <option value="College of Science">College of Science</option>
+            <option value="College of Agriculture and Veterinary Medicine">
+              College of Agriculture and Veterinary Medicine
+            </option>
+            <option value="Hisham Hijjawi College">
+              Hisham Hijjawi College
+            </option>
+            <option value="College of Sharia">College of Sharia</option>
+            <option value="Faculty of Medicine and Health Sciences">
+              Faculty of Medicine and Health Sciences
+            </option>
+            <option value="College of Fine Arts">College of Fine Arts</option>
+            <option value="College of Commerce and Economics">
+              College of Commerce and Economics
+            </option>
+            <option value="College of Law and Public Administration">
+              College of Law and Public Administration
+            </option>
+            <option value="Faculty of Education">Faculty of Education</option>
+            <option
+              value="College of Administrative Sciences and Information Systems"
+            >
+              College of Administrative Sciences and Information Systems
+            </option>
+            <option value="College of Information Technology">
+              College of Information Technology
+            </option>
+            <option value="College of Applied Professions">
+              College of Applied Professions
+            </option>
+            <option value="College of Finance and Administration">
+              College of Finance and Administration
+            </option>
+            <option value="Graduate School">Graduate School</option>
+            <option value="Institute of Hotel and Tourism Management">
+              Institute of Hotel and Tourism Management
+            </option>
+            <option value="College of Media">College of Media</option>
+          </select>
+        </div>
+        <div id="gpa">
+          <label for="gpaa" class="gpalabel">GPA</label>
+          <select name="gpa" id="gpaa" class="gpa">
+            <option value="4">4</option>
+            <option value="3.5">3.5</option>
+            <option value="3">3</option>
+            <option value="2.5">2.5</option>
+          </select>
+        </div>
+
+        <button type="button" id="add-attachment-button">
+          + Add Attachment
+        </button>
+
+        <div id="attachment-records"></div>
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+
+    <script>
+      $(".chosen-select").chosen({
+  no_results_text: "Oops, nothing found!"
+})
+      var recordNumber = 1;
+      function deleteSpacificTimeRecord(parent_id_of_clicked_element) {
+        document.getElementById(`${parent_id_of_clicked_element}`).remove();
+      }
+
+      document
+        .getElementById("add-attachment-button")
+        .addEventListener("click", function () {
+          const new_div_element = document.createElement("div");
+          new_div_element.id = `${recordNumber}`;
+          new_div_element.class = "attch";
+          const element = document.getElementById("attachment-records");
+          element.appendChild(new_div_element);
+
+          const new_input_element = document.createElement("input");
+          new_input_element.type = "text";
+          new_input_element.name = "attachment[]";
+          new_div_element.appendChild(new_input_element);
+
+          const trash_basket_icon = document.createElement("i");
+          trash_basket_icon.className = "fas fa-trash-alt";
+          trash_basket_icon.id = "trash_basket_icon";
+          new_div_element.appendChild(trash_basket_icon);
+          trash_basket_icon.setAttribute(
+            "onclick",
+            "deleteSpacificTimeRecord(this.parentElement.id)"
+          );
+
+          recordNumber++;
+        });
+    </script>
+  </body>
+</html>
