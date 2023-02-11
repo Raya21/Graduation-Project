@@ -474,6 +474,9 @@ class MyLocale implements Translations {
           "Outstanding Students": "الطلبة المتفوقين",
           "Joint Stock Companies :": "الشركات المساهمة",
           "Quatrain Name  ": "الإسم الرباعي       ",
+          "Reset": "مسح",
+          "Send Messages": "إرسل رسائل",
+          "Messages From Admin": "رسائل من المسؤول",
         },
         "en": {
           "Donated Successfully": "Donated Successfully",
@@ -967,6 +970,9 @@ class MyLocale implements Translations {
           "Outstanding Students": "Outstanding Students",
           "Joint Stock Companies :": "Joint Stock Companies :",
           "Quatrain Name  ": "Quatrain Name  ",
+          "Reset": "Reset",
+          "Send Messages": "Send Messages",
+          "Messages From Admin": "Messages From Admin",
         }
       };
 }

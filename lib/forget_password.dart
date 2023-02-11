@@ -153,7 +153,8 @@ class _ForgetPassState extends State<ForgetPass> {
                                 borderRadius: BorderRadius.circular(20.0)),
                             color: Colors.white,
                             onPressed: () {
-                              Navigator.of(context).pushNamed("login");
+                              //Navigator.of(context).pushNamed("login");
+                              Navigator.pop(context);
                             },
                             child: Text(
                               "Back",

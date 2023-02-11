@@ -29,7 +29,8 @@ while ($row = $id->fetch_assoc()) {
 
 
 }else{
-  echo json_encode("Error");
+  //echo json_encode("Error");
+  echo json_encode(array("message"=>"Error"));
 }
 
 ?>

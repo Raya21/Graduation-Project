@@ -199,7 +199,17 @@ class _SignUpState extends State<SignUp> {
                       Container(
                         child: ElevatedButton(
                             onPressed: () {
-                              register();
+                              if (_errorMessage == "") {
+                                register();
+                              } else
+                                Fluttertoast.showToast(
+                                    msg: _errorMessage,
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16);
                             },
                             child: Text(
                               "Create Account".tr,

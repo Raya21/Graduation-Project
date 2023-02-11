@@ -95,8 +95,12 @@ class _outstandingStudentsState extends State<outstandingStudents> {
                               style: TextStyle(fontSize: 20),
                             ),
                             leading: Container(
-                              child: Image.asset("lib/studentImages/" +
-                                  snapshot.data[i]["image"]),
+                              child: Image.asset(
+                                "lib/studentImages/" +
+                                    snapshot.data[i]["image"],
+                                width: 100,
+                                height: 100,
+                              ),
                             ),
                           ),
                         ),
@@ -150,7 +154,7 @@ class DataSearch extends SearchDelegate {
         builder: (stx, snp) {
           if (!snp.hasData) {
             return Center(
-              child: Text("There is No Student with this name!"),
+              child: Text("There is No Student with this name!".tr),
             );
           } else if (snp.hasError) {
             return Center(
@@ -177,10 +181,11 @@ class DataSearch extends SearchDelegate {
                           style: TextStyle(fontSize: 20),
                         ),
                         leading: Container(
-                          child: Image.asset("http://" +
-                              IPADDRESS +
-                              "/handinhand2/" +
-                              snp.data[index]["image"]),
+                          child: Image.asset(
+                            "lib/studentImages/" + snp.data[index]["image"],
+                            width: 100,
+                            height: 100,
+                          ),
                         ),
                       ),
                     ),
